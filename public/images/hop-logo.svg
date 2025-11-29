@@ -1,0 +1,29 @@
+<svg width="320" height="320" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="hopGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2dd4bf" />
+      <stop offset="45%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+    <radialGradient id="hopGlow" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="320" height="320" rx="72" fill="#020617" />
+  <circle cx="160" cy="160" r="132" fill="url(#hopGradient)" opacity="0.18" />
+  <circle cx="160" cy="150" r="110" fill="url(#hopGlow)" />
+  <path d="M75 208c28 30 74 48 125 32" fill="none" stroke="url(#hopGradient)" stroke-width="26" stroke-linecap="round" />
+  <path d="M195 248l42-60l-2 42l24 8z" fill="url(#hopGradient)" />
+  <g transform="translate(70 60)">
+    <ellipse cx="120" cy="114" rx="36" ry="34" fill="#0f172a" opacity="0.15" />
+    <ellipse cx="105" cy="95" rx="45" ry="40" fill="#f8fafc" />
+    <ellipse cx="86" cy="65" rx="18" ry="34" fill="#f8fafc" transform="rotate(-12 86 65)" />
+    <ellipse cx="125" cy="62" rx="16" ry="33" fill="#f8fafc" transform="rotate(15 125 62)" />
+    <circle cx="80" cy="96" r="6" fill="#0f172a" />
+    <circle cx="102" cy="96" r="6" fill="#0f172a" />
+    <path d="M90 118c10 10 28 10 38 0" stroke="#0f172a" stroke-width="4" stroke-linecap="round" />
+    <ellipse cx="143" cy="138" rx="26" ry="20" fill="#f8fafc" />
+    <ellipse cx="151" cy="133" rx="30" ry="22" fill="#f8fafc" transform="rotate(-10 151 133)" />
+  </g>
+</svg>
