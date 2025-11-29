@@ -1,7 +1,7 @@
 # 🔗 Hel.ink - Modern URL Shortener
 
 <p align="center">
-  <img src="https://hel.ink/brand/logo.png" alt="Hel.ink Logo" width="200"/>
+  <img src="https://hel.ink/brand/logo-dark.png" alt="Hel.ink Logo" width="200"/>
 </p>
 
 <p align="center">
@@ -9,14 +9,14 @@
 </p>
 
 <p align="center">
-  <a href="#features">Features</a> •
-  <a href="#demo">Demo</a> •
-  <a href="#installation">Installation</a> •
-  <a href="#configuration">Configuration</a> •
-  <a href="#usage">Usage</a> •
-  <a href="#tech-stack">Tech Stack</a> •
-  <a href="#contributing">Contributing</a> •
-  <a href="#license">License</a>
+  <a href="#-features">Features</a> •
+  <a href="#-demo">Demo</a> •
+  <a href="#-installation">Installation</a> •
+  <a href="#-configuration">Configuration</a> •
+  <a href="#-usage">Usage</a> •
+  <a href="#-tech-stack">Tech Stack</a> •
+  <a href="#-contributing">Contributing</a> •
+  <a href="#-license">License</a>
 </p>
 
 ---
