@@ -73,6 +73,16 @@ class RegisteredUserController extends Controller
         // Store catchphrase in session for onboarding page
         session(['user_catchphrase' => $catchphrase]);
         
+        // Send welcome email to new user
+        try {
+            \Mail::to($user->email)->send(new \App\Mail\WelcomeEmail($user, $catchphrase, false));
+        } catch (\Exception $e) {
+            \Log::error('Failed to send welcome email', [
+                'error' => $e->getMessage(),
+                'user_id' => $user->id
+            ]);
+        }
+        
         return redirect()->route('verification.notice');
     }
 }

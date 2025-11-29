@@ -124,6 +124,16 @@ class GoogleAuthController extends Controller
                     ]);
                 }
 
+                // Send welcome email to new user
+                try {
+                    \Mail::to($user->email)->send(new \App\Mail\WelcomeEmail($user, $catchphrase, true));
+                } catch (Exception $e) {
+                    \Log::error('Failed to send welcome email', [
+                        'error' => $e->getMessage(),
+                        'user_id' => $user->id
+                    ]);
+                }
+
                 // Create default folder
                 \App\Models\Folder::create([
                     'name' => 'Default',
