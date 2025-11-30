@@ -104,7 +104,7 @@
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/ivanovskies/helink.git
+git clone https://github.com/navi-crwn/hel.ink.git
 cd helink
 ```
 
@@ -398,7 +398,7 @@ This project is licensed under the **MIT License**, see the [LICENSE](LICENSE) f
 
 ## 👨‍💻 Author
 
-**Ivan Ivanov** ([@ivanovskies](https://github.com/ivanovskies))
+**Ivan Novskies** ([@navi-crwn](https://github.com/navi-crwn))
 
 ---
 
@@ -414,10 +414,10 @@ This project is licensed under the **MIT License**, see the [LICENSE](LICENSE) f
 ## 📞 Support
 
 - **Email**: support@hel.ink
-- **Issues**: [GitHub Issues](https://github.com/ivanovskies/helink/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/ivanovskies/helink/discussions)
+- **Issues**: [GitHub Issues](https://github.com/navi-crwn/helink/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/navi-crwn/helink/discussions)
 
 ---
 
-<p align="center">Made with ❤️ by Ivan Ivanov</p>
+<p align="center">Made with ❤️ by Ivan Novskies</p>
 <p align="center">⭐ Star this repo if you find it helpful!</p>
