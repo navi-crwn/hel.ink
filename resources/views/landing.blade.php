@@ -84,7 +84,7 @@
                     x-bind:disabled="showCaptcha && !token"
                 >
                     <span class="sr-only">Submit</span>
-                    <span style="color: #0f172a;">Hop It</span>
+                    <span style="color: #0f172a;">Shorten URL</span>
                 </button>
                 @if ($errors->any())
                     <div class="rounded-2xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-100">
@@ -141,21 +141,21 @@
 
     <section id="stories" class="mx-auto max-w-6xl px-6 py-16 lg:px-8">
         <div class="rounded-3xl border border-white/10 bg-white/5 p-8">
-            <p class="text-sm uppercase tracking-[0.4em] text-white/60">See how others hop</p>
-            <h2 class="mt-4 text-3xl font-semibold text-white">Adopted and loved by communities building on HEL.ink</h2>
-            <p class="mt-4 text-white/70">Knowing how your clicks and scans perform should be as easy as creating them. HEL.ink keeps the workflow lightweight and private.</p>
+            <p class="text-sm uppercase tracking-[0.4em] text-white/60">Open Source & Community Driven</p>
+            <h2 class="mt-4 text-3xl font-semibold text-white">Built with modern tech, designed for real workflows</h2>
+            <p class="mt-4 text-white/70">Hel.ink is completely open source on GitHub. Built with Laravel 11, Tailwind CSS, and Alpine.js. Self-host on your infrastructure or use our hosted version.</p>
             <div class="mt-8 grid gap-6 md:grid-cols-3 text-sm text-white/80">
                 <div class="rounded-3xl border border-white/10 bg-slate-950/40 p-4">
-                    <p class="text-2xl font-semibold text-white">+10K</p>
-                    <p class="mt-2 text-white/70">Daily redirects handled on a single VPS.</p>
+                    <p class="text-2xl font-semibold text-white">✨ Open Source</p>
+                    <p class="mt-2 text-white/70">100% open source on GitHub. Fork, customize, or contribute improvements.</p>
                 </div>
                 <div class="rounded-3xl border border-white/10 bg-slate-950/40 p-4">
-                    <p class="text-2xl font-semibold text-white">Folders & tags</p>
-                    <p class="mt-2 text-white/70">Teams keep campaigns tidy without extra software.</p>
+                    <p class="text-2xl font-semibold text-white">🚀 Modern Stack</p>
+                    <p class="mt-2 text-white/70">Laravel 11, Tailwind CSS, Alpine.js. Fast, secure, and maintainable.</p>
                 </div>
                 <div class="rounded-3xl border border-white/10 bg-slate-950/40 p-4">
-                    <p class="text-2xl font-semibold text-white">Community driven</p>
-                    <p class="mt-2 text-white/70">Feature roadmap shaped entirely by feedback.</p>
+                    <p class="text-2xl font-semibold text-white">👥 Community</p>
+                    <p class="mt-2 text-white/70">Feature requests, bug reports, and contributions welcome on GitHub.</p>
                 </div>
             </div>
         </div>
@@ -163,11 +163,11 @@
 
     <section class="mx-auto max-w-6xl px-6 pb-20 lg:px-8">
         <div class="rounded-3xl border border-white/10 bg-gradient-to-r from-blue-600/40 to-violet-600/40 p-8 text-center">
-            <h2 class="text-3xl font-semibold text-white">More than a link shortener.</h2>
-            <p class="mt-4 text-white/80">HEL.ink pairs simplicity with analytics, QR, folders, comments, and moderation.</p>
+            <h2 class="text-3xl font-semibold text-white">Ready to upgrade your link game?</h2>
+            <p class="mt-4 text-white/80">Join Hel.ink and get powerful analytics, organization tools, QR codes, and security features—all free.</p>
             <div class="mt-6 flex flex-wrap items-center justify-center gap-4">
-                <a href="{{ route('register') }}" class="rounded-full bg-white px-6 py-3 font-semibold text-slate-900">Join now</a>
-                <a href="{{ route('plans') }}" class="rounded-full border border-white/40 px-6 py-3 text-white/80 hover:text-white">View usage tiers</a>
+                <a href="{{ route('register') }}" class="rounded-full bg-white px-6 py-3 font-semibold text-slate-900 hover:bg-white/90">Create Free Account</a>
+                <a href="https://github.com/navi-crwn/hel.ink" target="_blank" class="rounded-full border border-white/40 px-6 py-3 text-white/80 hover:text-white">View on GitHub</a>
             </div>
         </div>
     </section>

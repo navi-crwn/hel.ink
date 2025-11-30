@@ -1,52 +1,53 @@
-<x-marketing-layout title="About Hop Easy Link">
+<x-marketing-layout title="About Hel.ink">
     <section class="mx-auto max-w-5xl px-6 py-16 lg:px-8">
         <p class="text-xs uppercase tracking-[0.4em] text-white/60">About</p>
-        <h1 class="mt-4 text-4xl font-semibold text-white">Why Hop Easy Link exists</h1>
+        <h1 class="mt-4 text-4xl font-semibold text-white">Why Hel.ink exists</h1>
         <p class="mt-4 max-w-3xl text-lg text-white/70">
-            Hop Easy Link is the refreshed hel.ink studio built for teams who want
-            a transparent alternative to commercial link platforms. We focus on clean redirects,
-            privacy-aware analytics, and tooling that stays fast on modest infrastructure.
+            Hel.ink is a modern, open-source URL shortener built for individuals and teams who want
+            powerful link management without the complexity. We focus on clean redirects,
+            comprehensive analytics, and features that actually matter—all while respecting your privacy.
         </p>
-        <p class="mt-6 max-w-3xl text-base text-white/70">Our platform helps teams of any size manage campaigns, share resources, and measure engagement without exposing user data to third-party trackers. We prioritise reliability and predictable pricing, and provide features such as custom domains, link expiration, password-protected links, and branded previews to suit modern marketing workflows.</p>
-        <p class="mt-4 max-w-3xl text-base text-white/70">Hel.ink is designed for developers and non-technical users alike — with a simple dashboard for everyday tasks and an API for automation. Whether you need short, memorable URLs for social posts or detailed click analytics for product launches, Hop Easy Link keeps the process simple and auditable.</p>
+        <p class="mt-6 max-w-3xl text-base text-white/70">Whether you're managing social media campaigns, organizing team resources, or tracking marketing performance, Hel.ink provides the tools you need: folders and tags for organization, QR code generation, password protection, link expiration, comprehensive analytics with geographic tracking and device detection, and even proxy/VPN detection for security.</p>
+        <p class="mt-4 max-w-3xl text-base text-white/70">Built with Laravel 11, Hel.ink is designed for both developers and everyday users. Sign in with Google OAuth or email, organize your links with folders and tags, track every click with detailed analytics, and download QR codes in multiple formats. Everything works seamlessly across devices with our dark mode interface.</p>
         
         <div class="mt-12 max-w-3xl space-y-6">
             <h2 class="text-2xl font-semibold text-white">Our Mission</h2>
-            <p class="text-white/70">We believe URL shortening should be transparent, accessible, and user-friendly. Too many platforms hide features behind paywalls or track users without consent. HEL.ink was created to offer a better way: open-source foundations, clear documentation, and a commitment to data privacy. Whether you're an individual creator, a startup, or an enterprise, you deserve tools that respect your audience and give you full control over your links.</p>
+            <p class="text-white/70">URL shortening should be powerful yet simple, feature-rich without being overwhelming. Hel.ink was built to eliminate the frustration of juggling multiple tools—no more switching between services for shortening, analytics, QR codes, and organization. Everything you need is in one place, with an interface that makes sense from day one.</p>
             
             <h2 class="mt-10 text-2xl font-semibold text-white">What Makes Us Different</h2>
-            <p class="text-white/70">Unlike traditional link shorteners that monetize through ads or data resale, HEL.ink operates on a straightforward model: provide excellent service, respect user privacy, and maintain transparent operations. Our infrastructure is optimized for performance without bloat, ensuring fast redirects even under heavy traffic. We don't inject scripts into your destination pages, and we never share your analytics data with third parties.</p>
+            <p class="text-white/70">Hel.ink provides enterprise-grade features without the enterprise price tag. Get detailed analytics including geographic data (city, country), ISP tracking, device and browser detection, proxy/VPN detection, and referrer tracking. Organize with unlimited folders and tags. Secure links with password protection. Generate custom QR codes in PNG, SVG, or JPG. Set expiration dates. Track unique visitors. All included, no hidden costs or premium tiers.</p>
             
-            <h2 class="mt-10 text-2xl font-semibold text-white">Built for Growth</h2>
-            <p class="text-white/70">From day one, we designed HEL.ink to scale with your needs. Start with basic link shortening, then add folders and tags as your library grows. Need advanced features like custom QR codes, password protection, or link expiration? They're all included. Our analytics dashboard grows with you too, offering detailed insights into click patterns, geographic distribution, device types, and referral sources—all without complicated setup or hidden costs.</p>
+            <h2 class="mt-10 text-2xl font-semibold text-white">Built for Real Workflows</h2>
+            <p class="text-white/70">Every feature exists because users needed it. Google OAuth for quick sign-in. Two-factor authentication for security. Bulk operations for efficiency. Export to CSV for reporting. Admin panel with domain blacklist and abuse reporting. Dark mode because your eyes matter. Queue-based click logging for performance. Comprehensive login history with location tracking. These aren't "nice-to-haves"—they're essentials for modern link management.</p>
             
-            <h2 class="mt-10 text-2xl font-semibold text-white">Community & Support</h2>
-            <p class="text-white/70">We're committed to building not just a tool, but a community. Whether you're self-hosting HEL.ink on your own server or using our hosted service, you'll find comprehensive documentation, responsive support, and a growing ecosystem of integrations. Have a feature request? We listen. Found a bug? We fix it. Want to contribute? We welcome collaboration. HEL.ink is built by users, for users.</p>
+            <h2 class="mt-10 text-2xl font-semibold text-white">Open Source & Self-Hostable</h2>
+            <p class="text-white/70">Hel.ink is completely open source on GitHub. Self-host on your own infrastructure for complete control, or use our hosted version for convenience. Full transparency means you can audit the code, contribute improvements, or customize it for your needs. Built by <a href="https://github.com/navi-crwn" class="text-blue-400 hover:text-blue-300" target="_blank">@navi-crwn</a>, maintained with love, and improved by the community.</p>
         </div>
 
         <div class="mt-16 grid gap-6 md:grid-cols-3">
             <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
-                <p class="text-sm uppercase tracking-[0.3em] text-white/50">Open</p>
-                <h3 class="mt-2 text-xl font-semibold text-white">Self hosted friendly</h3>
-                <p class="mt-2 text-white/70">Run the stack on a single VPS, no vendor lock-in, and keep your data in one place. Full control over your infrastructure means you decide where your data lives and how it's managed.</p>
+                <p class="text-sm uppercase tracking-[0.3em] text-white/50">Analytics</p>
+                <h3 class="mt-2 text-xl font-semibold text-white">Deep insights</h3>
+                <p class="mt-2 text-white/70">Track every click with geographic data (city, country), device types, browsers, operating systems, ISP information, proxy/VPN detection, referrer sources, and unique visitor counts. Export everything to CSV.</p>
             </div>
             <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
-                <p class="text-sm uppercase tracking-[0.3em] text-white/50">Practical</p>
-                <h3 class="mt-2 text-xl font-semibold text-white">Smart defaults</h3>
-                <p class="mt-2 text-white/70">Random + custom slugs, QR export, folders, tags, and analytics that actually make sense. Every feature is designed to save you time and reduce complexity in your workflow.</p>
+                <p class="text-sm uppercase tracking-[0.3em] text-white/50">Organization</p>
+                <h3 class="mt-2 text-xl font-semibold text-white">Folders & Tags</h3>
+                <p class="mt-2 text-white/70">Create unlimited folders and tags to organize your links. Bulk operations let you manage hundreds of links at once. Search and filter to find exactly what you need in seconds.</p>
             </div>
             <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
-                <p class="text-sm uppercase tracking-[0.3em] text-white/50">Safe</p>
-                <h3 class="mt-2 text-xl font-semibold text-white">Moderation tools</h3>
-                <p class="mt-2 text-white/70">Built-in IP banning, abuse logs, and admin controls keep public links tidy. Protect your brand reputation with comprehensive moderation features and real-time abuse reporting.</p>
+                <p class="text-sm uppercase tracking-[0.3em] text-white/50">Security</p>
+                <h3 class="mt-2 text-xl font-semibold text-white">Protected & Safe</h3>
+                <p class="mt-2 text-white/70">Password protect sensitive links, set expiration dates, enable 2FA on your account, and review login history. Admins get IP banning, domain blacklist, and abuse reporting tools.</p>
             </div>
         </div>
         
         <div class="mt-16 rounded-3xl border border-white/10 bg-white/5 p-8">
             <h2 class="text-2xl font-semibold text-white">Ready to Get Started?</h2>
-            <p class="mt-3 text-white/70">Join thousands of users who trust HEL.ink for their link management needs. Create an account in seconds and start shortening URLs with confidence.</p>
-            <div class="mt-6">
+            <p class="mt-3 text-white/70">Join Hel.ink and experience link management that actually works. Sign up with Google or email, create your first short link in seconds, and discover why simplicity and power can coexist.</p>
+            <div class="mt-6 flex flex-wrap gap-4">
                 <a href="{{ route('register') }}" class="inline-block rounded-full bg-white px-6 py-3 font-semibold text-slate-900 hover:bg-white/90">Create Free Account</a>
+                <a href="https://github.com/navi-crwn/hel.ink" target="_blank" class="inline-block rounded-full border border-white/20 bg-white/5 px-6 py-3 font-semibold text-white hover:bg-white/10">View on GitHub</a>
             </div>
         </div>
     </section>
