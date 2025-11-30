@@ -55,7 +55,10 @@
             </div>
         </div>
 
-        <form method="POST" action="{{ route('register') }}" @submit="if ($event.target.querySelector('[name=cf-turnstile-response]')) { handleSubmit($event); }"
+        <form method="POST" action="{{ route('register') }}" 
+              @if($turnstileKey) 
+              x-on:submit="handleSubmit($event)" 
+              @endif>
         @csrf
 
         <div>
