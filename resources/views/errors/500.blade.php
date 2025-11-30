@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Something Went Wrong - {{ config('app.name') }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'media'
+        }
+    </script>
+    <style>
+        /* Fallback CSS jika CDN gagal load */
+        body { font-family: system-ui, -apple-system, sans-serif; }
+        .container-fallback { max-width: 42rem; margin: 0 auto; padding: 2rem; }
+        .card-fallback { background: white; border-radius: 1rem; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); padding: 2rem; }
+        .btn-fallback { display: inline-block; background: #3b82f6; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; }
+    </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900">
     <div class="min-h-screen flex items-center justify-center px-4">
