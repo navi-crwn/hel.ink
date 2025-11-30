@@ -22,15 +22,9 @@
 
     @php
         $turnstileKey = config('services.turnstile.site_key');
-        
-        if ($turnstileKey) {
-            $formAttributes = 'x-data="{ tosAccepted: false, showTosError: false, ...window.turnstileForm ? window.turnstileForm(\''.$turnstileKey.'\', '.($errors->has('turnstile') ? 'true' : 'false').') : {} }" x-init="if (!window.turnstileForm) { let interval = setInterval(() => { if (window.turnstileForm) { Object.assign($data, window.turnstileForm(\''.$turnstileKey.'\', '.($errors->has('turnstile') ? 'true' : 'false').')); clearInterval(interval); } }, 50); }" x-on:submit="handleSubmit($event)"';
-        } else {
-            $formAttributes = 'x-data="{ tosAccepted: false, showTosError: false }"';
-        }
     @endphp
     
-    <div {!! $formAttributes !!}>
+    <div x-data="{ tosAccepted: false, showTosError: false }">
         <!-- Google Sign In Button -->
         <div class="mb-6">
             <a href="{{ route('auth.google', ['from_register' => 1]) }}" 
@@ -57,7 +51,9 @@
 
         <form method="POST" action="{{ route('register') }}" 
               @if($turnstileKey) 
-              x-on:submit="handleSubmit($event)" 
+              x-data="window.turnstileForm ? window.turnstileForm('{{ $turnstileKey }}', {{ $errors->has('turnstile') ? 'true' : 'false' }}) : {}"
+              x-init="if (!window.turnstileForm) { let interval = setInterval(() => { if (window.turnstileForm) { Object.assign($data, window.turnstileForm('{{ $turnstileKey }}', {{ $errors->has('turnstile') ? 'true' : 'false' }})); clearInterval(interval); } }, 50); }"
+              x-on:submit="handleSubmit($event)"
               @endif>
         @csrf
 

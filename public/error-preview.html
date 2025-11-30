@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Something Went Wrong - Hop Easy Link</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900">
+    <div class="min-h-screen flex items-center justify-center px-4">
+        <div class="max-w-2xl w-full">
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12">
+                <!-- Error Icon -->
+                <div class="flex justify-center mb-6">
+                    <div class="rounded-full bg-red-100 dark:bg-red-900/30 p-4">
+                        <svg class="h-16 w-16 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Error Message -->
+                <div class="text-center mb-8">
+                    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-3">
+                        Oops! Something Went Wrong
+                    </h1>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 mb-2">
+                        We're sorry, but we encountered an unexpected error.
+                    </p>
+                    <p class="text-sm text-gray-500 dark:text-gray-500">
+                        Our team has been notified and we're working on fixing this issue.
+                    </p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                    <a href="https://hel.ink" class="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        </svg>
+                        Go to Homepage
+                    </a>
+                    <button onclick="window.history.back()" class="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-6 py-3 text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                        </svg>
+                        Go Back
+                    </button>
+                </div>
+
+                <!-- Support Info -->
+                <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-center">
+                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                        Need help? Contact us at 
+                        <a href="mailto:support@hel.ink" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                            support@hel.ink
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Info Box for Demo -->
+            <div class="mt-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                <div class="flex items-start gap-3">
+                    <svg class="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <div>
+                        <p class="text-sm font-semibold text-blue-900 dark:text-blue-100 mb-1">
+                            Preview Mode
+                        </p>
+                        <p class="text-xs text-blue-700 dark:text-blue-300">
+                            Ini adalah preview halaman error yang akan dilihat user ketika terjadi error di production mode (APP_DEBUG=false). 
+                            User tidak akan melihat stack trace atau informasi teknis sensitif.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
