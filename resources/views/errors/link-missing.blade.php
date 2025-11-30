@@ -3,26 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Link Not Found - {{ config('app.name') }}</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'media'
-        }
-    </script>
-    <style>
-        /* Fallback CSS jika CDN gagal load */
-        body { font-family: system-ui, -apple-system, sans-serif; }
-        .container-fallback { max-width: 42rem; margin: 0 auto; padding: 2rem; }
-        .card-fallback { background: white; border-radius: 1rem; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); padding: 2rem; }
-        .btn-fallback { display: inline-block; background: #3b82f6; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; }
-    </style>
+    <link rel="icon" href="{{ route('brand.favicon') }}" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="{{ route('brand.favicon') }}">
+    <title>Link Not Found - {{ config('app.name', 'HEL.ink') }}</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-50 dark:bg-gray-900">
     <div class="min-h-screen flex items-center justify-center px-4">
         <div class="max-w-2xl w-full">
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12">
-                <!-- 404 Icon -->
                 <div class="flex justify-center mb-6">
                     <div class="rounded-full bg-blue-100 dark:bg-blue-900/30 p-4">
                         <svg class="h-16 w-16 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -31,7 +20,6 @@
                     </div>
                 </div>
 
-                <!-- Error Message -->
                 <div class="text-center mb-8">
                     <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-3">
                         Link Not Found
@@ -44,7 +32,6 @@
                     </p>
                 </div>
 
-                <!-- Suggestions -->
                 <div class="mb-8 rounded-lg bg-gray-50 dark:bg-gray-700/50 p-6">
                     <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-3">
                         What you can do:
@@ -71,7 +58,6 @@
                     </ul>
                 </div>
 
-                <!-- Action Buttons -->
                 <div class="flex flex-col sm:flex-row gap-3 justify-center">
                     <a href="{{ url('/') }}" class="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition">
                         <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -89,12 +75,11 @@
                     @endauth
                 </div>
 
-                <!-- Support Info -->
                 <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-center">
                     <p class="text-sm text-gray-600 dark:text-gray-400">
                         Need help? Contact us at 
-                        <a href="mailto:{{ config('mail.from.address') }}" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">
-                            {{ config('mail.from.address') }}
+                        <a href="mailto:{{ config('mail.addresses.support', 'support@hel.ink') }}" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                            {{ config('mail.addresses.support', 'support@hel.ink') }}
                         </a>
                     </p>
                 </div>

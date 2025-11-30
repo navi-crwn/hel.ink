@@ -1,24 +1,23 @@
-<x-marketing-layout title="About Hel.ink">
+<x-marketing-layout title="About - HEL.ink">
     <section class="mx-auto max-w-5xl px-6 py-16 lg:px-8">
         <p class="text-xs uppercase tracking-[0.4em] text-white/60">About</p>
         <h1 class="mt-4 text-4xl font-semibold text-white">Why Hel.ink exists</h1>
         <p class="mt-4 max-w-3xl text-lg text-white/70">
-            Hel.ink is a modern, open-source URL shortener built for individuals and teams who want
-            powerful link management without the complexity. We focus on clean redirects,
-            comprehensive analytics, and features that actually matter—all while respecting your privacy.
+            Hel.ink is a modern, open-source URL shortener built for individuals and teams who want powerful link management without the complexity. 
+            We focus on clean redirects, comprehensive analytics, and features that actually matter, all while respecting your privacy.
         </p>
         <p class="mt-6 max-w-3xl text-base text-white/70">Whether you're managing social media campaigns, organizing team resources, or tracking marketing performance, Hel.ink provides the tools you need: folders and tags for organization, QR code generation, password protection, link expiration, comprehensive analytics with geographic tracking and device detection, and even proxy/VPN detection for security.</p>
         <p class="mt-4 max-w-3xl text-base text-white/70">Built with Laravel 11, Hel.ink is designed for both developers and everyday users. Sign in with Google OAuth or email, organize your links with folders and tags, track every click with detailed analytics, and download QR codes in multiple formats. Everything works seamlessly across devices with our dark mode interface.</p>
         
         <div class="mt-12 max-w-3xl space-y-6">
             <h2 class="text-2xl font-semibold text-white">Our Mission</h2>
-            <p class="text-white/70">URL shortening should be powerful yet simple, feature-rich without being overwhelming. Hel.ink was built to eliminate the frustration of juggling multiple tools—no more switching between services for shortening, analytics, QR codes, and organization. Everything you need is in one place, with an interface that makes sense from day one.</p>
+            <p class="text-white/70">URL shortening should be powerful yet simple, feature-rich without being overwhelming. Hel.ink was built to eliminate the frustration of juggling multiple tools: no more switching between services for shortening, analytics, QR codes, and organization. Everything you need is in one place, with an interface that makes sense from day one.</p>
             
             <h2 class="mt-10 text-2xl font-semibold text-white">What Makes Us Different</h2>
             <p class="text-white/70">Hel.ink provides enterprise-grade features without the enterprise price tag. Get detailed analytics including geographic data (city, country), ISP tracking, device and browser detection, proxy/VPN detection, and referrer tracking. Organize with unlimited folders and tags. Secure links with password protection. Generate custom QR codes in PNG, SVG, or JPG. Set expiration dates. Track unique visitors. All included, no hidden costs or premium tiers.</p>
             
             <h2 class="mt-10 text-2xl font-semibold text-white">Built for Real Workflows</h2>
-            <p class="text-white/70">Every feature exists because users needed it. Google OAuth for quick sign-in. Two-factor authentication for security. Bulk operations for efficiency. Export to CSV for reporting. Admin panel with domain blacklist and abuse reporting. Dark mode because your eyes matter. Queue-based click logging for performance. Comprehensive login history with location tracking. These aren't "nice-to-haves"—they're essentials for modern link management.</p>
+            <p class="text-white/70">Every feature exists because users needed it. Google OAuth for quick sign-in. Two-factor authentication for security. Bulk operations for efficiency. Export to CSV for reporting. Admin panel with domain blacklist and abuse reporting. Dark mode because your eyes matter. Queue-based click logging for performance. Comprehensive login history with location tracking. These aren't "nice-to-haves"; they're essentials for modern link management.</p>
             
             <h2 class="mt-10 text-2xl font-semibold text-white">Open Source & Self-Hostable</h2>
             <p class="text-white/70">Hel.ink is completely open source on GitHub. Self-host on your own infrastructure for complete control, or use our hosted version for convenience. Full transparency means you can audit the code, contribute improvements, or customize it for your needs. Built by <a href="https://github.com/navi-crwn" class="text-blue-400 hover:text-blue-300" target="_blank">@navi-crwn</a>, maintained with love, and improved by the community.</p>

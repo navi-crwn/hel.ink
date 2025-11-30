@@ -1,4 +1,4 @@
-# 🔗 Hel.ink - Modern URL Shortener
+# 🔗 Hel.ink: Modern URL Shortener
 
 <p align="center">
   <img src="https://hel.ink/brand/logo-dark.png" alt="Hel.ink Logo" width="200"/>
@@ -392,7 +392,7 @@ Contributions are welcome! Please follow these steps:
 
 ## 📄 License
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License**, see the [LICENSE](LICENSE) file for details.
 
 ---
 

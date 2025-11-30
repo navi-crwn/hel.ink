@@ -14,7 +14,7 @@ class ContentSecurityPolicyMiddleware
 
         $csp = [
             "default-src 'self'",
-            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com https://fonts.bunny.net https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com",
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com https://fonts.bunny.net https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://cdn.tailwindcss.com",
             "style-src 'self' 'unsafe-inline' https://fonts.bunny.net https://cdn.jsdelivr.net https://unpkg.com",
             "img-src 'self' data: https: blob: https://flagcdn.com https://*.tile.openstreetmap.org",
             "font-src 'self' https://fonts.bunny.net data:",

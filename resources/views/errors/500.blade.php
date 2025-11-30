@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ route('brand.favicon') }}" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="{{ route('brand.favicon') }}">
     <title>Something Went Wrong - {{ config('app.name') }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -11,7 +13,6 @@
         }
     </script>
     <style>
-        /* Fallback CSS jika CDN gagal load */
         body { font-family: system-ui, -apple-system, sans-serif; }
         .container-fallback { max-width: 42rem; margin: 0 auto; padding: 2rem; }
         .card-fallback { background: white; border-radius: 1rem; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); padding: 2rem; }
@@ -22,7 +23,6 @@
     <div class="min-h-screen flex items-center justify-center px-4">
         <div class="max-w-2xl w-full">
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12">
-                <!-- Error Icon -->
                 <div class="flex justify-center mb-6">
                     <div class="rounded-full bg-red-100 dark:bg-red-900/30 p-4">
                         <svg class="h-16 w-16 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -31,7 +31,6 @@
                     </div>
                 </div>
 
-                <!-- Error Message -->
                 <div class="text-center mb-8">
                     <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-3">
                         Oops! Something Went Wrong
@@ -44,7 +43,6 @@
                     </p>
                 </div>
 
-                <!-- Error Details (Optional) -->
                 @if(config('app.debug'))
                 <div class="mb-6 rounded-lg bg-gray-100 dark:bg-gray-700 p-4">
                     <p class="text-xs font-mono text-gray-700 dark:text-gray-300">
@@ -56,7 +54,6 @@
                 </div>
                 @endif
 
-                <!-- Action Buttons -->
                 <div class="flex flex-col sm:flex-row gap-3 justify-center">
                     <a href="{{ url('/') }}" class="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition">
                         <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -72,7 +69,6 @@
                     </button>
                 </div>
 
-                <!-- Support Info -->
                 <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-center">
                     <p class="text-sm text-gray-600 dark:text-gray-400">
                         Need help? Contact us at 
