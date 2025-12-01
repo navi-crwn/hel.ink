@@ -60,6 +60,16 @@
 - **Real-time Validation**: Instant feedback on forms
 - **Toast Notifications**: Non-intrusive alerts
 
+### 🔌 API & Integrations
+- **REST API**: Programmatic URL shortening
+- **ShareX Integration**: Auto-upload and shorten screenshots
+- **API Token Management**: Create, revoke, monitor tokens
+- **Rate Limiting**: 100 requests/hour per token
+- **Bearer Authentication**: Secure API access
+- **JSON Responses**: Standard format for all endpoints
+- **CLI Tools**: Compatible with custom scripts
+- **Webhook Support**: Future integration ready
+
 ### ⚙️ Admin Panel
 - **User Management**: View, edit, suspend users
 - **Link Moderation**: Review and manage all links
@@ -273,6 +283,29 @@ QUEUE_CONNECTION=redis
 2. Select **Export Data**
 3. Choose date range and filters
 4. Download CSV file
+
+### Using the API
+
+**1. Generate API Token:**
+- Go to **Settings → API & Integrations**
+- Click "Generate Token"
+- Copy your token (shown only once!)
+
+**2. Make API Request:**
+```bash
+curl -X POST https://hel.ink/api/shorten \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"url": "https://example.com/long-url", "alias": "my-link"}'
+```
+
+**3. ShareX Integration:**
+- Download config from Settings → API
+- Open `.sxcu` file with ShareX
+- Replace `YOUR_API_TOKEN_HERE` with your actual token
+- Take screenshots - auto-shortened links in clipboard!
+
+**Full Documentation**: [https://hel.ink/api-docs](https://hel.ink/api-docs)
 
 ---
 
