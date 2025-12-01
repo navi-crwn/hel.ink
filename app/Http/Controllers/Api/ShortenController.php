@@ -28,9 +28,10 @@ class ShortenController extends Controller
     public function store(Request $request)
     {
         // Validate the request
+        $minSlugLength = config('shortener.min_custom_slug_length', 3);
         $validator = Validator::make($request->all(), [
             'url' => 'required|url|max:2048',
-            'alias' => 'nullable|string|max:255|regex:/^[a-zA-Z0-9_-]+$/',
+            'alias' => "nullable|string|min:{$minSlugLength}|max:255|regex:/^[a-zA-Z0-9_-]+$/",
             'folder' => 'nullable|string',
             'expires_at' => 'nullable|date|after:now',
             'password' => 'nullable|string|min:4|max:50',
