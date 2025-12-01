@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminDomainBlacklistController;
 use App\Http\Controllers\GeoIpMonitorController;
 use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\Admin\SeoController;
+use App\Http\Controllers\ApiTokenController;
 use App\Http\Controllers\BrandAssetController;
 use App\Http\Controllers\AbuseReportController;
 use App\Http\Controllers\FolderController;
@@ -88,6 +89,10 @@ Route::middleware('ip.ban')->group(function () {
         Route::post('/settings/2fa/confirm', [TwoFactorController::class, 'confirm'])->name('settings.2fa.confirm');
         Route::delete('/settings/2fa/disable', [TwoFactorController::class, 'disable'])->name('settings.2fa.disable');
         Route::post('/settings/2fa/recovery-codes', [TwoFactorController::class, 'regenerateRecoveryCodes'])->name('settings.2fa.recovery-codes');
+        Route::post('/api-tokens', [ApiTokenController::class, 'store'])->name('api-tokens.store');
+        Route::delete('/api-tokens/{apiToken}', [ApiTokenController::class, 'destroy'])->name('api-tokens.destroy');
+        Route::get('/api-docs', [ApiTokenController::class, 'docs'])->name('api-docs');
+        Route::post('/api/sharex-config', [ApiTokenController::class, 'sharexConfig'])->name('api.sharex-config');
         Route::get('/folders', [FolderController::class, 'index'])->name('folders.index');
         Route::post('/folders', [FolderController::class, 'store'])->name('folders.store');
         Route::get('/folders/{folder}/manage', [FolderController::class, 'manage'])->name('folders.manage');

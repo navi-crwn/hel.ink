@@ -65,6 +65,11 @@ class User extends Authenticatable
         return $this->hasMany(Tag::class);
     }
 
+    public function apiTokens(): HasMany
+    {
+        return $this->hasMany(ApiToken::class);
+    }
+
     public function isAdmin(): bool
     {
         return $this->isSuperAdmin();

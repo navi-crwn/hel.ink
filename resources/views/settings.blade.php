@@ -13,7 +13,7 @@
             // Check URL hash for tab
             if (window.location.hash) {
                 const hashTab = window.location.hash.substring(1);
-                if (['account', '2fa', 'backup', 'notifications', 'activity', 'login'].includes(hashTab)) {
+                if (['account', '2fa', 'backup', 'notifications', 'activity', 'login', 'api'].includes(hashTab)) {
                     this.tab = hashTab;
                 }
             }
@@ -54,6 +54,9 @@
                     </button>
                     <button @click="tab = 'login'" :class="tab === 'login' ? 'border-blue-500 text-blue-600 dark:text-blue-400' : 'border-transparent text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'" class="whitespace-nowrap border-b-2 px-6 py-3 text-sm font-medium">
                         Login History
+                    </button>
+                    <button @click="tab = 'api'" :class="tab === 'api' ? 'border-blue-500 text-blue-600 dark:text-blue-400' : 'border-transparent text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'" class="whitespace-nowrap border-b-2 px-6 py-3 text-sm font-medium">
+                        API & Integrations
                     </button>
                 </div>
                 
@@ -588,7 +591,156 @@
                     @endforelse
                 </div>
                 </div>
+
+                <!-- API & Integrations Tab -->
+                <div x-show="tab === 'api'" x-data="apiSettings()" class="p-6 space-y-6">
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">API Tokens</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Create API tokens for ShareX, CLI tools, and custom integrations</p>
+                    </div>
+
+                    <!-- Create New Token Form -->
+                    <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800/50">
+                        <h4 class="text-sm font-semibold text-slate-900 dark:text-white mb-3">Create New Token</h4>
+                        <form method="POST" action="{{ route('api-tokens.store') }}" @submit.prevent="createToken" class="space-y-3">
+                            @csrf
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Token Name</label>
+                                <input 
+                                    type="text" 
+                                    name="name" 
+                                    x-model="newTokenName"
+                                    placeholder="ShareX Desktop, My CLI Tool, etc." 
+                                    required
+                                    class="w-full rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500 dark:border-slate-600 dark:bg-slate-700 dark:text-white text-sm"
+                                >
+                                <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">Give your token a memorable name</p>
+                            </div>
+                            <button type="submit" class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-500">
+                                <span x-show="!isCreating">🔑 Generate Token</span>
+                                <span x-show="isCreating">⏳ Generating...</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Show Newly Created Token (one time) -->
+                    <div x-show="newlyCreatedToken" x-cloak class="rounded-xl border border-emerald-300 bg-emerald-50 p-4 dark:border-emerald-700 dark:bg-emerald-900/20">
+                        <h4 class="text-sm font-semibold text-emerald-900 dark:text-emerald-200 mb-2">✅ Token Created Successfully!</h4>
+                        <p class="text-xs text-emerald-800 dark:text-emerald-300 mb-3">⚠️ Copy this token now. You won't be able to see it again!</p>
+                        <div class="flex gap-2">
+                            <input 
+                                type="text" 
+                                :value="newlyCreatedToken" 
+                                readonly 
+                                class="flex-1 rounded-lg border-emerald-300 bg-white px-3 py-2 text-sm font-mono text-emerald-900 dark:border-emerald-600 dark:bg-emerald-950 dark:text-emerald-100"
+                            >
+                            <button 
+                                @click="copyToken(newlyCreatedToken)" 
+                                class="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-500"
+                            >
+                                <span x-show="!copied">📋 Copy</span>
+                                <span x-show="copied">✅ Copied!</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Existing Tokens List -->
+                    <div>
+                        <h4 class="text-sm font-semibold text-slate-900 dark:text-white mb-3">Your API Tokens</h4>
+                        <div class="space-y-3">
+                            @forelse(auth()->user()->apiTokens as $token)
+                                <div class="flex items-center justify-between rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-800">
+                                    <div class="flex-1">
+                                        <h5 class="font-semibold text-slate-900 dark:text-white">{{ $token->name }}</h5>
+                                        <div class="mt-1 flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
+                                            <span>Created: {{ $token->created_at->format('M d, Y') }}</span>
+                                            @if($token->last_used_at)
+                                                <span>Last used: {{ $token->last_used_at->diffForHumans() }}</span>
+                                            @else
+                                                <span class="text-amber-600 dark:text-amber-400">Never used</span>
+                                            @endif
+                                            <span>Rate limit: {{ $token->rate_limit }}/hour</span>
+                                        </div>
+                                    </div>
+                                    <form method="POST" action="{{ route('api-tokens.destroy', $token) }}" onsubmit="return confirm('Are you sure you want to revoke this token? This action cannot be undone.')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="rounded-lg border border-red-300 px-3 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50 dark:border-red-700 dark:text-red-400 dark:hover:bg-red-900/20">
+                                            🗑️ Revoke
+                                        </button>
+                                    </form>
+                                </div>
+                            @empty
+                                <p class="text-sm text-slate-500 dark:text-slate-400">No API tokens yet. Create one to get started!</p>
+                            @endforelse
+                        </div>
+                    </div>
+
+                    <!-- API Documentation Link -->
+                    <div class="rounded-xl border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
+                        <h4 class="text-sm font-semibold text-blue-900 dark:text-blue-200 mb-2">📚 API Documentation</h4>
+                        <p class="text-sm text-blue-800 dark:text-blue-300 mb-3">Learn how to integrate hel.ink with ShareX, CLI tools, and more.</p>
+                        <a href="{{ route('api-docs') }}" class="inline-flex items-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-500">
+                            View API Docs →
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+    function apiSettings() {
+        return {
+            newTokenName: '',
+            newlyCreatedToken: '',
+            isCreating: false,
+            copied: false,
+
+            async createToken(event) {
+                this.isCreating = true;
+                
+                try {
+                    const formData = new FormData(event.target);
+                    const response = await fetch('{{ route("api-tokens.store") }}', {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            'Accept': 'application/json',
+                        },
+                        body: formData
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok && data.token) {
+                        this.newlyCreatedToken = data.token;
+                        this.newTokenName = '';
+                        
+                        // Reload page after 10 seconds to show new token in list
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 10000);
+                    } else {
+                        alert('Failed to create token: ' + (data.message || 'Unknown error'));
+                    }
+                } catch (error) {
+                    console.error('Error creating token:', error);
+                    alert('An error occurred while creating the token');
+                } finally {
+                    this.isCreating = false;
+                }
+            },
+
+            copyToken(token) {
+                navigator.clipboard.writeText(token).then(() => {
+                    this.copied = true;
+                    setTimeout(() => {
+                        this.copied = false;
+                    }, 2000);
+                });
+            }
+        }
+    }
+    </script>
 </x-app-layout>
