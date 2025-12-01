@@ -126,7 +126,7 @@
                         ['title' => 'Passwords & Expiration', 'body' => 'Lock sensitive links with a password prompt and set an expiration date or redirects type (301, 302, 307).'],
                         ['title' => 'Analytics timeline', 'body' => 'See total clicks, per-day breakdowns, referrers, user agents, devices, and country heatmaps.'],
                         ['title' => 'QR codes & folders', 'body' => 'Generate QR in PNG/SVG, drop links into folders, and tag them for fast filtering.'],
-                        ['title' => 'Minimal overlay creator', 'body' => 'In the dashboard, click “Create link” to open a slide-over with every advanced field while staying focused on your list.'],
+                        ['title' => 'API & Integrations', 'body' => 'REST API for ShareX, CLI tools, and custom apps. Auto-shorten screenshots and automate link creation with 100 req/hour.'],
                     ];
                 @endphp
                 @foreach ($features as $feature)
@@ -143,7 +143,7 @@
         <div class="rounded-3xl border border-white/10 bg-white/5 p-8">
             <p class="text-sm uppercase tracking-[0.4em] text-white/60">Open Source & Community Driven</p>
             <h2 class="mt-4 text-3xl font-semibold text-white">Built with modern tech, designed for real workflows</h2>
-            <p class="mt-4 text-white/70">Hel.ink is completely open source on GitHub. Built with Laravel 11, Tailwind CSS, and Alpine.js. Self-host on your infrastructure or use our hosted version.</p>
+            <p class="mt-4 text-white/70">Hel.ink is completely open source on GitHub. Built with Laravel 12, Tailwind CSS, and Alpine.js. Self-host on your infrastructure or use our hosted version.</p>
             <div class="mt-8 grid gap-6 md:grid-cols-3 text-sm text-white/80">
                 <div class="rounded-3xl border border-white/10 bg-slate-950/40 p-4">
                     <p class="text-2xl font-semibold text-white">✨ Open Source</p>
@@ -151,7 +151,7 @@
                 </div>
                 <div class="rounded-3xl border border-white/10 bg-slate-950/40 p-4">
                     <p class="text-2xl font-semibold text-white">🚀 Modern Stack</p>
-                    <p class="mt-2 text-white/70">Laravel 11, Tailwind CSS, Alpine.js. Fast, secure, and maintainable.</p>
+                    <p class="mt-2 text-white/70">Laravel 12, Tailwind CSS, Alpine.js. Fast, secure, and maintainable.</p>
                 </div>
                 <div class="rounded-3xl border border-white/10 bg-slate-950/40 p-4">
                     <p class="text-2xl font-semibold text-white">👥 Community</p>

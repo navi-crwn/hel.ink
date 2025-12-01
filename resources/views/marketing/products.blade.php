@@ -48,6 +48,12 @@
                 <p class="mt-3 text-white/70">Password protection, link expiration, IP banning, and abuse reporting keep your links secure. Protect sensitive content with password gates. Set expiration dates for time-limited offers. Report spam or malicious links for community safety.</p>
                 <p class="mt-3 text-white/70">Admin controls include IP bans, link status management, and comprehensive abuse logs. Self-hosted instances give you complete control over security policies and data retention.</p>
             </div>
+            
+            <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
+                <h2 class="text-2xl font-semibold text-white">API & Integrations</h2>
+                <p class="mt-3 text-white/70">REST API for programmatic URL shortening with ShareX, CLI tools, and custom applications. Create API tokens, integrate with screenshot tools, and automate link creation. Rate limited at 100 requests per hour per token with Bearer authentication.</p>
+                <p class="mt-3 text-white/70">Perfect for developers, automation workflows, and screenshot tools. ShareX integration enables auto-upload and instant short links. Compatible with Flameshot, Greenshot, Alfred, and custom scripts in any programming language.</p>
+            </div>
         </div>
         
         <div class="mt-16 rounded-3xl border border-white/10 bg-white/5 p-8">

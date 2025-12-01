@@ -70,14 +70,14 @@ Content-Type: application/json</code></pre>
                         <div class="rounded-lg bg-slate-50 p-4 dark:bg-slate-800">
                             <pre class="overflow-x-auto text-xs"><code>{
   "url": "https://example.com/very/long/url",
-  "alias": "my-custom-slug",        // Optional: Custom short code (min 3 chars)
-  "folder": "Marketing",            // Optional: Folder name
-  "expires_at": "2025-12-31",      // Optional: Expiration date
-  "password": "secret123"          // Optional: Password protect
+  "alias": "my-custom-slug",
+  "folder": "Marketing",
+  "expires_at": "2025-12-31",
+  "password": "secret123"
 }</code></pre>
                         </div>
                         <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">
-                            <strong>Note:</strong> Custom alias must be at least 3 characters. Leave empty for random 6-character slug.
+                            <strong>Fields:</strong> url (required), alias (optional, min 3 chars), folder (optional), expires_at (optional), password (optional). Leave alias empty for random 6-character slug.
                         </p>
                     </div>
 
