@@ -96,11 +96,6 @@ This document lists all open-source libraries, services, and tools that power **
   - Usage: Alternative login method
 
 ### Geolocation & IP Intelligence
-- **MaxMind GeoLite2** - IP to location database (CC BY-SA 4.0)
-  - License: [GeoLite2 EULA](https://www.maxmind.com/en/geolite2/eula)
-  - Attribution: "This product includes GeoLite2 data created by MaxMind, available from https://www.maxmind.com"
-  - Usage: Country/city detection for analytics
-
 - **IP-API.com** - IP geolocation API
   - License: Free tier for non-commercial use
   - Usage: Fallback IP location service
@@ -119,9 +114,10 @@ This document lists all open-source libraries, services, and tools that power **
 
 ### Media & Assets
 - **FlagCDN.com** - Country flag images
-  - License: CC BY-SA 4.0
+  - License: Public Domain (flag images only)
   - Source: `https://flagcdn.com`
   - Usage: Country flags in analytics
+  - Note: Website design/code owned by Flagpedia.net, flag images are public domain
 
 ---
 
@@ -173,11 +169,11 @@ This document lists all open-source libraries, services, and tools that power **
 | **MIT** | 30+ | Laravel, Alpine.js, Chart.js, Tailwind CSS, Vite, Axios, Pest, etc. |
 | **BSD-2-Clause** | 1 | Leaflet.js |
 | **BSD-3-Clause** | 3 | Redis, Sentry, Mockery |
-| **Apache-2.0** | 1 | GeoIP2 |
-| **CC BY-SA 4.0** | 2 | MaxMind GeoLite2, FlagCDN images |
+| **Apache-2.0** | 1 | GeoIP2 (legacy, not actively used) |
 | **SIL OFL 1.1** | 2 | Inter font, Figtree font |
 | **GPLv2** | 1 | MySQL |
 | **PostgreSQL** | 1 | PostgreSQL |
+| **Public Domain** | 1 | Flag images (FlagCDN) |
 
 ---
 
@@ -187,7 +183,6 @@ This document lists all open-source libraries, services, and tools that power **
 - **Taylor Otwell** - For creating Laravel
 - **Caleb Porzio** - For Alpine.js
 - **Adam Wathan** - For Tailwind CSS
-- **MaxMind** - For providing free GeoLite2 database
 - **Cloudflare** - For Turnstile CAPTCHA service
 - **All Open Source Contributors** - For making this project possible
 

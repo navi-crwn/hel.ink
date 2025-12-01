@@ -38,18 +38,13 @@ Notable Third-Party Components:
 - Leaflet.js: BSD-2-Clause License
 - Redis: BSD-3-Clause License
 - Sentry: BSD-3-Clause License
-- GeoIP2 Library: Apache-2.0 License
+- GeoIP2 Library: Apache-2.0 License (legacy dependency, not actively used)
 - MySQL: GPLv2 License
 - PostgreSQL: PostgreSQL License
 
-MaxMind GeoLite2 Database Notice:
-This product includes GeoLite2 data created by MaxMind, available from
-https://www.maxmind.com. The GeoLite2 database is distributed under the
-Creative Commons Attribution-ShareAlike 4.0 International License.
-
 Flag Images:
-Country flag images are provided by FlagCDN (https://flagcdn.com) under
-Creative Commons Attribution-ShareAlike 4.0 International License.
+Country flag images from FlagCDN (https://flagcdn.com) are in the public domain
+and can be used freely without restriction.
 
 Fonts:
 - Inter font: SIL Open Font License 1.1

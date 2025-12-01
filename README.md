@@ -78,15 +78,7 @@
 
 ---
 
-## 🎬 Demo
 
-🌐 **Live Demo**: [https://hel.ink](https://hel.ink)
-
-**Test Credentials**:
-- Email: `demo@hel.ink`
-- Password: `demo123456`
-
----
 
 ## 📋 Requirements
 
@@ -294,7 +286,7 @@ QUEUE_CONNECTION=redis
 - **2FA**: Pragmarx Google2FA (TOTP-based)
 - **QR Codes**: SimpleSoftwareIO/simple-qrcode
 - **Error Tracking**: Sentry
-- **Geolocation**: GeoIP2, IP-API, IPInfo, AbstractAPI, ProxyCheck
+- **Geolocation**: IP-API, IPInfo, AbstractAPI (multi-provider fallback)
 
 ### Frontend
 - **CSS Framework**: Tailwind CSS 3 + Forms Plugin
@@ -316,7 +308,7 @@ QUEUE_CONNECTION=redis
 ### External Services
 - **Email**: SMTP (configurable: Gmail, SendGrid, etc.)
 - **OAuth**: Google OAuth 2.0
-- **IP Detection**: MaxMind GeoLite2, Multi-provider fallback
+- **IP Detection**: Multi-provider system (IP-API, IPInfo, AbstractAPI)
 - **Proxy Detection**: ProxyCheck.io
 - **Flags**: FlagCDN.com (CC BY-SA 4.0)
 
@@ -417,17 +409,13 @@ This project uses various open-source libraries and services with different lice
 - **MIT**: Laravel, Alpine.js, Chart.js, Tailwind CSS, Vite, and most dependencies
 - **BSD-2-Clause**: Leaflet.js
 - **BSD-3-Clause**: Redis, Sentry, Mockery
-- **Apache-2.0**: GeoIP2 library
-- **CC BY-SA 4.0**: MaxMind GeoLite2 Database, FlagCDN images
+- **Apache-2.0**: GeoIP2 library (legacy dependency)
 - **SIL OFL 1.1**: Inter and Figtree fonts
 - **GPLv2**: MySQL
 - **PostgreSQL License**: PostgreSQL
+- **Public Domain**: Flag images (FlagCDN)
 
 See [CREDITS.md](CREDITS.md) for complete attribution and [LICENSE](LICENSE) for full license text.
-
-### MaxMind GeoLite2 Notice
-
-This product includes GeoLite2 data created by MaxMind, available from [https://www.maxmind.com](https://www.maxmind.com).
 
 ---
 
@@ -445,7 +433,6 @@ This product includes GeoLite2 data created by MaxMind, available from [https://
 - **Taylor Otwell** - For creating Laravel
 - **Caleb Porzio** - For Alpine.js
 - **Adam Wathan** - For Tailwind CSS
-- **MaxMind** - For GeoLite2 free database
 - **Cloudflare** - For Turnstile CAPTCHA
 - **All Open Source Contributors** - Making this project possible
 
