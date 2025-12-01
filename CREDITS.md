@@ -1,0 +1,206 @@
+# Credits & Acknowledgments
+
+This document lists all open-source libraries, services, and tools that power **hel.ink**.
+
+---
+
+## Core Framework & Language
+
+- **Laravel 12** - PHP Framework (MIT)
+- **PHP 8.2+** - Programming Language
+
+---
+
+## Backend Dependencies (Composer)
+
+### Framework & Core
+- **laravel/framework** v12.0 - Full-stack PHP framework (MIT)
+- **laravel/breeze** v2.3 - Authentication scaffolding (MIT)
+- **laravel/socialite** v5.23 - OAuth authentication provider (MIT)
+- **laravel/tinker** v2.10 - Interactive REPL console (MIT)
+
+### Security & Authentication
+- **pragmarx/google2fa-laravel** v2.3 - Two-factor authentication (MIT)
+- **laravel/sanctum** - API token authentication (MIT)
+
+### Utilities
+- **simplesoftwareio/simple-qrcode** v4.2 - QR code generator (MIT)
+- **geoip2/geoip2** v3.2 - IP geolocation library (Apache-2.0)
+- **sentry/sentry-laravel** v4.19 - Error tracking & monitoring (BSD-3-Clause)
+
+### Development Tools
+- **laravel/pail** v1.2 - Real-time log viewer (MIT)
+- **laravel/pint** v1.24 - Code style fixer (MIT)
+- **laravel/sail** v1.41 - Docker development environment (MIT)
+
+### Testing
+- **pestphp/pest** v4.1 - Elegant testing framework (MIT)
+- **pestphp/pest-plugin-laravel** v4.0 - Laravel integration for Pest (MIT)
+- **mockery/mockery** v1.6 - Mock object framework (BSD-3-Clause)
+- **fakerphp/faker** v1.23 - Fake data generator (MIT)
+- **nunomaduro/collision** v8.6 - Beautiful error reporting (MIT)
+
+---
+
+## Frontend Dependencies (NPM)
+
+### Build Tools
+- **vite** v7.0 - Next-generation build tool (MIT)
+- **laravel-vite-plugin** v2.0 - Laravel integration for Vite (MIT)
+- **concurrently** v9.0 - Run multiple commands concurrently (MIT)
+
+### CSS Framework & Plugins
+- **tailwindcss** v3.1 - Utility-first CSS framework (MIT)
+- **@tailwindcss/forms** v0.5 - Form styling plugin (MIT)
+- **@tailwindcss/vite** v4.0 - Vite integration (MIT)
+- **postcss** v8.4 - CSS transformation tool (MIT)
+- **autoprefixer** v10.4 - CSS vendor prefixer (MIT)
+
+### JavaScript
+- **alpinejs** v3.4 - Lightweight JavaScript framework (MIT)
+- **@alpinejs/collapse** v3.15 - Collapse/expand plugin (MIT)
+- **axios** v1.11 - Promise-based HTTP client (MIT)
+
+---
+
+## Frontend Libraries (CDN)
+
+### Visualization & UI
+- **Chart.js** v4.4.0 - JavaScript charting library (MIT)
+  - Source: `https://cdn.jsdelivr.net/npm/chart.js`
+- **chartjs-plugin-zoom** v2.0.1 - Zoom and pan plugin for Chart.js (MIT)
+  - Source: `https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom`
+- **Leaflet.js** v1.9.4 - Interactive maps library (BSD-2-Clause)
+  - Source: `https://unpkg.com/leaflet`
+- **Heroicons** - Beautiful hand-crafted SVG icons (MIT)
+  - Source: Inline SVG in templates
+
+### Fonts
+- **Inter** - Variable font family (SIL Open Font License 1.1)
+  - Source: `https://fonts.bunny.net`
+- **Figtree** - Modern sans-serif font (SIL Open Font License 1.1)
+  - Source: `https://fonts.bunny.net`
+
+---
+
+## External Services & APIs
+
+### Security & Bot Protection
+- **Cloudflare Turnstile** - CAPTCHA alternative for bot protection
+  - License: [Cloudflare Terms of Service](https://www.cloudflare.com/terms/)
+  - Usage: Registration, login, abuse reporting
+
+### Authentication
+- **Google OAuth 2.0** - Social login provider
+  - License: [Google API Terms of Service](https://developers.google.com/terms)
+  - Usage: Alternative login method
+
+### Geolocation & IP Intelligence
+- **MaxMind GeoLite2** - IP to location database (CC BY-SA 4.0)
+  - License: [GeoLite2 EULA](https://www.maxmind.com/en/geolite2/eula)
+  - Attribution: "This product includes GeoLite2 data created by MaxMind, available from https://www.maxmind.com"
+  - Usage: Country/city detection for analytics
+
+- **IP-API.com** - IP geolocation API
+  - License: Free tier for non-commercial use
+  - Usage: Fallback IP location service
+
+- **IPInfo.io** - IP address data provider
+  - License: Free tier (50,000 requests/month)
+  - Usage: Enhanced IP information
+
+- **AbstractAPI** - IP geolocation & VPN detection
+  - License: Free tier (20,000 requests/month)
+  - Usage: Location and proxy detection
+
+- **ProxyCheck.io** - VPN/Proxy detection service
+  - License: Free tier (1,000 requests/day)
+  - Usage: Abuse prevention
+
+### Media & Assets
+- **FlagCDN.com** - Country flag images
+  - License: CC BY-SA 4.0
+  - Source: `https://flagcdn.com`
+  - Usage: Country flags in analytics
+
+---
+
+## Database & Infrastructure
+
+### Database Systems
+- **MySQL** 8.0+ - Relational database (GPLv2)
+- **PostgreSQL** 13+ - Advanced relational database (PostgreSQL License)
+- **SQLite** 3+ - Embedded database (Public Domain)
+
+### Caching & Queues
+- **Redis** 6.0+ - In-memory data structure store (BSD-3-Clause, optional)
+  - Usage: Cache, sessions, queue driver
+
+### Process Management
+- **Supervisor** - Process control system (BSD-like license, optional)
+  - Usage: Queue worker management in production
+
+---
+
+## Development Tools
+
+### Code Quality
+- **PHP_CodeSniffer** - Detect coding standard violations (BSD-3-Clause)
+- **PHPStan** - Static analysis tool (MIT)
+
+### Version Control
+- **Git** - Distributed version control system (GPLv2)
+- **GitHub** - Code hosting platform
+
+---
+
+## Custom Assets & Branding
+
+- **hel.ink Logo** - Custom design (© 2025 hel.ink)
+  - Location: `resources/img/Logo.png`
+  - Served via: `/brand/logo.png`, `/brand/logo-dark.png`
+
+- **hel.ink Favicon** - Custom design (© 2025 hel.ink)
+  - Location: `resources/img/Favicon.png`
+  - Served via: `/brand/favicon.png`
+
+---
+
+## License Summary
+
+| License | Count | Libraries |
+|---------|-------|-----------|
+| **MIT** | 30+ | Laravel, Alpine.js, Chart.js, Tailwind CSS, Vite, Axios, Pest, etc. |
+| **BSD-2-Clause** | 1 | Leaflet.js |
+| **BSD-3-Clause** | 3 | Redis, Sentry, Mockery |
+| **Apache-2.0** | 1 | GeoIP2 |
+| **CC BY-SA 4.0** | 2 | MaxMind GeoLite2, FlagCDN images |
+| **SIL OFL 1.1** | 2 | Inter font, Figtree font |
+| **GPLv2** | 1 | MySQL |
+| **PostgreSQL** | 1 | PostgreSQL |
+
+---
+
+## Special Thanks
+
+- **Laravel Community** - For extensive documentation and support
+- **Taylor Otwell** - For creating Laravel
+- **Caleb Porzio** - For Alpine.js
+- **Adam Wathan** - For Tailwind CSS
+- **MaxMind** - For providing free GeoLite2 database
+- **Cloudflare** - For Turnstile CAPTCHA service
+- **All Open Source Contributors** - For making this project possible
+
+---
+
+## Reporting Issues
+
+If you notice any missing attributions or license issues, please contact us:
+- **Email**: support@hel.ink
+- **GitHub Issues**: [hel.ink/issues](https://github.com/navi-crwn/hel.ink/issues)
+
+---
+
+**Last Updated**: December 1, 2025
+
+**Total Dependencies**: 40+ core libraries and services powering hel.ink

@@ -287,24 +287,40 @@ QUEUE_CONNECTION=redis
 ## 🏗️ Tech Stack
 
 ### Backend
-- **Framework**: Laravel 11
-- **Language**: PHP 8.2
-- **Database**: MySQL 8.0
-- **Queue**: Redis / Database
-- **Authentication**: Laravel Sanctum + Socialite
+- **Framework**: Laravel 12 (PHP 8.2+)
+- **Database**: MySQL / PostgreSQL / SQLite
+- **Cache/Queue**: Redis (optional)
+- **Authentication**: Laravel Breeze + Google OAuth (Socialite)
+- **2FA**: Pragmarx Google2FA (TOTP-based)
+- **QR Codes**: SimpleSoftwareIO/simple-qrcode
+- **Error Tracking**: Sentry
+- **Geolocation**: GeoIP2, IP-API, IPInfo, AbstractAPI, ProxyCheck
 
 ### Frontend
-- **CSS Framework**: Tailwind CSS 3
-- **JavaScript**: Alpine.js 3
-- **Build Tool**: Vite 5
-- **Icons**: Heroicons
-
-### Services
-- **Email**: SMTP (Gmail, SendGrid, etc.)
-- **OAuth**: Google OAuth 2.0
-- **GeoIP**: IP-API, MaxMind
-- **QR Codes**: SimpleSoftwareIO/simple-qrcode
+- **CSS Framework**: Tailwind CSS 3 + Forms Plugin
+- **JavaScript**: Alpine.js 3 + Collapse Plugin
+- **Build Tool**: Vite 7
+- **Charts**: Chart.js 4.4 + Zoom Plugin
+- **Maps**: Leaflet.js 1.9
+- **Icons**: Heroicons (inline SVG)
 - **CAPTCHA**: Cloudflare Turnstile
+- **Fonts**: Inter, Figtree (via Bunny Fonts CDN)
+
+### DevOps & Testing
+- **Testing**: Pest PHP 4 + PHPUnit
+- **Code Quality**: Laravel Pint (PSR-12)
+- **Development**: Laravel Sail (Docker)
+- **Log Viewer**: Laravel Pail
+- **Process Manager**: Supervisor (production)
+
+### External Services
+- **Email**: SMTP (configurable: Gmail, SendGrid, etc.)
+- **OAuth**: Google OAuth 2.0
+- **IP Detection**: MaxMind GeoLite2, Multi-provider fallback
+- **Proxy Detection**: ProxyCheck.io
+- **Flags**: FlagCDN.com (CC BY-SA 4.0)
+
+> **📋 Complete List**: See [CREDITS.md](CREDITS.md) for all 40+ dependencies and their licenses.
 
 ---
 
@@ -392,22 +408,48 @@ Contributions are welcome! Please follow these steps:
 
 ## 📄 License
 
-This project is licensed under the **MIT License**, see the [LICENSE](LICENSE) file for details.
+This project is open-source software licensed under the **MIT License**.
+
+### Third-Party Licenses
+
+This project uses various open-source libraries and services with different licenses:
+
+- **MIT**: Laravel, Alpine.js, Chart.js, Tailwind CSS, Vite, and most dependencies
+- **BSD-2-Clause**: Leaflet.js
+- **BSD-3-Clause**: Redis, Sentry, Mockery
+- **Apache-2.0**: GeoIP2 library
+- **CC BY-SA 4.0**: MaxMind GeoLite2 Database, FlagCDN images
+- **SIL OFL 1.1**: Inter and Figtree fonts
+- **GPLv2**: MySQL
+- **PostgreSQL License**: PostgreSQL
+
+See [CREDITS.md](CREDITS.md) for complete attribution and [LICENSE](LICENSE) for full license text.
+
+### MaxMind GeoLite2 Notice
+
+This product includes GeoLite2 data created by MaxMind, available from [https://www.maxmind.com](https://www.maxmind.com).
 
 ---
 
 ## 👨‍💻 Author
 
-**Ivan Novskies** ([@navi-crwn](https://github.com/navi-crwn))
+**Ivan Novskies**
+- GitHub: [@navi-crwn](https://github.com/navi-crwn)
+- Reddit: [u/Disastrous_Ant_375](https://reddit.com/u/Disastrous_Ant_375)
+- Email: support@hel.ink
 
 ---
 
 ## 🙏 Acknowledgments
 
-- Laravel Framework
-- Tailwind CSS
-- Alpine.js
-- All contributors and users
+- **Taylor Otwell** - For creating Laravel
+- **Caleb Porzio** - For Alpine.js
+- **Adam Wathan** - For Tailwind CSS
+- **MaxMind** - For GeoLite2 free database
+- **Cloudflare** - For Turnstile CAPTCHA
+- **All Open Source Contributors** - Making this project possible
+
+Full credits: [CREDITS.md](CREDITS.md)
 
 ---
 
