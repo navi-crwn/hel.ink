@@ -29,7 +29,7 @@
             
             <article class="rounded-3xl border border-white/10 bg-white/5 p-6">
                 <h2 class="text-2xl font-semibold text-white">Understanding Analytics</h2>
-                <p class="mt-3 text-sm text-white/70">View detailed analytics for each link including click count, geographic distribution, device types, referral sources, and time-based trends. Analytics are updated in real-time and retained for 30 days. Export data for deeper analysis or compliance reporting.</p>
+                <p class="mt-3 text-sm text-white/70">View detailed analytics for each link including click count, geographic distribution (powered by multiple IP geolocation APIs), device types, browsers, operating systems, referral sources, and time-based trends. Analytics are updated in real-time and retained for 30 days. Export data to CSV for deeper analysis or compliance reporting.</p>
             </article>
             
             <article class="rounded-3xl border border-white/10 bg-white/5 p-6">

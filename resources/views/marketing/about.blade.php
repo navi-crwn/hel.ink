@@ -7,7 +7,7 @@
             We focus on clean redirects, comprehensive analytics, and features that actually matter, all while respecting your privacy.
         </p>
         <p class="mt-6 max-w-3xl text-base text-white/70">Whether you're managing social media campaigns, organizing team resources, or tracking marketing performance, Hel.ink provides the tools you need: folders and tags for organization, QR code generation, password protection, link expiration, comprehensive analytics with geographic tracking and device detection, and even proxy/VPN detection for security.</p>
-        <p class="mt-4 max-w-3xl text-base text-white/70">Built with Laravel 12, Hel.ink is designed for both developers and everyday users. Sign in with Google OAuth or email, organize your links with folders and tags, track every click with detailed analytics, and download QR codes in multiple formats. Everything works seamlessly across devices with our dark mode interface.</p>
+        <p class="mt-4 max-w-3xl text-base text-white/70">Built with Laravel 12 and modern web technologies, Hel.ink is designed for both developers and everyday users. Sign in with Google OAuth or email, organize your links with folders and tags, track every click with detailed analytics powered by multiple geolocation providers, and download QR codes in multiple formats. Everything works seamlessly across devices with our dark mode interface.</p>
         
         <div class="mt-12 max-w-3xl space-y-6">
             <h2 class="text-2xl font-semibold text-white">Our Mission</h2>
@@ -27,7 +27,7 @@
             <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
                 <p class="text-sm uppercase tracking-[0.3em] text-white/50">Analytics</p>
                 <h3 class="mt-2 text-xl font-semibold text-white">Deep insights</h3>
-                <p class="mt-2 text-white/70">Track every click with geographic data (city, country), device types, browsers, operating systems, ISP information, proxy/VPN detection, referrer sources, and unique visitor counts. Export everything to CSV.</p>
+                <p class="mt-2 text-white/70">Track every click with geographic data (city, country via multi-provider IP geolocation), device types, browsers, operating systems, ISP information, proxy/VPN detection, referrer sources, and unique visitor counts. Export everything to CSV for reporting and analysis.</p>
             </div>
             <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
                 <p class="text-sm uppercase tracking-[0.3em] text-white/50">Organization</p>

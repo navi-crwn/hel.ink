@@ -38,9 +38,9 @@
             
             <div id="analytics-feature" class="rounded-3xl border border-white/10 bg-white/5 p-6">
                 <h2 class="text-2xl font-semibold text-white">Analytics</h2>
-                <p class="mt-3 text-white/70">Per-link and global charts for clicks, referrers, devices, and geography. Track campaign performance with detailed insights into user behavior, traffic sources, and engagement patterns.</p>
-                <p class="mt-3 text-white/70">Our analytics are privacy-first: we retain only the minimum metadata required for reporting, provide a configurable retention window, and allow export for compliance. Use the per-link charts to monitor campaign performance or export raw click logs for deeper analysis.</p>
-                <p class="mt-3 text-white/70">View real-time click tracking, hourly/daily trends, top referrers, device breakdowns (mobile, desktop, tablet), geographic heatmaps, and browser/OS statistics. Filter by date range, country, or device type for precise reporting.</p>
+                <p class="mt-3 text-white/70">Comprehensive per-link and global analytics with charts for clicks, referrers, devices, browsers, operating systems, and geographic distribution. Track campaign performance with detailed insights into user behavior, traffic sources, and engagement patterns.</p>
+                <p class="mt-3 text-white/70">Our analytics are privacy-first: we hash IP addresses, retain data for 30 days, and provide export capabilities for compliance. Geographic data is powered by multiple IP geolocation providers for accuracy and reliability.</p>
+                <p class="mt-3 text-white/70">View real-time click tracking, hourly/daily trends, top referrers, device breakdowns (mobile, desktop, tablet), ISP information, geographic heatmaps, and browser/OS statistics. Filter by date range, country, or device type for precise reporting.</p>
             </div>
             
             <div class="rounded-3xl border border-white/10 bg-white/5 p-6">

@@ -27,7 +27,7 @@
 
             <div>
                 <h2 class="text-xl font-semibold text-white">What kind of analytics do you provide?</h2>
-                <p class="mt-2 text-white/70">We provide detailed, real-time analytics for each link, including the number of clicks, geographic location of visitors (city and country), device types, operating systems, browsers, and referral sources.</p>
+                <p class="mt-2 text-white/70">We provide detailed, real-time analytics for each link, including click counts, geographic location (city and country via IP geolocation APIs), device types, operating systems, browsers, ISP information, and referral sources. All analytics data is retained for 30 days.</p>
             </div>
 
             <div>
