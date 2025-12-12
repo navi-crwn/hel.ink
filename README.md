@@ -28,7 +28,7 @@
   <img src="https://img.shields.io/github/forks/navi-crwn/hel.ink?style=flat-square" alt="Forks"/>
   <img src="https://img.shields.io/github/issues/navi-crwn/hel.ink?style=flat-square" alt="Issues"/>
   <img src="https://img.shields.io/github/last-commit/navi-crwn/hel.ink?style=flat-square" alt="Last Commit"/>
-  <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fnavi-crwn%2Fhel.ink&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=true" alt="Views"/>
+  <img src="https://komarev.com/ghpvc/?username=navi-crwn&label=views&color=brightgreen&style=flat-square" alt="Profile Views"/>
 </p>
 
 ---
