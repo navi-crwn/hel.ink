@@ -31,7 +31,6 @@
                         <img x-show="theme === 'dark'" src="{{ asset('images/Logo.png') }}" alt="Logo" class="h-12">
                         <img x-show="theme === 'light'" src="{{ asset('images/Logo-dark.png') }}" alt="Logo" class="h-12">
                     </a>
-                    
                     <div class="mb-6">
                         <svg class="w-16 h-16 mx-auto text-blue-500 dark:text-blue-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -44,7 +43,6 @@
                         </p>
                     </div>
                 </div>
-
                 <div class="space-y-6">
                     <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
                         <h2 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
@@ -62,7 +60,6 @@
                             </a>
                         </div>
                     </div>
-
                     <div class="text-center">
                         <div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-blue-100 dark:bg-blue-900/30 mb-4">
                             <span class="text-5xl font-bold text-blue-600 dark:text-blue-400" x-text="countdown"></span>
@@ -71,7 +68,6 @@
                             Redirecting in <span x-text="countdown"></span> seconds...
                         </p>
                     </div>
-
                     <div class="flex flex-col sm:flex-row gap-3 pt-4">
                         <a href="{{ $targetUrl }}" 
                            class="flex-1 inline-flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors">
@@ -89,7 +85,6 @@
                         </a>
                     </div>
                 </div>
-
                 <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
                     <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
                         <div class="flex items-start space-x-3">
@@ -108,7 +103,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="mt-6 text-center">
                     <button @click="theme = (theme === 'dark' ? 'light' : 'dark'); localStorage.setItem('theme', theme)" 
                             class="inline-flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
@@ -122,7 +116,6 @@
                     </button>
                 </div>
             </div>
-
             <div class="text-center mt-6">
                 <p class="text-sm text-gray-500 dark:text-gray-400">
                     © {{ date('Y') }} {{ config('app.name') }}. All rights reserved.

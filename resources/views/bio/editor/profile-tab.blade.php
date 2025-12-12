@@ -7,7 +7,6 @@
             <div class="editor-card-header">
                 <h3 class="editor-card-title">Profile</h3>
             </div>
-        
         <div class="p-4">
             <!-- Avatar Row with responsive layout -->
             <div class="flex flex-col sm:flex-row gap-4 mb-4">
@@ -33,7 +32,6 @@
                             </svg>
                         </button>
                     </div>
-                    
                     <!-- Avatar Shape buttons - horizontal below avatar -->
                     <div class="flex flex-col items-center gap-1 mt-1">
                         <span class="text-xs editor-text-muted">Shape</span>
@@ -62,19 +60,16 @@
                         </div>
                     </div>
                 </div>
-                
                 <!-- Form fields -->
                 <div class="flex-1 min-w-0 space-y-3">
                     <div class="form-group mb-0">
                         <label class="form-label">Display Name <span class="text-xs editor-text-muted" x-text="'(' + (bioPage.title?.length || 0) + '/25)'"></span></label>
                         <input type="text" x-model="bioPage.title" @input="bioPage.title = $event.target.value.slice(0, 25)" class="form-input" placeholder="Your name" maxlength="25" autocomplete="off" data-lpignore="true" data-1p-ignore="true" data-form-type="other">
                     </div>
-                    
                     <div class="form-group mb-0">
                         <label class="form-label">Bio <span class="text-xs editor-text-muted" x-text="'(' + (bioPage.bio?.length || 0) + '/80)'"></span></label>
                         <textarea x-model="bioPage.bio" @input="bioPage.bio = $event.target.value.slice(0, 80)" class="form-input form-textarea" placeholder="Tell visitors about yourself..." rows="2" maxlength="80"></textarea>
                     </div>
-                    
                     <!-- Badge Feature -->
                     <div class="form-group mb-0">
                         <label class="form-label">Badge</label>
@@ -118,7 +113,6 @@
                                     </svg>
                                 </button>
                             </div>
-                            
                             <!-- Color Selection (only visible when badge is selected) -->
                             <template x-if="bioPage.badge">
                                 <div class="flex items-center gap-1 ml-2">
@@ -160,7 +154,6 @@
             </div>
         </div>
     </div>
-    
         <!-- QR Code Card -->
         <div class="editor-card" x-data="{ showQR: true }">
             <div class="editor-card-header cursor-pointer" @click="showQR = !showQR">
@@ -174,7 +167,6 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                 </svg>
             </div>
-            
             <div x-show="showQR" x-collapse class="p-4">
                 <div x-data="window.qrGenerator()" x-init="init()">
                     <!-- QR Preview -->
@@ -185,7 +177,6 @@
                             </div>
                         </div>
                     </div>
-                    
                     <!-- QR Customization -->
                     <div class="space-y-3">
                         <!-- Dot Style & Corner Styles -->
@@ -207,7 +198,6 @@
                                     </svg>
                                 </div>
                             </div>
-                            
                             <!-- Corner Square Dropdown -->
                             <div class="form-group">
                                 <label class="form-label text-xs">Corner Sqr</label>
@@ -223,7 +213,6 @@
                                     </svg>
                                 </div>
                             </div>
-
                             <!-- Corner Dot Dropdown -->
                             <div class="form-group">
                                 <label class="form-label text-xs">Corner Dot</label>
@@ -239,7 +228,6 @@
                                 </div>
                             </div>
                         </div>
-                        
                         <!-- Logo Upload -->
                         <div class="form-group">
                             <label class="form-label text-xs">Logo (optional)</label>
@@ -254,7 +242,6 @@
                                 </div>
                             </template>
                         </div>
-                        
                         <!-- Colors -->
                         <div class="grid grid-cols-2 gap-2">
                             <div class="form-group">
@@ -294,7 +281,6 @@
                                 </div>
                             </div>
                         </div>
-                        
                         <!-- Download Button -->
                         <div class="flex gap-2">
                             <button @click="downloadQR('png')" class="flex-1 btn btn-secondary text-xs py-2">
@@ -310,7 +296,6 @@
                                 SVG
                             </button>
                         </div>
-                        
                         <!-- Save QR Design Button -->
                         <button @click="saveQrDesign()" class="btn btn-primary text-xs py-1.5 px-3 mt-1">
                             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -324,7 +309,6 @@
         </div>
     </div>
 </div>
-
 @push('styles')
 <script>
 window.qrGenerator = function() {
@@ -338,7 +322,6 @@ window.qrGenerator = function() {
         qrCodeInstance: null,
         qrLoaded: false,
         updateTimer: null,
-        
         getBioPage() {
             // Try multiple ways to access bioPage
             if (window.bioEditorData?.bioPage) {
@@ -356,7 +339,6 @@ window.qrGenerator = function() {
             }
             return {};
         },
-        
         init() {
             // Load QR styling library first
             if (typeof QRCodeStyling === 'undefined') {
@@ -374,11 +356,9 @@ window.qrGenerator = function() {
                 this.createQR();
             }
         },
-        
         loadSettings() {
             const bioPage = this.getBioPage();
             const qrSettings = bioPage?.qr_settings || {};
-            
             this.qrColor = qrSettings.dotsOptions?.color || qrSettings.color || '#000000';
             this.bgColor = qrSettings.backgroundOptions?.color || qrSettings.bg_color || '#ffffff';
             this.dotStyle = qrSettings.dotsOptions?.type || qrSettings.dot_style || 'rounded';
@@ -386,7 +366,6 @@ window.qrGenerator = function() {
             this.cornerDotStyle = qrSettings.cornersDotOptions?.type || 'dot';
             this.logoUrl = qrSettings.image || qrSettings.logo_url || null;
         },
-        
         saveSettings() {
             const bioPage = this.getBioPage();
             if (bioPage) {
@@ -399,11 +378,9 @@ window.qrGenerator = function() {
                 };
             }
         },
-        
         saveQrDesign() {
             // Update local settings
             this.saveSettings();
-            
             // Find parent Alpine scope and trigger saveBioPage
             let el = this.$el;
             while (el) {
@@ -418,22 +395,17 @@ window.qrGenerator = function() {
                 }
                 el = el.parentElement;
             }
-            
             // Fallback notification
             this.showQrNotification('QR design updated locally. Click main "Save" button to persist.', 'info');
         },
-        
         generateQR() {
             if (!this.qrLoaded) return;
             this.createQR();
         },
-        
         createQR() {
             if (typeof QRCodeStyling === 'undefined') return;
-            
             const bioPage = this.getBioPage();
             const url = window.location.origin + '/b/' + (bioPage?.slug || 'preview');
-            
             this.qrCodeInstance = new QRCodeStyling({
                 width: 160,
                 height: 160,
@@ -461,25 +433,21 @@ window.qrGenerator = function() {
                 },
                 image: this.logoUrl || undefined
             });
-            
             if (this.$refs.qrContainer) {
                 this.$refs.qrContainer.innerHTML = '';
                 this.qrCodeInstance.append(this.$refs.qrContainer);
             }
         },
-        
         setColor(color) {
             this.qrColor = color;
             this.updateQR();
             this.saveSettings();
         },
-        
         setBgColor(color) {
             this.bgColor = color;
             this.updateQR();
             this.saveSettings();
         },
-        
         updateQR() {
             if (this.qrCodeInstance) {
                 this.qrCodeInstance.update({
@@ -500,7 +468,6 @@ window.qrGenerator = function() {
                 });
             }
         },
-        
         // Debounced version untuk color picker
         debouncedUpdateQR() {
             if (this.updateTimer) clearTimeout(this.updateTimer);
@@ -509,34 +476,28 @@ window.qrGenerator = function() {
                 this.saveSettings();
             }, 100);
         },
-        
         async uploadLogo(event) {
             const file = event.target.files[0];
             if (!file) return;
-            
             const bioPage = this.getBioPage();
             if (!bioPage?.id) {
                 this.showQrNotification('Unable to upload: Bio page not found', 'error');
                 return;
             }
-            
             // Validate file size (max 1MB)
             if (file.size > 1024 * 1024) {
                 this.showQrNotification('Logo file must be less than 1MB', 'error');
                 event.target.value = '';
                 return;
             }
-            
             // Validate file type
             if (!file.type.startsWith('image/')) {
                 this.showQrNotification('Please select an image file', 'error');
                 event.target.value = '';
                 return;
             }
-            
             const formData = new FormData();
             formData.append('logo', file);
-            
             try {
                 const response = await fetch(`/bio/${bioPage.id}/upload-qr-logo`, {
                     method: 'POST',
@@ -546,9 +507,7 @@ window.qrGenerator = function() {
                         'Accept': 'application/json'
                     }
                 });
-                
                 const result = await response.json();
-                
                 if (result.success) {
                     this.logoUrl = result.logo_url;
                     if (this.qrCodeInstance) {
@@ -563,10 +522,8 @@ window.qrGenerator = function() {
                 console.error('Upload error:', error);
                 this.showQrNotification('Failed to upload logo. Please try again.', 'error');
             }
-            
             event.target.value = '';
         },
-        
         showQrNotification(message, type = 'info') {
             const notification = document.createElement('div');
             notification.className = `fixed bottom-4 right-4 z-[200] px-4 py-2 rounded-lg shadow-lg text-white text-sm ${type === 'success' ? 'bg-green-600' : type === 'error' ? 'bg-red-600' : 'bg-blue-600'}`;
@@ -574,7 +531,6 @@ window.qrGenerator = function() {
             document.body.appendChild(notification);
             setTimeout(() => notification.remove(), 3000);
         },
-        
         removeLogo() {
             this.logoUrl = null;
             if (this.qrCodeInstance) {
@@ -582,16 +538,13 @@ window.qrGenerator = function() {
             }
             this.saveSettings();
         },
-        
         async downloadQR(extension) {
             const bioPage = this.getBioPage();
             if (!this.qrCodeInstance) return;
-            
             const url = window.location.origin + '/b/' + (bioPage?.slug || 'bio');
             const qrSize = 400;
             const padding = 40;
             const totalSize = qrSize + (padding * 2);
-            
             // Buat temporary QR untuk download dengan ukuran besar
             const downloadQR = new QRCodeStyling({
                 width: qrSize,
@@ -618,7 +571,6 @@ window.qrGenerator = function() {
                 },
                 image: this.logoUrl || undefined
             });
-            
             try {
                 if (extension === 'svg') {
                     await downloadQR.download({ 
@@ -628,37 +580,29 @@ window.qrGenerator = function() {
                 } else {
                     // Get raw canvas blob dari QRCodeStyling
                     const blob = await downloadQR.getRawData('png');
-                    
                     if (!blob) {
                         throw new Error('Failed to generate QR code');
                     }
-                    
                     // Create image dari blob
                     const img = new Image();
                     const blobUrl = URL.createObjectURL(blob);
-                    
                     await new Promise((resolve, reject) => {
                         img.onload = resolve;
                         img.onerror = reject;
                         img.src = blobUrl;
                     });
-                    
                     // Buat canvas dengan padding dan background
                     const paddedCanvas = document.createElement('canvas');
                     paddedCanvas.width = totalSize;
                     paddedCanvas.height = totalSize;
                     const ctx = paddedCanvas.getContext('2d');
-                    
                     // Fill background
                     ctx.fillStyle = this.bgColor;
                     ctx.fillRect(0, 0, totalSize, totalSize);
-                    
                     // Draw QR di tengah dengan padding
                     ctx.drawImage(img, padding, padding, qrSize, qrSize);
-                    
                     // Cleanup blob URL
                     URL.revokeObjectURL(blobUrl);
-                    
                     // Download
                     const link = document.createElement('a');
                     link.download = 'qr-' + (bioPage?.slug || 'bio') + '.' + extension;
@@ -667,7 +611,6 @@ window.qrGenerator = function() {
                     link.click();
                     document.body.removeChild(link);
                 }
-                
                 this.showQrNotification('QR Code downloaded successfully', 'success');
             } catch (error) {
                 console.error('Download QR error:', error);

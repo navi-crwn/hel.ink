@@ -4,7 +4,6 @@
             <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Welcome to HEL.ink</h1>
             <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">Get started with your link shortening journey</p>
         </div>
-
         @if(session('success'))
         <div class="mt-6 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 p-4">
             <div class="flex items-center gap-2">
@@ -17,7 +16,6 @@
             </div>
         </div>
         @endif
-
         @if(session('user_catchphrase'))
         <div class="mt-6 rounded-lg border border-amber-500/50 bg-amber-50 p-4 dark:border-amber-500/30 dark:bg-amber-900/20" x-data="{ copied: false }">
             <div class="flex items-start gap-2">
@@ -28,7 +26,6 @@
                         This is your <strong>recovery catchphrase</strong>. You'll need it to <strong>reset your password</strong> if you forget it. 
                         Write it down and keep it safe! This message appears only once.
                     </p>
-                    
                     <div class="mt-3 rounded-lg bg-slate-900 p-3 shadow-inner">
                         <div class="flex items-center justify-between gap-3">
                             <code class="flex-1 text-center font-mono text-base font-bold text-emerald-400">{{ session('user_catchphrase') }}</code>
@@ -43,7 +40,6 @@
             </div>
         </div>
         @endif
-
         @if(auth()->user()->google_id && session('google_user_needs_password'))
         <div class="mt-6 rounded-lg border border-blue-500/50 bg-blue-50 p-4 dark:border-blue-500/30 dark:bg-blue-900/20">
             <div class="flex items-start gap-2">
@@ -53,10 +49,8 @@
                     <p class="mt-1 text-xs text-blue-800 dark:text-blue-200">
                         You logged in with Google. Please create a password to secure your account and enable login with email.
                     </p>
-                    
                     <form method="POST" action="{{ route('onboarding.set-password') }}" class="mt-4 space-y-3">
                         @csrf
-                        
                         <div x-data="{ showPass: false }">
                             <label class="block text-xs font-medium text-blue-900 dark:text-blue-100 mb-1">Password <span class="text-red-600">*</span></label>
                             <div class="relative">
@@ -80,7 +74,6 @@
                                 <p class="mt-1 text-xs text-red-600 dark:text-red-400">{{ $message }}</p>
                             @enderror
                         </div>
-                        
                         <div x-data="{ showConf: false }">
                             <label class="block text-xs font-medium text-blue-900 dark:text-blue-100 mb-1">Confirm Password <span class="text-red-600">*</span></label>
                             <div class="relative">
@@ -101,7 +94,6 @@
                                 </button>
                             </div>
                         </div>
-                        
                         <button 
                             type="submit"
                             class="w-full rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500 flex items-center justify-center gap-2"
@@ -116,10 +108,8 @@
             </div>
         </div>
         @endif
-
         <div class="mt-8">
             <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Quick Start Guide</h2>
-            
             <div class="grid gap-4 sm:grid-cols-2">
                 <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
                     <div class="flex items-center gap-2">
@@ -132,7 +122,6 @@
                         Shorten URLs with custom slugs, passwords, and tags.
                     </p>
                 </div>
-
                 <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
                     <div class="flex items-center gap-2">
                         <div class="flex h-8 w-8 items-center justify-center rounded-full bg-purple-100 text-lg dark:bg-purple-900/30">
@@ -144,7 +133,6 @@
                         Group related links for easy management.
                     </p>
                 </div>
-
                 <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
                     <div class="flex items-center gap-2">
                         <div class="flex h-8 w-8 items-center justify-center rounded-full bg-green-100 text-lg dark:bg-green-900/30">
@@ -156,7 +144,6 @@
                         See clicks, locations, and device breakdowns.
                     </p>
                 </div>
-
                 <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
                     <div class="flex items-center gap-2">
                         <div class="flex h-8 w-8 items-center justify-center rounded-full bg-orange-100 text-lg dark:bg-orange-900/30">
@@ -170,7 +157,6 @@
                 </div>
             </div>
         </div>
-
         <div class="mt-8 flex flex-col items-center justify-center gap-2 sm:flex-row">
             @if(auth()->user()->google_id && session('google_user_needs_password'))
                 <p class="text-sm text-slate-600 dark:text-slate-400">Please create your password to continue</p>

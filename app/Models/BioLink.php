@@ -87,7 +87,6 @@ class BioLink extends Model
             'referrer' => $data['referrer'] ?? null,
             'ip_address' => $data['ip_address'] ?? null,
         ]);
-
         $this->incrementClicks();
 
         return $click;

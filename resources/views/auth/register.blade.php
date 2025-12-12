@@ -19,11 +19,9 @@
             </div>
         </div>
     @endif
-
     @php
         $turnstileKey = config('services.turnstile.site_key');
     @endphp
-    
     <div x-data="{ tosAccepted: false, showTosError: false }">
         <!-- Google Sign In Button -->
         <div class="mb-6">
@@ -38,7 +36,6 @@
                 </svg>
                 <span>Continue with Google</span>
             </a>
-        
             <div class="relative my-6">
                 <div class="absolute inset-0 flex items-center">
                     <div class="w-full border-t border-gray-300 dark:border-gray-600"></div>
@@ -48,7 +45,6 @@
                 </div>
             </div>
         </div>
-
         <form method="POST" action="{{ route('register') }}" 
               @if($turnstileKey) 
               x-data="window.turnstileForm ? window.turnstileForm('{{ $turnstileKey }}', {{ $errors->has('turnstile') ? 'true' : 'false' }}) : {}"
@@ -56,22 +52,18 @@
               x-on:submit="handleSubmit($event)"
               @endif>
         @csrf
-
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
-
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
-
         <div class="mt-4" x-data="{ showPassword: false }">
             <x-input-label for="password" :value="__('Password')" />
-
             <div class="relative">
                 <x-text-input id="password" class="block mt-1 w-full pr-10"
                                 type="password"
@@ -88,13 +80,10 @@
                     <span x-show="showPassword" x-cloak>Hide</span>
                 </button>
             </div>
-
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
-
         <div class="mt-4" x-data="{ showConfirm: false }">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
             <div class="relative">
                 <x-text-input id="password_confirmation" class="block mt-1 w-full pr-10"
                                 type="password"
@@ -110,10 +99,8 @@
                     <span x-show="showConfirm" x-cloak>Hide</span>
                 </button>
             </div>
-
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
-
         @if ($turnstileKey)
             <div class="mt-4" x-cloak x-show="showCaptcha">
                 <div x-ref="captcha"></div>
@@ -121,9 +108,7 @@
             </div>
             <input type="hidden" name="cf-turnstile-response" :value="token">
         @endif
-
         <input type="hidden" name="tos_accepted" x-bind:value="tosAccepted ? '1' : '0'">
-
         <div class="mt-4">
             <label class="flex items-start space-x-3 cursor-pointer group">
                 <input 
@@ -146,7 +131,6 @@
                 ⚠️ Please agree to the Terms of Service below to continue.
             </p>
         </div>
-
         <div class="flex items-center justify-between mt-4">
             <div class="flex items-center gap-3">
                 <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
@@ -162,7 +146,6 @@
                     <span class="text-xs font-medium text-gray-700 dark:text-gray-200">Theme</span>
                 </button>
             </div>
-
             <button
                 type="submit"
                 class="ms-4 inline-flex items-center rounded-md border border-transparent px-4 py-2 text-xs font-semibold uppercase tracking-widest transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"

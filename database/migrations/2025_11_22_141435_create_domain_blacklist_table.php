@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('category')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
-            
             $table->index('domain');
             $table->index('category');
         });

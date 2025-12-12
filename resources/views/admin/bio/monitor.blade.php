@@ -1,6 +1,5 @@
 <x-app-layout>
     <x-slot name="pageTitle">Bio Pages Monitoring - Admin</x-slot>
-
     <div class="py-6">
         {{-- Header --}}
         <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -43,7 +42,6 @@
                 </a>
             </div>
         </div>
-
         {{-- Main Stats Cards --}}
         <div class="mb-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <div class="rounded-lg bg-white p-6 shadow dark:bg-slate-800">
@@ -60,7 +58,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="rounded-lg bg-white p-6 shadow dark:bg-slate-800">
                 <div class="flex items-center justify-between">
                     <div>
@@ -76,7 +73,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="rounded-lg bg-white p-6 shadow dark:bg-slate-800">
                 <div class="flex items-center justify-between">
                     <div>
@@ -91,7 +87,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="rounded-lg bg-white p-6 shadow dark:bg-slate-800">
                 <div class="flex items-center justify-between">
                     <div>
@@ -107,7 +102,6 @@
                 </div>
             </div>
         </div>
-
         {{-- Secondary Stats --}}
         <div class="mb-6 grid gap-4 sm:grid-cols-3">
             <div class="rounded-lg bg-white p-4 shadow dark:bg-slate-800">
@@ -150,7 +144,6 @@
                 </div>
             </div>
         </div>
-
         {{-- Clicks Chart --}}
         <div class="mb-6 rounded-lg bg-white p-6 shadow dark:bg-slate-800">
             <h2 class="mb-4 text-lg font-semibold text-slate-900 dark:text-white">Clicks Over Time</h2>
@@ -158,7 +151,6 @@
                 <canvas id="clicksChart"></canvas>
             </div>
         </div>
-
         {{-- Main Content Grid --}}
         <div class="grid gap-6 lg:grid-cols-3">
             {{-- Left Column - Top Bio Pages & Links --}}
@@ -207,7 +199,6 @@
                         </table>
                     </div>
                 </div>
-
                 {{-- Top Links --}}
                 <div class="rounded-lg bg-white p-6 shadow dark:bg-slate-800">
                     <h2 class="mb-4 text-lg font-semibold text-slate-900 dark:text-white">Top Performing Links</h2>
@@ -230,7 +221,6 @@
                         @endforelse
                     </div>
                 </div>
-
                 {{-- Recent Bio Pages --}}
                 <div class="rounded-lg bg-white p-6 shadow dark:bg-slate-800">
                     <h2 class="mb-4 text-lg font-semibold text-slate-900 dark:text-white">Recently Created</h2>
@@ -264,7 +254,6 @@
                     </div>
                 </div>
             </div>
-
             {{-- Right Column - Activity & Stats --}}
             <div class="space-y-6">
                 {{-- Clicks by Country --}}
@@ -292,7 +281,6 @@
                         <div class="py-6 text-center text-sm text-slate-500 dark:text-slate-400">No data available</div>
                     @endif
                 </div>
-
                 {{-- Clicks by Device --}}
                 <div class="rounded-lg bg-white p-6 shadow dark:bg-slate-800">
                     <h2 class="mb-4 text-lg font-semibold text-slate-900 dark:text-white">Clicks by Device</h2>
@@ -324,7 +312,6 @@
                         <div class="py-6 text-center text-sm text-slate-500 dark:text-slate-400">No data available</div>
                     @endif
                 </div>
-
                 {{-- Clicks by Browser --}}
                 <div class="rounded-lg bg-white p-6 shadow dark:bg-slate-800">
                     <h2 class="mb-4 text-lg font-semibold text-slate-900 dark:text-white">Clicks by Browser</h2>
@@ -341,7 +328,6 @@
                         <div class="py-6 text-center text-sm text-slate-500 dark:text-slate-400">No data available</div>
                     @endif
                 </div>
-
                 {{-- Top Creators --}}
                 <div class="rounded-lg bg-white p-6 shadow dark:bg-slate-800">
                     <h2 class="mb-4 text-lg font-semibold text-slate-900 dark:text-white">Top Creators</h2>
@@ -365,7 +351,6 @@
                         @endforelse
                     </div>
                 </div>
-
                 {{-- Recent Activity --}}
                 <div class="rounded-lg bg-white p-6 shadow dark:bg-slate-800">
                     <h2 class="mb-4 text-lg font-semibold text-slate-900 dark:text-white">Recent Clicks</h2>
@@ -400,17 +385,14 @@
             </div>
         </div>
     </div>
-
     @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const ctx = document.getElementById('clicksChart').getContext('2d');
-            
             const isDark = document.documentElement.classList.contains('dark');
             const gridColor = isDark ? 'rgba(148, 163, 184, 0.1)' : 'rgba(148, 163, 184, 0.2)';
             const textColor = isDark ? '#94a3b8' : '#64748b';
-            
             new Chart(ctx, {
                 type: 'line',
                 data: {

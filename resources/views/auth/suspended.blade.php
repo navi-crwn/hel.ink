@@ -10,7 +10,6 @@
             Your account has been suspended and cannot be accessed.
         </p>
     </div>
-
     <div class="rounded-xl bg-slate-50 p-6 dark:bg-slate-800/50">
         <h3 class="text-sm font-semibold text-slate-900 dark:text-white mb-3">Why was my account suspended?</h3>
         <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
@@ -32,7 +31,6 @@
             </li>
         </ul>
     </div>
-
     <div class="mt-6 rounded-xl border border-blue-200 bg-blue-50 p-4 dark:border-blue-900/30 dark:bg-blue-900/20">
         <h3 class="text-sm font-semibold text-blue-900 dark:text-blue-100 mb-2">Need help?</h3>
         <p class="text-sm text-blue-800 dark:text-blue-200">
@@ -41,7 +39,6 @@
             with your account email and we'll review your case.
         </p>
     </div>
-
     <div class="mt-6 text-center">
         <a href="{{ route('login') }}" class="text-sm text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">
             ← Back to login

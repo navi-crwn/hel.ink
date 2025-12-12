@@ -4,10 +4,8 @@
             {{ __('Proxy Detection Monitor') }}
         </h2>
     </x-slot>
-
     <div class="py-12">
         <div class="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
-            
             @if (session('success'))
                 <div class="rounded-lg bg-green-50 p-4 dark:bg-green-900/20">
                     <div class="flex">
@@ -22,7 +20,6 @@
                     </div>
                 </div>
             @endif
-
             <div class="overflow-hidden bg-white shadow-sm dark:bg-slate-800 sm:rounded-lg">
                 <div class="p-6 text-slate-900 dark:text-slate-100">
                     <div class="mb-4 flex items-center justify-between">
@@ -35,7 +32,6 @@
                             </button>
                         </form>
                     </div>
-                    
                     <div x-data="proxyTester()">
                         <div class="flex gap-3">
                             <input x-model="testIp" type="text" placeholder="Enter IP address (e.g., 8.8.8.8)" class="flex-1 rounded-lg border-slate-300 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300" @keyup.enter="testProxy">
@@ -44,7 +40,6 @@
                                 <span x-show="loading">Testing...</span>
                             </button>
                         </div>
-
                         <div x-show="result" x-transition class="mt-4 rounded-lg border p-4" :class="result?.is_proxy ? 'border-red-200 bg-red-50 dark:bg-red-900/20' : 'border-green-200 bg-green-50 dark:bg-green-900/20'">
                             <div class="mb-3 flex items-center justify-between">
                                 <div class="flex items-center gap-2">
@@ -58,7 +53,6 @@
                                 </div>
                                 <span class="text-sm text-slate-600 dark:text-slate-400" x-text="'IP: ' + testIp"></span>
                             </div>
-                            
                             <div class="grid gap-3 sm:grid-cols-3">
                                 <div>
                                     <p class="text-xs text-slate-500 dark:text-slate-400">Type</p>
@@ -73,7 +67,6 @@
                                     <p class="font-medium" x-text="result?.consensus_strength || 'N/A'"></p>
                                 </div>
                             </div>
-
                             <div x-show="result?.detectors" class="mt-3 border-t pt-3">
                                 <p class="mb-2 text-xs font-semibold text-slate-600 dark:text-slate-400">Individual Detector Results:</p>
                                 <div class="grid gap-2 sm:grid-cols-2">
@@ -89,12 +82,10 @@
                                 </div>
                             </div>
                         </div>
-
                         <div x-show="error" x-text="error" class="mt-4 rounded-lg border border-red-300 bg-red-50 p-3 text-sm text-red-700 dark:bg-red-900/20"></div>
                     </div>
                 </div>
             </div>
-
             <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach($detectorStats as $name => $data)
                     <div class="overflow-hidden bg-white shadow-sm dark:bg-slate-800 sm:rounded-lg">
@@ -114,12 +105,10 @@
                                     </span>
                                 @endif
                             </div>
-
                             <div class="mb-4 rounded-lg bg-slate-50 p-3 dark:bg-slate-900">
                                 <p class="text-xs text-slate-500 dark:text-slate-400">Daily Quota</p>
                                 <p class="text-lg font-bold text-slate-900 dark:text-slate-100">{{ $data['quota'] }}</p>
                             </div>
-
                             <div class="space-y-3">
                                 <div class="flex items-center justify-between">
                                     <span class="text-sm text-slate-600 dark:text-slate-400">Total Checks</span>
@@ -148,7 +137,6 @@
                     </div>
                 @endforeach
             </div>
-
             <div class="overflow-hidden bg-white shadow-sm dark:bg-slate-800 sm:rounded-lg">
                 <div class="p-6 text-slate-900 dark:text-slate-100">
                     <h3 class="mb-4 text-lg font-medium">About Proxy Detection</h3>
@@ -172,7 +160,6 @@
             </div>
         </div>
     </div>
-
     @push('scripts')
     <script>
         function proxyTester() {
@@ -181,17 +168,14 @@
                 loading: false,
                 result: null,
                 error: null,
-
                 async testProxy() {
                     if (!this.testIp) {
                         this.error = 'Please enter an IP address';
                         return;
                     }
-
                     this.loading = true;
                     this.error = null;
                     this.result = null;
-
                     try {
                         const response = await fetch('{{ route("admin.proxy.test") }}', {
                             method: 'POST',
@@ -201,9 +185,7 @@
                             },
                             body: JSON.stringify({ ip: this.testIp })
                         });
-
                         const data = await response.json();
-                        
                         if (data.success) {
                             this.result = data.result;
                         } else {

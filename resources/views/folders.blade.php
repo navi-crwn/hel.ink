@@ -3,7 +3,6 @@
         <x-page-header title="Folders" subtitle="Organize your shortlinks by campaign">
         </x-page-header>
     </x-slot>
-
     <div class="py-10">
         <div class="mx-auto max-w-5xl space-y-6 sm:px-6 lg:px-8">
             @if (session('status'))
@@ -20,7 +19,6 @@
                     </ul>
                 </div>
             @endif
-
             <div class="grid gap-6 md:grid-cols-2">
                 @forelse ($folders as $folder)
                     @php
@@ -81,7 +79,6 @@
                                 </form>
                             </div>
                         </div>
-
                         @if (! $folder->is_default)
                             <form
                                 method="POST"
@@ -99,7 +96,6 @@
                                 </div>
                             </form>
                         @endif
-
                         <div class="flex flex-col gap-3">
                             <div class="relative z-10">
                                 <button type="button" @click="showDropdown = !showDropdown" class="flex w-full items-center justify-between rounded-xl border border-gray-200 bg-gray-50 px-4 py-2 text-sm text-gray-700 transition hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700">
@@ -147,13 +143,11 @@
                     <p class="rounded-2xl border border-dashed border-gray-300 px-4 py-6 text-sm text-gray-500 dark:border-gray-700 dark:text-gray-400">No folders yet.</p>
                 @endforelse
             </div>
-
             <div class="pt-4">
                 {{ $folders->links() }}
             </div>
         </div>
     </div>
-
     <!-- Create Folder Modal -->
     <div x-data="{ open: false }" 
          x-init="window.openFolderModal = () => { open = true }"
@@ -170,7 +164,6 @@
                      x-transition:leave-end="opacity-0"
                      class="fixed inset-0 bg-black/50 backdrop-blur-sm" 
                      @click="open = false"></div>
-                
                 <div x-show="open"
                      x-transition:enter="ease-out duration-300"
                      x-transition:enter-start="opacity-0 scale-95"
@@ -179,7 +172,6 @@
                      x-transition:leave-start="opacity-100 scale-100"
                      x-transition:leave-end="opacity-0 scale-95"
                      class="relative w-full max-w-md transform rounded-2xl bg-white p-6 shadow-2xl dark:bg-slate-800">
-                    
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Create New Folder</h3>
                         <button @click="open = false" class="rounded-full p-2 text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700">
@@ -188,7 +180,6 @@
                             </svg>
                         </button>
                     </div>
-                    
                     <form method="POST" action="{{ route('folders.store') }}">
                         @csrf
                         <div class="space-y-4">
@@ -202,7 +193,6 @@
                                        required
                                        autofocus>
                             </div>
-                            
                             <div class="flex justify-end gap-3 pt-2">
                                 <button type="button" @click="open = false" class="rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-700">
                                     Cancel

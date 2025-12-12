@@ -6,7 +6,7 @@ class UserAgentService
 {
     public function parse(?string $userAgent): array
     {
-        if (!$userAgent) {
+        if (! $userAgent) {
             return [
                 'device' => 'Unknown',
                 'browser' => 'Unknown',
@@ -25,9 +25,10 @@ class UserAgentService
             if (preg_match('/ipad|tablet|kindle/i', $userAgent)) {
                 return 'Tablet';
             }
+
             return 'Mobile';
         }
-        
+
         return 'Desktop';
     }
 
@@ -41,12 +42,12 @@ class UserAgentService
             'Firefox' => 'Firefox',
             'MSIE|Trident' => 'Internet Explorer',
         ];
-
         foreach ($browsers as $pattern => $browser) {
             if (preg_match("/$pattern/i", $userAgent)) {
                 if ($browser === 'Safari' && preg_match('/Chrome|Edg|OPR/i', $userAgent)) {
                     continue;
                 }
+
                 return $browser;
             }
         }

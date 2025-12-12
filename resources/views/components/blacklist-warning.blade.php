@@ -1,5 +1,4 @@
 @props(['message' => 'This domain is blocked', 'category' => null])
-
 <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" x-data="{ show: true }" x-show="show" x-transition>
     <div class="relative w-full max-w-md">
         <div class="flex justify-center mb-4">
@@ -12,13 +11,11 @@
                 </div>
             </div>
         </div>
-
         <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border-4 border-red-500 p-6">
             <div class="text-center">
                 <h3 class="text-2xl font-bold text-red-600 dark:text-red-400 mb-2">
                     ⚠️ Domain Blocked
                 </h3>
-                
                 @if($category)
                     <div class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium mb-3 {{ 
                         $category === 'phishing' ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300' : 
@@ -29,11 +26,9 @@
                         {{ ucfirst($category) }} Content
                     </div>
                 @endif
-
                 <p class="text-slate-700 dark:text-slate-300 mb-6">
                     {{ $message }}
                 </p>
-
                 <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-4 text-sm text-left">
                     <p class="text-red-800 dark:text-red-300 font-medium mb-2">🛡️ Security Notice:</p>
                     <ul class="text-red-700 dark:text-red-400 space-y-1 text-xs">
@@ -42,7 +37,6 @@
                         <li>• Contact admin if you believe this is an error</li>
                     </ul>
                 </div>
-
                 <button @click="show = false" class="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg transition-colors">
                     I Understand
                 </button>

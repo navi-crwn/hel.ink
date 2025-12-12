@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use PragmaRX\Google2FA\Google2FA;
 use Illuminate\Support\Facades\Hash;
+use PragmaRX\Google2FA\Google2FA;
 
 class TwoFactorController extends Controller
 {
@@ -13,18 +13,15 @@ class TwoFactorController extends Controller
         $request->validate([
             'password' => 'required|string',
         ]);
-
-        if (!Hash::check($request->password, $request->user()->password)) {
+        if (! Hash::check($request->password, $request->user()->password)) {
             return back()->withErrors(['password' => 'The provided password is incorrect.']);
         }
-
-        $google2fa = new Google2FA();
+        $google2fa = new Google2FA;
         $secret = $google2fa->generateSecretKey();
         $recoveryCodes = [];
         for ($i = 0; $i < 8; $i++) {
             $recoveryCodes[] = strtoupper(substr(md5(random_bytes(16)), 0, 10));
         }
-        
         $request->user()->update([
             'two_factor_secret' => encrypt($secret),
             'two_factor_recovery_codes' => encrypt(json_encode($recoveryCodes)),
@@ -38,13 +35,10 @@ class TwoFactorController extends Controller
         $request->validate([
             'code' => 'required|string|size:6',
         ]);
-
         $user = $request->user();
-        $google2fa = new Google2FA();
+        $google2fa = new Google2FA;
         $secret = decrypt($user->two_factor_secret);
-
         $valid = $google2fa->verifyKey($secret, $request->code);
-
         if ($valid) {
             $user->update([
                 'two_factor_confirmed_at' => now(),
@@ -61,11 +55,9 @@ class TwoFactorController extends Controller
         $request->validate([
             'password' => 'required|string',
         ]);
-
-        if (!Hash::check($request->password, $request->user()->password)) {
+        if (! Hash::check($request->password, $request->user()->password)) {
             return back()->withErrors(['password' => 'The provided password is incorrect.']);
         }
-
         $request->user()->update([
             'two_factor_secret' => null,
             'two_factor_recovery_codes' => null,
@@ -80,16 +72,13 @@ class TwoFactorController extends Controller
         $request->validate([
             'password' => 'required|string',
         ]);
-
-        if (!Hash::check($request->password, $request->user()->password)) {
+        if (! Hash::check($request->password, $request->user()->password)) {
             return back()->withErrors(['password' => 'The provided password is incorrect.']);
         }
-
         $recoveryCodes = [];
         for ($i = 0; $i < 8; $i++) {
             $recoveryCodes[] = strtoupper(substr(md5(random_bytes(16)), 0, 10));
         }
-
         $request->user()->update([
             'two_factor_recovery_codes' => encrypt(json_encode($recoveryCodes)),
         ]);
@@ -107,15 +96,13 @@ class TwoFactorController extends Controller
         $request->validate([
             'code' => 'required|string',
         ]);
-
         $user = $request->user();
-        $google2fa = new Google2FA();
+        $google2fa = new Google2FA;
         $secret = decrypt($user->two_factor_secret);
         $valid = $google2fa->verifyKey($secret, $request->code);
-        if (!$valid) {
+        if (! $valid) {
             $recoveryCodes = json_decode(decrypt($user->two_factor_recovery_codes), true);
             $valid = in_array(strtoupper($request->code), $recoveryCodes);
-
             if ($valid) {
                 $recoveryCodes = array_values(array_diff($recoveryCodes, [strtoupper($request->code)]));
                 $user->update([
@@ -123,9 +110,9 @@ class TwoFactorController extends Controller
                 ]);
             }
         }
-
         if ($valid) {
             $request->session()->put('2fa_verified', true);
+
             return redirect()->intended(route('dashboard'));
         }
 

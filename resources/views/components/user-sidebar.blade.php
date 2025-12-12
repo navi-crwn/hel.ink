@@ -1,5 +1,4 @@
 @props(['mobile' => false])
-
 <aside x-data="{ openMenu: null }" class="{{ $mobile ? 'w-full' : 'h-screen w-64 border-r' }} bg-white dark:bg-slate-900 {{ !$mobile ? 'border-slate-200 dark:border-slate-800' : '' }}" @click="if ($event.target.closest('a') && window.innerWidth < 768) { $dispatch('close-sidebar') }">
     <div class="{{ $mobile ? 'py-2' : 'flex h-full flex-col' }}">
         @if(!$mobile)
@@ -10,7 +9,6 @@
             </a>
         </div>
         @endif
-
         <nav class="{{ $mobile ? 'px-4' : 'flex-1 overflow-y-auto px-3 py-4' }}">
             <ul class="space-y-1">
                 <li>
@@ -21,7 +19,6 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-
                 <li>
                     <a href="{{ route('analytics') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('analytics') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800' }}">
                         <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -30,7 +27,6 @@
                         <span>Analytics</span>
                     </a>
                 </li>
-
                 <li>
                     <a href="{{ route('bio.index') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('bio*') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800' }}">
                         <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -39,7 +35,6 @@
                         <span>Link in Bio</span>
                     </a>
                 </li>
-
                 <li x-data="{ open: {{ request()->routeIs('links*') || request()->routeIs('folders*') || request()->routeIs('tags*') ? 'true' : 'false' }} }">
                     <button @click="open = !open" class="flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('links*') || request()->routeIs('folders*') || request()->routeIs('tags*') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800' }}">
                         <div class="flex items-center gap-3">
@@ -70,7 +65,6 @@
                         </li>
                     </ul>
                 </li>
-
                 <li>
                     <a href="{{ route('settings') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('settings') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800' }}">
                         <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -82,7 +76,6 @@
                 </li>
             </ul>
         </nav>
-
         <div class="border-t border-slate-700 p-4">
             <button type="button" onclick="toggleTheme()" id="theme-toggle-button" class="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 hover:bg-slate-700">
                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

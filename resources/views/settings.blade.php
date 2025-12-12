@@ -6,7 +6,6 @@
             </x-slot>
         </x-page-header>
     </x-slot>
-
     <div class="py-8" x-data="{ 
         tab: '{{ session('active_tab', 'account') }}',
         init() {
@@ -34,7 +33,6 @@
                     </ul>
                 </div>
             @endif
-            
             <div class="rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <div class="flex overflow-x-auto border-b border-slate-200 dark:border-slate-800">
                     <button @click="tab = 'account'" :class="tab === 'account' ? 'border-blue-500 text-blue-600 dark:text-blue-400' : 'border-transparent text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'" class="whitespace-nowrap border-b-2 px-6 py-3 text-sm font-medium">
@@ -59,43 +57,34 @@
                         API & Integrations
                     </button>
                 </div>
-                
                 <div x-show="tab === 'account'" class="p-6 space-y-6">
                     <div>
                         <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Account Information</h3>
                         <p class="text-sm text-slate-600 dark:text-slate-400">Update your name and email address</p>
                     </div>
-
                     <form method="POST" action="{{ route('profile.update') }}" class="space-y-4">
                         @csrf
                         @method('PATCH')
-                        
                         <div>
                             <label class="block text-sm font-medium text-slate-700 dark:text-slate-300">Name</label>
                             <input type="text" name="name" value="{{ old('name', auth()->user()->name) }}" class="mt-1 w-full rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white" required>
                         </div>
-
                         <div>
                             <label class="block text-sm font-medium text-slate-700 dark:text-slate-300">Email</label>
                             <input type="email" name="email" value="{{ old('email', auth()->user()->email) }}" class="mt-1 w-full rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white" required>
                         </div>
-
                         <button type="submit" class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-500">
                             Update Account
                         </button>
                     </form>
-
                     <hr class="border-slate-200 dark:border-slate-800">
-
                     <div>
                         <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Change Password</h3>
                         <p class="text-sm text-slate-600 dark:text-slate-400">Ensure your account is using a long, random password</p>
                     </div>
-
                     <form method="POST" action="{{ route('password.update') }}" class="space-y-4">
                         @csrf
                         @method('PUT')
-                        
                         @if ($errors->updatePassword->any())
                             <div class="rounded-lg bg-red-50 p-4 dark:bg-red-900/20">
                                 <div class="flex items-start">
@@ -115,30 +104,24 @@
                                 </div>
                             </div>
                         @endif
-                        
                         <div>
                             <label class="block text-sm font-medium text-slate-700 dark:text-slate-300">Current Password</label>
                             <input type="password" name="current_password" class="mt-1 w-full rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white" required>
                         </div>
-
                         <div>
                             <label class="block text-sm font-medium text-slate-700 dark:text-slate-300">New Password</label>
                             <input type="password" name="password" class="mt-1 w-full rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white" required>
                         </div>
-
                         <div>
                             <label class="block text-sm font-medium text-slate-700 dark:text-slate-300">Confirm New Password</label>
                             <input type="password" name="password_confirmation" class="mt-1 w-full rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white" required>
                         </div>
-
                         <button type="submit" class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-500">
                             Update Password
                         </button>
                     </form>
-
                     @unless(auth()->user()->isSuperAdmin())
                         <hr class="border-slate-200 dark:border-slate-800">
-
                         <div x-data="{ 
                             showModal: false, 
                             password: '', 
@@ -168,7 +151,6 @@
                                     Delete My Account
                                 </button>
                             </div>
-                            
                             <div x-show="showModal" 
                                 x-cloak
                                 class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
@@ -182,11 +164,9 @@
                                             <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
                                                 This action is <strong>permanent and cannot be undone</strong>. All your links, folders, tags, and analytics data will be permanently deleted.
                                             </p>
-
                                             <form method="POST" action="{{ route('profile.destroy') }}" class="mt-4 space-y-4">
                                                 @csrf
                                                 @method('DELETE')
-                                                
                                                 <div>
                                                     <label class="block text-sm font-medium text-slate-700 dark:text-slate-300">Confirm your password</label>
                                                     <input 
@@ -197,7 +177,6 @@
                                                         required
                                                     >
                                                 </div>
-
                                                 <div class="rounded-lg bg-red-50 p-3 dark:bg-red-900/20">
                                                     <p class="text-center text-sm font-medium text-red-800 dark:text-red-200">
                                                         <span x-show="!canDelete">
@@ -208,7 +187,6 @@
                                                         </span>
                                                     </p>
                                                 </div>
-
                                                 <div class="flex gap-3">
                                                     <button 
                                                         type="button" 
@@ -234,21 +212,17 @@
                         </div>
                     @endunless
                 </div>
-                
                 <div x-show="tab === '2fa'" class="p-6 space-y-6">
                     <div>
                         <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Two-Factor Authentication</h3>
                         <p class="text-sm text-slate-600 dark:text-slate-400">Add an extra layer of security to your account</p>
                     </div>
-
                     @if(!auth()->user()->two_factor_secret)
-                        
                         <div class="rounded-lg border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
                             <h4 class="font-medium text-slate-900 dark:text-white">Enable Two-Factor Authentication</h4>
                             <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">
                                 Secure your account by requiring a verification code from your authenticator app when logging in.
                             </p>
-                            
                             <form method="POST" action="{{ route('settings.2fa.enable') }}" class="mt-4 space-y-3">
                                 @csrf
                                 <div>
@@ -262,13 +236,11 @@
                         </div>
                     @else
                         @if(!auth()->user()->two_factor_confirmed_at)
-                            
                             <div class="rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-900/30 dark:bg-blue-900/20">
                                 <h4 class="font-medium text-blue-900 dark:text-blue-100">Complete Setup</h4>
                                 <p class="mt-1 text-sm text-blue-800 dark:text-blue-200">
                                     Scan the QR code below with your authenticator app (Google Authenticator, Authy, etc.)
                                 </p>
-                                
                                 <div class="mt-4 flex items-center justify-center bg-white p-4 rounded-lg">
                                     @php
                                         $google2fa = new \PragmaRX\Google2FA\Google2FA();
@@ -281,12 +253,10 @@
                                     @endphp
                                     {!! QrCode::size(200)->generate($qrCodeUrl) !!}
                                 </div>
-
                                 <div class="mt-4 p-3 bg-slate-800 rounded-lg">
                                     <p class="text-xs text-slate-400 text-center">Secret Key (manual entry)</p>
                                     <p class="text-sm font-mono text-white text-center">{{ $secret }}</p>
                                 </div>
-
                                 <form method="POST" action="{{ route('settings.2fa.confirm') }}" class="mt-4 space-y-3">
                                     @csrf
                                     <div>
@@ -299,7 +269,6 @@
                                 </form>
                             </div>
                         @else
-                            
                             <div class="rounded-lg border border-green-200 bg-green-50 p-4 dark:border-green-900/30 dark:bg-green-900/20">
                                 <div class="flex items-center gap-2">
                                     <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
@@ -311,23 +280,19 @@
                                     Your account is protected with two-factor authentication.
                                 </p>
                             </div>
-                            
                             <div class="rounded-lg border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
                                 <h4 class="font-medium text-slate-900 dark:text-white">Recovery Codes</h4>
                                 <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">
                                     Store these codes in a safe place. You can use them to access your account if you lose your authenticator device.
                                 </p>
-                                
                                 @php
                                     $recoveryCodes = json_decode(decrypt(auth()->user()->two_factor_recovery_codes), true);
                                 @endphp
-                                
                                 <div class="mt-4 grid grid-cols-2 gap-2 p-3 bg-slate-800 rounded-lg">
                                     @foreach($recoveryCodes as $code)
                                         <div class="text-sm font-mono text-white">{{ $code }}</div>
                                     @endforeach
                                 </div>
-
                                 <form method="POST" action="{{ route('settings.2fa.recovery-codes') }}" class="mt-4" onsubmit="return confirm('Are you sure you want to regenerate recovery codes? Your old codes will no longer work.')">
                                     @csrf
                                     <input type="hidden" name="password" value="">
@@ -336,13 +301,11 @@
                                     </button>
                                 </form>
                             </div>
-                            
                             <div class="rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-900/30 dark:bg-red-900/20">
                                 <h4 class="font-medium text-red-900 dark:text-red-100">Disable Two-Factor Authentication</h4>
                                 <p class="mt-1 text-sm text-red-800 dark:text-red-200">
                                     Remove two-factor authentication from your account. This will make your account less secure.
                                 </p>
-                                
                                 <form method="POST" action="{{ route('settings.2fa.disable') }}" class="mt-4" onsubmit="return confirm('Are you sure you want to disable two-factor authentication?')">
                                     @csrf
                                     @method('DELETE')
@@ -355,13 +318,11 @@
                         @endif
                     @endif
                 </div>
-                
                 <div x-show="tab === 'backup'" class="p-6 space-y-6" x-data="{ showFilters: false }">
                     <div>
                         <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Backup & Export</h3>
                         <p class="text-sm text-slate-600 dark:text-slate-400">Download your complete link data with analytics in CSV format</p>
                     </div>
-
                     <div class="rounded-lg border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
                         <div class="flex items-center justify-between">
                             <div>
@@ -374,29 +335,23 @@
                                 <span x-text="showFilters ? 'Hide Filters' : 'Show Filters'"></span>
                             </button>
                         </div>
-
                         <form method="POST" action="{{ route('settings.export') }}" class="mt-4 space-y-4">
                             @csrf
-                            
                             <div x-show="showFilters" x-cloak class="space-y-4 p-4 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-700">
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    
                                     <div>
                                         <label class="block text-sm font-medium text-slate-700 dark:text-slate-300">From Date</label>
                                         <input type="date" name="date_from" class="mt-1 w-full rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white">
                                     </div>
-                                    
                                     <div>
                                         <label class="block text-sm font-medium text-slate-700 dark:text-slate-300">To Date</label>
                                         <input type="date" name="date_to" class="mt-1 w-full rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white">
                                     </div>
-                                    
                                     <div>
                                         <label class="block text-sm font-medium text-slate-700 dark:text-slate-300">Minimum Clicks</label>
                                         <input type="number" name="min_clicks" min="0" placeholder="e.g., 10" class="mt-1 w-full rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white">
                                         <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">Only links with this many clicks or more</p>
                                     </div>
-                                    
                                     <div>
                                         <label class="block text-sm font-medium text-slate-700 dark:text-slate-300">Sort By</label>
                                         <select name="sort_by" class="mt-1 w-full rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white">
@@ -406,7 +361,6 @@
                                             <option value="least_clicked">Least Clicked First</option>
                                         </select>
                                     </div>
-                                    
                                     <div>
                                         <label class="block text-sm font-medium text-slate-700 dark:text-slate-300">Folder</label>
                                         <select name="folder_id" class="mt-1 w-full rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white">
@@ -417,7 +371,6 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    
                                     <div>
                                         <label class="block text-sm font-medium text-slate-700 dark:text-slate-300">Tag</label>
                                         <select name="tag_id" class="mt-1 w-full rounded-lg border-slate-200 focus:border-blue-500 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white">
@@ -429,7 +382,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="flex gap-2">
                                 <button type="submit" class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-500">
                                     <svg class="inline-block w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -442,7 +394,6 @@
                                 </button>
                             </div>
                         </form>
-
                         <div class="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                             <p class="text-xs text-blue-800 dark:text-blue-200">
                                 <strong>Complete export includes:</strong> Short URL, Destination URL, Redirect type, Folder, Tags, Password status, Status, Total clicks, Unique visitors, Created date, Expiration date, Last clicked date
@@ -450,13 +401,11 @@
                         </div>
                     </div>
                 </div>
-                
                 <div x-show="tab === 'notifications'" class="p-6 space-y-6">
                     <div>
                         <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Notification Preferences</h3>
                         <p class="text-sm text-slate-600 dark:text-slate-400">Manage how you receive notifications</p>
                     </div>
-
                     <div class="rounded-lg border border-yellow-200 bg-yellow-50 p-4 dark:border-yellow-900/30 dark:bg-yellow-900/20">
                         <p class="text-sm text-yellow-800 dark:text-yellow-200">
                             📧 Email notifications will be available once the emailing feature is configured. You'll be able to receive alerts for:
@@ -469,7 +418,6 @@
                         </ul>
                     </div>
                 </div>
-                
                 <div x-show="tab === 'activity'" class="p-6 space-y-6">
                     <div class="flex items-center justify-between">
                         <div>
@@ -477,7 +425,6 @@
                             <p class="text-sm text-slate-600 dark:text-slate-400">Recent actions performed on your account (max 1 month)</p>
                         </div>
                     </div>
-                    
                     <form method="GET" action="{{ route('settings') }}#activity" class="rounded-lg border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800">
                         <input type="hidden" name="tab" value="activity">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -499,7 +446,6 @@
                             </a>
                         </div>
                     </form>
-
                     <div class="space-y-2">
                         @forelse ($activityLogs as $log)
                             <div class="rounded-lg border border-slate-200 p-3 dark:border-slate-700">
@@ -518,13 +464,11 @@
                         @endforelse
                     </div>
                 </div>
-                
                 <div x-show="tab === 'login'" class="p-6 space-y-6">
                     <div>
                         <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Login History</h3>
                         <p class="text-sm text-slate-600 dark:text-slate-400">Last 5 login sessions to your account</p>
                     </div>
-
                     @forelse($loginHistories as $index => $history)
                         <div class="rounded-lg border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700 dark:bg-slate-800">
                             <div class="flex items-start justify-between">
@@ -552,7 +496,6 @@
                                     @endif
                                 </div>
                             </div>
-                            
                             <div class="mt-3 grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
                                 <div>
                                     <p class="font-medium text-slate-500 dark:text-slate-400">IP Address</p>
@@ -591,14 +534,12 @@
                     @endforelse
                 </div>
                 </div>
-
                 <!-- API & Integrations Tab -->
                 <div x-show="tab === 'api'" x-data="apiSettings()" class="p-6 space-y-6">
                     <div>
                         <h3 class="text-lg font-semibold text-slate-900 dark:text-white">API Tokens</h3>
                         <p class="text-sm text-slate-600 dark:text-slate-400">Create API tokens for ShareX, CLI tools, and custom integrations</p>
                     </div>
-
                     <!-- Create New Token Form -->
                     <div class="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800/50">
                         <h4 class="text-sm font-semibold text-slate-900 dark:text-white mb-3">Create New Token</h4>
@@ -622,7 +563,6 @@
                             </button>
                         </form>
                     </div>
-
                     <!-- Show Newly Created Token (one time) -->
                     <div x-show="newlyCreatedToken" x-cloak class="rounded-xl border border-emerald-300 bg-emerald-50 p-4 dark:border-emerald-700 dark:bg-emerald-900/20">
                         <h4 class="text-sm font-semibold text-emerald-900 dark:text-emerald-200 mb-2">✅ Token Created Successfully!</h4>
@@ -643,7 +583,6 @@
                             </button>
                         </div>
                     </div>
-
                     <!-- Existing Tokens List -->
                     <div>
                         <h4 class="text-sm font-semibold text-slate-900 dark:text-white mb-3">Your API Tokens</h4>
@@ -675,7 +614,6 @@
                             @endforelse
                         </div>
                     </div>
-
                     <!-- API Documentation Link -->
                     <div class="rounded-xl border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
                         <h4 class="text-sm font-semibold text-blue-900 dark:text-blue-200 mb-2">📚 API Documentation</h4>
@@ -688,7 +626,6 @@
             </div>
         </div>
     </div>
-
     <script>
     function apiSettings() {
         return {
@@ -696,10 +633,8 @@
             newlyCreatedToken: '',
             isCreating: false,
             copied: false,
-
             async createToken(event) {
                 this.isCreating = true;
-                
                 try {
                     const formData = new FormData(event.target);
                     const response = await fetch('{{ route("api-tokens.store") }}', {
@@ -710,13 +645,10 @@
                         },
                         body: formData
                     });
-
                     const data = await response.json();
-
                     if (response.ok && data.token) {
                         this.newlyCreatedToken = data.token;
                         this.newTokenName = '';
-                        
                         // Reload page after 10 seconds to show new token in list
                         setTimeout(() => {
                             window.location.reload();
@@ -731,7 +663,6 @@
                     this.isCreating = false;
                 }
             },
-
             copyToken(token) {
                 navigator.clipboard.writeText(token).then(() => {
                     this.copied = true;

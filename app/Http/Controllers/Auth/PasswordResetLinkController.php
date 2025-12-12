@@ -14,20 +14,19 @@ class PasswordResetLinkController extends Controller
     {
         return view('auth.forgot-password');
     }
+
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'email' => ['required', 'email'],
             'catchphrase' => ['required', 'string'],
         ]);
-
         $user = \App\Models\User::where('email', $request->email)->first();
-
-        if (!$user || $user->catchphrase !== $request->catchphrase) {
+        if (! $user || $user->catchphrase !== $request->catchphrase) {
             return back()->withErrors(['catchphrase' => 'The provided email or catchphrase is incorrect.'])->withInput($request->only('email'));
         }
         session(['password_reset_email' => $request->email]);
-        
+
         return redirect()->route('password.reset.form');
     }
 
@@ -36,7 +35,6 @@ class PasswordResetLinkController extends Controller
         $request->validate([
             'email' => ['required', 'email'],
         ]);
-
         // Send password reset link via Laravel's built-in password reset
         $status = Password::sendResetLink(
             $request->only('email')
@@ -49,30 +47,26 @@ class PasswordResetLinkController extends Controller
 
     public function showResetForm(): View
     {
-        if (!session('password_reset_email')) {
+        if (! session('password_reset_email')) {
             return redirect()->route('password.request');
         }
 
         return view('auth.reset-password-form');
     }
+
     public function updatePassword(Request $request): RedirectResponse
     {
         $request->validate([
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-
         $email = session('password_reset_email');
-        
-        if (!$email) {
+        if (! $email) {
             return redirect()->route('password.request')->withErrors(['email' => 'Session expired. Please try again.']);
         }
-
         $user = \App\Models\User::where('email', $email)->first();
-
-        if (!$user) {
+        if (! $user) {
             return redirect()->route('password.request')->withErrors(['email' => 'User not found.']);
         }
-
         $user->update([
             'password' => bcrypt($request->password),
         ]);

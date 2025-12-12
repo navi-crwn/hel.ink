@@ -3,7 +3,6 @@
     <div class="rounded-lg bg-white p-6 shadow-sm transition-all duration-200 hover:shadow-md dark:bg-slate-800 border-t-4 border-green-600 dark:border-green-400">
         <h3 class="mb-4 text-lg font-semibold text-slate-900 dark:text-white">🔍 Search Engine Optimization</h3>
         <p class="mb-6 text-sm text-slate-600 dark:text-slate-400">Optimize how your bio page appears in search engine results</p>
-        
         <div class="space-y-6">
             <!-- SEO Title -->
             <div>
@@ -18,7 +17,6 @@
                        class="w-full rounded-lg border border-slate-300 px-4 py-3 text-base dark:border-slate-700 dark:bg-slate-900 dark:text-white">
                 <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">Leave empty to use profile title. Optimal: 50-60 characters total.</p>
             </div>
-
             <!-- Meta Description -->
             <div>
                 <label class="mb-3 block text-base font-medium text-slate-700 dark:text-slate-300">
@@ -32,7 +30,6 @@
                           class="w-full rounded-lg border border-slate-300 px-4 py-3 text-base dark:border-slate-700 dark:bg-slate-900 dark:text-white"></textarea>
                 <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">This text appears under your link in Google search results. Optimal: 120-155 characters.</p>
             </div>
-
             <!-- Google Search Preview -->
             <div>
                 <label class="mb-3 block text-base font-medium text-slate-700 dark:text-slate-300">
@@ -49,11 +46,9 @@
             </div>
         </div>
     </div>
-
     <!-- Indexing Control -->
     <div class="rounded-lg bg-white p-6 shadow-sm transition-all duration-200 hover:shadow-md dark:bg-slate-800">
         <h3 class="mb-4 text-lg font-semibold text-slate-900 dark:text-white">🤖 Search Engine Indexing</h3>
-        
         <div class="space-y-4">
             <label class="flex items-start gap-3 cursor-pointer">
                 <input type="checkbox" 
@@ -66,7 +61,6 @@
             </label>
         </div>
     </div>
-
     <!-- SEO Tips -->
     <div class="rounded-lg bg-blue-50 p-6 dark:bg-blue-900/20">
         <h4 class="mb-3 flex items-center gap-2 font-semibold text-blue-900 dark:text-blue-300">

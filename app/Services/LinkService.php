@@ -40,25 +40,23 @@ class LinkService
         if (filled($link->qr_logo_url)) {
             $qr = $this->overlayLogo($qr, $link->qr_logo_url);
         }
-            
         Storage::disk('public')->put($path, $qr);
         $link->forceFill(['qr_code_path' => $path])->saveQuietly();
     }
-    
+
     public function overlayLogo(string $qrImageData, string $logoUrl): string
     {
         try {
             $qrImage = imagecreatefromstring($qrImageData);
-            if (!$qrImage) {
+            if (! $qrImage) {
                 return $qrImageData; // Return original if failed
             }
             $logoData = @file_get_contents($logoUrl);
-            if (!$logoData) {
+            if (! $logoData) {
                 return $qrImageData; // Return original if logo fetch failed
             }
-            
             $logoImage = @imagecreatefromstring($logoData);
-            if (!$logoImage) {
+            if (! $logoImage) {
                 return $qrImageData; // Return original if logo invalid
             }
             $qrWidth = imagesx($qrImage);
@@ -79,15 +77,15 @@ class LinkService
                 $white
             );
             imagecopyresampled(
-                $qrImage, 
-                $logoImage, 
-                (int) $fromWidth, 
-                (int) $fromHeight, 
-                0, 
-                0, 
-                (int) $logoQrWidth, 
-                (int) $logoQrHeight, 
-                $logoWidth, 
+                $qrImage,
+                $logoImage,
+                (int) $fromWidth,
+                (int) $fromHeight,
+                0,
+                0,
+                (int) $logoQrWidth,
+                (int) $logoQrHeight,
+                $logoWidth,
                 $logoHeight
             );
             ob_start();
@@ -95,14 +93,13 @@ class LinkService
             $result = ob_get_clean();
             imagedestroy($qrImage);
             imagedestroy($logoImage);
-            
+
             return $result ?: $qrImageData;
-            
         } catch (\Exception $e) {
             return $qrImageData;
         }
     }
-    
+
     /**
      * Create a shortlink for the given user
      */
@@ -110,7 +107,6 @@ class LinkService
     {
         // Generate a unique slug
         $slug = $this->generateUniqueSlug();
-        
         // Create the link using correct field names
         $link = Link::create([
             'user_id' => $user->id,
@@ -119,10 +115,10 @@ class LinkService
             'status' => 'active',
             'custom_title' => $title,
         ]);
-        
+
         return $link;
     }
-    
+
     /**
      * Generate a unique slug for the shortlink
      */
@@ -130,20 +126,20 @@ class LinkService
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $slug = '';
-        
         do {
             $slug = '';
             for ($i = 0; $i < $length; $i++) {
                 $slug .= $characters[random_int(0, strlen($characters) - 1)];
             }
         } while (Link::where('slug', $slug)->exists());
-        
+
         return $slug;
     }
 
     protected function hexToRgb(string $hex): array
     {
         $hex = ltrim($hex, '#');
+
         return [
             'r' => hexdec(substr($hex, 0, 2)),
             'g' => hexdec(substr($hex, 2, 2)),

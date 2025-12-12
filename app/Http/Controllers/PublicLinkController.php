@@ -15,9 +15,7 @@ class PublicLinkController extends Controller
     public function __construct(
         private readonly TurnstileService $turnstile,
         private readonly LinkService $links
-    )
-    {
-    }
+    ) {}
 
     public function index()
     {
@@ -31,23 +29,20 @@ class PublicLinkController extends Controller
         if (! $this->turnstile->verify($request->input('cf-turnstile-response'), $request->ip())) {
             return back()->withErrors(['turnstile' => 'Security verification failed. Please try again.'])->withInput();
         }
-
         $data = $request->validated();
         $watchlistEntry = IpWatchlist::where('ip_address', $request->ip())->first();
         if ($watchlistEntry) {
             $watchlistEntry->increment('attempt_count');
             $watchlistEntry->update([
                 'last_attempt_at' => now(),
-                'reason' => ($watchlistEntry->reason ?? '') . ' | Used public link creation on ' . now()->format('Y-m-d H:i:s'),
+                'reason' => ($watchlistEntry->reason ?? '').' | Used public link creation on '.now()->format('Y-m-d H:i:s'),
             ]);
         }
-
         $link = Link::create([
             'target_url' => $data['target_url'],
             'slug' => $this->prepareSlug($data['slug'] ?? null),
             'status' => Link::STATUS_ACTIVE,
         ]);
-
         $this->links->generateQr($link);
         $this->links->forgetCache($link);
 

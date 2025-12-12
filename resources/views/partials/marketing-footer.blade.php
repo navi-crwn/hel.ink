@@ -33,11 +33,11 @@
     <div class="mx-auto flex max-w-6xl flex-wrap gap-4 px-6 lg:px-8">
         <div class="flex-1 min-w-[240px] rounded-3xl border border-white/10 bg-white/5 p-6">
             <div class="flex items-center gap-3">
-                <img src="{{ route('brand.logo') }}" alt="Hop Easy Link" class="h-8 w-8" />
-                <p class="text-lg font-semibold text-white">Hop Easy Link</p>
+                <img src="{{ route('brand.logo') }}" alt="HEL.ink" class="h-8 w-8" />
+                <p class="text-lg font-semibold text-white">HEL.ink</p>
             </div>
-            <p class="mt-3 text-white/70">Hop Easy Link keeps sharing gentle: folders, passwords, QR exports, and analytics that match the pace of hel.ink.</p>
-            <p class="mt-4 text-xs text-white/50">© {{ date('Y') }} Hop Easy Link • hel.ink</p>
+            <p class="mt-3 text-white/70">Modern URL shortener & Link in Bio platform. Folders, passwords, QR codes, and analytics included.</p>
+            <p class="mt-4 text-xs text-white/50">© {{ date('Y') }} HEL.ink</p>
         </div>
         @foreach ($footerBlocks as $block)
             <div class="flex-1 min-w-[220px] rounded-3xl border border-white/10 bg-white/5 p-6">

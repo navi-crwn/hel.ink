@@ -1,6 +1,5 @@
 <x-app-layout>
     <x-slot name="pageTitle">{{ $bioPage->title }} - Bio Details</x-slot>
-
     <div class="py-6">
         <div class="mb-6 flex items-center justify-between">
             <div>
@@ -32,7 +31,6 @@
                 </form>
             </div>
         </div>
-
         <div class="grid gap-6 lg:grid-cols-3">
             <div class="lg:col-span-2">
                 <div class="rounded-lg bg-white p-6 shadow dark:bg-slate-800">
@@ -72,7 +70,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="mt-6 rounded-lg bg-white p-6 shadow dark:bg-slate-800">
                     <h2 class="mb-4 text-lg font-semibold text-slate-900 dark:text-white">Links ({{ $bioPage->links->count() }})</h2>
                     @if($bioPage->links->count() > 0)
@@ -122,7 +119,6 @@
                     @endif
                 </div>
             </div>
-
             <div class="space-y-6">
                 <div class="rounded-lg bg-white p-6 shadow dark:bg-slate-800">
                     <h2 class="mb-4 text-lg font-semibold text-slate-900 dark:text-white">Owner</h2>
@@ -146,7 +142,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="rounded-lg bg-white p-6 shadow dark:bg-slate-800">
                     <h2 class="mb-4 text-lg font-semibold text-slate-900 dark:text-white">Recent Activity</h2>
                     @if($recentClicks->count() > 0)
@@ -172,7 +167,6 @@
                         </div>
                     @endif
                 </div>
-
                 <div class="rounded-lg bg-white p-6 shadow dark:bg-slate-800">
                     <h2 class="mb-4 text-lg font-semibold text-slate-900 dark:text-white">Statistics</h2>
                     <div class="space-y-3">

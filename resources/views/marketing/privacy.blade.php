@@ -1,7 +1,7 @@
-<x-marketing-layout title="Privacy Policy - Hop Easy Link">
+<x-marketing-layout title="Privacy Policy - HEL.ink">
     <section class="mx-auto max-w-4xl px-6 py-16 lg:px-8 space-y-6 text-white/80 text-sm leading-relaxed">
         <h1 class="text-4xl font-semibold text-white">Privacy policy</h1>
-        <p><strong>Short version:</strong> Hop Easy Link stores only the data required to keep your links online and protect the platform from abuse.</p>
+        <p><strong>Short version:</strong> HEL.ink stores only the data required to keep your links online and protect the platform from abuse.</p>
         <div class="rounded-3xl border border-white/10 bg-white/5 p-6 space-y-4">
             <h2 class="text-2xl font-semibold text-white">Data we collect</h2>
             <ul class="list-disc space-y-2 pl-6">

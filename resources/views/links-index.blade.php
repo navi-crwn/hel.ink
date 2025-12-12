@@ -1,11 +1,9 @@
 <x-app-layout>
     <x-slot name="pageTitle">HEL.ink - My Links</x-slot>
-
     <div class="mb-6">
         <h1 class="text-3xl font-bold text-slate-900 dark:text-white">My Links</h1>
         <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Manage all your short links</p>
     </div>
-
     <div class="py-10" x-data="linksManager()">
         <div class="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
             @if (session('status'))
@@ -13,7 +11,6 @@
                     {{ session('status') }}
                 </div>
             @endif
-
             @if (session('shortlink'))
                 @php
                     $newLink = session('shortlink');
@@ -40,7 +37,6 @@
                     </div>
                 </div>
             @endif
-
             <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <div class="flex items-center justify-between mb-4">
                     <h3 class="text-lg font-semibold text-slate-900 dark:text-white">All Links</h3>
@@ -49,7 +45,6 @@
                         <span class="md:hidden">+</span>
                     </button>
                 </div>
-
                 <form method="GET" class="mt-4 flex flex-wrap gap-3">
                     <input type="text" name="q" value="{{ $filters['q'] }}" placeholder="Search shortlinks..." class="flex-1 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white">
                     <select name="folder" class="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 pr-12 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white">
@@ -74,7 +69,6 @@
                     </select>
                     <button class="rounded-full bg-slate-100 px-4 py-2 text-sm text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200">Apply</button>
                 </form>
-
                 <div class="mt-4 overflow-x-auto">
                     <!-- Bulk Actions Bar -->
                     <div x-show="selectedLinks.length > 0" x-cloak class="mb-4 flex items-center gap-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3 border border-blue-200 dark:border-blue-800">
@@ -82,7 +76,6 @@
                         <button @click="bulkDelete()" class="rounded-full bg-rose-600 px-4 py-1.5 text-xs font-semibold text-white hover:bg-rose-500">Delete Selected</button>
                         <button @click="selectedLinks = []; selectAll = false" class="text-xs text-slate-600 dark:text-slate-400 hover:underline">Clear</button>
                     </div>
-                    
                     <table class="min-w-full divide-y divide-slate-200 text-sm dark:divide-slate-800">
                         <thead class="text-left text-slate-500 dark:text-slate-300">
                             <tr>
@@ -159,14 +152,12 @@
                         </tbody>
                     </table>
                 </div>
-
                 <div class="mt-4">
                     {{ $links->links() }}
                 </div>
             </div>
         </div>
     </div>
-
     <script>
         function linksManager() {
             return {
@@ -174,7 +165,6 @@
                 selectAll: false,
                 deletedLinks: [],
                 linkIds: @json($links->pluck('id')->toArray()),
-                
                 toggleSelectAll() {
                     if (this.selectAll) {
                         this.selectedLinks = this.linkIds.filter(id => !this.deletedLinks.includes(id)).map(String);
@@ -182,10 +172,8 @@
                         this.selectedLinks = [];
                     }
                 },
-                
                 async deleteLink(id) {
                     if (!confirm('Delete this link permanently?')) return;
-                    
                     try {
                         const response = await fetch(`/links/${id}`, {
                             method: 'DELETE',
@@ -195,7 +183,6 @@
                                 'Content-Type': 'application/json'
                             }
                         });
-                        
                         if (response.ok) {
                             this.deletedLinks.push(id);
                             this.selectedLinks = this.selectedLinks.filter(lid => lid != id);
@@ -207,10 +194,8 @@
                         alert('Failed to delete link');
                     }
                 },
-                
                 async bulkDelete() {
                     if (!confirm(`Delete ${this.selectedLinks.length} links permanently?`)) return;
-                    
                     for (const id of this.selectedLinks) {
                         try {
                             await fetch(`/links/${id}`, {
@@ -231,7 +216,6 @@
             };
         }
     </script>
-
     {{-- Link Creation Modal Component --}}
     <x-link-creation-modal :folders="$folders" :tags="$tags" :isAdmin="auth()->user()->isSuperAdmin()" />
 </x-app-layout>

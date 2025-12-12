@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Report abuse - Hop Easy Link</title>
+        <title>Report abuse - HEL.ink</title>
         <link rel="icon" href="{{ route('brand.favicon') }}" type="image/png">
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=inter:400,500,600&display=swap" rel="stylesheet" />
@@ -14,7 +14,7 @@
         <div class="mx-auto flex min-h-screen max-w-2xl flex-col justify-center px-6 py-12">
             <div class="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur">
                 <h1 class="text-3xl font-semibold text-white">Report a suspicious link</h1>
-                <p class="mt-2 text-sm text-white/70">Flag spam, phishing, malware, or anything that violates policy. Moderators review every report—please avoid duplicate submissions for the same link.</p>
+                <p class="mt-2 text-sm text-white/70">Flag spam, phishing, malware, or anything that violates our policy. Moderators review every report, so please avoid submitting duplicates for the same link.</p>
                 @if (session('status'))
                     <div class="mt-4 rounded-2xl border border-emerald-400/40 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-100">
                         {{ session('status') }}

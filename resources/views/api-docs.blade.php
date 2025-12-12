@@ -8,10 +8,8 @@
             </x-slot>
         </x-page-header>
     </x-slot>
-
     <div class="py-8">
         <div class="mx-auto max-w-4xl space-y-6 sm:px-6 lg:px-8">
-            
             <!-- Quick Start -->
             <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">🚀 Quick Start</h2>
@@ -22,7 +20,6 @@
                     <li><strong>4.</strong> Use it in your requests with <code class="rounded bg-slate-100 px-2 py-0.5 font-mono text-xs dark:bg-slate-800">Authorization: Bearer YOUR_TOKEN</code></li>
                 </ol>
             </div>
-
             <!-- ShareX Integration -->
             <div class="rounded-xl border border-blue-200 bg-blue-50 p-6 dark:border-blue-800 dark:bg-blue-900/20">
                 <h2 class="text-xl font-bold text-blue-900 dark:text-blue-200 mb-3">📸 ShareX Integration</h2>
@@ -48,23 +45,19 @@
                     </form>
                 </div>
             </div>
-
             <!-- API Endpoint -->
             <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">🔗 API Endpoint</h2>
-                
                 <div class="space-y-4">
                     <div>
                         <h3 class="text-sm font-semibold text-slate-900 dark:text-white mb-2">POST /api/shorten</h3>
                         <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Create a shortened URL</p>
-                        
                         <div class="rounded-lg bg-slate-50 p-4 dark:bg-slate-800">
                             <p class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Headers:</p>
                             <pre class="overflow-x-auto text-xs"><code>Authorization: Bearer YOUR_API_TOKEN
 Content-Type: application/json</code></pre>
                         </div>
                     </div>
-
                     <div>
                         <p class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Request Body:</p>
                         <div class="rounded-lg bg-slate-50 p-4 dark:bg-slate-800">
@@ -80,7 +73,6 @@ Content-Type: application/json</code></pre>
                             <strong>Fields:</strong> url (required), alias (optional, min 3 chars), folder (optional), expires_at (optional), password (optional). Leave alias empty for random 6-character slug.
                         </p>
                     </div>
-
                     <div>
                         <p class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Success Response (201):</p>
                         <div class="rounded-lg bg-emerald-50 p-4 dark:bg-emerald-900/20">
@@ -97,7 +89,6 @@ Content-Type: application/json</code></pre>
 }</code></pre>
                         </div>
                     </div>
-
                     <div>
                         <p class="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Error Response (401/422/429):</p>
                         <div class="rounded-lg bg-red-50 p-4 dark:bg-red-900/20">
@@ -110,7 +101,6 @@ Content-Type: application/json</code></pre>
                     </div>
                 </div>
             </div>
-
             <!-- cURL Example -->
             <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">💻 cURL Example</h2>
@@ -124,7 +114,6 @@ Content-Type: application/json</code></pre>
   }'</code></pre>
                 </div>
             </div>
-
             <!-- Rate Limiting -->
             <div class="rounded-xl border border-amber-200 bg-amber-50 p-6 dark:border-amber-800 dark:bg-amber-900/20">
                 <h2 class="text-xl font-bold text-amber-900 dark:text-amber-200 mb-3">⏱️ Rate Limiting</h2>
@@ -135,7 +124,6 @@ Content-Type: application/json</code></pre>
                     <li><strong>Tip:</strong> Create multiple tokens for different apps if needed</li>
                 </ul>
             </div>
-
             <!-- Other Tools -->
             <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">🛠️ Compatible Tools</h2>
@@ -161,7 +149,6 @@ Content-Type: application/json</code></pre>
                     </div>
                 </div>
             </div>
-
             <!-- Support -->
             <div class="rounded-xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-700 dark:bg-slate-800/50">
                 <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-3">💬 Need Help?</h2>

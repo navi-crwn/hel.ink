@@ -10,6 +10,7 @@ class AdminIpBanController extends Controller
     public function index()
     {
         $bans = IpBan::orderByDesc('created_at')->paginate(20);
+
         return view('admin-ip-bans', compact('bans'));
     }
 
@@ -20,7 +21,6 @@ class AdminIpBanController extends Controller
             'reason' => ['nullable', 'string', 'max:255'],
             'expires_at' => ['nullable', 'date', 'after:now'],
         ]);
-
         IpBan::updateOrCreate(
             ['ip_address' => $data['ip_address']],
             ['reason' => $data['reason'] ?? null, 'expires_at' => $data['expires_at'] ?? null]
@@ -32,6 +32,7 @@ class AdminIpBanController extends Controller
     public function destroy(IpBan $ipBan)
     {
         $ipBan->delete();
+
         return back()->with('status', 'IP removed from blocklist.');
     }
 }

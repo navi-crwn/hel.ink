@@ -12,7 +12,6 @@
             </select>
         </div>
     </div>
-
     <!-- Row 2: Page Layout (Left) + Background (Right) -->
     <div class="grid grid-cols-2 gap-4">
         <!-- Page Layout -->
@@ -32,7 +31,6 @@
                     <p class="mt-1 text-xs text-slate-900 dark:text-white">Wide</p>
                 </button>
             </div>
-            
             <!-- Header Background for Wide Layout -->
             <div x-show="bioPage.layout === 'wide'" x-cloak class="mt-3 border-t border-slate-200 dark:border-slate-700 pt-3">
                 <label class="text-xs text-slate-600 dark:text-slate-400 mb-2 block">Header Background</label>
@@ -42,7 +40,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Background -->
         <div class="rounded-lg bg-white p-4 shadow-sm dark:bg-slate-800">
             <h3 class="text-sm font-semibold text-slate-900 dark:text-white mb-3">Background</h3>
@@ -51,11 +48,9 @@
                 <button @click="bioPage.background_type = 'gradient'" :class="bioPage.background_type === 'gradient' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300'" class="rounded px-2 py-1 text-xs font-medium">Gradient</button>
                 <button @click="bioPage.background_type = 'image'" :class="bioPage.background_type === 'image' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300'" class="rounded px-2 py-1 text-xs font-medium">Image</button>
             </div>
-            
             <div x-show="bioPage.background_type === 'color'">
                 <input type="color" x-model="bioPage.background_value" class="h-8 w-full cursor-pointer rounded">
             </div>
-            
             <div x-show="bioPage.background_type === 'gradient'" x-cloak>
                 <div class="grid grid-cols-4 gap-2">
                     <button @click="bioPage.background_value = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'" class="h-8 rounded bg-gradient-to-br from-purple-500 to-purple-700"></button>
@@ -64,7 +59,6 @@
                     <button @click="bioPage.background_value = 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'" class="h-8 rounded bg-gradient-to-br from-green-500 to-teal-400"></button>
                 </div>
             </div>
-            
             <div x-show="bioPage.background_type === 'image'" x-cloak x-data="{ uploading: false }">
                 <input type="file" 
                        accept="image/*" 
@@ -85,7 +79,6 @@
             </div>
         </div>
     </div>
-
     <!-- Row 3: Text Colors (Left) + Font & Block (Right) -->
     <div class="grid grid-cols-2 gap-4">
         <!-- Text Colors -->
@@ -108,7 +101,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Font & Block Style (Right Column) -->
         <div class="space-y-4">
             <!-- Font Family -->
@@ -143,7 +135,6 @@
                     </optgroup>
                 </select>
             </div>
-
             <!-- Block Style -->
             <div class="rounded-lg bg-white p-4 shadow-sm dark:bg-slate-800">
                 <h3 class="text-sm font-semibold text-slate-900 dark:text-white mb-2">Block Style</h3>

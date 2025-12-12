@@ -11,7 +11,6 @@
                     {{ session('status') }}
                 </div>
             @endif
-
             <form method="GET" class="grid gap-2 rounded-xl border border-gray-100 bg-white p-3 shadow-sm dark:border-gray-800 dark:bg-gray-900 md:grid-cols-5">
                 <input type="text" name="q" value="{{ $search }}" placeholder="Search slug or destination..." class="rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white md:col-span-2" />
                 <select name="status" class="rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
@@ -42,7 +41,6 @@
                     <a href="{{ route('admin.links.index') }}" class="text-sm text-gray-500 hover:underline">Reset</a>
                 </div>
             </form>
-
             <div class="rounded-xl border border-gray-100 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-900" x-data="bulkActions()">
                 <form method="POST" action="{{ route('admin.links.bulk') }}" id="bulk-form">
                     @csrf
@@ -127,7 +125,6 @@
                 </div>
                 </form>
             </div>
-
             <script>
                 function bulkActions() {
                     return {
@@ -137,26 +134,21 @@
                         updateStatus(linkId, currentStatus) {
                             const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
                             if (!confirm(`Change status to ${newStatus}?`)) return;
-                            
                             const form = document.createElement('form');
                             form.method = 'POST';
                             form.action = `/admin/links/${linkId}/status`;
-                            
                             const csrf = document.createElement('input');
                             csrf.type = 'hidden';
                             csrf.name = '_token';
                             csrf.value = document.querySelector('meta[name="csrf-token"]').content;
-                            
                             const method = document.createElement('input');
                             method.type = 'hidden';
                             method.name = '_method';
                             method.value = 'PATCH';
-                            
                             const status = document.createElement('input');
                             status.type = 'hidden';
                             status.name = 'status';
                             status.value = newStatus;
-                            
                             form.appendChild(csrf);
                             form.appendChild(method);
                             form.appendChild(status);
@@ -165,21 +157,17 @@
                         },
                         deleteLink(linkId) {
                             if (!confirm('Delete this link permanently?')) return;
-                            
                             const form = document.createElement('form');
                             form.method = 'POST';
                             form.action = `/admin/links/${linkId}`;
-                            
                             const csrf = document.createElement('input');
                             csrf.type = 'hidden';
                             csrf.name = '_token';
                             csrf.value = document.querySelector('meta[name="csrf-token"]').content;
-                            
                             const method = document.createElement('input');
                             method.type = 'hidden';
                             method.name = '_method';
                             method.value = 'DELETE';
-                            
                             form.appendChild(csrf);
                             form.appendChild(method);
                             document.body.appendChild(form);

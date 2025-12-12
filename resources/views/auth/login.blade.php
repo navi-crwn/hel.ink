@@ -1,6 +1,5 @@
 <x-guest-layout>
     <x-auth-session-status class="mb-4" :status="session('status')" />
-
     @if(session('error'))
         <div class="mb-6 rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-900/20">
             <div class="flex items-start gap-3">
@@ -21,7 +20,6 @@
             </div>
         </div>
     @endif
-
     @php
         $turnstileKey = config('services.turnstile.site_key');
         $turnstileFormAttributes = '';
@@ -29,7 +27,6 @@
             $turnstileFormAttributes = 'x-data="window.turnstileForm ? window.turnstileForm(\''.$turnstileKey.'\', '.($errors->has('turnstile') ? 'true' : 'false').') : {}" x-init="if (!window.turnstileForm) { let interval = setInterval(() => { if (window.turnstileForm) { Object.assign($data, window.turnstileForm(\''.$turnstileKey.'\', '.($errors->has('turnstile') ? 'true' : 'false').')); clearInterval(interval); } }, 50); }" x-on:submit="handleSubmit($event)"';
         }
     @endphp
-    
     <div class="mb-6">
         <a href="{{ route('auth.google', ['from_register' => 0]) }}" 
            class="w-full inline-flex items-center justify-center gap-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all shadow-sm">
@@ -41,7 +38,6 @@
             </svg>
             <span>Continue with Google</span>
         </a>
-        
         <div class="relative my-6">
             <div class="absolute inset-0 flex items-center">
                 <div class="w-full border-t border-gray-300 dark:border-gray-600"></div>
@@ -51,19 +47,15 @@
             </div>
         </div>
     </div>
-
     <form method="POST" action="{{ route('login') }}" {!! $turnstileFormAttributes !!}>
         @csrf
-
         <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
-
         <div class="mt-4" x-data="{ showPassword: false }">
             <x-input-label for="password" :value="__('Password')" />
-
             <div class="relative">
                 <x-text-input id="password" class="block mt-1 w-full pr-10"
                                 type="password"
@@ -80,17 +72,14 @@
                     <span x-show="showPassword" x-cloak>Hide</span>
                 </button>
             </div>
-
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
-
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">
                 <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
                 <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
             </label>
         </div>
-
         @if ($turnstileKey)
             <div class="mt-4" x-cloak x-show="showCaptcha">
                 <div x-ref="captcha"></div>
@@ -98,7 +87,6 @@
             </div>
             <input type="hidden" name="cf-turnstile-response" :value="token">
         @endif
-
         <div class="flex items-center justify-between mt-4">
             <div class="flex items-center gap-3">
                 @if (Route::has('password.request'))
@@ -116,7 +104,6 @@
                     <span class="text-xs font-medium text-gray-700 dark:text-gray-200">Theme</span>
                 </button>
             </div>
-
             <button
                 type="submit"
                 class="ms-3 inline-flex items-center rounded-md border border-transparent bg-slate-800 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white transition hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:bg-slate-900 dark:bg-slate-950 dark:hover:bg-slate-900 dark:active:bg-slate-950 dark:text-white"

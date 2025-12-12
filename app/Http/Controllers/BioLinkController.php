@@ -11,7 +11,6 @@ class BioLinkController extends Controller
     public function store(Request $request, BioPage $bioPage)
     {
         $this->authorize('update', $bioPage);
-
         $validated = $request->validate([
             'type' => 'required|in:link,image,text,header,divider,spacer,video,music,vcard,html,countdown,map,faq,youtube,spotify,soundcloud,email,code',
             'title' => 'nullable|string|max:100',
@@ -44,9 +43,7 @@ class BioLinkController extends Controller
             'faq_items.*.answer' => 'nullable|string|max:2000',
             'html_content' => 'nullable|string|max:10000',
         ]);
-
         $maxOrder = $bioPage->links()->max('order') ?? 0;
-
         // Provide default titles for block types that don't require user-entered titles
         $defaultTitles = [
             'divider' => 'Divider',
@@ -56,7 +53,6 @@ class BioLinkController extends Controller
             'code' => 'Code Block',
         ];
         $title = $validated['title'] ?? ($defaultTitles[$validated['type']] ?? null);
-
         $link = $bioPage->links()->create([
             'type' => $validated['type'],
             'title' => $title,
@@ -97,7 +93,6 @@ class BioLinkController extends Controller
     public function update(Request $request, BioPage $bioPage, BioLink $bioLink)
     {
         $this->authorize('update', $bioPage);
-
         $validated = $request->validate([
             'type' => 'nullable|in:link,image,text,header,divider,spacer,video,music,vcard,html,countdown,map,faq,youtube,spotify,soundcloud,email,code',
             'title' => 'nullable|string|max:100',
@@ -130,7 +125,6 @@ class BioLinkController extends Controller
             'faq_items.*.answer' => 'nullable|string|max:2000',
             'html_content' => 'nullable|string|max:10000',
         ]);
-
         // Ensure boolean fields are not null
         if (array_key_exists('btn_icon_invert', $validated) && is_null($validated['btn_icon_invert'])) {
             $validated['btn_icon_invert'] = false;
@@ -138,7 +132,6 @@ class BioLinkController extends Controller
         if (array_key_exists('is_active', $validated) && is_null($validated['is_active'])) {
             $validated['is_active'] = true;
         }
-
         $bioLink->update($validated);
 
         return response()->json([
@@ -150,7 +143,6 @@ class BioLinkController extends Controller
     public function destroy(BioPage $bioPage, BioLink $bioLink)
     {
         $this->authorize('update', $bioPage);
-
         $bioLink->delete();
 
         return response()->json([
@@ -161,13 +153,11 @@ class BioLinkController extends Controller
     public function reorder(Request $request, BioPage $bioPage)
     {
         $this->authorize('update', $bioPage);
-
         $validated = $request->validate([
             'links' => 'required|array',
             'links.*.id' => 'required|exists:bio_links,id',
             'links.*.order' => 'required|integer|min:0',
         ]);
-
         foreach ($validated['links'] as $linkData) {
             BioLink::where('id', $linkData['id'])
                 ->where('bio_page_id', $bioPage->id)
@@ -182,9 +172,8 @@ class BioLinkController extends Controller
     public function toggle(BioPage $bioPage, BioLink $bioLink)
     {
         $this->authorize('update', $bioPage);
-
         $bioLink->update([
-            'is_active' => !$bioLink->is_active,
+            'is_active' => ! $bioLink->is_active,
         ]);
 
         return response()->json([

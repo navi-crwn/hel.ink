@@ -36,7 +36,6 @@
                     </p>
                 </div>
             </div>
-            
             <div class="flex gap-2 sm:flex-shrink-0">
                 <button 
                     @click="declineCookies()"

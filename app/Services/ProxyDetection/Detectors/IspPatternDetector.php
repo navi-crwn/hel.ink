@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Services\ProxyDetection\Detectors;
+
 class IspPatternDetector extends BaseProxyDetector
 {
     protected array $vpnPatterns = [
@@ -44,9 +45,7 @@ class IspPatternDetector extends BaseProxyDetector
     {
         $geoIp = app(\App\Services\GeoIpService::class);
         $details = $geoIp->details($ip);
-        
         $isp = strtolower($details['provider'] ?? '');
-        
         if (empty($isp)) {
             return null;
         }
@@ -56,8 +55,7 @@ class IspPatternDetector extends BaseProxyDetector
                 $matchedPatterns[] = $pattern;
             }
         }
-
-        $isProxy = !empty($matchedPatterns);
+        $isProxy = ! empty($matchedPatterns);
         $confidence = 60; // Lower confidence for pattern matching
         if (count($matchedPatterns) > 1) {
             $confidence = 75;
@@ -77,16 +75,25 @@ class IspPatternDetector extends BaseProxyDetector
             'details' => [
                 'isp' => $details['provider'],
                 'matched_patterns' => $matchedPatterns,
-            ]
+            ],
         ];
     }
 
     protected function guessType(string $isp): ?string
     {
-        if (str_contains($isp, 'vpn')) return 'vpn';
-        if (str_contains($isp, 'proxy')) return 'proxy';
-        if (str_contains($isp, 'tor')) return 'tor';
-        if (str_contains($isp, 'datacenter') || str_contains($isp, 'hosting')) return 'datacenter';
+        if (str_contains($isp, 'vpn')) {
+            return 'vpn';
+        }
+        if (str_contains($isp, 'proxy')) {
+            return 'proxy';
+        }
+        if (str_contains($isp, 'tor')) {
+            return 'tor';
+        }
+        if (str_contains($isp, 'datacenter') || str_contains($isp, 'hosting')) {
+            return 'datacenter';
+        }
+
         return 'unknown';
     }
 }

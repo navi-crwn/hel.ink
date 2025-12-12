@@ -5,6 +5,7 @@ namespace App\Services\GeoIP\Providers;
 class IpApiProvider extends BaseGeoIpProvider
 {
     protected string $baseUrl = 'http://ip-api.com/json/';
+
     protected string $fields = '66846719';
 
     public function getName(): string
@@ -30,7 +31,7 @@ class IpApiProvider extends BaseGeoIpProvider
     public function lookup(string $ip): ?array
     {
         $data = $this->makeRequest("{$this->baseUrl}{$ip}", [
-            'fields' => $this->fields
+            'fields' => $this->fields,
         ]);
         if ($data && isset($data['status']) && $data['status'] === 'fail') {
             return null;

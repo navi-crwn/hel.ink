@@ -4,17 +4,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
         <title>@yield('title', 'HEL.ink Editor')</title>
         <meta name="description" content="Edit your bio page with HEL.ink editor.">
         <link rel="icon" href="{{ route('brand.favicon') }}">
-
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=inter:400,500,600&display=swap" rel="stylesheet" />
-        
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
         <script src="https://unpkg.com/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js"></script>
-        
         @stack('scripts-head')
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @stack('styles')
@@ -26,7 +22,6 @@
         @else
             {{ $slot ?? '' }}
         @endif
-
         <script>
             (function() {
                 const stored = localStorage.getItem('helink-theme');

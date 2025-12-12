@@ -1,5 +1,4 @@
 @props(['platform', 'class' => 'h-5 w-5'])
-
 @php
 // Map platforms to icon filenames
 $iconMap = [
@@ -19,9 +18,7 @@ $iconMap = [
     'airchat' => 'airchat.svg',
     'email' => 'email.svg',
 ];
-
 $iconFile = $iconMap[$platform] ?? 'email.svg'; // default fallback
 $iconPath = asset('images/social-icons/' . $iconFile);
 @endphp
-
 <img src="{{ $iconPath }}" {{ $attributes->merge(['class' => $class]) }} alt="{{ $platform }} icon" />

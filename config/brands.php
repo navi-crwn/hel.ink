@@ -1,7 +1,6 @@
 <?php
 
 // Brand configurations for Link in Bio buttons
-
 return [
     'platforms' => [
         // Major Social
@@ -119,7 +118,6 @@ return [
             'placeholder' => '@user@instance.social',
             'category' => 'social',
         ],
-
         // Messaging
         'whatsapp' => [
             'name' => 'WhatsApp',
@@ -177,7 +175,6 @@ return [
             'placeholder' => 'workspace.slack.com',
             'category' => 'messaging',
         ],
-
         // Music & Podcast
         'spotify' => [
             'name' => 'Spotify',
@@ -229,7 +226,6 @@ return [
             'placeholder' => 'username.bandcamp.com',
             'category' => 'music',
         ],
-
         // Video & Streaming
         'twitch' => [
             'name' => 'Twitch',
@@ -255,7 +251,6 @@ return [
             'placeholder' => 'vimeo.com/username',
             'category' => 'video',
         ],
-
         // Developer
         'github' => [
             'name' => 'GitHub',
@@ -313,7 +308,6 @@ return [
             'placeholder' => 'username.substack.com',
             'category' => 'developer',
         ],
-
         // Design
         'dribbble' => [
             'name' => 'Dribbble',
@@ -371,7 +365,6 @@ return [
             'placeholder' => 'flickr.com/photos/username',
             'category' => 'design',
         ],
-
         // Shopping & Business
         'amazon' => [
             'name' => 'Amazon',
@@ -405,7 +398,6 @@ return [
             'placeholder' => 'fiverr.com/username',
             'category' => 'shopping',
         ],
-
         // Payment & Support
         'paypal' => [
             'name' => 'PayPal',
@@ -471,7 +463,6 @@ return [
             'placeholder' => 'kickstarter.com/projects/...',
             'category' => 'payment',
         ],
-
         // Productivity
         'notion' => [
             'name' => 'Notion',
@@ -521,7 +512,6 @@ return [
             'placeholder' => 'zoom.us/j/...',
             'category' => 'productivity',
         ],
-
         // Entertainment
         'steam' => [
             'name' => 'Steam',
@@ -555,7 +545,6 @@ return [
             'placeholder' => 'goodreads.com/user/...',
             'category' => 'entertainment',
         ],
-
         // App Stores
         'appstore' => [
             'name' => 'App Store',
@@ -574,7 +563,6 @@ return [
             'placeholder' => 'play.google.com/store/apps/...',
             'category' => 'appstore',
         ],
-
         // Contact
         'email' => [
             'name' => 'Email',
@@ -600,7 +588,6 @@ return [
             'placeholder' => '+1234567890',
             'category' => 'contact',
         ],
-
         // Generic
         'website' => [
             'name' => 'Website',
@@ -626,9 +613,6 @@ return [
             'placeholder' => 'https://...',
             'category' => 'generic',
         ],
-
-        // === LittleLink Extended Platforms ===
-
         // Gaming Extended
         'xbox' => [
             'name' => 'Xbox',
@@ -686,7 +670,6 @@ return [
             'placeholder' => 'app.roll20.net/users/...',
             'category' => 'gaming',
         ],
-
         // Music Extended
         'deezer' => [
             'name' => 'Deezer',
@@ -728,7 +711,6 @@ return [
             'placeholder' => 'audiomack.com/username',
             'category' => 'music',
         ],
-
         // Developer Extended
         'leetcode' => [
             'name' => 'LeetCode',
@@ -770,7 +752,6 @@ return [
             'placeholder' => 'matrix.to/#/@user:server',
             'category' => 'developer',
         ],
-
         // Social Extended
         'bereal' => [
             'name' => 'BeReal',
@@ -820,7 +801,6 @@ return [
             'placeholder' => 'vero.co/username',
             'category' => 'social',
         ],
-
         // Entertainment Extended
         'myanimelist' => [
             'name' => 'MyAnimeList',
@@ -846,7 +826,6 @@ return [
             'placeholder' => 'trakt.tv/users/...',
             'category' => 'entertainment',
         ],
-
         // Messaging Extended
         'viber' => [
             'name' => 'Viber',
@@ -872,7 +851,6 @@ return [
             'placeholder' => 'simplex.chat/contact/...',
             'category' => 'messaging',
         ],
-
         // Business Extended
         'gumroad' => [
             'name' => 'Gumroad',
@@ -906,7 +884,6 @@ return [
             'placeholder' => 'revolut.me/...',
             'category' => 'payment',
         ],
-
         // Web3/Crypto Extended
         'opensea' => [
             'name' => 'OpenSea',
@@ -916,7 +893,6 @@ return [
             'placeholder' => 'opensea.io/username',
             'category' => 'design',
         ],
-
         // Professional Extended
         'xing' => [
             'name' => 'XING',
@@ -942,7 +918,6 @@ return [
             'placeholder' => 'orcid.org/0000-...',
             'category' => 'developer',
         ],
-
         // Other Extended
         'clubhouse' => [
             'name' => 'Clubhouse',
@@ -977,7 +952,6 @@ return [
             'category' => 'social',
         ],
     ],
-
     // Categories for organizing platforms
     'categories' => [
         'social' => 'Social Media',
@@ -995,7 +969,6 @@ return [
         'contact' => 'Contact',
         'generic' => 'Generic',
     ],
-
     // Button shapes
     'shapes' => [
         'rounded' => ['label' => 'Rounded', 'radius' => '12px'],
@@ -1003,7 +976,6 @@ return [
         'square' => ['label' => 'Square', 'radius' => '4px'],
         'none' => ['label' => 'None', 'radius' => '0'],
     ],
-
     // Button shadows
     'shadows' => [
         'none' => ['label' => 'None', 'value' => 'none'],
@@ -1012,7 +984,6 @@ return [
         'lg' => ['label' => 'Large', 'value' => '0 10px 15px -3px rgba(0,0,0,0.1)'],
         'xl' => ['label' => 'Extra Large', 'value' => '0 20px 25px -5px rgba(0,0,0,0.1)'],
     ],
-
     // Theme presets
     'themes' => [
         'light' => [
@@ -1088,9 +1059,6 @@ return [
             'link_text' => '#18181b',
             'link_border' => '#e4e4e7',
         ],
-
-        // === LinkStack Community Themes ===
-
         'mono' => [
             'name' => 'Mono',
             'description' => 'Terminal-style monospace theme',
@@ -1225,7 +1193,6 @@ return [
             'link_text' => '#37474f',
             'has_animation' => true,
         ],
-
         // Cyberpunk / Neon themes
         'neon-city' => [
             'name' => 'Neon City',
@@ -1262,7 +1229,6 @@ return [
             'link_border' => '#00ff41',
             'has_animation' => true,
         ],
-
         // Nature themes
         'cherry-blossom' => [
             'name' => 'Cherry Blossom',
@@ -1295,7 +1261,6 @@ return [
             'link_bg' => '#ffffff',
             'link_text' => '#11998e',
         ],
-
         // Minimalist themes
         'paper' => [
             'name' => 'Paper',

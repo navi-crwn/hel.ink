@@ -13,13 +13,13 @@ class QueueHealthCheck extends Command
     public function handle(): int
     {
         $heartbeat = cache('queue:heartbeat');
-
         if (! $heartbeat) {
             $this->warn('Queue worker heartbeat stale or missing – check supervisor if this persists.');
+
             return self::SUCCESS;
         }
-
         $this->info('Queue heartbeat OK at '.$heartbeat);
+
         return self::SUCCESS;
     }
 }

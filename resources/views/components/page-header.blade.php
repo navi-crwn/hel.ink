@@ -2,7 +2,6 @@
     'title',
     'subtitle' => null,
 ])
-
 <div class="flex flex-wrap items-center justify-between gap-4">
     <div>
         @if ($subtitle)

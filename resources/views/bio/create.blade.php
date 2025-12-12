@@ -21,7 +21,6 @@
                 <span x-text="notification.message" class="font-medium"></span>
             </div>
         </div>
-
         <div class="mx-auto max-w-6xl sm:px-6 lg:px-8">
             <div class="grid gap-8 lg:grid-cols-2">
                 <div class="rounded-2xl border border-slate-200 bg-white p-8 dark:border-slate-800 dark:bg-slate-900">
@@ -282,7 +281,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
                             <!-- Set QR Code Button -->
                             <div class="mt-4">
                                 <button 

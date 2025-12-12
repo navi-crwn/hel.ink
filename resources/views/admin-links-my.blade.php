@@ -1,6 +1,5 @@
 <x-app-layout>
     <x-slot name="pageTitle">My Links</x-slot>
-
     <div class="py-4">
         <div class="mx-auto max-w-7xl space-y-4 px-4 md:px-6">
         <div class="flex items-center justify-between">
@@ -9,33 +8,28 @@
                 <p class="text-sm text-slate-500 dark:text-slate-400">Manage your personal shortened links</p>
             </div>
         </div>
-
         <form method="GET" class="flex flex-wrap gap-3">
             <input type="text" 
                    name="q" 
                    value="{{ $search }}" 
                    placeholder="Search links..." 
                    class="flex-1 min-w-[200px] rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white">
-            
             <select name="folder_id" class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white">
                 <option value="">All Folders</option>
                 @foreach($folders as $folder)
                     <option value="{{ $folder->id }}" {{ $folderId == $folder->id ? 'selected' : '' }}>{{ $folder->name }}</option>
                 @endforeach
             </select>
-            
             <select name="tag_id" class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white">
                 <option value="">All Tags</option>
                 @foreach($tags as $tag)
                     <option value="{{ $tag->id }}" {{ $tagId == $tag->id ? 'selected' : '' }}>{{ $tag->name }}</option>
                 @endforeach
             </select>
-            
             <button type="submit" class="rounded-lg bg-blue-600 px-6 py-2 text-sm font-semibold text-white hover:bg-blue-500">
                 Filter
             </button>
         </form>
-
         <div class="rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
             <div class="overflow-x-auto">
                 <table class="w-full text-xs">
@@ -104,7 +98,6 @@
                     </tbody>
                 </table>
             </div>
-
             @if($links->hasPages())
                 <div class="border-t border-slate-200 px-3 py-2 dark:border-slate-800">
                     {{ $links->links() }}

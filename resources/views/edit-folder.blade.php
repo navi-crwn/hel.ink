@@ -7,7 +7,6 @@
             </x-slot>
         </x-page-header>
     </x-slot>
-
     <div class="py-10">
         <div class="mx-auto max-w-6xl space-y-6 sm:px-6 lg:px-8">
             @if (session('status'))
@@ -15,7 +14,6 @@
                     {{ session('status') }}
                 </div>
             @endif
-
             @if ($errors->any())
                 <div class="rounded-2xl border border-red-300 bg-red-50 px-4 py-3 text-red-900 dark:border-red-900/30 dark:bg-red-900/10 dark:text-red-200">
                     <ul class="list-disc space-y-1 pl-5 text-sm">
@@ -25,7 +23,6 @@
                     </ul>
                 </div>
             @endif
-
             <div class="grid gap-6 md:grid-cols-2">
                 <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                     <p class="text-xs uppercase tracking-[0.2em] text-slate-400">Folder</p>
@@ -50,7 +47,6 @@
                         </div>
                     @endif
                 </div>
-
                 <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                     <p class="text-xs uppercase tracking-[0.2em] text-slate-400">Quick actions</p>
                     <div class="mt-4 space-y-3 text-sm">
@@ -78,7 +74,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <div>
@@ -90,7 +85,6 @@
                         <button class="rounded-full bg-slate-100 px-4 py-2 text-sm text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200">Go</button>
                     </form>
                 </div>
-
                 <div class="mt-4 overflow-x-auto">
                     <table class="min-w-full divide-y divide-slate-200 text-sm dark:divide-slate-800">
                         <thead class="text-left text-slate-500 dark:text-slate-300">
@@ -140,7 +134,6 @@
                         </tbody>
                     </table>
                 </div>
-
                 <div class="mt-4">
                     {{ $links->links() }}
                 </div>

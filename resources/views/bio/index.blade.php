@@ -13,7 +13,6 @@
             </x-slot>
         </x-page-header>
     </x-slot>
-
     @push('styles')
     <style>
         .bio-card {
@@ -37,7 +36,6 @@
         }
     </style>
     @endpush
-
     <div class="py-10" x-data="{ 
         deleteModal: { show: false, form: null, title: '' },
         confirmDelete(formId, title) {

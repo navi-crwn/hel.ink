@@ -21,7 +21,6 @@ return new class extends Migration
             $table->text('referrer')->nullable();
             $table->string('ip_address', 45)->nullable();
             $table->timestamps();
-            
             $table->index('bio_link_id');
             $table->index('clicked_at');
             $table->index('country');

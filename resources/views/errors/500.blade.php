@@ -30,7 +30,6 @@
                         </svg>
                     </div>
                 </div>
-
                 <div class="text-center mb-8">
                     <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-3">
                         Oops! Something Went Wrong
@@ -42,7 +41,6 @@
                         Our team has been notified and we're working on fixing this issue.
                     </p>
                 </div>
-
                 @if(config('app.debug'))
                 <div class="mb-6 rounded-lg bg-gray-100 dark:bg-gray-700 p-4">
                     <p class="text-xs font-mono text-gray-700 dark:text-gray-300">
@@ -53,7 +51,6 @@
                     </p>
                 </div>
                 @endif
-
                 <div class="flex flex-col sm:flex-row gap-3 justify-center">
                     <a href="{{ url('/') }}" class="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition">
                         <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -68,7 +65,6 @@
                         Go Back
                     </button>
                 </div>
-
                 <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-center">
                     <p class="text-sm text-gray-600 dark:text-gray-400">
                         Need help? Contact us at 

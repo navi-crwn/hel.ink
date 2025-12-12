@@ -2,34 +2,31 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Models\LoginHistory;
 use App\Services\GeoIpService;
+use Illuminate\Console\Command;
 
 class UpdateLoginHistoryIsp extends Command
 {
     protected $signature = 'login-history:update-isp';
+
     protected $description = 'Update login histories with ISP data from GeoIP service';
 
     public function handle()
     {
-        $histories = LoginHistory::where(function($q) {
+        $histories = LoginHistory::where(function ($q) {
             $q->whereNull('isp')
-              ->orWhere('isp', '')
-              ->orWhere('isp', 'Unknown');
+                ->orWhere('isp', '')
+                ->orWhere('isp', 'Unknown');
         })->get();
-
         $this->info("Found {$histories->count()} login histories to update...\n");
-
         $geoService = app(GeoIpService::class);
         $updated = 0;
         $failed = 0;
-
         foreach ($histories as $history) {
-            if (!$history->ip_address) {
+            if (! $history->ip_address) {
                 continue;
             }
-
             try {
                 $this->line("Processing: {$history->ip_address}");
                 $isp = $geoService->provider($history->ip_address);
@@ -37,7 +34,7 @@ class UpdateLoginHistoryIsp extends Command
                 if (empty($isp)) {
                     $isp = $details['isp'] ?? $details['org'] ?? $details['organization'] ?? null;
                 }
-                if (empty($isp) && !empty($details['as'])) {
+                if (empty($isp) && ! empty($details['as'])) {
                     $isp = preg_replace('/^AS\d+\s+/', '', $details['as']);
                 }
                 if (empty($isp)) {
@@ -50,31 +47,27 @@ class UpdateLoginHistoryIsp extends Command
                         $isp = 'Amazon.com, Inc.';
                     }
                 }
-                
                 $history->update([
                     'country_name' => $details['country_name'] ?? $history->country_name,
                     'region' => $details['region'] ?? $history->region,
                     'isp' => $isp ?? 'Unknown ISP',
                 ]);
-                
-                $this->info("  ✓ Updated ISP: " . ($isp ?? 'Unknown ISP'));
+                $this->info('  ✓ Updated ISP: '.($isp ?? 'Unknown ISP'));
                 $updated++;
                 usleep(200000);
-                
             } catch (\Exception $e) {
                 $this->error("  ✗ Failed: {$e->getMessage()}");
                 $failed++;
             }
         }
-
         $this->newLine();
-        $this->info("✅ Update complete!");
+        $this->info('✅ Update complete!');
         $this->table(
             ['Metric', 'Count'],
             [
                 ['Total Processed', $histories->count()],
                 ['Successfully Updated', $updated],
-                ['Failed', $failed]
+                ['Failed', $failed],
             ]
         );
 

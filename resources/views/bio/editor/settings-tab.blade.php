@@ -1,11 +1,9 @@
 <!-- Settings Tab Content -->
-
 <!-- SEO Settings with Google Preview -->
 <div class="editor-card">
     <div class="editor-card-header">
         <h3 class="editor-card-title">SEO Settings</h3>
     </div>
-    
     <div class="space-y-4">
         <!-- Google Preview -->
         <div class="bg-white border border-slate-200 rounded-lg p-4 dark:bg-slate-900 dark:[border-color:var(--editor-border)]">
@@ -18,7 +16,6 @@
                    x-text="bioPage.seo_description || bioPage.bio || 'Your page description will appear here. Write a compelling description to improve click-through rates from search results.'"></p>
             </div>
         </div>
-
         <div class="form-group">
             <label class="form-label">Page Title</label>
             <input type="text" x-model="bioPage.seo_title" class="form-input" placeholder="Leave empty to use display name" maxlength="47" autocomplete="off" data-lpignore="true" data-1p-ignore="true" data-form-type="other">
@@ -27,7 +24,6 @@
                 <p class="text-xs" :class="(bioPage.seo_title || '').length > 40 ? 'text-orange-500' : 'editor-text-muted'" x-text="(bioPage.seo_title || '').length + '/47'"></p>
             </div>
         </div>
-        
         <div class="form-group">
             <label class="form-label">Meta Description</label>
             <textarea x-model="bioPage.seo_description" class="form-input form-textarea" placeholder="Brief description for search engines" rows="2" maxlength="160" autocomplete="off" data-lpignore="true" data-1p-ignore="true"></textarea>
@@ -38,13 +34,11 @@
         </div>
     </div>
 </div>
-
 <!-- Privacy & Visibility -->
 <div class="editor-card">
     <div class="editor-card-header">
         <h3 class="editor-card-title">Privacy & Visibility</h3>
     </div>
-    
     <div class="space-y-4">
         <div class="flex items-center justify-between">
             <div>
@@ -56,7 +50,6 @@
                 <span class="toggle-slider"></span>
             </label>
         </div>
-        
         <div class="flex items-center justify-between">
             <div>
                 <p class="font-medium text-slate-900 dark:text-white">Search Engine Indexing</p>
@@ -67,7 +60,6 @@
                 <span class="toggle-slider"></span>
             </label>
         </div>
-        
         <!-- 18+ Adult Content -->
         <div class="flex items-center justify-between">
             <div>
@@ -84,7 +76,6 @@
                 <span class="toggle-slider"></span>
             </label>
         </div>
-        
         <!-- Password Protection -->
         <div class="border-t [border-color:var(--editor-border)] pt-4">
             <div class="flex items-center justify-between mb-3">
@@ -102,7 +93,6 @@
                     <span class="toggle-slider"></span>
                 </label>
             </div>
-            
             <div x-show="bioPage.password_enabled" x-collapse>
                 <div class="form-group mb-0">
                     <label class="form-label">Password</label>
@@ -133,26 +123,22 @@
         </div>
     </div>
 </div>
-
 <!-- Analytics -->
 <div class="editor-card">
     <div class="editor-card-header">
         <h3 class="editor-card-title">Analytics</h3>
     </div>
-    
     <div class="space-y-4">
         <div class="form-group">
             <label class="form-label">Google Analytics ID</label>
             <input type="text" x-model="bioPage.google_analytics_id" class="form-input" placeholder="G-XXXXXXXXXX" pattern="G-[A-Z0-9]+" autocomplete="off" data-lpignore="true" data-1p-ignore="true" data-form-type="other" inputmode="text">
             <p class="text-xs editor-text-muted mt-1">Format: G-XXXXXXXXXX (e.g., G-ABC123DEF4)</p>
         </div>
-        
         <div class="form-group">
             <label class="form-label">Facebook Pixel ID</label>
             <input type="text" x-model="bioPage.facebook_pixel_id" class="form-input" placeholder="123456789012345" pattern="\d{10,20}" autocomplete="off" data-lpignore="true" data-1p-ignore="true" data-form-type="other" inputmode="numeric">
             <p class="text-xs editor-text-muted mt-1">Format: 15 digit number (e.g., 123456789012345)</p>
         </div>
-        
         <div class="form-group">
             <label class="form-label">TikTok Pixel ID</label>
             <input type="text" x-model="bioPage.tiktok_pixel_id" class="form-input" placeholder="CXXXXXXXXXXXXXXXXXX" pattern="[A-Z0-9]{20,30}" autocomplete="off" data-lpignore="true" data-1p-ignore="true" data-form-type="other" inputmode="text">
@@ -160,13 +146,11 @@
         </div>
     </div>
 </div>
-
 <!-- Danger Zone -->
 <div class="editor-card border-red-200 dark:border-red-900">
     <div class="editor-card-header">
         <h3 class="editor-card-title text-red-600">Danger Zone</h3>
     </div>
-    
     <div class="space-y-4">
         <div class="flex items-center justify-between p-4 bg-red-50 dark:bg-red-900/20 rounded-lg">
             <div>

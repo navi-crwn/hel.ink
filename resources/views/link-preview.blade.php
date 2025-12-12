@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ $link->short_url }}" />
     <meta property="og:title" content="{{ $link->custom_title ?? config('app.name') }}" />
@@ -13,7 +12,6 @@
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
     @endif
-    
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="{{ $link->short_url }}" />
     <meta name="twitter:title" content="{{ $link->custom_title ?? config('app.name') }}" />
@@ -21,7 +19,6 @@
     @if($link->custom_image_url)
         <meta name="twitter:image" content="{{ $link->custom_image_url }}" />
     @endif
-    
     <meta http-equiv="refresh" content="0;url={{ $link->target_url }}">
     <title>{{ $link->custom_title ?? config('app.name') }}</title>
     <style>

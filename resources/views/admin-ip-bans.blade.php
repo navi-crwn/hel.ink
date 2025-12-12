@@ -20,7 +20,6 @@
                     </ul>
                 </div>
             @endif
-
             <form method="POST" action="{{ route('admin.ip-bans.store') }}" class="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900 grid gap-4 md:grid-cols-2">
                 @csrf
                 <div>
@@ -39,7 +38,6 @@
                     <button class="rounded-xl bg-rose-600 px-4 py-2 text-white">Add IP ban</button>
                 </div>
             </form>
-
             <div class="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-800 text-sm">

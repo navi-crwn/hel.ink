@@ -20,6 +20,7 @@ class TagController extends Controller
             }])
             ->orderBy('name')
             ->paginate(20);
+
         return view('tags', compact('tags'));
     }
 
@@ -28,10 +29,8 @@ class TagController extends Controller
         $data = $request->validate([
             'name' => ['required', 'string', 'max:60'],
         ]);
-
         $tag = $request->user()->tags()->create($data);
         ActivityLog::log('created', 'Tag', $tag->id, "Created tag: {$tag->name}");
-
         if ($request->wantsJson()) {
             return response()->json([
                 'success' => true,
@@ -49,11 +48,9 @@ class TagController extends Controller
     public function update(Request $request, Tag $tag): RedirectResponse
     {
         abort_unless($tag->user_id === $request->user()->id, 403);
-
         $data = $request->validate([
             'name' => ['required', 'string', 'max:60'],
         ]);
-
         $originalName = $tag->name;
         $tag->update($data);
         if ($originalName !== $tag->name) {
@@ -66,7 +63,6 @@ class TagController extends Controller
     public function destroy(Request $request, Tag $tag): RedirectResponse
     {
         abort_unless($tag->user_id === $request->user()->id, 403);
-
         $tagName = $tag->name;
         $tagId = $tag->id;
         $tag->links()->detach();
@@ -79,18 +75,14 @@ class TagController extends Controller
     public function manage(Request $request, Tag $tag): View
     {
         abort_unless($tag->user_id === $request->user()->id, 403);
-
         $search = $request->string('q')->trim()->toString();
-
         $linksQuery = $tag->links()->with(['folder', 'tags'])->orderByDesc('links.created_at');
-
         if ($search) {
             $linksQuery->where(function ($query) use ($search) {
                 $query->where('links.slug', 'like', "%{$search}%")
                     ->orWhere('links.target_url', 'like', "%{$search}%");
             });
         }
-
         $links = $linksQuery->paginate(15)->withQueryString();
 
         return view('edit-tag', [

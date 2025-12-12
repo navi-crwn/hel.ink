@@ -3,7 +3,6 @@
         <p class="text-xs uppercase tracking-[0.4em] text-white/60">Contact</p>
         <h1 class="mt-4 text-4xl font-semibold text-white">Get in touch</h1>
         <p class="mt-4 text-white/70">Have questions, feedback, or found a bug? We'd love to hear from you. Reach out through any of these channels.</p>
-
         <div class="mt-10 grid gap-6 md:grid-cols-2">
             <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
                 <div class="flex items-center gap-3">
@@ -26,7 +25,6 @@
                 <p class="mt-2 text-sm text-white/60">Report malicious links or suspicious activity.</p>
             </div>
         </div>
-
         <div class="mt-8 rounded-3xl border border-white/10 bg-white/5 p-8">
             <h2 class="text-2xl font-semibold text-white">Connect with the Creator</h2>
             <p class="mt-3 text-white/70">Hel.ink is built and maintained by Ivan Novskies. Connect on these platforms:</p>
@@ -45,7 +43,6 @@
                 </a>
             </div>
         </div>
-
         <div class="mt-8 rounded-3xl border border-blue-500/30 bg-blue-500/10 p-6">
             <div class="flex items-start gap-3">
                 <svg class="h-6 w-6 flex-shrink-0 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -27,18 +27,17 @@ class ProxyMonitorController extends Controller
                 'errors' => 0,
                 'last_check' => null,
             ]);
-            
             $detectorStats[$name] = [
                 'enabled' => $detector['enabled'] ?? true,
                 'priority' => $detector['priority'] ?? 50,
                 'quota' => $detector['quota'] ?? 'Unlimited',
                 'stats' => $stats,
-                'detection_rate' => $stats['total_checks'] > 0 
-                    ? round(($stats['positive_detections'] / $stats['total_checks']) * 100, 1) 
+                'detection_rate' => $stats['total_checks'] > 0
+                    ? round(($stats['positive_detections'] / $stats['total_checks']) * 100, 1)
                     : 0,
             ];
         }
-        
+
         return view('admin.proxy-monitor', compact('detectorStats'));
     }
 
@@ -47,10 +46,9 @@ class ProxyMonitorController extends Controller
         $request->validate([
             'ip' => 'required|ip',
         ]);
-
         $ip = $request->input('ip');
         $result = $this->proxyService->detect($ip);
-        
+
         return response()->json([
             'success' => true,
             'ip' => $ip,
@@ -61,12 +59,11 @@ class ProxyMonitorController extends Controller
     public function resetStats()
     {
         $detectors = $this->proxyService->getDetectors();
-        
         foreach ($detectors as $name => $detector) {
             $statsKey = "proxy_detector_stats:{$name}";
             Cache::forget($statsKey);
         }
-        
+
         return redirect()->route('admin.proxy.monitor')
             ->with('success', 'Detector statistics have been reset.');
     }

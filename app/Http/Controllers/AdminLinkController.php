@@ -18,23 +18,18 @@ class AdminLinkController extends Controller
         $userId = $request->integer('user_id');
         $folderId = $request->integer('folder_id');
         $tagId = $request->integer('tag_id');
-
         if ($status !== '') {
             $query->where('status', $status);
         }
-
         if ($userId) {
             $query->where('user_id', $userId);
         }
-
         if ($folderId) {
             $query->where('folder_id', $folderId);
         }
-
         if ($tagId) {
             $query->whereHas('tags', fn ($q) => $q->where('tags.id', $tagId));
         }
-
         $search = $request->string('q')->trim()->toString();
         if ($search !== '') {
             $query->where(function ($q) use ($search) {
@@ -42,7 +37,6 @@ class AdminLinkController extends Controller
                     ->orWhere('target_url', 'like', "%{$search}%");
             });
         }
-
         $links = $query->paginate(15)->withQueryString();
 
         return view('admin-links', [
@@ -59,7 +53,7 @@ class AdminLinkController extends Controller
             ],
         ]);
     }
-    
+
     public function my(Request $request)
     {
         $user = $request->user();
@@ -67,7 +61,6 @@ class AdminLinkController extends Controller
             ->where('user_id', $user->id)
             ->with(['folder', 'tags'])
             ->latest();
-        
         // Support both 'q' and 'query' parameters
         $search = $request->string('q')->trim()->toString() ?: $request->string('query')->trim()->toString();
         if ($search !== '') {
@@ -77,17 +70,14 @@ class AdminLinkController extends Controller
                     ->orWhere('title', 'like', "%{$search}%");
             });
         }
-        
         $folderId = $request->integer('folder_id');
         if ($folderId) {
             $query->where('folder_id', $folderId);
         }
-        
         $tagId = $request->integer('tag_id');
         if ($tagId) {
             $query->whereHas('tags', fn ($q) => $q->where('tags.id', $tagId));
         }
-        
         // Return JSON if requested
         if ($request->wantsJson() || $request->ajax()) {
             $links = $query->limit(20)->get()->map(function ($link) {
@@ -100,13 +90,13 @@ class AdminLinkController extends Controller
                     'clicks' => $link->clicks,
                 ];
             });
+
             return response()->json($links);
         }
-        
         $links = $query->paginate(15)->withQueryString();
         $folders = $user->folders;
         $tags = $user->tags;
-        
+
         return view('admin-links-my', compact('links', 'search', 'folders', 'tags', 'folderId', 'tagId'));
     }
 
@@ -115,7 +105,6 @@ class AdminLinkController extends Controller
         $validated = $request->validate([
             'status' => ['required', Rule::in([Link::STATUS_ACTIVE, Link::STATUS_INACTIVE])],
         ]);
-
         $link->update(['status' => $validated['status']]);
 
         return back()->with('status', "Link {$link->slug} status updated.");
@@ -134,9 +123,7 @@ class AdminLinkController extends Controller
             'ids' => ['required', 'array'],
             'action' => ['required', 'in:disable,delete'],
         ]);
-
         $ids = $request->input('ids');
-
         if ($request->action === 'delete') {
             Link::whereIn('id', $ids)->delete();
             $message = 'Link deleted successfully.';

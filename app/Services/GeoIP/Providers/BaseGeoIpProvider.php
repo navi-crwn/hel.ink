@@ -13,21 +13,19 @@ abstract class BaseGeoIpProvider implements GeoIpProviderInterface
     {
         try {
             $response = Http::timeout($this->timeout)->get($url, $params);
-
             if ($response->successful()) {
                 return $response->json();
             }
-
             Log::warning("{$this->getName()} request failed", [
                 'url' => $url,
-                'status' => $response->status()
+                'status' => $response->status(),
             ]);
 
             return null;
         } catch (\Throwable $e) {
             Log::warning("{$this->getName()} request error", [
                 'url' => $url,
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ]);
 
             return null;
@@ -37,8 +35,7 @@ abstract class BaseGeoIpProvider implements GeoIpProviderInterface
     public function details(string $ip): array
     {
         $data = $this->lookup($ip);
-
-        if (!$data) {
+        if (! $data) {
             return [
                 'country' => null,
                 'country_name' => null,
@@ -50,6 +47,7 @@ abstract class BaseGeoIpProvider implements GeoIpProviderInterface
 
         return $this->normalize($data);
     }
+
     abstract protected function normalize(array $data): array;
 
     public function isAvailable(): bool

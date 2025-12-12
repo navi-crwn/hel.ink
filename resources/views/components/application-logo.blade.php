@@ -1,1 +1,1 @@
-<img src="{{ route('brand.logo') }}" alt="Hop Easy Link logo" {{ $attributes }}>
+<img src="{{ route('brand.logo') }}" alt="HEL.ink logo" {{ $attributes }}>

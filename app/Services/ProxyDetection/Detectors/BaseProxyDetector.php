@@ -14,21 +14,19 @@ abstract class BaseProxyDetector implements ProxyDetectorInterface
     {
         try {
             $response = Http::timeout($this->timeout)->get($url, $params);
-
             if ($response->successful()) {
                 return $response->json();
             }
-
             Log::debug("{$this->getName()} request failed", [
                 'url' => $url,
-                'status' => $response->status()
+                'status' => $response->status(),
             ]);
 
             return null;
         } catch (\Throwable $e) {
             Log::debug("{$this->getName()} request error", [
                 'url' => $url,
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ]);
 
             return null;

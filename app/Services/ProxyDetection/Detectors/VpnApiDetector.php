@@ -2,7 +2,6 @@
 
 namespace App\Services\ProxyDetection\Detectors;
 
-use Illuminate\Support\Facades\Http;
 class VpnApiDetector extends BaseProxyDetector
 {
     protected string $baseUrl = 'https://vpnapi.io/api/';
@@ -25,11 +24,9 @@ class VpnApiDetector extends BaseProxyDetector
     public function detect(string $ip): ?array
     {
         $data = $this->makeRequest("{$this->baseUrl}{$ip}");
-
-        if (!$data) {
+        if (! $data) {
             return null;
         }
-
         $security = $data['security'] ?? [];
 
         return [
@@ -41,16 +38,25 @@ class VpnApiDetector extends BaseProxyDetector
                 'proxy' => $security['proxy'] ?? false,
                 'tor' => $security['tor'] ?? false,
                 'relay' => $security['relay'] ?? false,
-            ]
+            ],
         ];
     }
 
     protected function determineType(array $security): ?string
     {
-        if ($security['tor'] ?? false) return 'tor';
-        if ($security['vpn'] ?? false) return 'vpn';
-        if ($security['proxy'] ?? false) return 'proxy';
-        if ($security['relay'] ?? false) return 'relay';
+        if ($security['tor'] ?? false) {
+            return 'tor';
+        }
+        if ($security['vpn'] ?? false) {
+            return 'vpn';
+        }
+        if ($security['proxy'] ?? false) {
+            return 'proxy';
+        }
+        if ($security['relay'] ?? false) {
+            return 'relay';
+        }
+
         return null;
     }
 }

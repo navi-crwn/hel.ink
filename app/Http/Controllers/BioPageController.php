@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BioPage;
 use App\Models\BioClick;
+use App\Models\BioPage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
@@ -13,7 +13,7 @@ class BioPageController extends Controller
     public function index()
     {
         $bioPages = auth()->user()->bioPages()->withCount('links')->latest()->get();
-        
+
         return view('bio.index', compact('bioPages'));
     }
 
@@ -25,22 +25,18 @@ class BioPageController extends Controller
     public function checkSlug(Request $request)
     {
         $slug = $request->input('slug');
-        
-        if (!$slug || strlen($slug) < 3) {
+        if (! $slug || strlen($slug) < 3) {
             return response()->json(['available' => false]);
         }
-
-        if (!preg_match('/^[a-zA-Z0-9]+$/', $slug)) {
+        if (! preg_match('/^[a-zA-Z0-9]+$/', $slug)) {
             return response()->json(['available' => false]);
         }
-
         $slug = strtolower($slug);
-
         $exists = BioPage::where('slug', $slug)->exists();
         $reserved = in_array($slug, config('shortener.reserved_slugs', []));
-        
+
         return response()->json([
-            'available' => !$exists && !$reserved,
+            'available' => ! $exists && ! $reserved,
         ]);
     }
 
@@ -51,11 +47,9 @@ class BioPageController extends Controller
         $color = $request->input('color', '000000');
         $bgcolor = $request->input('bgcolor', 'ffffff');
         $logoData = $request->input('logo'); // Base64 logo image
-
-        if (!$data) {
+        if (! $data) {
             return response('Missing data parameter', 400);
         }
-
         try {
             // Generate QR code with high error correction for logo overlay
             $qrString = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')
@@ -65,51 +59,42 @@ class BioPageController extends Controller
                 ->errorCorrection('H') // High error correction for logo overlay
                 ->margin(1)
                 ->generate($data);
-
             // If logo is provided, overlay it on the QR code
             if ($logoData && str_starts_with($logoData, 'data:image')) {
                 // Create image from QR code
                 $qrImage = @imagecreatefromstring($qrString);
-                
-                if (!$qrImage) {
+                if (! $qrImage) {
                     return response($qrString)->header('Content-Type', 'image/png');
                 }
-                
                 // Extract base64 data and decode
                 $logoData = preg_replace('/^data:image\/\w+;base64,/', '', $logoData);
                 $logoDecoded = base64_decode($logoData);
-                
-                if (!$logoDecoded) {
+                if (! $logoDecoded) {
                     imagedestroy($qrImage);
+
                     return response($qrString)->header('Content-Type', 'image/png');
                 }
-                
                 $logo = @imagecreatefromstring($logoDecoded);
-                
-                if (!$logo) {
+                if (! $logo) {
                     imagedestroy($qrImage);
+
                     return response($qrString)->header('Content-Type', 'image/png');
                 }
-                
                 // Get dimensions
                 $qrWidth = imagesx($qrImage);
                 $qrHeight = imagesy($qrImage);
                 $logoWidth = imagesx($logo);
                 $logoHeight = imagesy($logo);
-                
                 // Logo size: 20% of QR code size
-                $logoSize = (int)($qrWidth * 0.2);
-                $logoX = (int)(($qrWidth - $logoSize) / 2);
-                $logoY = (int)(($qrHeight - $logoSize) / 2);
-                
+                $logoSize = (int) ($qrWidth * 0.2);
+                $logoX = (int) (($qrWidth - $logoSize) / 2);
+                $logoY = (int) (($qrHeight - $logoSize) / 2);
                 // Create white background for logo (slightly larger for padding)
-                $bgSize = (int)($logoSize + 20);
-                $bgX = (int)(($qrWidth - $bgSize) / 2);
-                $bgY = (int)(($qrHeight - $bgSize) / 2);
-                
+                $bgSize = (int) ($logoSize + 20);
+                $bgX = (int) (($qrWidth - $bgSize) / 2);
+                $bgY = (int) (($qrHeight - $bgSize) / 2);
                 $white = imagecolorallocate($qrImage, 255, 255, 255);
                 imagefilledrectangle($qrImage, $bgX, $bgY, $bgX + $bgSize, $bgY + $bgSize, $white);
-                
                 // Overlay logo on QR code with resampling for quality
                 imagecopyresampled(
                     $qrImage,
@@ -123,16 +108,14 @@ class BioPageController extends Controller
                     $logoWidth,
                     $logoHeight
                 );
-                
                 // Output final image
                 ob_start();
                 imagepng($qrImage, null, 9); // Max compression
                 $finalQr = ob_get_clean();
-                
                 // Clean up
                 imagedestroy($qrImage);
                 imagedestroy($logo);
-                
+
                 return response($finalQr)->header('Content-Type', 'image/png');
             }
 
@@ -149,19 +132,16 @@ class BioPageController extends Controller
             if (preg_match('/^data:image\/(\w+);base64,/', $base64Image, $type)) {
                 $data = substr($base64Image, strpos($base64Image, ',') + 1);
                 $extension = strtolower($type[1]);
-                
                 if (in_array($extension, ['jpg', 'jpeg', 'gif', 'png'])) {
                     $data = base64_decode($data);
-                    $filename = 'qr-logos/' . uniqid() . '.' . $extension;
+                    $filename = 'qr-logos/'.uniqid().'.'.$extension;
                     Storage::disk('public')->put($filename, $data);
-                    $settings['image'] = '/storage/' . $filename;
+                    $settings['image'] = '/storage/'.$filename;
                 }
             }
         }
-
         $oldImage = $oldSettings['image'] ?? $oldSettings['logo_url'] ?? null;
         $newImage = $settings['image'] ?? $settings['logo_url'] ?? null;
-
         if ($oldImage && $oldImage !== $newImage && str_starts_with($oldImage, '/storage/')) {
             $path = str_replace('/storage/', '', $oldImage);
             Storage::disk('public')->delete($path);
@@ -175,9 +155,7 @@ class BioPageController extends Controller
         if (auth()->user()->bioPages()->count() >= 3) {
             return back()->withErrors(['slug' => 'You have reached the maximum limit of 3 bio pages.']);
         }
-
         $request->merge(['slug' => strtolower($request->slug)]);
-
         $validated = $request->validate([
             'slug' => [
                 'required',
@@ -192,13 +170,10 @@ class BioPageController extends Controller
             'bio' => 'nullable|string|max:155',
             'qr_settings' => 'nullable|json',
         ]);
-
         $qrSettings = $request->filled('qr_settings') ? json_decode($request->qr_settings, true) : null;
-        
         if ($qrSettings) {
             $qrSettings = $this->handleQrImage($qrSettings);
         }
-
         $bioPage = auth()->user()->bioPages()->create([
             'slug' => $validated['slug'],
             'title' => $validated['title'],
@@ -213,13 +188,11 @@ class BioPageController extends Controller
     public function edit(BioPage $bioPage)
     {
         $this->authorize('update', $bioPage);
-        
-        $bioPage->load(['links' => function($query) {
+        $bioPage->load(['links' => function ($query) {
             $query->orderBy('order');
         }]);
-        
         $brands = config('brands.platforms', []);
-        
+
         // Use the new editor view
         return view('bio.editor.index', compact('bioPage', 'brands'));
     }
@@ -227,11 +200,9 @@ class BioPageController extends Controller
     public function update(Request $request, BioPage $bioPage)
     {
         $this->authorize('update', $bioPage);
-
         if ($request->has('slug')) {
             $request->merge(['slug' => strtolower($request->slug)]);
         }
-
         $validated = $request->validate([
             'slug' => [
                 'sometimes',
@@ -297,37 +268,30 @@ class BioPageController extends Controller
             'hover_effect' => 'nullable|string|max:50',
             'background_animation' => 'nullable|string|max:50',
         ]);
-
         if ($request->hasFile('avatar')) {
             if ($bioPage->avatar_url) {
                 Storage::disk('public')->delete($bioPage->avatar_url);
             }
-            
             $path = $request->file('avatar')->store('avatars', 'public');
             $validated['avatar_url'] = $path;
         }
-        
         if (isset($validated['socials'])) {
             $validated['socials'] = json_encode($validated['socials']);
         }
-
         if (isset($validated['qr_settings'])) {
             $validated['qr_settings'] = $this->handleQrImage($validated['qr_settings'], $bioPage->qr_settings);
         }
-
         // Ensure theme is not null (database doesn't allow null)
         if (array_key_exists('theme', $validated) && $validated['theme'] === null) {
             $validated['theme'] = 'default';
         }
-
         $bioPage->update($validated);
-
         // Return JSON for AJAX requests
         if ($request->expectsJson() || $request->wantsJson()) {
             return response()->json([
                 'success' => true,
                 'message' => 'Bio page updated successfully!',
-                'bioPage' => $bioPage->fresh()
+                'bioPage' => $bioPage->fresh(),
             ]);
         }
 
@@ -337,11 +301,9 @@ class BioPageController extends Controller
     public function destroy(BioPage $bioPage)
     {
         $this->authorize('delete', $bioPage);
-
         if ($bioPage->avatar_url) {
             Storage::disk('public')->delete($bioPage->avatar_url);
         }
-
         $bioPage->delete();
 
         return redirect()->route('bio.index')->with('success', 'Bio page deleted successfully!');
@@ -350,9 +312,7 @@ class BioPageController extends Controller
     public function analytics(BioPage $bioPage)
     {
         $this->authorize('view', $bioPage);
-
         $days = request('days', 30);
-
         $clicksData = BioClick::query()
             ->whereIn('bio_link_id', $bioPage->links->pluck('id'))
             ->where('clicked_at', '>=', now()->subDays($days))
@@ -360,7 +320,6 @@ class BioPageController extends Controller
             ->groupBy('date')
             ->orderBy('date')
             ->get();
-
         $viewsChartLabels = [];
         $viewsChartData = [];
         for ($i = $days - 1; $i >= 0; $i--) {
@@ -369,13 +328,11 @@ class BioPageController extends Controller
             $clickCount = $clicksData->firstWhere('date', $date);
             $viewsChartData[] = $clickCount ? $clickCount->count : 0;
         }
-
         $topLinks = $bioPage->links()
             ->where('is_active', true)
             ->orderByDesc('click_count')
             ->limit(10)
             ->get();
-
         $countriesData = BioClick::query()
             ->whereIn('bio_link_id', $bioPage->links->pluck('id'))
             ->where('clicked_at', '>=', now()->subDays($days))
@@ -385,15 +342,14 @@ class BioPageController extends Controller
             ->orderByDesc('clicks')
             ->limit(10)
             ->get();
-
         $totalCountryClicks = $countriesData->sum('clicks');
         $topCountries = $countriesData->map(function ($item) use ($totalCountryClicks) {
             $item->percentage = $totalCountryClicks > 0 ? round(($item->clicks / $totalCountryClicks) * 100, 1) : 0;
             $item->country_name = $item->country;
             $item->flag = $this->getCountryFlag($item->country);
+
             return $item;
         });
-
         $devicesData = BioClick::query()
             ->whereIn('bio_link_id', $bioPage->links->pluck('id'))
             ->where('clicked_at', '>=', now()->subDays($days))
@@ -402,22 +358,18 @@ class BioPageController extends Controller
             ->groupBy('device')
             ->orderByDesc('count')
             ->get();
-
         $deviceChartLabels = $devicesData->pluck('device')->map(function ($device) {
             return ucfirst($device);
         })->toArray();
         $deviceChartData = $devicesData->pluck('count')->toArray();
-
         $recentClicks = BioClick::query()
             ->with('bioLink')
             ->whereIn('bio_link_id', $bioPage->links->pluck('id'))
             ->orderByDesc('clicked_at')
             ->limit(20)
             ->get();
-
         $totalClicks = $bioPage->getTotalClicks();
         $ctr = $bioPage->view_count > 0 ? round(($totalClicks / $bioPage->view_count) * 100, 2) : 0;
-
         $stats = [
             'totalViews' => $bioPage->view_count,
             'totalClicks' => $totalClicks,
@@ -446,26 +398,23 @@ class BioPageController extends Controller
             'DE' => '🇩🇪', 'FR' => '🇫🇷', 'JP' => '🇯🇵', 'CN' => '🇨🇳', 'IN' => '🇮🇳',
             'SG' => '🇸🇬', 'MY' => '🇲🇾', 'TH' => '🇹🇭', 'PH' => '🇵🇭', 'VN' => '🇻🇳',
         ];
+
         return $flags[$countryCode] ?? '🌍';
     }
 
     public function duplicate(BioPage $bioPage)
     {
         $this->authorize('view', $bioPage);
-
-        $newSlug = $bioPage->slug . '-copy';
+        $newSlug = $bioPage->slug.'-copy';
         $counter = 1;
-        
         while (BioPage::where('slug', $newSlug)->exists()) {
-            $newSlug = $bioPage->slug . '-copy-' . $counter;
+            $newSlug = $bioPage->slug.'-copy-'.$counter;
             $counter++;
         }
-
         $newBioPage = $bioPage->replicate(['view_count']);
         $newBioPage->slug = $newSlug;
-        $newBioPage->title = $bioPage->title . ' (Copy)';
+        $newBioPage->title = $bioPage->title.' (Copy)';
         $newBioPage->save();
-
         foreach ($bioPage->links as $link) {
             $newLink = $link->replicate(['click_count']);
             $newLink->bio_page_id = $newBioPage->id;
@@ -481,161 +430,147 @@ class BioPageController extends Controller
     public function uploadImage(Request $request, BioPage $bioPage)
     {
         $this->authorize('update', $bioPage);
-
         $request->validate([
             'image' => 'required|image|max:5120', // 5MB max
         ]);
-
         try {
             $path = $request->file('image')->store('bio-images', 'public');
-            
+
             return response()->json([
                 'success' => true,
                 'path' => $path,
-                'url' => '/storage/' . $path,
-                'image_url' => '/storage/' . $path,
+                'url' => '/storage/'.$path,
+                'image_url' => '/storage/'.$path,
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to upload image: ' . $e->getMessage(),
+                'message' => 'Failed to upload image: '.$e->getMessage(),
             ], 500);
         }
     }
-    
+
     /**
      * Upload avatar for bio page
      */
     public function uploadAvatar(Request $request, BioPage $bioPage)
     {
         $this->authorize('update', $bioPage);
-
         $request->validate([
             'avatar' => 'required|image|max:2048', // 2MB max
         ]);
-
         try {
             // Delete old avatar if exists
             if ($bioPage->avatar_url) {
                 Storage::disk('public')->delete($bioPage->avatar_url);
             }
-            
             $path = $request->file('avatar')->store('avatars', 'public');
             $bioPage->update(['avatar_url' => $path]);
-            
+
             return response()->json([
                 'success' => true,
                 'avatar_url' => $path, // Return just the path
-                'full_url' => '/storage/' . $path,
+                'full_url' => '/storage/'.$path,
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to upload avatar: ' . $e->getMessage(),
+                'message' => 'Failed to upload avatar: '.$e->getMessage(),
             ], 500);
         }
     }
-    
+
     /**
      * Upload thumbnail for bio link block
      */
     public function uploadThumbnail(Request $request, BioPage $bioPage)
     {
         $this->authorize('update', $bioPage);
-
         $request->validate([
             'thumbnail' => 'required|image|max:1024', // 1MB max
         ]);
-
         try {
             $path = $request->file('thumbnail')->store('bio-thumbnails', 'public');
-            
+
             return response()->json([
                 'success' => true,
-                'thumbnail_url' => '/storage/' . $path,
+                'thumbnail_url' => '/storage/'.$path,
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to upload thumbnail: ' . $e->getMessage(),
+                'message' => 'Failed to upload thumbnail: '.$e->getMessage(),
             ], 500);
         }
     }
-    
+
     /**
      * Upload custom icon for bio link block
      */
     public function uploadIcon(Request $request, BioPage $bioPage)
     {
         $this->authorize('update', $bioPage);
-
         $request->validate([
             'icon' => 'required|image|max:1024', // 1MB max
         ]);
-
         try {
             $path = $request->file('icon')->store('bio-icons', 'public');
-            
+
             return response()->json([
                 'success' => true,
-                'icon_url' => '/storage/' . $path,
+                'icon_url' => '/storage/'.$path,
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to upload icon: ' . $e->getMessage(),
+                'message' => 'Failed to upload icon: '.$e->getMessage(),
             ], 500);
         }
     }
-    
+
     /**
      * Upload QR code logo
      */
     public function uploadQrLogo(Request $request, BioPage $bioPage)
     {
         $this->authorize('update', $bioPage);
-
         $request->validate([
             'logo' => 'required|image|max:1024', // 1MB max
         ]);
-
         try {
             // Delete old logo if exists
             if ($bioPage->qr_settings && isset($bioPage->qr_settings['logo_url'])) {
                 $oldPath = str_replace('/storage/', '', $bioPage->qr_settings['logo_url']);
                 Storage::disk('public')->delete($oldPath);
             }
-            
             $path = $request->file('logo')->store('qr-logos', 'public');
-            
             // Update qr_settings with new logo URL
             $qrSettings = $bioPage->qr_settings ?? [];
-            $qrSettings['logo_url'] = '/storage/' . $path;
+            $qrSettings['logo_url'] = '/storage/'.$path;
             $bioPage->update(['qr_settings' => $qrSettings]);
-            
+
             return response()->json([
                 'success' => true,
-                'logo_url' => '/storage/' . $path,
+                'logo_url' => '/storage/'.$path,
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to upload QR logo: ' . $e->getMessage(),
+                'message' => 'Failed to upload QR logo: '.$e->getMessage(),
             ], 500);
         }
     }
-    
+
     /**
      * Preview bio page (for iframe in editor)
      */
     public function preview(BioPage $bioPage)
     {
         $this->authorize('view', $bioPage);
-        
-        $bioPage->load(['links' => function($query) {
+        $bioPage->load(['links' => function ($query) {
             $query->orderBy('order');
         }]);
-        
+
         return view('bio.editor.preview', compact('bioPage'));
     }
 }

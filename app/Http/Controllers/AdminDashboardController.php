@@ -20,7 +20,6 @@ class AdminDashboardController extends Controller
             'clicks' => LinkClick::count(),
             'today_clicks' => LinkClick::whereDate('clicked_at', today())->count(),
         ];
-
         $recentUsers = User::latest()->limit(5)->get();
         $recentLinks = Link::with('user')->latest()->limit(5)->get();
         $openReports = AbuseReport::orderByDesc('created_at')->limit(5)->get();
@@ -28,13 +27,11 @@ class AdminDashboardController extends Controller
         $inactiveLinks = Link::where('status', Link::STATUS_INACTIVE)->count();
         $ipBanCount = IpBan::count();
         $queueHeartbeat = Cache::get('queue:heartbeat');
-
         $activityTrend = LinkClick::selectRaw('DATE(clicked_at) as day, COUNT(*) as total')
             ->where('clicked_at', '>=', now()->subDays(10))
             ->groupBy('day')
             ->orderBy('day')
             ->pluck('total', 'day');
-
         $topCountries = LinkClick::select('country', DB::raw('COUNT(*) as total'))
             ->whereNotNull('country')
             ->groupBy('country')

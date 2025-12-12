@@ -1,4 +1,5 @@
 <?php
+
 return [
     'dsn' => env('SENTRY_LARAVEL_DSN', env('SENTRY_DSN')),
     'release' => env('SENTRY_RELEASE'),
@@ -41,5 +42,4 @@ return [
         'continue_after_response' => env('SENTRY_TRACE_CONTINUE_AFTER_RESPONSE', true),
         'default_integrations' => env('SENTRY_TRACE_DEFAULT_INTEGRATIONS_ENABLED', true),
     ],
-
 ];

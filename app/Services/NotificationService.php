@@ -3,8 +3,8 @@
 namespace App\Services;
 
 use App\Mail\AdminNotification;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class NotificationService
 {
@@ -23,7 +23,7 @@ class NotificationService
         } catch (\Exception $e) {
             Log::error('Failed to send abuse report notification', [
                 'error' => $e->getMessage(),
-                'data' => $data
+                'data' => $data,
             ]);
         }
     }
@@ -43,7 +43,7 @@ class NotificationService
         } catch (\Exception $e) {
             Log::error('Failed to send new user notification', [
                 'error' => $e->getMessage(),
-                'data' => $data
+                'data' => $data,
             ]);
         }
     }
@@ -63,7 +63,7 @@ class NotificationService
         } catch (\Exception $e) {
             Log::error('Failed to send security alert', [
                 'error' => $e->getMessage(),
-                'data' => $data
+                'data' => $data,
             ]);
         }
     }
@@ -83,7 +83,7 @@ class NotificationService
         } catch (\Exception $e) {
             Log::error('Failed to send suspicious activity notification', [
                 'error' => $e->getMessage(),
-                'data' => $data
+                'data' => $data,
             ]);
         }
     }
@@ -103,7 +103,7 @@ class NotificationService
         } catch (\Exception $e) {
             Log::error('Failed to send feedback notification', [
                 'error' => $e->getMessage(),
-                'data' => $data
+                'data' => $data,
             ]);
         }
     }
@@ -123,7 +123,7 @@ class NotificationService
         } catch (\Exception $e) {
             Log::error('Failed to send support request notification', [
                 'error' => $e->getMessage(),
-                'data' => $data
+                'data' => $data,
             ]);
         }
     }
@@ -143,7 +143,7 @@ class NotificationService
         } catch (\Exception $e) {
             Log::error('Failed to send contact form notification', [
                 'error' => $e->getMessage(),
-                'data' => $data
+                'data' => $data,
             ]);
         }
     }
@@ -163,7 +163,7 @@ class NotificationService
         } catch (\Exception $e) {
             Log::error('Failed to send system error notification', [
                 'error' => $e->getMessage(),
-                'data' => $data
+                'data' => $data,
             ]);
         }
     }
@@ -186,17 +186,16 @@ class NotificationService
                 'user_agent' => request()->userAgent(),
                 'timestamp' => now()->toDateTimeString(),
             ];
-
             Mail::to(config('mail.addresses.admin'))
                 ->send(new AdminNotification(
                     'critical_exception',
-                    '🚨 Critical Exception: ' . class_basename($exception),
+                    '🚨 Critical Exception: '.class_basename($exception),
                     $data
                 ));
         } catch (\Exception $e) {
             Log::error('Failed to send critical exception notification', [
                 'error' => $e->getMessage(),
-                'original_exception' => $exception->getMessage()
+                'original_exception' => $exception->getMessage(),
             ]);
         }
     }
@@ -216,7 +215,7 @@ class NotificationService
         } catch (\Exception $e) {
             Log::error('Failed to send feature request notification', [
                 'error' => $e->getMessage(),
-                'data' => $data
+                'data' => $data,
             ]);
         }
     }

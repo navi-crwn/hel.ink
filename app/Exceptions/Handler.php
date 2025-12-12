@@ -2,11 +2,11 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Throwable;
-use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use App\Services\NotificationService;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -56,7 +56,7 @@ class Handler extends ExceptionHandler
                 } catch (\Exception $notificationException) {
                     // Log the notification failure but don't throw
                     \Log::error('Failed to send exception notification', [
-                        'error' => $notificationException->getMessage()
+                        'error' => $notificationException->getMessage(),
                     ]);
                 }
             }
@@ -69,10 +69,9 @@ class Handler extends ExceptionHandler
     protected function shouldNotifyAdmin(Throwable $e): bool
     {
         // Only notify in production or staging environments
-        if (!in_array(config('app.env'), ['production', 'staging'])) {
+        if (! in_array(config('app.env'), ['production', 'staging'])) {
             return false;
         }
-
         // Don't notify for common HTTP exceptions
         if ($e instanceof HttpException) {
             $statusCode = $e->getStatusCode();
@@ -81,7 +80,6 @@ class Handler extends ExceptionHandler
                 return false;
             }
         }
-
         // Don't notify for rate limiting
         if ($e instanceof ThrottleRequestsException) {
             return false;
@@ -96,6 +94,7 @@ class Handler extends ExceptionHandler
         if ($exception instanceof ThrottleRequestsException) {
             return response()->view('errors.429', [], 429);
         }
+
         return parent::render($request, $exception);
     }
 }

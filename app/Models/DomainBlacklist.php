@@ -7,28 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 class DomainBlacklist extends Model
 {
     protected $table = 'domain_blacklist';
-    
+
     protected $fillable = [
         'domain',
         'match_type',
         'category',
         'notes',
     ];
-    
+
     public static function isBlocked(string $url): ?array
     {
         $host = parse_url($url, PHP_URL_HOST);
-        if (!$host) {
+        if (! $host) {
             return null;
         }
-        
         $host = strtolower($host);
         $host = preg_replace('/^www\./', '', $host);
-        
         $exactMatch = static::where('match_type', 'exact')
             ->where('domain', $host)
             ->first();
-        
         if ($exactMatch) {
             return [
                 'blocked' => true,
@@ -37,13 +34,10 @@ class DomainBlacklist extends Model
                 'match_type' => 'exact',
             ];
         }
-        
         $wildcards = static::where('match_type', 'wildcard')->get();
-        
         foreach ($wildcards as $wildcard) {
             $pattern = str_replace(['.', '*'], ['\.', '.*'], $wildcard->domain);
-            $pattern = '/^' . $pattern . '$/i';
-            
+            $pattern = '/^'.$pattern.'$/i';
             if (preg_match($pattern, $host)) {
                 return [
                     'blocked' => true,
@@ -53,7 +47,7 @@ class DomainBlacklist extends Model
                 ];
             }
         }
-        
+
         return null;
     }
 }

@@ -2,7 +2,6 @@
     <x-slot name="header">
         <h2 class="text-2xl font-semibold leading-tight text-gray-800 dark:text-gray-100">Edit Link</h2>
     </x-slot>
-
     <div class="py-12">
         <div class="mx-auto max-w-3xl sm:px-6 lg:px-8">
             <div class="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
@@ -33,9 +32,7 @@
                             <option value="inactive" @selected($link->status === 'inactive')>Inactive</option>
                         </select>
                     </div>
-                    
                     <div class="grid gap-4 md:grid-cols-3">
-                        
                         <div class="relative" x-data='{"isOpen": false, "search": "", "selectedId": "{{ old('folder_id', $link->folder_id) }}", "folders": @json($folders)}' @click.away="isOpen = false; search = ''">
                             <label class="block text-sm text-gray-600 dark:text-gray-300 mb-1">Folder</label>
                             <button type="button" @click="isOpen = !isOpen" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-left flex items-center justify-between text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
@@ -61,7 +58,6 @@
                                 </div>
                             </div>
                         </div>
-                        
                         <div class="relative" x-data='{"isOpen": false, "selectedValue": "{{ old('redirect_type', $link->redirect_type) }}", "options": { "302": "302 (Temp)", "301": "301 (Perm)", "307": "307" } }' @click.away="isOpen = false">
                             <label class="block text-sm text-gray-600 dark:text-gray-300 mb-1">Redirect</label>
                             <button type="button" @click="isOpen = !isOpen" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-left flex items-center justify-between text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-white">
@@ -81,7 +77,6 @@
                                 </div>
                             </div>
                         </div>
-                        
                         <div class="relative" x-data='{"isOpen": false, "search": "", "selectedTags": @json(old('tags', $link->tags->pluck('id')->all())), "tags": @json($tags)}' @click.away="isOpen = false; search = ''">
                             <label class="block text-sm text-gray-600 dark:text-gray-300 mb-1">Tags</label>
                             <button type="button" @click="isOpen = !isOpen" class="w-full rounded-xl border border-gray-200 px-4 py-3 text-left flex items-center justify-between text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-white">

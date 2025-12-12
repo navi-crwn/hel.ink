@@ -11,7 +11,6 @@
         outline: none;
     }
 </style>
-
 <div class="space-y-6 transition-all duration-200">
     <!-- Profile & QR Section - Compact -->
     <div class="rounded-lg bg-white p-5 shadow-sm transition-all duration-200 hover:shadow-md dark:bg-slate-800 border-l-4 border-blue-600 dark:border-blue-400" x-data="{ editingQR: false, ...qrGenerator() }">
@@ -25,7 +24,6 @@
                 <span x-text="editingQR ? 'Close' : 'Edit QR'"></span>
             </button>
         </div>
-
         <div class="grid gap-5 md:grid-cols-2">
             <!-- Left: Profile Info -->
             <div class="space-y-4">
@@ -60,7 +58,6 @@
                               class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-900 dark:text-white"></textarea>
                 </div>
             </div>
-
             <!-- Right: QR Code -->
             <div class="flex flex-col items-center">
                 <!-- QR Preview (Hidden until Edit QR clicked) -->
@@ -70,7 +67,6 @@
                             x-ref="qrContainer" 
                             class="w-full h-full flex items-center justify-center overflow-hidden rounded-lg bg-white"
                         ></div>
-                        
                         <!-- Loading spinner -->
                         <template x-if="generating">
                             <div class="absolute inset-0 flex items-center justify-center rounded-lg bg-slate-900/50">
@@ -82,7 +78,6 @@
                         </template>
                     </div>
                 </div>
-
                 <!-- QR Customization (Collapsible) -->
                 <div x-show="editingQR" x-collapse class="mt-4 w-full space-y-3">
                     <!-- Logo Upload -->
@@ -103,7 +98,6 @@
                             >Remove</button>
                         </div>
                     </div>
-                    
                     <!-- Colors -->
                     <div x-data="{ openColors: false }" class="border border-slate-200 rounded-lg dark:border-slate-700">
                         <button 
@@ -116,7 +110,6 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </button>
-                        
                         <div x-show="openColors" x-collapse class="px-3 pb-3 space-y-3">
                             <!-- Dots Color -->
                             <div>
@@ -137,7 +130,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
                             <!-- Background Color -->
                             <div>
                                 <label class="mb-2 block text-xs font-medium text-slate-600 dark:text-slate-400">Background</label>
@@ -151,7 +143,6 @@
                             </div>
                         </div>
                     </div>
-                    
                     <!-- Save & Download QR -->
                     <div class="flex gap-2" x-data="{ saved: false }">
                         <button type="button" 
@@ -172,7 +163,6 @@
             </div>
         </div>
     </div>
-
     <!-- Blocks Section - Compact -->
     <div class="rounded-lg bg-white p-5 shadow-sm transition-all duration-200 hover:shadow-md dark:bg-slate-800 border-l-4 border-purple-600 dark:border-purple-400">
         <div class="mb-4 flex items-center justify-between">
@@ -203,7 +193,6 @@
                 </div>
             </div>
         </div>
-
         <div id="sortable-blocks" class="space-y-2" style="isolation: isolate;">
             <template x-for="(block, index) in blocks" :key="block.id">
                 <div class="block-sortable-item group rounded-lg border border-slate-200 bg-slate-50 px-2 py-2 transition-all hover:border-blue-300 hover:shadow-md dark:border-slate-700 dark:bg-slate-900" :data-block-id="block.id" style="position: relative; z-index: 1;" x-data="{ isMinimized: (block.type === 'link' || block.type === 'image') ? (block.id < 1000000000) : (block.content && block.id < 1000000000) }">
@@ -234,7 +223,6 @@
                                             </div>
                                         </div>
                                     </template>
-
                                     <!-- Expanded View (editing) -->
                                     <template x-if="!minimized">
                                         <div class="space-y-4">
@@ -253,7 +241,6 @@
                                                 </button>
                                                 <input type="text" x-model="block.title" @input.debounce.500ms="emitSavePreview()" placeholder="Link Title" class="flex-1 rounded-lg border border-slate-300 px-4 py-3 text-base transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:focus:border-blue-500 dark:focus:ring-blue-900/50">
                                             </div>
-
                                             <!-- Mode Toggle -->
                                             <div class="flex items-center gap-4">
                                                 <button type="button" @click="mode='new'" :class="mode==='new' ? 'bg-blue-600 text-white' : 'bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-300'" class="h-8 w-8 rounded-full text-sm font-semibold transition-all">A</button>
@@ -261,7 +248,6 @@
                                                 <button type="button" @click="mode='library'" :class="mode==='library' ? 'bg-blue-600 text-white' : 'bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-300'" class="h-8 w-8 rounded-full text-sm font-semibold transition-all">B</button>
                                                 <span class="text-sm">Library</span>
                                             </div>
-
                                             <!-- Mode: Create New -->
                                             <div x-show="mode==='new'" x-collapse class="space-y-3">
                                                 <input type="url" x-model="urlInput" @blur="normalizeUrl()" @input.debounce.600ms="emitSavePreview()" placeholder="ex. https://longurl.com" class="w-full rounded-lg border border-slate-300 px-4 py-3 text-base transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:focus:border-blue-500 dark:focus:ring-blue-900/50">
@@ -282,7 +268,6 @@
                                                     </button>
                                                 </div>
                                             </div>
-
                                             <!-- Mode: Library -->
                                             <div x-show="mode==='library'" x-collapse class="space-y-3">
                                                 <div class="relative">
@@ -310,7 +295,6 @@
                                             </div>
                                         </div>
                                     </template>
-
                                     <!-- Icon Upload Overlay -->
                                     <div x-show="overlayOpen" x-cloak class="fixed inset-0 z-[60] flex items-center justify-center bg-black/40" @click.self="overlayOpen = false">
                                         <div class="w-full max-w-md rounded-xl bg-white p-6 shadow-2xl dark:bg-slate-800" @click.stop>
@@ -351,7 +335,6 @@
                                     </div>
                                 </div>
                             </template>
-                            
                             <!-- Image Block - File & URL Support -->
                             <template x-if="block.type === 'image'">
                                 <div x-data="imageBlock(block)" x-init="init()" @toggle-block-minimize.window="if($event.detail.blockId === block.id) minimized = !minimized">
@@ -367,13 +350,11 @@
                                             </div>
                                         </div>
                                     </template>
-                                    
                                     <!-- Expanded View -->
                                     <template x-if="!minimized || !previewUrl">
                                         <div class="space-y-3">
                                             <!-- Title Input -->
                                             <input type="text" x-model="block.title" @input.debounce.500ms="emitSave()" placeholder="Image Title (optional)" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:border-slate-700 dark:bg-slate-800 dark:text-white">
-                                    
                                             <!-- Upload Type Toggle -->
                                             <div class="flex gap-1 rounded-lg bg-slate-100 p-0.5 dark:bg-slate-800">
                                                 <button type="button" @click="uploadMode = 'file'" :class="uploadMode === 'file' ? 'bg-white shadow text-slate-800 dark:bg-slate-700 dark:text-white' : 'text-slate-500'" class="flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-all">
@@ -385,7 +366,6 @@
                                             URL
                                         </button>
                                     </div>
-
                                     <!-- File Upload Mode -->
                                     <div x-show="uploadMode === 'file'" x-collapse>
                                         <div class="relative">
@@ -406,7 +386,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <!-- URL Input Mode -->
                                     <div x-show="uploadMode === 'url'" x-collapse class="space-y-3">
                                         <div class="flex gap-2">
@@ -416,7 +395,6 @@
                                             </button>
                                         </div>
                                     </div>
-
                                     <!-- Image Preview -->
                                     <template x-if="previewUrl">
                                         <div class="relative rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
@@ -431,7 +409,6 @@
                                             </div>
                                         </div>
                                     </template>
-
                                     <!-- Save Button -->
                                     <div class="flex justify-end mt-3">
                                         <button type="button" @click="saveImage()" :disabled="saving || !previewUrl" class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:bg-slate-400 disabled:cursor-not-allowed transition-all">
@@ -449,7 +426,6 @@
                                     </template>
                                 </div>
                             </template>
-                            
                             <!-- Text Block - Advanced Rich Text Editor -->
                             <template x-if="block.type === 'text'">
                                 <div x-data="textEditor(block)" x-init="init()" @toggle-block-minimize.window="if($event.detail.blockId === block.id) { if(minimized) expand(); else minimize(); }">
@@ -467,7 +443,6 @@
                                             </div>
                                         </div>
                                     </template>
-                                    
                                     <!-- Expanded View -->
                                     <template x-if="!minimized">
                                         <div class="space-y-3">
@@ -562,7 +537,6 @@
                 </div>
             </template>
         </div>
-
         <div x-show="blocks.length === 0" class="py-16 text-center text-slate-500 dark:text-slate-400">
             <svg class="mx-auto h-16 w-16 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
@@ -571,35 +545,25 @@
         </div>
     </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 <script>
     // Global sortable instance
     let blocksSortable = null;
-    
     // Initialize Sortable - matching social tab pattern
     function initBlocksSortable() {
         const container = document.getElementById('sortable-blocks');
         if (!container) {
-            console.log('sortable-blocks element not found');
             return;
         }
-        
         // Don't reinitialize if already exists and working
         if (blocksSortable) {
-            console.log('Sortable already initialized');
             return;
         }
-        
         // Check if there are child elements to sort (direct div children, not template)
         const children = container.querySelectorAll(':scope > div.block-sortable-item');
         if (children.length === 0) {
-            console.log('No blocks to sort yet, waiting...');
             return;
         }
-        
-        console.log('Initializing Sortable with', children.length, 'blocks');
-        
         blocksSortable = Sortable.create(container, {
             animation: 120,
             easing: 'ease-out',
@@ -615,63 +579,48 @@
             },
             onEnd: function(evt) {
                 document.body.classList.remove('sorting-active');
-                
                 if (evt.oldIndex === evt.newIndex) {
                     isSorting = false;
                     return;
                 }
-                
                 const bioEditor = getBioEditor();
                 if (!bioEditor || !bioEditor.blocks) {
                     console.error('bioEditor not found');
                     return;
                 }
-                
                 // Create new array with updated order
                 const newBlocks = [...bioEditor.blocks];
                 const [movedBlock] = newBlocks.splice(evt.oldIndex, 1);
                 newBlocks.splice(evt.newIndex, 0, movedBlock);
-                
                 // Update order property for all blocks
                 newBlocks.forEach((block, idx) => {
                     block.order = idx;
                 });
-                
                 // Replace entire array to trigger Alpine reactivity
                 bioEditor.blocks = newBlocks;
-                
                 // Dispatch event for live preview update
                 window.dispatchEvent(new CustomEvent('blocks-reordered', { 
                     detail: { blocks: newBlocks } 
                 }));
-                
                 // Save to server
                 bioEditor.saveBlocksOrder();
-                
-                console.log('Reordered:', evt.oldIndex, '->', evt.newIndex);
-                
                 // Reset sorting flag after a short delay
                 setTimeout(() => { isSorting = false; }, 100);
             }
         });
     }
-    
     // Flag to prevent reinit during sorting
     let isSorting = false;
-    
     // Use MutationObserver to detect when blocks are rendered
     document.addEventListener('DOMContentLoaded', () => {
         const el = document.getElementById('sortable-blocks');
         if (!el) return;
-        
         // Initial attempt with longer delay for Alpine to render
         setTimeout(initBlocksSortable, 500);
-        
         // Watch for changes - but only init if not already initialized
         const observer = new MutationObserver((mutations) => {
             // Don't reinit during sorting or if already initialized
             if (isSorting || blocksSortable) return;
-            
             // Debounce reinit
             clearTimeout(window.sortableReinitTimeout);
             window.sortableReinitTimeout = setTimeout(() => {
@@ -680,17 +629,14 @@
                 }
             }, 300);
         });
-        
         observer.observe(el, { childList: true, subtree: false });
     });
-    
     // Also init on Alpine ready
     document.addEventListener('alpine:initialized', () => {
         if (!blocksSortable) {
             setTimeout(initBlocksSortable, 600);
         }
     });
-    
     // Expose for debugging
     window.initBlocksSortable = initBlocksSortable;
 </script>
@@ -725,7 +671,6 @@
         const editorEl = document.querySelector('[x-data*="bioEditor"]');
         return editorEl ? Alpine.$data(editorEl) : null;
     }
-
     function linkBlock(block) {
         return {
             mode: block.mode || 'new',
@@ -769,20 +714,16 @@
                 try {
                     // Normalize URL first
                     this.normalizeUrl();
-                    
                     // Apply icon if set
                     if (this.iconUrl) {
                         block.thumbnail_url = this.iconUrl;
                     }
-                    
                     // Check if URL is external (not hel.ink) and needs shortlink
                     const url = this.urlInput.toLowerCase();
                     const isHelinkUrl = url.includes('hel.ink') || url.includes('localhost');
-                    
                     if (!isHelinkUrl && !block.link_id) {
                         // Create shortlink for external URL
                         try {
-                            console.log('Creating shortlink for:', this.urlInput);
                             const shortenRes = await fetch('/bio/shorten', {
                                 method: 'POST',
                                 headers: {
@@ -797,7 +738,6 @@
                                     title: block.title
                                 })
                             });
-                            
                             if (shortenRes.ok) {
                                 const shortenData = await shortenRes.json();
                                 block.link_id = shortenData.id;
@@ -805,8 +745,6 @@
                                 block.original_url = this.urlInput;
                                 block.url = shortenData.short_url;
                                 this.urlInput = shortenData.short_url;
-                                console.log('Created shortlink:', shortenData.short_url);
-                                
                                 // Show notification
                                 const bioEditor = getBioEditor();
                                 if (bioEditor) {
@@ -821,7 +759,6 @@
                             // Continue saving even without shortlink
                         }
                     }
-                    
                     // Save the block directly
                     const bioEditor = getBioEditor();
                     if (bioEditor) {
@@ -832,7 +769,6 @@
                         }
                         bioEditor.showNotification('Link saved successfully!', 'success');
                     }
-                    
                     // Minimize after save
                     setTimeout(() => {
                         this.minimized = true;
@@ -865,16 +801,13 @@
                         },
                         credentials: 'same-origin'
                     });
-                    
                     if (!res.ok) {
                         console.warn('Library search failed:', res.status);
                         this.results = [];
                         return;
                     }
-                    
                     const data = await res.json();
                     this.results = Array.isArray(data) ? data : (data.data || data.items || []);
-                    console.log('Library results:', this.results.length);
                 } catch(e) {
                     console.error('Search error:', e);
                     this.results = [];
@@ -933,7 +866,6 @@
             }
         }
     }
-
     // Text Editor with Partial Formatting & Keyboard Shortcuts
     function textEditor(block) {
         return {
@@ -1000,7 +932,6 @@
                     if (!block.title) {
                         block.title = 'Text Block';
                     }
-                    
                     // Save the block directly
                     const bioEditor = getBioEditor();
                     if (bioEditor) {
@@ -1092,7 +1023,6 @@
             }
         }
     }
-
     // Image Block with File & URL Support
     function imageBlock(block) {
         return {
@@ -1126,7 +1056,6 @@
                     if (!block.title) {
                         block.title = 'Image Block';
                     }
-                    
                     // Save the block directly
                     const bioEditor = getBioEditor();
                     if (bioEditor) {

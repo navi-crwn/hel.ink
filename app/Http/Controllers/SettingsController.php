@@ -28,7 +28,6 @@ class SettingsController extends Controller
         if ($request->filled('activity_to')) {
             $activityQuery->whereDate('created_at', '<=', $request->activity_to);
         }
-
         $activityLogs = $activityQuery->limit(50)->get();
         $folders = $user->folders()->orderBy('name')->get();
         $tags = $user->tags()->orderBy('name')->get();
@@ -45,9 +44,7 @@ class SettingsController extends Controller
     public function exportData(Request $request)
     {
         $user = $request->user();
-        
         $query = $user->links()->with(['folder', 'tags'])->withCount('clicks');
-        
         if ($request->filled('date_from')) {
             $query->whereDate('created_at', '>=', $request->date_from);
         }
@@ -62,14 +59,13 @@ class SettingsController extends Controller
             }
         }
         if ($request->filled('tag_id')) {
-            $query->whereHas('tags', function($q) use ($request) {
+            $query->whereHas('tags', function ($q) use ($request) {
                 $q->where('tags.id', $request->tag_id);
             });
         }
         if ($request->filled('min_clicks')) {
             $query->having('clicks_count', '>=', $request->min_clicks);
         }
-        
         $sortBy = $request->input('sort_by', 'created_at');
         if ($sortBy === 'most_clicked') {
             $query->orderByDesc('clicks_count');
@@ -82,17 +78,13 @@ class SettingsController extends Controller
         } else {
             $query->orderByDesc('created_at');
         }
-        
         $links = $query->get();
-        
-        $filename = 'helink-export-' . now()->format('Y-m-d-His') . '.csv';
-        
+        $filename = 'helink-export-'.now()->format('Y-m-d-His').'.csv';
         $headers = [
             'Content-Type' => 'text/csv',
             'Content-Disposition' => "attachment; filename=\"$filename\"",
         ];
-        
-        $callback = function() use ($links) {
+        $callback = function () use ($links) {
             $file = fopen('php://output', 'w');
             fputcsv($file, [
                 'Short Link',
@@ -106,18 +98,15 @@ class SettingsController extends Controller
                 'Unique Visitors',
                 'Created At',
                 'Expires At',
-                'Last Clicked'
+                'Last Clicked',
             ]);
-            
             foreach ($links as $link) {
                 $uniqueVisitors = $link->clicks()
                     ->distinct('ip_address')
                     ->count('ip_address');
-                
                 $lastClicked = $link->clicks()
                     ->latest('clicked_at')
                     ->first();
-                
                 fputcsv($file, [
                     $link->short_url,
                     $link->target_url,
@@ -130,13 +119,12 @@ class SettingsController extends Controller
                     $uniqueVisitors,
                     $link->created_at->format('Y-m-d H:i:s'),
                     $link->expires_at ? $link->expires_at->format('Y-m-d H:i:s') : 'Never',
-                    $lastClicked ? $lastClicked->clicked_at->format('Y-m-d H:i:s') : 'Never'
+                    $lastClicked ? $lastClicked->clicked_at->format('Y-m-d H:i:s') : 'Never',
                 ]);
             }
-            
             fclose($file);
         };
-        
+
         return response()->stream($callback, 200, $headers);
     }
 
@@ -145,4 +133,3 @@ class SettingsController extends Controller
         return $this->exportData($request);
     }
 }
-

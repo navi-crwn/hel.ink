@@ -11,10 +11,8 @@ class ContentSecurityPolicyMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         $response = $next($request);
-
         // Allow framing for preview routes (both admin and regular bio preview)
         $isPreviewRoute = $request->routeIs('admin.bio.preview') || $request->routeIs('bio.preview');
-        
         $csp = [
             "default-src 'self'",
             "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com https://fonts.bunny.net https://fonts.googleapis.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://cdn.tailwindcss.com https://static.cloudflareinsights.com https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net",
@@ -27,9 +25,8 @@ class ContentSecurityPolicyMiddleware
             "base-uri 'self'",
             "form-action 'self'",
             $isPreviewRoute ? "frame-ancestors 'self'" : "frame-ancestors 'none'",
-            "upgrade-insecure-requests",
+            'upgrade-insecure-requests',
         ];
-
         $response->headers->set('Content-Security-Policy', implode('; ', $csp));
         $response->headers->set('X-Content-Type-Options', 'nosniff');
         $response->headers->set('X-Frame-Options', $isPreviewRoute ? 'SAMEORIGIN' : 'DENY');

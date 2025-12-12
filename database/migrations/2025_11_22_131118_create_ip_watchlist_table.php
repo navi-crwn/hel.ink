@@ -20,7 +20,6 @@ return new class extends Migration
             $table->integer('attempt_count')->default(1);
             $table->timestamp('last_attempt_at')->nullable();
             $table->timestamps();
-            
             $table->index('ip_address');
         });
     }

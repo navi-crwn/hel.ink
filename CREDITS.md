@@ -74,6 +74,31 @@ This document lists all open-source libraries, services, and tools that power **
   - Source: `https://unpkg.com/leaflet`
 - **Heroicons** - Beautiful hand-crafted SVG icons (MIT)
   - Source: Inline SVG in templates
+- **Simple Icons** - 150+ brand icons for Link in Bio (CC0 1.0)
+  - Source: `https://simpleicons.org`
+  - Usage: Social media and brand icons in bio pages
+  - Location: `public/images/brands/`
+
+---
+
+## Inspiration & Design References
+
+The Link in Bio feature was inspired by these amazing open-source projects:
+
+- **LinkStack** - Self-hosted link management platform (AGPL-3.0)
+  - Repository: `https://github.com/LinkStackOrg/LinkStack`
+  - Inspiration: Theme system, block-based layout, social icons placement
+  - Note: No code copied; design patterns used as reference
+
+- **LittleLink** - DIY self-hosted link page (MIT)
+  - Repository: `https://github.com/sethcottle/littlelink`
+  - Inspiration: Minimalist button styling, brand icon approach
+  - Note: No code copied; aesthetic principles referenced
+
+- **Linktree** - Commercial link-in-bio service
+  - Website: `https://linktr.ee`
+  - Inspiration: General UX patterns for bio pages
+  - Note: No assets or code used; concept reference only
 
 ### Fonts
 - **Inter** - Variable font family (SIL Open Font License 1.1)
@@ -167,6 +192,7 @@ This document lists all open-source libraries, services, and tools that power **
 | License | Count | Libraries |
 |---------|-------|-----------|
 | **MIT** | 30+ | Laravel, Alpine.js, Chart.js, Tailwind CSS, Vite, Axios, Pest, etc. |
+| **CC0 1.0** | 1 | Simple Icons (brand icons) |
 | **BSD-2-Clause** | 1 | Leaflet.js |
 | **BSD-3-Clause** | 3 | Redis, Sentry, Mockery |
 | **Apache-2.0** | 1 | GeoIP2 (legacy, not actively used) |
@@ -183,6 +209,9 @@ This document lists all open-source libraries, services, and tools that power **
 - **Taylor Otwell** - For creating Laravel
 - **Caleb Porzio** - For Alpine.js
 - **Adam Wathan** - For Tailwind CSS
+- **Simple Icons Contributors** - For 150+ brand icons
+- **LinkStack Team** - For open-source link management inspiration
+- **Seth Cottle** - For LittleLink and the self-hosted bio page movement
 - **Cloudflare** - For Turnstile CAPTCHA service
 - **All Open Source Contributors** - For making this project possible
 
@@ -196,6 +225,6 @@ If you notice any missing attributions or license issues, please contact us:
 
 ---
 
-**Last Updated**: December 1, 2025
+**Last Updated**: December 12, 2025
 
-**Total Dependencies**: 40+ core libraries and services powering hel.ink
+**Total Dependencies**: 45+ core libraries and services powering HEL.ink

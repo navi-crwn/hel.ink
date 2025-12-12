@@ -19,7 +19,7 @@ class CheckSuspended
             auth()->logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
-            
+
             return redirect()->route('suspended')
                 ->with('error', 'Your account has been suspended. Please contact administrator.');
         }

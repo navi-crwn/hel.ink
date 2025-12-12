@@ -2,10 +2,8 @@
     <x-slot name="pageTitle">Inspect User - {{ $user->name }}</x-slot>
         </x-page-header>
     </x-slot>
-
     <div class="py-4">
         <div class="mx-auto max-w-7xl space-y-4 px-4 md:px-6">
-            
             <div class="grid gap-6 lg:grid-cols-4">
                 <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                     <p class="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">Total Links</p>
@@ -24,7 +22,6 @@
                     <p class="mt-2 text-3xl font-bold text-emerald-600 dark:text-emerald-400">{{ $user->tags->count() }}</p>
                 </div>
             </div>
-
             <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <div class="flex items-center justify-between mb-6">
                     <div>
@@ -62,7 +59,6 @@
                         @endif
                     </div>
                 </div>
-                
                 <dl class="grid grid-cols-2 gap-4 text-sm">
                     <div>
                         <dt class="text-slate-500 dark:text-slate-400">Email</dt>
@@ -90,7 +86,6 @@
                     </div>
                 </dl>
             </div>
-
             <div class="rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <div class="border-b border-slate-200 px-6 py-4 dark:border-slate-800">
                     <h3 class="text-lg font-semibold text-slate-900 dark:text-white">User Links ({{ $user->links->count() }})</h3>
@@ -160,7 +155,6 @@
                     </table>
                 </div>
             </div>
-
             <div class="grid gap-6 lg:grid-cols-2">
                 <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                     <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">Folders ({{ $user->folders->count() }})</h3>
@@ -185,7 +179,6 @@
                         @endforelse
                     </div>
                 </div>
-
                 <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                     <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">Tags ({{ $user->tags->count() }})</h3>
                     <div class="flex flex-wrap gap-2">

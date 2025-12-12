@@ -16,15 +16,12 @@ class PasswordController extends Controller
     public function create(Request $request): RedirectResponse
     {
         $user = $request->user();
-        
-        if (!$user->google_id || !empty($user->password)) {
+        if (! $user->google_id || ! empty($user->password)) {
             return back()->withErrors(['password' => 'Password creation is only for Google OAuth users without password.']);
         }
-
         $validated = $request->validateWithBag('updatePassword', [
             'password' => ['required', Password::defaults(), 'confirmed'],
         ]);
-
         $user->update([
             'password' => Hash::make($validated['password']),
         ]);
@@ -41,14 +38,12 @@ class PasswordController extends Controller
             'current_password' => ['required', 'current_password'],
             'password' => ['required', Password::defaults(), 'confirmed'],
         ]);
-
         // Check if new password is same as current password
         if (Hash::check($validated['password'], $request->user()->password)) {
             return back()->withErrors([
-                'password' => 'Your new password must be different from your current password. Please choose a new password.'
+                'password' => 'Your new password must be different from your current password. Please choose a new password.',
             ], 'updatePassword');
         }
-
         $request->user()->update([
             'password' => Hash::make($validated['password']),
         ]);

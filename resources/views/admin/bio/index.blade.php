@@ -1,6 +1,5 @@
 <x-app-layout>
     <x-slot name="pageTitle">Link in Bio Management - Admin</x-slot>
-
     <div class="py-6">
         <div class="mb-6 flex items-center justify-between">
             <div>
@@ -14,7 +13,6 @@
                 View Monitoring
             </a>
         </div>
-
         <div class="mb-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <div class="rounded-lg bg-white p-6 shadow dark:bg-slate-800">
                 <div class="flex items-center justify-between">
@@ -29,7 +27,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="rounded-lg bg-white p-6 shadow dark:bg-slate-800">
                 <div class="flex items-center justify-between">
                     <div>
@@ -43,7 +40,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="rounded-lg bg-white p-6 shadow dark:bg-slate-800">
                 <div class="flex items-center justify-between">
                     <div>
@@ -57,7 +53,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="rounded-lg bg-white p-6 shadow dark:bg-slate-800">
                 <div class="flex items-center justify-between">
                     <div>
@@ -73,22 +68,18 @@
                 </div>
             </div>
         </div>
-
         <div class="rounded-lg bg-white shadow dark:bg-slate-800">
             <div class="border-b border-slate-200 p-6 dark:border-slate-700">
                 <form method="GET" class="flex flex-col gap-4 sm:flex-row">
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Search by slug, title, user..." class="flex-1 rounded-lg border border-slate-300 px-4 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white">
-                    
                     <select name="status" class="rounded-lg border border-slate-300 px-4 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white">
                         <option value="">All Status</option>
                         <option value="published" {{ request('status') === 'published' ? 'selected' : '' }}>Published</option>
                         <option value="draft" {{ request('status') === 'draft' ? 'selected' : '' }}>Draft</option>
                     </select>
-                    
                     <button type="submit" class="rounded-lg bg-blue-600 px-6 py-2 text-sm font-medium text-white hover:bg-blue-700">
                         Filter
                     </button>
-                    
                     @if(request('search') || request('status'))
                         <a href="{{ route('admin.bio.index') }}" class="rounded-lg border border-slate-300 px-6 py-2 text-center text-sm font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700">
                             Clear
@@ -96,7 +87,6 @@
                     @endif
                 </form>
             </div>
-
             <div class="overflow-x-auto">
                 <table class="w-full">
                     <thead class="bg-slate-50 dark:bg-slate-900">
@@ -207,7 +197,6 @@
                     </tbody>
                 </table>
             </div>
-
             @if($bioPages->hasPages())
                 <div class="border-t border-slate-200 px-6 py-4 dark:border-slate-700">
                     {{ $bioPages->links() }}

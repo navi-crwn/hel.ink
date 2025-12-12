@@ -15,7 +15,6 @@
                     </svg>
                     <span class="text-sm font-medium" :class="bioPage.social_icons_position === 'below_bio' || !bioPage.social_icons_position ? 'text-blue-400' : 'editor-text-muted'">Below Bio</span>
                 </button>
-                
                 <button @click="bioPage.social_icons_position = 'bottom_page'" 
                         :class="bioPage.social_icons_position === 'bottom_page' ? 'border-blue-500 bg-blue-900/20' : '[border-color:var(--editor-border)]'"
                         class="flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all">
@@ -27,14 +26,12 @@
             </div>
         </div>
     </div>
-    
     <!-- Active Social Icons -->
     <div class="editor-card">
         <div class="editor-card-header">
             <h3 class="editor-card-title">Social Icons</h3>
             <span class="text-xs editor-text-muted" x-text="(bioPage.social_links || []).length + '/5'"></span>
         </div>
-        
         <div class="p-4">
             <!-- Social Links List -->
             <div id="socials-list" class="space-y-2 mb-4" x-show="bioPage.social_links && bioPage.social_links.length > 0">
@@ -46,12 +43,10 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/>
                             </svg>
                         </div>
-                        
                         <!-- Icon -->
                         <div class="block-icon" :style="{ backgroundColor: getPlatformColor(item.platform) }">
                             <img :src="getPlatformIcon(item.platform)" alt="" class="w-5 h-5" style="filter: brightness(0) invert(1);" onerror="this.style.display='none'">
                         </div>
-                        
                         <!-- Input -->
                         <div class="block-content">
                             <input type="text" 
@@ -64,7 +59,6 @@
                                    class="w-full bg-transparent border-none focus:outline-none text-sm text-white placeholder-slate-500">
                             <div class="text-xs editor-text-muted" x-text="platforms[item.platform]?.name || item.platform"></div>
                         </div>
-                        
                         <!-- Actions -->
                         <div class="block-actions">
                             <label class="toggle-switch">
@@ -80,7 +74,6 @@
                     </div>
                 </template>
             </div>
-            
             <!-- Empty State -->
             <div x-show="!bioPage.social_links || bioPage.social_links.length === 0" class="text-center py-8">
                 <svg class="w-12 h-12 mx-auto editor-text-muted mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -89,7 +82,6 @@
                 <p class="editor-text-muted mb-1">No social icons yet</p>
                 <p class="text-sm editor-text-muted">Add your social profiles</p>
             </div>
-            
             <!-- Add Social Button -->
             <button @click="showSocialPicker = true" 
                     :disabled="bioPage.social_links && bioPage.social_links.length >= 5"

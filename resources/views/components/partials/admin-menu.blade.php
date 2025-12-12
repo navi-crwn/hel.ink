@@ -1,5 +1,4 @@
 @props(['unreadReports' => 0])
-
 <ul class="space-y-1">
     <li>
         <a href="{{ route('dashboard') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('dashboard') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800' }}">
@@ -9,7 +8,6 @@
             <span>Dashboard</span>
         </a>
     </li>
-
     <li x-data="{ open: {{ request()->routeIs('analytics*') || request()->routeIs('admin.analytics*') ? 'true' : 'false' }} }">
         <button @click="open = !open" class="flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('analytics*') || request()->routeIs('admin.analytics*') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800' }}">
             <div class="flex items-center gap-3">
@@ -35,7 +33,6 @@
             </li>
         </ul>
     </li>
-
     <li x-data="{ open: {{ request()->routeIs('admin.links*') ? 'true' : 'false' }} }">
         <button @click="open = !open" class="flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('admin.links*') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800' }}">
             <div class="flex items-center gap-3">
@@ -61,7 +58,6 @@
             </li>
         </ul>
     </li>
-
     <li x-data="{ open: {{ request()->routeIs('admin.users*') || request()->routeIs('admin.ip-*') || request()->routeIs('admin.domain-*') ? 'true' : 'false' }} }">
         <button @click="open = !open" class="flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('admin.users*') || request()->routeIs('admin.ip-*') || request()->routeIs('admin.domain-*') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800' }}">
             <div class="flex items-center gap-3">
@@ -97,7 +93,6 @@
             </li>
         </ul>
     </li>
-
     <li>
         <a href="{{ route('admin.abuse.index') }}" class="flex items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('admin.abuse*') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800' }}">
             <div class="flex items-center gap-3">
@@ -113,7 +108,6 @@
             @endif
         </a>
     </li>
-
     <li x-data="{ open: {{ request()->routeIs('admin.bio*') ? 'true' : 'false' }} }">
         <button @click="open = !open" class="flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('admin.bio*') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800' }}">
             <div class="flex items-center gap-3">
@@ -137,7 +131,6 @@
             </li>
         </ul>
     </li>
-
     <li x-data="{ open: {{ request()->routeIs('admin.seo*') || request()->routeIs('admin.site*') ? 'true' : 'false' }} }">
         <button @click="open = !open" class="flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('admin.seo*') || request()->routeIs('admin.site*') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800' }}">
             <div class="flex items-center gap-3">
@@ -158,7 +151,6 @@
             </li>
         </ul>
     </li>
-
     <li>
         <a href="{{ route('settings') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('settings') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800' }}">
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

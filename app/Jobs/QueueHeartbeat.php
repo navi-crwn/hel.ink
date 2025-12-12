@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Cache;
 class QueueHeartbeat implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
     public function handle(): void
     {
         Cache::put('queue:heartbeat', now()->toDateTimeString(), now()->addMinutes(5));

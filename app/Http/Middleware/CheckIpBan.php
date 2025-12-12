@@ -12,11 +12,9 @@ class CheckIpBan
     public function handle(Request $request, Closure $next): Response
     {
         $ip = $request->ip();
-
         $ban = cache()->remember("ip-ban:{$ip}", 60, function () use ($ip) {
             return IpBan::where('ip_address', $ip)->first();
         });
-
         if ($ban) {
             if ($ban->isExpired()) {
                 $ban->delete();

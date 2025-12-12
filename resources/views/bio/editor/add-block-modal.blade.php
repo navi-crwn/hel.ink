@@ -1,5 +1,4 @@
 <!-- Add Block Modal Content -->
-
 <div class="space-y-4">
     <!-- Search Bar -->
     <div class="relative flex items-center">
@@ -11,7 +10,6 @@
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
     </div>
-    
     <!-- Basic Blocks -->
     <div>
         <h4 class="text-xs font-medium mb-2" style="color: var(--editor-text-muted);">Basic Blocks</h4>
@@ -24,7 +22,6 @@
                 </div>
                 <p class="text-xs font-medium" style="color: var(--editor-text);">Link</p>
             </button>
-            
             <button @click="addQuickBlock('text')" class="block-modal-btn p-2 rounded-lg hover:border-green-500 hover:bg-green-900/20 transition-all text-center group">
                 <div class="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center mx-auto mb-1">
                     <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -33,7 +30,6 @@
                 </div>
                 <p class="text-xs font-medium" style="color: var(--editor-text);">Text</p>
             </button>
-            
             <button @click="addQuickBlock('image')" class="block-modal-btn p-2 rounded-lg hover:border-rose-500 hover:bg-rose-900/20 transition-all text-center group">
                 <div class="w-10 h-10 bg-rose-500 rounded-lg flex items-center justify-center mx-auto mb-1">
                     <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -42,7 +38,6 @@
                 </div>
                 <p class="text-xs font-medium" style="color: var(--editor-text);">Image</p>
             </button>
-            
             <button @click="addDividerInstant(); showAddBlockModal = false" class="block-modal-btn p-2 rounded-lg hover:border-slate-500 transition-all text-center group">
                 <div class="w-10 h-10 bg-slate-600 rounded-lg flex items-center justify-center mx-auto mb-1">
                     <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -53,7 +48,6 @@
             </button>
         </div>
     </div>
-    
     <!-- Media & Interactive Blocks Combined -->
     <div>
         <h4 class="text-xs font-medium mb-2" style="color: var(--editor-text-muted);">Media & Interactive</h4>
@@ -66,7 +60,6 @@
                 </div>
                 <p class="text-[10px] font-medium" style="color: var(--editor-text);">YouTube</p>
             </button>
-            
             <button @click="addBlock('spotify')" class="block-modal-btn p-2 rounded-lg hover:border-green-500 hover:bg-green-500/20 transition-all text-center group">
                 <div class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center mx-auto mb-1">
                     <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -75,7 +68,6 @@
                 </div>
                 <p class="text-[10px] font-medium" style="color: var(--editor-text);">Spotify</p>
             </button>
-            
             <button @click="addBlock('soundcloud')" class="block-modal-btn p-2 rounded-lg hover:border-orange-500 hover:bg-orange-900/20 transition-all text-center group">
                 <div class="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center mx-auto mb-1">
                     <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
@@ -84,7 +76,6 @@
                 </div>
                 <p class="text-[10px] font-medium" style="color: var(--editor-text);">SoundCloud</p>
             </button>
-            
             <button @click="addBlock('countdown')" class="block-modal-btn p-2 rounded-lg hover:border-cyan-500 hover:bg-cyan-900/20 transition-all text-center group">
                 <div class="w-8 h-8 bg-cyan-500 rounded-lg flex items-center justify-center mx-auto mb-1">
                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,7 +84,6 @@
                 </div>
                 <p class="text-[10px] font-medium" style="color: var(--editor-text);">Countdown</p>
             </button>
-            
             <button @click="addBlock('map')" class="block-modal-btn p-2 rounded-lg hover:border-teal-500 hover:bg-teal-900/20 transition-all text-center group">
                 <div class="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center mx-auto mb-1">
                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -105,11 +95,9 @@
             </button>
         </div>
     </div>
-    
     <!-- Brand Link Templates -->
     <div>
         <h4 class="text-sm font-medium mb-3" style="color: var(--editor-text-muted);">Platform Links</h4>
-        
         <!-- Category Filter -->
         <div class="flex flex-wrap gap-2 mb-3">
             <button @click="blockCategoryFilter = 'all'" 
@@ -131,7 +119,6 @@
                 :class="blockCategoryFilter === 'messaging' ? 'bg-blue-600 text-white' : 'filter-inactive'"
                 class="px-3 py-1 rounded-full text-xs font-medium transition-all">Messaging</button>
         </div>
-        
         <div class="grid grid-cols-5 gap-2 max-h-64 overflow-y-auto pr-2">
             @foreach(config('brands.platforms', []) as $brandId => $brand)
             <button 
@@ -148,7 +135,6 @@
         </div>
     </div>
 </div>
-
 <style>
     .block-modal-btn {
         border: 1px solid var(--editor-border);

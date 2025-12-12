@@ -1,12 +1,8 @@
 import './bootstrap';
-
 import Alpine from 'alpinejs';
 import collapse from '@alpinejs/collapse';
-
 Alpine.plugin(collapse);
-
 window.Alpine = Alpine;
-
 // Use requestAnimationFrame to ensure inline scripts in blade templates have executed
 // This handles the race condition with module script execution
 requestAnimationFrame(() => {
@@ -14,18 +10,15 @@ requestAnimationFrame(() => {
         Alpine.start();
     });
 });
-
 const ensureTurnstileScript = () => {
     if (window.turnstileReady) {
         return window.turnstileReady;
     }
-
     window.turnstileReady = new Promise((resolve) => {
         if (window.turnstile) {
             resolve(window.turnstile);
             return;
         }
-
         let script = document.getElementById('turnstile-script');
         if (!script) {
             script = document.createElement('script');
@@ -40,34 +33,27 @@ const ensureTurnstileScript = () => {
             }, { once: true });
             document.head.appendChild(script);
         }
-
         script.addEventListener('load', () => {
             setTimeout(() => resolve(window.turnstile || null), 50);
         }, { once: true });
     });
-
     return window.turnstileReady;
 };
-
 window.turnstileForm = (siteKey, initiallyVisible = false) => {
-    console.log('Initializing turnstileForm with siteKey:', siteKey);
     return {
         siteKey,
         showCaptcha: initiallyVisible,
         token: '',
         widgetId: null,
         init() {
-            console.log('Turnstile initialized with siteKey:', this.siteKey);
             if (this.showCaptcha) {
                 this.renderCaptcha();
             }
         },
         handleSubmit(event) {
-            console.log('Form submitted with token:', this.token);
             if (!this.siteKey) {
                 return;
             }
-
             if (!this.token) {
                 event.preventDefault();
                 this.showCaptcha = true;
@@ -77,22 +63,18 @@ window.turnstileForm = (siteKey, initiallyVisible = false) => {
             }
         },
         renderCaptcha() {
-            console.log('Rendering Turnstile widget...');
             if (!this.showCaptcha || this.widgetId || !this.siteKey) {
                 return;
             }
-
             this.$nextTick(() => {
                 if (!this.$refs.captcha) {
                     console.error('Captcha element not found.');
                     return;
                 }
-
                 ensureTurnstileScript().then(() => {
                     this.widgetId = window.turnstile.render(this.$refs.captcha, {
                         sitekey: this.siteKey,
                         callback: (token) => {
-                            console.log('Turnstile token received:', token);
                             this.token = token;
                         },
                         'expired-callback': () => {
@@ -109,5 +91,3 @@ window.turnstileForm = (siteKey, initiallyVisible = false) => {
         },
     };
 };
-
-console.log('window.turnstileForm is now globally available:', typeof window.turnstileForm);

@@ -15,7 +15,6 @@
                 </div>
             </div>
         </div>
-
         <div class="rounded-lg bg-white p-6 shadow-sm dark:bg-slate-800">
             <div class="flex items-center justify-between">
                 <div>
@@ -29,7 +28,6 @@
                 </div>
             </div>
         </div>
-
         <div class="rounded-lg bg-white p-6 shadow-sm dark:bg-slate-800">
             <div class="flex items-center justify-between">
                 <div>
@@ -44,7 +42,6 @@
             </div>
         </div>
     </div>
-
     <!-- Block Performance -->
     <div class="rounded-lg bg-white p-6 shadow-sm dark:bg-slate-800">
         <h3 class="mb-5 text-lg font-semibold text-slate-900 dark:text-white">Block Performance</h3>
@@ -93,7 +90,6 @@
             </div>
         @endif
     </div>
-
     <!-- Recent Activity -->
     <div class="rounded-lg bg-white p-6 shadow-sm dark:bg-slate-800">
         <h3 class="mb-5 text-lg font-semibold text-slate-900 dark:text-white">Recent Activity</h3>

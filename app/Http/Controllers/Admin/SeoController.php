@@ -29,9 +29,7 @@ class SeoController extends Controller
             'favicon' => ['nullable', 'url', 'max:255'],
             'logo' => ['nullable', 'url', 'max:255'],
         ]);
-
         SeoSetting::updateOrCreate(['id' => 1], $data);
-
         cache()->forget('seo.settings');
 
         return back()->with('status', 'SEO settings updated.');

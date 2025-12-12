@@ -4,28 +4,21 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
         <title>{{ trim(($pageTitle ?? '') ?: 'HEL.ink - Your Destination Is A Hop Away') }}</title>
-        <meta name="description" content="Manage every short link, analytics card, and quota from the Hop Easy Link workspace.">
+        <meta name="description" content="Manage every short link, analytics card, and quota from the HEL.ink workspace.">
         <link rel="icon" href="{{ route('brand.favicon') }}">
-
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=inter:400,500,600&display=swap" rel="stylesheet" />
-        
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
-        
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jvectormap@2.0.5/jquery-jvectormap.min.css">
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/jvectormap@2.0.5/jquery-jvectormap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/jvectormap@2.0.5/jquery-jvectormap-world-mill.min.js"></script>
-        
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-        
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
         <script src="https://unpkg.com/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.js"></script>
-        
         @stack('scripts-head')
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @stack('styles')
@@ -56,7 +49,6 @@
                  "
                  @keydown.escape.window="if (window.innerWidth < 1024) sidebarOpen = false"
                  class="contents">
-                
                 <button @click="sidebarOpen = !sidebarOpen" 
                         class="fixed top-20 z-50 flex h-10 w-6 items-center justify-center rounded-r-lg border border-l-0 border-slate-200 bg-white shadow-lg hover:w-8 dark:border-slate-700 dark:bg-slate-800"
                         :style="'left: ' + (sidebarOpen ? '256px' : '0px') + '; transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);'">
@@ -67,7 +59,6 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
                 </button>
-
                 <div x-show="sidebarOpen && window.innerWidth < 1024" 
                      x-cloak
                      @click="sidebarOpen = false" 
@@ -78,7 +69,6 @@
                      x-transition:leave-start="opacity-100" 
                      x-transition:leave-end="opacity-0"
                      class="fixed inset-0 z-40 bg-slate-900/50 backdrop-blur-sm lg:hidden"></div>
-
                 <aside x-show="sidebarOpen"
                        x-transition:enter="transition-transform ease-out duration-[350ms]"
                        x-transition:enter-start="-translate-x-full"
@@ -94,7 +84,6 @@
                         :unreadReports="\App\Models\AbuseReport::where('status', 'pending')->count()" />
                 </aside>
             </div>
-            
             <!-- Main content wrapper - NO x-data to avoid scope isolation -->
             <div id="main-content-wrapper" class="min-h-screen transition-[margin-left] duration-[350ms]" 
                  style="margin-left: 256px;">
@@ -135,7 +124,6 @@
                         </div>
                     </div>
                 </header>
-
                 <main class="w-full p-4 sm:p-6">
                     <div class="mx-auto w-full @yield('container-width', 'max-w-screen-xl 2xl:max-w-screen-2xl')">
                         @hasSection('content')
@@ -157,9 +145,7 @@
                 </main>
             </div>
         @endauth
-
         <x-cookie-consent />
-
         <script>
             (function() {
                 const stored = localStorage.getItem('helink-theme');

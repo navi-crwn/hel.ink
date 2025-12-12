@@ -104,7 +104,6 @@
         } else {
             $bgStyle = "background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);";
         }
-        
         if ($hasTheme && $themeData) {
             $titleColor = $themeData['text'];
             $bioColor = $themeData['bio'];
@@ -118,7 +117,6 @@
             $linkBgColor = $bioPage->link_bg_color ?? '#ffffff';
             $themeLinkBorder = null;
         }
-        
         $themeGlowColors = [
             'default' => 'rgba(99, 102, 241, 0.4)',
             'light' => 'rgba(99, 102, 241, 0.4)',
@@ -142,7 +140,6 @@
             'lavender' => 'rgba(75, 0, 130, 0.4)',
             'matrix' => 'rgba(0, 255, 0, 0.5)',
         ];
-        
         $themeHueShifts = [
             'default' => '30deg',
             'neon' => '60deg',
@@ -156,10 +153,8 @@
             'ice' => '20deg',
             'retro' => '-25deg',
         ];
-        
         $themeGlowColor = $themeGlowColors[$currentTheme] ?? 'rgba(99, 102, 241, 0.4)';
         $themeHueShift = $themeHueShifts[$currentTheme] ?? '30deg';
-        
         $fontFamily = match($bioPage->font_family ?? 'inter') {
             'inter' => "'Inter', sans-serif",
             'poppins' => "'Poppins', sans-serif",
@@ -200,7 +195,6 @@
         $blockBg = $linkBgColor;
         $blockBorder = $isDarkTheme ? 'rgba(71, 85, 105, 0.3)' : 'rgba(0, 0, 0, 0.05)';
         $socialBg = $isDarkTheme ? 'rgba(51, 65, 85, 0.8)' : 'rgba(241, 245, 249, 0.9)';
-        
         $contentBlockBg = $isDarkTheme ? 'rgba(255, 255, 255, 0.08)' : 'rgba(255, 255, 255, 0.7)';
         $contentBlockBorder = $isDarkTheme ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.1)';
         $contentBlockHeaderBg = $isDarkTheme ? 'rgba(255, 255, 255, 0.05)' : 'rgba(241, 245, 249, 0.5)';
@@ -208,7 +202,6 @@
         $contentBlockMuted = $bioColor;
         $countdownBg = "linear-gradient(135deg, {$linkBgColor}, {$linkBgColor}cc)";
         $countdownText = $linkTextColor;
-        
         $layout = $bioPage->layout ?? 'centered';
         $containerAlign = match($layout) {
             'left' => 'items-start',
@@ -223,9 +216,7 @@
         $showHeaderBg = !$hasTheme && $layout === 'wide' && $headerBgColor;
         $isLightColor = function($color) {
             if (!$color) return false;
-            
             $r = $g = $b = 0;
-            
             if (preg_match('/rgba?\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/', $color, $matches)) {
                 $r = (int)$matches[1];
                 $g = (int)$matches[2];
@@ -252,7 +243,6 @@
             $luminance = (0.299 * $r + 0.587 * $g + 0.114 * $b) / 255;
             return $luminance > 0.5;
         };
-        
         $isInternalUrl = function($url) {
             if (!$url) return false;
             $internalDomains = [
@@ -276,7 +266,6 @@
                 return false;
             }
         };
-        
         $getLinkRel = function($url) use ($isInternalUrl) {
             return $isInternalUrl($url) ? 'noopener' : 'nofollow noopener noreferrer';
         };
@@ -441,7 +430,6 @@
         .shadow-xl .countdown-block {
             box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.2) !important;
         }
-        
         .hover-scale .link-block:hover { transform: scale(1.03) !important; }
         .hover-glow .link-block:hover { box-shadow: 0 0 20px 5px var(--hover-glow-color, rgba(99, 102, 241, 0.4)) !important; }
         .hover-lift .link-block:hover { transform: translateY(-4px) !important; box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2) !important; }
@@ -450,12 +438,10 @@
         .hover-glossy .link-block:hover::before { left: 100%; }
         .hover-color-shift .link-block { transition: filter 0.3s ease, transform 0.2s ease !important; }
         .hover-color-shift .link-block:hover { filter: hue-rotate(var(--hover-hue-shift, 30deg)) saturate(1.2) !important; }
-        
         :root {
             --hover-glow-color: {{ $themeGlowColor ?? 'rgba(99, 102, 241, 0.4)' }};
             --hover-hue-shift: {{ $themeHueShift ?? '30deg' }};
         }
-        
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
@@ -469,7 +455,6 @@
         .entrance-bounce { animation: bounceIn 0.6s ease-out forwards; }
         .entrance-flip { animation: flipIn 0.5s ease-out forwards; }
         .entrance-stagger { animation: slideUp 0.5s ease-out forwards; }
-        
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-3px); } 40%, 80% { transform: translateX(3px); } }
         @keyframes attentionGlow { 0%, 100% { box-shadow: 0 0 5px rgba(99, 102, 241, 0.3); } 50% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.6); } }
@@ -484,12 +469,10 @@
         .attention-heartbeat { animation: heartbeat 1.5s ease-in-out infinite; }
         .attention-rainbow { animation: rainbow 3s linear infinite; }
         .attention-bounce { animation: attentionBounce 1s ease-in-out infinite; }
-        
         .bg-animation-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
         .bg-particle { position: absolute; pointer-events: none; }
         @keyframes fall { 0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; } 100% { transform: translateY(110vh) rotate(360deg); opacity: 0.3; } }
         @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
-        
         .text-block-expandable .text-block-text {
             max-height: 80px;
             overflow: hidden;
@@ -811,13 +794,11 @@
                                 $defaultBrandColor = $brandConfig['color'] ?? $blockBg;
                                 $brandColor = $link->btn_bg_color ?? $blockBg;
                                 $textColor = $link->btn_text_color ?? $linkTextColor;
-                                
                                 $forceWhiteIcon = $link->btn_icon_invert ?? false;
                                 $forceBlackIcon = false;
                                 if (!$link->custom_icon && !$forceWhiteIcon && $hasIcon) {
                                     $forceBlackIcon = $isLightColor($brandColor);
                                 }
-                                
                                 $iconStyle = '';
                                 if (!$link->custom_icon) {
                                     if ($forceWhiteIcon) {
@@ -828,12 +809,10 @@
                                         $iconStyle = 'filter: brightness(0) invert(1);';
                                     }
                                 }
-                                
                                 $iconPath = null;
                                 if ($hasIcon) {
                                     $iconPath = $link->custom_icon ?: ($hasBrand ? "/images/brands/" . ($brandConfig['icon'] ?? "{$link->brand}.svg") . "?v=20251212" : null);
                                 }
-                                
                                 $borderStyle = $link->btn_border_color ? 'border: 1px solid '.$link->btn_border_color.';' : ($themeLinkBorder ? 'border: 1px solid '.$themeLinkBorder.';' : '');
                                 $linkRel = $getLinkRel($link->url);
                                 $entranceAnim = $link->entrance_animation ?? 'none';
@@ -1190,19 +1169,14 @@ END:VCARD`;
     <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
     <script>
         const qrSettings = @json($bioPage->qr_settings ?? []);
-        
         const qrColor = qrSettings.dotsOptions?.color || qrSettings.color || '#000000';
         const qrBgColor = qrSettings.backgroundOptions?.color || qrSettings.bg_color || '#ffffff';
         const qrDotStyle = qrSettings.dotsOptions?.type || qrSettings.dot_style || 'rounded';
-        
         const qrCornerSquareType = qrSettings.cornersSquareOptions?.type || qrSettings.corner_style || 'extra-rounded';
         const qrCornerSquareColor = qrSettings.cornersSquareOptions?.color || qrColor;
-        
         const qrCornerDotType = qrSettings.cornersDotOptions?.type || (qrCornerSquareType === 'extra-rounded' ? 'dot' : qrCornerSquareType);
         const qrCornerDotColor = qrSettings.cornersDotOptions?.color || qrColor;
-        
         const qrLogoUrl = qrSettings.image || qrSettings.logo_url || null;
-        
         let shareQrInstance = null;
         function initShareQR() {
             const container = document.getElementById('share-qr-container');
@@ -1331,23 +1305,18 @@ END:VCARD`;
                 }));
             });
         });
-        
         (function() {
             const bgAnim = document.body.dataset.bgAnimation;
             const theme = document.body.dataset.theme;
             const container = document.getElementById('bg-animation');
             if (!container) return;
-            
             if ((theme === 'neon' || theme === 'matrix') && bgAnim === 'matrix') {
                 initMatrixEffect(container);
                 return; // Matrix is the only animation
             }
-            
             if (!bgAnim || bgAnim === 'none') return;
-            
             const lightThemes = ['default', 'light', 'classic', 'minimal-light', 'pastel', 'cherry', 'ice', 'lavender', 'retro'];
             const isLightTheme = lightThemes.includes(theme) || !theme;
-            
             const config = {
                 'snow': { 
                     chars: ['❄', '❅', '❆', '✦', '•'],
@@ -1420,33 +1389,27 @@ END:VCARD`;
                     count: 0
                 }
             };
-            
             const c = config[bgAnim];
             if (!c) return;
-            
             const canvas = document.createElement('canvas');
             canvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;';
             container.appendChild(canvas);
             const ctx = canvas.getContext('2d');
-            
             function resize() {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
             }
             resize();
             window.addEventListener('resize', resize);
-            
             class Particle {
                 constructor() {
                     this.reset(true);
                 }
-                
                 reset(initial = false) {
                     this.x = Math.random() * canvas.width;
                     this.y = initial ? Math.random() * canvas.height : -50;
                     this.speed = c.speed ? c.speed.min + Math.random() * (c.speed.max - c.speed.min) : 0;
                     this.wind = c.wind ? c.wind.min + Math.random() * (c.wind.max - c.wind.min) : 0;
-                    
                     if (c.isRain) {
                         this.length = c.length.min + Math.random() * (c.length.max - c.length.min);
                         this.width = c.width.min + Math.random() * (c.width.max - c.width.min);
@@ -1454,14 +1417,12 @@ END:VCARD`;
                         this.radius = c.radius.min + Math.random() * (c.radius.max - c.radius.min);
                         this.length = c.length ? c.length.min + Math.random() * (c.length.max - c.length.min) : this.radius;
                     }
-                    
                     this.opacity = c.opacity.min + Math.random() * (c.opacity.max - c.opacity.min);
                     this.char = c.chars ? c.chars[Math.floor(Math.random() * c.chars.length)] : null;
                     this.rotation = Math.random() * 360;
                     this.rotationSpeed = c.rotate ? (Math.random() - 0.5) * 4 : 0;
                     this.wobble = Math.random() * Math.PI * 2;
                     this.wobbleSpeed = 0.02 + Math.random() * 0.03;
-                    
                     if (c.multicolor) {
                         if (c.isLightTheme) {
                             this.color = `hsl(${Math.random() * 360}, 85%, 45%)`;
@@ -1473,40 +1434,33 @@ END:VCARD`;
                     } else {
                         this.color = '#ffffff';
                     }
-                    
                     if (c.twinkle) {
                         this.twinklePhase = Math.random() * Math.PI * 2;
                         this.twinkleSpeed = 0.02 + Math.random() * 0.03;
                     }
                 }
-                
                 update() {
                     if (c.twinkle) {
                         this.twinklePhase += this.twinkleSpeed;
                         this.opacity = c.opacity.min + (Math.sin(this.twinklePhase) + 1) / 2 * (c.opacity.max - c.opacity.min);
                         return;
                     }
-                    
                     this.wobble += this.wobbleSpeed;
                     this.y += this.speed;
                     this.x += this.wind + Math.sin(this.wobble) * 0.5;
                     this.rotation += this.rotationSpeed;
-                    
                     if (this.y > canvas.height + 20 || this.x < -50 || this.x > canvas.width + 50) {
                         this.reset();
                     }
                 }
-                
                 draw() {
                     ctx.save();
                     ctx.globalAlpha = this.opacity;
-                    
                     if (c.isRain) {
                         const gradient = ctx.createLinearGradient(
                             this.x, this.y,
                             this.x + this.wind * 2, this.y + this.length
                         );
-                        
                         if (c.isLightTheme) {
                             gradient.addColorStop(0, 'rgba(100, 130, 180, 0)');
                             gradient.addColorStop(0.1, 'rgba(80, 120, 170, 0.5)');
@@ -1518,7 +1472,6 @@ END:VCARD`;
                             gradient.addColorStop(0.9, 'rgba(255, 255, 255, 0.8)');
                             gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
                         }
-                        
                         ctx.strokeStyle = gradient;
                         ctx.lineWidth = this.width;
                         ctx.lineCap = 'round';
@@ -1529,28 +1482,23 @@ END:VCARD`;
                     } else {
                         ctx.translate(this.x, this.y);
                         ctx.rotate(this.rotation * Math.PI / 180);
-                        
                         if (c.glow) {
                             ctx.shadowColor = this.color;
                             ctx.shadowBlur = 10;
                         }
-                        
                         ctx.fillStyle = this.color;
                         ctx.font = `${this.radius}px sans-serif`;
                         ctx.textAlign = 'center';
                         ctx.textBaseline = 'middle';
                         ctx.fillText(this.char, 0, 0);
                     }
-                    
                     ctx.restore();
                 }
             }
-            
             const particles = [];
             for (let i = 0; i < c.count; i++) {
                 particles.push(new Particle());
             }
-            
             let windowDroplets = [];
             let dropletInterval = null;
             if (c.windowDroplets) {
@@ -1558,12 +1506,10 @@ END:VCARD`;
                 const baseDroplets = Math.floor(screenArea / 25000); // ~1 droplet per 25000px²
                 const maxDroplets = Math.min(80, Math.max(20, baseDroplets)); // Clamp between 20-80
                 const initialDroplets = Math.floor(maxDroplets * 0.6);
-                
                 class WindowDroplet {
                     constructor(startFromTop = false) {
                         this.reset(startFromTop);
                     }
-                    
                     reset(startFromTop = false) {
                         this.x = Math.random() * canvas.width;
                         this.y = startFromTop ? -10 : Math.random() * canvas.height;
@@ -1578,13 +1524,10 @@ END:VCARD`;
                         this.wobbleSpeed = 0.02 + Math.random() * 0.03;
                         this.wobbleAmount = 0.1 + Math.random() * 0.2;
                     }
-                    
                     update() {
                         this.age++;
                         this.wobblePhase += this.wobbleSpeed;
-                        
                         this.opacity = this.baseOpacity + Math.sin(this.wobblePhase) * 0.05;
-                        
                         if (this.age > this.life && !this.sliding) {
                             this.sliding = true;
                             this.slideSpeed = 0.15 + Math.random() * 0.4;
@@ -1600,11 +1543,9 @@ END:VCARD`;
                             this.reset(true);
                         }
                     }
-                    
                     draw() {
                         ctx.save();
                         ctx.globalAlpha = this.opacity;
-                        
                         const gradient = ctx.createRadialGradient(
                             this.x - this.radius * 0.3, this.y - this.radius * 0.3, 0,
                             this.x, this.y, this.radius
@@ -1613,25 +1554,20 @@ END:VCARD`;
                         gradient.addColorStop(0.25, 'rgba(210, 230, 250, 0.5)');
                         gradient.addColorStop(0.6, 'rgba(160, 190, 220, 0.25)');
                         gradient.addColorStop(1, 'rgba(100, 150, 200, 0.08)');
-                        
                         ctx.beginPath();
                         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
                         ctx.fillStyle = gradient;
                         ctx.fill();
-                        
                         ctx.beginPath();
                         ctx.arc(this.x - this.radius * 0.25, this.y - this.radius * 0.25, this.radius * 0.3, 0, Math.PI * 2);
                         ctx.fillStyle = 'rgba(255, 255, 255, 0.65)';
                         ctx.fill();
-                        
                         ctx.restore();
                     }
                 }
-                
                 for (let i = 0; i < initialDroplets; i++) {
                     windowDroplets.push(new WindowDroplet(false));
                 }
-                
                 dropletInterval = setInterval(() => {
                     if (windowDroplets.length < maxDroplets) {
                         const droplet = new WindowDroplet(true);
@@ -1646,15 +1582,12 @@ END:VCARD`;
                     }
                 }, 300 + Math.random() * 400);
             }
-            
             function animate() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
                 windowDroplets.forEach(d => {
                     d.update();
                     d.draw();
                 });
-                
                 particles.forEach(p => {
                     p.update();
                     p.draw();
@@ -1662,55 +1595,44 @@ END:VCARD`;
                 requestAnimationFrame(animate);
             }
             animate();
-            
             function initMatrixEffect(container) {
                 const matrixCanvas = document.createElement('canvas');
                 matrixCanvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.35;';
                 container.appendChild(matrixCanvas);
                 const mCtx = matrixCanvas.getContext('2d');
-                
                 function resizeMatrix() {
                     matrixCanvas.width = window.innerWidth;
                     matrixCanvas.height = window.innerHeight;
                 }
                 resizeMatrix();
                 window.addEventListener('resize', resizeMatrix);
-                
                 const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ<>{}[]';
                 const fontSize = 16;
                 const columns = Math.floor(matrixCanvas.width / fontSize);
                 const drops = [];
-                
                 for (let i = 0; i < columns; i++) {
                     drops[i] = Math.random() * -100;
                 }
-                
                 function drawMatrix() {
                     mCtx.fillStyle = 'rgba(0, 0, 0, 0.08)';
                     mCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
-                    
                     mCtx.font = `bold ${fontSize}px monospace`;
-                    
                     for (let i = 0; i < drops.length; i++) {
                         const char = chars[Math.floor(Math.random() * chars.length)];
                         const x = i * fontSize;
                         const y = drops[i] * fontSize;
-                        
                         const brightness = Math.random() * 0.4 + 0.6;
                         mCtx.fillStyle = `rgba(0, ${Math.floor(255 * brightness)}, ${Math.floor(50 * brightness)}, ${brightness})`;
                         mCtx.fillText(char, x, y);
-                        
                         if (Math.random() > 0.95) {
                             mCtx.fillStyle = '#ffffff';
                             mCtx.fillText(char, x, y);
                         }
-                        
                         if (y > matrixCanvas.height && Math.random() > 0.975) {
                             drops[i] = 0;
                         }
                         drops[i] += 0.5 + Math.random() * 0.4;
                     }
-                    
                     requestAnimationFrame(drawMatrix);
                 }
                 drawMatrix();

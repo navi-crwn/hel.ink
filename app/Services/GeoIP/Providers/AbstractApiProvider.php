@@ -5,6 +5,7 @@ namespace App\Services\GeoIP\Providers;
 class AbstractApiProvider extends BaseGeoIpProvider
 {
     protected string $baseUrl = 'https://ipgeolocation.abstractapi.com/v1/';
+
     protected ?string $apiKey;
 
     public function __construct()
@@ -34,18 +35,18 @@ class AbstractApiProvider extends BaseGeoIpProvider
 
     public function isAvailable(): bool
     {
-        return !empty($this->apiKey);
+        return ! empty($this->apiKey);
     }
 
     public function lookup(string $ip): ?array
     {
-        if (!$this->apiKey) {
+        if (! $this->apiKey) {
             return null;
         }
 
         return $this->makeRequest($this->baseUrl, [
             'api_key' => $this->apiKey,
-            'ip_address' => $ip
+            'ip_address' => $ip,
         ]);
     }
 

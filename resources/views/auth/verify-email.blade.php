@@ -7,13 +7,11 @@
         </div>
         <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Verify Your Email Address</h2>
     </div>
-
     <div class="mb-6 text-sm text-gray-600 dark:text-gray-400 space-y-2">
         <p>Thanks for signing up! Before getting started, please verify your email address by clicking on the link we just sent to:</p>
         <p class="font-semibold text-gray-900 dark:text-white">{{ auth()->user()->email }}</p>
         <p>If you didn't receive the email, we will gladly send you another.</p>
     </div>
-
     @if (session('status') == 'verification-link-sent')
         <div class="mb-4 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 p-4">
             <div class="flex items-center gap-2">
@@ -26,7 +24,6 @@
             </div>
         </div>
     @endif
-
     @if(session('user_catchphrase'))
     <div class="mb-6 rounded-lg border border-amber-500/50 bg-amber-50 p-4 dark:border-amber-500/30 dark:bg-amber-900/20" x-data="{ copied: false }">
         <div class="flex items-start gap-2">
@@ -36,7 +33,6 @@
                 <p class="mt-1 text-xs text-amber-800 dark:text-amber-200">
                     Save this catchphrase! You'll need it to reset your password. This appears only once.
                 </p>
-                
                 <div class="mt-3 rounded-lg bg-slate-900 p-3 shadow-inner">
                     <div class="flex items-center justify-between gap-3">
                         <code class="flex-1 text-center font-mono text-sm font-bold text-emerald-400">{{ session('user_catchphrase') }}</code>
@@ -51,7 +47,6 @@
         </div>
     </div>
     @endif
-
     <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
         <form method="POST" action="{{ route('verification.send') }}" class="w-full sm:w-auto">
             @csrf
@@ -62,7 +57,6 @@
                 Resend Verification Email
             </button>
         </form>
-
         <form method="POST" action="{{ route('logout') }}" class="w-full sm:w-auto">
             @csrf
             <button type="submit" class="w-full sm:w-auto underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
@@ -70,7 +64,6 @@
             </button>
         </form>
     </div>
-
     <div class="mt-6 text-xs text-center text-gray-500 dark:text-gray-400">
         <p>📧 Check your inbox and spam folder for the verification email from <strong>no-reply@hel.ink</strong></p>
     </div>

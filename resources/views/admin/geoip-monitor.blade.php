@@ -4,7 +4,6 @@
             <h1 class="text-2xl font-bold text-gray-900 dark:text-white">GeoIP Provider Monitor</h1>
             <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">Multi-provider failover system with automatic quota management</p>
         </div>
-
         <div class="mb-6 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6">
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Test Lookup</h3>
@@ -31,7 +30,6 @@
                 </div>
             </div>
         </div>
-
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
             @foreach($providers as $provider)
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -44,7 +42,6 @@
                                 {{ $provider['available'] ? 'Active' : 'Disabled' }}
                             </span>
                         </div>
-
                         <div class="space-y-3">
                             <div>
                                 <div class="flex justify-between text-sm mb-1">
@@ -63,7 +60,6 @@
                                     <div class="{{ $colorClass }} h-2 rounded-full" style="width: {{ $dailyPercent }}%"></div>
                                 </div>
                             </div>
-
                             <div>
                                 <div class="flex justify-between text-sm mb-1">
                                     <span class="text-gray-600 dark:text-gray-400">Monthly Usage</span>
@@ -81,7 +77,6 @@
                                     <div class="{{ $colorClass }} h-2 rounded-full" style="width: {{ $monthlyPercent }}%"></div>
                                 </div>
                             </div>
-
                             <div class="pt-3 border-t border-gray-200 dark:border-gray-700">
                                 <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400">
                                     <span>Priority</span>
@@ -93,7 +88,6 @@
                 </div>
             @endforeach
         </div>
-
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6">
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">How It Works</h3>
@@ -110,18 +104,14 @@
             </div>
         </div>
     </div>
-
     <script>
         document.getElementById('testForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            
             const ip = document.getElementById('testIp').value;
             const resultDiv = document.getElementById('testResult');
             const resultData = document.getElementById('resultData');
-            
             resultDiv.classList.remove('hidden');
             resultData.textContent = 'Loading...';
-            
             try {
                 const response = await fetch('{{ route("admin.geoip.test") }}', {
                     method: 'POST',
@@ -131,7 +121,6 @@
                     },
                     body: JSON.stringify({ ip })
                 });
-                
                 const data = await response.json();
                 resultData.textContent = JSON.stringify(data, null, 2);
             } catch (error) {

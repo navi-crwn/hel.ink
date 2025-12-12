@@ -21,8 +21,7 @@ class ShortenController extends Controller
 
     /**
      * Create a shortened URL via API
-     * 
-     * @param Request $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -36,32 +35,27 @@ class ShortenController extends Controller
             'expires_at' => 'nullable|date|after:now',
             'password' => 'nullable|string|min:4|max:50',
         ]);
-
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,
                 'error' => 'Validation Error',
-                'messages' => $validator->errors()
+                'messages' => $validator->errors(),
             ], 422);
         }
-
         $user = $request->get('api_user');
         $targetUrl = $request->input('url');
-        
         // Add https:// if missing
-        if (!preg_match('/^https?:\/\//i', $targetUrl)) {
-            $targetUrl = 'https://' . $targetUrl;
+        if (! preg_match('/^https?:\/\//i', $targetUrl)) {
+            $targetUrl = 'https://'.$targetUrl;
         }
-
         // Check user quota
         if (! app(\App\Services\QuotaService::class)->checkUserLimits($user->id)) {
             return response()->json([
                 'success' => false,
                 'error' => 'Quota Exceeded',
-                'message' => 'Daily link quota reached. Please try again tomorrow.'
+                'message' => 'Daily link quota reached. Please try again tomorrow.',
             ], 429);
         }
-
         try {
             // Prepare folder
             $folderId = null;
@@ -69,8 +63,7 @@ class ShortenController extends Controller
                 $folder = Folder::where('user_id', $user->id)
                     ->where('name', $request->input('folder'))
                     ->first();
-                
-                if (!$folder) {
+                if (! $folder) {
                     // Create folder if not exists
                     $folder = Folder::create([
                         'user_id' => $user->id,
@@ -88,10 +81,8 @@ class ShortenController extends Controller
                     $folderId = $defaultFolder->id;
                 }
             }
-
             // Prepare slug (alias)
             $slug = $this->prepareSlug($request->input('alias'));
-
             // Create the link
             $link = $user->links()->create([
                 'target_url' => $targetUrl,
@@ -100,20 +91,18 @@ class ShortenController extends Controller
                 'folder_id' => $folderId,
                 'redirect_type' => '302',
                 'expires_at' => $request->input('expires_at'),
-                'password_hash' => $request->filled('password') 
+                'password_hash' => $request->filled('password')
                     ? \Illuminate\Support\Facades\Hash::make($request->input('password'))
                     : null,
             ]);
-
             // Generate QR code
             $this->links->generateQr($link);
             $this->links->forgetCache($link);
-
             // Log activity
             \App\Models\ActivityLog::log(
-                'created', 
-                'Link', 
-                $link->id, 
+                'created',
+                'Link',
+                $link->id,
                 "Created link via API: {$link->slug} → {$link->target_url}"
             );
 
@@ -127,14 +116,13 @@ class ShortenController extends Controller
                     'created_at' => $link->created_at->toIso8601String(),
                     'expires_at' => $link->expires_at?->toIso8601String(),
                 ],
-                'message' => 'Link created successfully'
+                'message' => 'Link created successfully',
             ], 201);
-
         } catch (ValidationException $e) {
             return response()->json([
                 'success' => false,
                 'error' => 'Validation Error',
-                'messages' => $e->errors()
+                'messages' => $e->errors(),
             ], 422);
         } catch (\Exception $e) {
             \Log::error('API link creation failed', [
@@ -145,9 +133,8 @@ class ShortenController extends Controller
             return response()->json([
                 'success' => false,
                 'error' => 'Server Error',
-                'message' => 'An error occurred while creating the link'
+                'message' => 'An error occurred while creating the link',
             ], 500);
         }
     }
 }
-

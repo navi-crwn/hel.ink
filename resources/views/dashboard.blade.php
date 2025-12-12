@@ -10,7 +10,6 @@
             </x-slot>
         </x-page-header>
     </x-slot>
-
     <div class="py-10">
         <div class="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
             @if (session('status'))
@@ -18,7 +17,6 @@
                     {{ session('status') }}
                 </div>
             @endif
-
             @if (session('shortlink'))
                 @php
                     $newLink = session('shortlink');
@@ -52,13 +50,11 @@
                     </div>
                 </div>
             @endif
-
             @php
                 $dailyPercent = $quota['daily']['limit'] > 0 ? min(100, round(($quota['daily']['used'] / $quota['daily']['limit']) * 100)) : 0;
                 $activePercent = $quota['active']['limit'] > 0 ? min(100, round(($quota['active']['used'] / $quota['active']['limit']) * 100)) : 0;
                 $bioPercent = $quota['bio']['limit'] > 0 ? min(100, round(($quota['bio']['used'] / $quota['bio']['limit']) * 100)) : 0;
             @endphp
-            
             <div class="grid gap-6 lg:grid-cols-2">
                 <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                     <div class="flex items-center justify-between">
@@ -98,7 +94,6 @@
                         </div>
                     </dl>
                 </div>
-
                 <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                     <div class="grid gap-4">
                         <div>
@@ -133,7 +128,6 @@
                     </div>
                 </div>
             </div>
-            
             <div class="grid gap-4 md:grid-cols-3">
                 <div class="rounded-2xl bg-white px-6 py-4 shadow-sm dark:bg-slate-900">
                     <p class="text-sm text-slate-500 dark:text-slate-400">Total Links</p>
@@ -148,7 +142,6 @@
                     <p class="text-3xl font-semibold text-slate-900 dark:text-white">{{ $stats['active_links'] ?? 0 }}</p>
                 </div>
             </div>
-            
             <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <div class="flex items-center justify-between mb-4">
                     <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Recent Links</h3>
@@ -198,7 +191,6 @@
             </div>
         </div>
     </div>
-    
     {{-- Link Creation Modal Component --}}
     <x-link-creation-modal :folders="$folders" :tags="$tags" :isAdmin="auth()->user()->isSuperAdmin()" />
 </x-app-layout>

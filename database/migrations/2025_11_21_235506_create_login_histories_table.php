@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('browser')->nullable();
             $table->timestamp('logged_in_at');
             $table->timestamps();
-
             $table->index(['user_id', 'logged_in_at']);
         });
     }

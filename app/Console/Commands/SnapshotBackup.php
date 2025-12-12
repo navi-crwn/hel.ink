@@ -20,10 +20,9 @@ class SnapshotBackup extends Command
             'users' => User::select('id', 'name', 'email', 'role', 'status')->get(),
             'links' => Link::select('id', 'slug', 'target_url', 'status', 'user_id')->get(),
         ];
-
         Storage::disk('local')->put('backups/snapshot-'.now()->format('Ymd-His').'.json', json_encode($snapshot));
-
         $this->info('Backup snapshot stored in storage/app/backups.');
+
         return self::SUCCESS;
     }
 }

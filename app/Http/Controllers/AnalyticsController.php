@@ -15,14 +15,12 @@ class AnalyticsController extends Controller
         $countryFilter = $request->input('country', 'all');
         $deviceFilter = $request->input('device', 'all');
         $linkFilter = $request->input('link_id', 'all');
-
         $clicksQuery = LinkClick::query()
             ->whereHas('link', fn ($q) => $q->where('user_id', $user->id))
             ->where('clicked_at', '>=', $start);
         if ($linkFilter !== 'all') {
             $clicksQuery->where('link_id', $linkFilter);
         }
-
         if ($countryFilter !== 'all') {
             if ($countryFilter === 'unknown') {
                 $clicksQuery->whereNull('country');
@@ -30,7 +28,6 @@ class AnalyticsController extends Controller
                 $clicksQuery->where('country', $countryFilter);
             }
         }
-
         if ($deviceFilter !== 'all') {
             $clicksQuery->where(function ($query) use ($deviceFilter) {
                 if ($deviceFilter === 'mobile') {
@@ -43,7 +40,6 @@ class AnalyticsController extends Controller
                 }
             });
         }
-
         $timeline = $clicksQuery
             ->clone()
             ->selectRaw('DATE_FORMAT(clicked_at, "%Y-%m-%d %H:00:00") as bucket, COUNT(*) as total')
@@ -53,7 +49,6 @@ class AnalyticsController extends Controller
             ->mapWithKeys(fn ($row) => [
                 \Carbon\Carbon::parse($row->bucket)->format('H:i') => (int) $row->total,
             ]);
-
         $topLinks = $clicksQuery
             ->clone()
             ->selectRaw('link_id, COUNT(*) as total')
@@ -62,15 +57,14 @@ class AnalyticsController extends Controller
             ->limit(5)
             ->with('link')
             ->get();
-
         $topDestinations = $topLinks->groupBy(function ($item) {
             $url = $item->link->target_url ?? '';
             $host = parse_url($url, PHP_URL_HOST);
+
             return $host ?: 'Unknown';
         })->map(function ($group) {
             return $group->sum('total');
         })->sortDesc();
-
         $referers = $clicksQuery
             ->clone()
             ->selectRaw('COALESCE(referer, "(direct)") as referer, COUNT(*) as total')
@@ -78,7 +72,6 @@ class AnalyticsController extends Controller
             ->orderByDesc('total')
             ->limit(5)
             ->pluck('total', 'referer');
-
         $countries = $clicksQuery
             ->clone()
             ->selectRaw('COALESCE(country, "Unknown") as country, COUNT(*) as total')
@@ -86,7 +79,6 @@ class AnalyticsController extends Controller
             ->orderByDesc('total')
             ->limit(5)
             ->pluck('total', 'country');
-
         $cities = $clicksQuery
             ->clone()
             ->whereNotNull('city')
@@ -95,12 +87,11 @@ class AnalyticsController extends Controller
             ->orderByDesc('total')
             ->limit(10)
             ->get()
-            ->map(fn($item) => [
+            ->map(fn ($item) => [
                 'city' => $item->city,
                 'country' => $item->country,
-                'total' => $item->total
+                'total' => $item->total,
             ]);
-
         $regions = $clicksQuery
             ->clone()
             ->whereNotNull('region')
@@ -109,12 +100,11 @@ class AnalyticsController extends Controller
             ->orderByDesc('total')
             ->limit(10)
             ->get()
-            ->map(fn($item) => [
+            ->map(fn ($item) => [
                 'region' => $item->region,
                 'country' => $item->country,
-                'total' => $item->total
+                'total' => $item->total,
             ]);
-
         $isps = $clicksQuery
             ->clone()
             ->whereNotNull('isp')
@@ -123,11 +113,10 @@ class AnalyticsController extends Controller
             ->orderByDesc('total')
             ->limit(10)
             ->get()
-            ->map(fn($item) => [
+            ->map(fn ($item) => [
                 'isp' => $item->isp,
-                'total' => $item->total
+                'total' => $item->total,
             ]);
-
         $devices = $clicksQuery
             ->clone()
             ->selectRaw('CASE WHEN user_agent LIKE "%Mobile%" THEN "Mobile" ELSE "Desktop" END as device, COUNT(*) as total')
@@ -137,19 +126,17 @@ class AnalyticsController extends Controller
         $clicksForAgents = $clicksQuery->clone()->whereNotNull('user_agent')->take(1000)->get();
         $browserStats = [];
         $osStats = [];
-        
         foreach ($clicksForAgents as $click) {
             $parsed = $userAgentService->parse($click->user_agent);
-            if (!empty($parsed['browser'])) {
+            if (! empty($parsed['browser'])) {
                 $browser = $parsed['browser'];
                 $browserStats[$browser] = ($browserStats[$browser] ?? 0) + 1;
             }
-            if (!empty($parsed['os'])) {
+            if (! empty($parsed['os'])) {
                 $os = $parsed['os'];
                 $osStats[$os] = ($osStats[$os] ?? 0) + 1;
             }
         }
-        
         arsort($browserStats);
         arsort($osStats);
         $browserStats = array_slice($browserStats, 0, 8, true);
@@ -164,11 +151,9 @@ class AnalyticsController extends Controller
                 ->selectRaw('proxy_type, COUNT(*) as total')
                 ->groupBy('proxy_type')
                 ->pluck('total', 'proxy_type')
-                ->toArray()
+                ->toArray(),
         ];
-
         $totalClicks = $clicksQuery->clone()->count();
-
         if ($totalClicks > 0) {
             $proxyStats['percentage'] = round(($proxyStats['total'] / $totalClicks) * 100, 1);
         }
@@ -179,23 +164,19 @@ class AnalyticsController extends Controller
             ->groupBy('country')
             ->get()
             ->pluck('total', 'country')
-            ->mapWithKeys(fn($count, $code) => [strtoupper($code) => $count])
+            ->mapWithKeys(fn ($count, $code) => [strtoupper($code) => $count])
             ->toArray();
-
         $countryCount = $clicksQuery
             ->clone()
             ->selectRaw('COUNT(DISTINCT COALESCE(country, "Unknown")) as total')
             ->value('total') ?? 0;
-
         $availableCountries = LinkClick::query()
             ->whereHas('link', fn ($q) => $q->where('user_id', $user->id))
             ->selectRaw('COALESCE(country, "Unknown") as label, country')
             ->groupBy('country', 'label')
             ->orderBy('label')
             ->get();
-
         $availableDevices = collect(['Desktop', 'Mobile']);
-
         $recentIps = $clicksQuery
             ->clone()
             ->whereNotNull('ip_address')

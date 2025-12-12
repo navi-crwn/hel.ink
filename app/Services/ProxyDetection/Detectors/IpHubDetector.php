@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Services\ProxyDetection\Detectors;
+
 class IpHubDetector extends BaseProxyDetector
 {
     protected string $baseUrl = 'https://v2.api.iphub.info/ip/';
+
     protected ?string $apiKey;
 
     public function __construct()
@@ -28,24 +30,21 @@ class IpHubDetector extends BaseProxyDetector
 
     public function isAvailable(): bool
     {
-        return !empty($this->apiKey);
+        return ! empty($this->apiKey);
     }
 
     public function detect(string $ip): ?array
     {
-        if (!$this->apiKey) {
+        if (! $this->apiKey) {
             return null;
         }
-
         try {
             $response = Http::timeout($this->timeout)
                 ->withHeaders(['X-Key' => $this->apiKey])
                 ->get("{$this->baseUrl}{$ip}");
-
-            if (!$response->successful()) {
+            if (! $response->successful()) {
                 return null;
             }
-
             $data = $response->json();
             $block = $data['block'] ?? 0;
 
@@ -56,10 +55,11 @@ class IpHubDetector extends BaseProxyDetector
                 'details' => [
                     'isp' => $data['isp'] ?? null,
                     'country' => $data['countryCode'] ?? null,
-                ]
+                ],
             ];
         } catch (\Throwable $e) {
             Log::debug('IPHub detection error', ['error' => $e->getMessage()]);
+
             return null;
         }
     }

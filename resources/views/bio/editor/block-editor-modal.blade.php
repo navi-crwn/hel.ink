@@ -1,5 +1,4 @@
 <!-- Block Editor Modal Content -->
-
 <div class="space-y-6">
     <!-- Block Type Display -->
     <div class="flex items-center gap-3 pb-4 border-b border-slate-200 dark:[border-color:var(--editor-border)]">
@@ -18,7 +17,6 @@
             <p class="text-sm editor-text-muted" x-text="editingBlock.brand ? 'Platform: ' + editingBlock.brand : 'Custom link'"></p>
         </div>
     </div>
-    
     <!-- Link Block Fields -->
     <template x-if="editingBlock.type === 'link'">
         <div class="space-y-4">
@@ -27,13 +25,11 @@
                 <label class="form-label">Button Title</label>
                 <input type="text" x-model="editingBlock.title" class="form-input" placeholder="Enter button title" autocomplete="off" data-lpignore="true" data-1p-ignore="true" data-form-type="other">
             </div>
-            
             <!-- URL -->
             <div class="form-group">
                 <label class="form-label">URL</label>
                 <input type="url" x-model="editingBlock.url" class="form-input" placeholder="https://example.com" autocomplete="off" data-lpignore="true" data-1p-ignore="true" data-form-type="other">
             </div>
-            
             <!-- Animation Options for Links -->
             <div class="form-group" x-data="{ showAnimations: false }">
                 <button type="button" @click="showAnimations = !showAnimations" 
@@ -48,7 +44,6 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                     </svg>
                 </button>
-                
                 <div x-show="showAnimations" x-collapse class="mt-3 space-y-4 p-3 rounded-lg bg-slate-50 dark:bg-slate-900">
                     <!-- Entrance Animation -->
                     <div>
@@ -101,7 +96,6 @@
                             </button>
                         </div>
                     </div>
-                    
                     <!-- Attention Animation -->
                     <div>
                         <label class="form-label text-xs mb-2 flex items-center gap-1">
@@ -156,7 +150,6 @@
                     </div>
                 </div>
             </div>
-            
             <!-- Platform Selection -->
             <div class="form-group">
                 <label class="form-label">Button Style</label>
@@ -174,11 +167,9 @@
                 </div>
                 <button @click="editingBlock.brand = null" class="mt-2 text-sm text-blue-600 hover:underline">Use custom style</button>
             </div>
-            
             <!-- Thumbnail -->
             <div class="form-group" x-data="{ iconInputMode: 'upload', iconUrlInput: '' }">
                 <label class="form-label">Thumbnail (Optional)</label>
-                
                 <!-- Current Icon Preview -->
                 <template x-if="editingBlock.thumbnail_url">
                     <div class="flex items-center gap-3 mb-3 p-2 rounded-lg" style="background: var(--editor-input-bg);">
@@ -188,7 +179,6 @@
                                 class="w-6 h-6 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center text-xs">×</button>
                     </div>
                 </template>
-                
                 <!-- Input Mode Toggle -->
                 <div class="flex gap-2 mb-3">
                     <button @click="iconInputMode = 'upload'" 
@@ -202,12 +192,10 @@
                         From URL
                     </button>
                 </div>
-                
                 <!-- Upload File -->
                 <div x-show="iconInputMode === 'upload'" class="flex items-center gap-2">
                     <input type="file" @change="uploadThumbnail($event)" accept="image/*" class="flex-1 text-sm editor-text-muted file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-blue-600 file:text-white file:font-medium hover:file:bg-blue-700">
                 </div>
-                
                 <!-- URL Input -->
                 <div x-show="iconInputMode === 'url'" class="space-y-2">
                     <div class="flex gap-2">
@@ -225,7 +213,6 @@
             </div>
         </div>
     </template>
-    
     <!-- Text Block Fields -->
     <template x-if="editingBlock.type === 'text'">
         <div class="space-y-4">
@@ -235,7 +222,6 @@
             </div>
         </div>
     </template>
-    
     <!-- Video Block Fields -->
     <template x-if="editingBlock.type === 'video'">
         <div class="space-y-4">
@@ -250,7 +236,6 @@
             </div>
         </div>
     </template>
-    
     <!-- Music Block Fields -->
     <template x-if="editingBlock.type === 'music'">
         <div class="space-y-4">
@@ -265,7 +250,6 @@
             </div>
         </div>
     </template>
-    
     <!-- VCard Block Fields -->
     <template x-if="editingBlock.type === 'vcard'">
         <div class="space-y-4">
@@ -287,7 +271,6 @@
             </div>
         </div>
     </template>
-    
     <!-- HTML Block Fields -->
     <template x-if="editingBlock.type === 'html'">
         <div class="space-y-4">
@@ -302,7 +285,6 @@
             </div>
         </div>
     </template>
-    
     <!-- Countdown Block Fields -->
     <template x-if="editingBlock.type === 'countdown'">
         <div class="space-y-4">
@@ -320,7 +302,6 @@
             </div>
         </div>
     </template>
-    
     <!-- YouTube Block Fields -->
     <template x-if="editingBlock.type === 'youtube'">
         <div class="space-y-4">
@@ -335,7 +316,6 @@
             </div>
         </div>
     </template>
-    
     <!-- Spotify Block Fields -->
     <template x-if="editingBlock.type === 'spotify'">
         <div class="space-y-4">
@@ -350,7 +330,6 @@
             </div>
         </div>
     </template>
-    
     <!-- SoundCloud Block Fields -->
     <template x-if="editingBlock.type === 'soundcloud'">
         <div class="space-y-4">
@@ -364,7 +343,6 @@
             </div>
         </div>
     </template>
-    
     <!-- Email Signup Block Fields -->
     <template x-if="editingBlock.type === 'email'">
         <div class="space-y-4">
@@ -383,7 +361,6 @@
             </div>
         </div>
     </template>
-    
     <!-- Map Block Fields -->
     <template x-if="editingBlock.type === 'map'">
         <div class="space-y-4">
@@ -402,7 +379,6 @@
             </div>
         </div>
     </template>
-    
     <!-- FAQ Block Fields -->
     <template x-if="editingBlock.type === 'faq'">
         <div class="space-y-4">
@@ -429,7 +405,6 @@
             </div>
         </div>
     </template>
-    
     <!-- Image Block Fields -->
     <template x-if="editingBlock.type === 'image'">
         <div class="space-y-4">
@@ -452,7 +427,6 @@
             </div>
         </div>
     </template>
-    
     <!-- Active Toggle -->
     <div class="flex items-center justify-between pt-4 border-t border-slate-200 dark:[border-color:var(--editor-border)]">
         <div>
@@ -464,7 +438,6 @@
             <span class="toggle-slider"></span>
         </label>
     </div>
-    
     <!-- Actions -->
     <div class="flex justify-end gap-3 pt-4">
         <button @click="editingBlock = null" class="btn btn-secondary">Cancel</button>

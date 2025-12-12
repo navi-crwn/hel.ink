@@ -32,11 +32,9 @@ class ApiToken extends Model
     public static function generate(int $userId, string $name, int $rateLimit = 100, ?\DateTime $expiresAt = null): array
     {
         // Generate a random token (plain text, shown only once)
-        $plainToken = 'hlk_' . Str::random(40); // hlk = hel.ink prefix
-        
+        $plainToken = 'hlk_'.Str::random(40); // hlk = hel.ink prefix
         // Hash it for storage
         $hashedToken = hash('sha256', $plainToken);
-        
         // Create the token record
         $apiToken = static::create([
             'user_id' => $userId,
@@ -45,7 +43,7 @@ class ApiToken extends Model
             'rate_limit' => $rateLimit,
             'expires_at' => $expiresAt,
         ]);
-        
+
         // Return both the model and plain token (only time it's visible)
         return [
             'model' => $apiToken,
@@ -59,6 +57,7 @@ class ApiToken extends Model
     public static function findByPlainToken(string $plainToken): ?self
     {
         $hashedToken = hash('sha256', $plainToken);
+
         return static::where('token', $hashedToken)->first();
     }
 
@@ -70,6 +69,7 @@ class ApiToken extends Model
         if ($this->expires_at && $this->expires_at->isPast()) {
             return false;
         }
+
         return true;
     }
 
@@ -89,4 +89,3 @@ class ApiToken extends Model
         return $this->belongsTo(User::class);
     }
 }
-

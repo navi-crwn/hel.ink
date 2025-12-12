@@ -3,7 +3,6 @@
 return [
     'default' => env('MAIL_MAILER', 'log'),
     'mailers' => [
-
         'smtp' => [
             'transport' => 'smtp',
             'scheme' => env('MAIL_SCHEME'),
@@ -15,33 +14,26 @@ return [
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url((string) env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
         ],
-
         'ses' => [
             'transport' => 'ses',
         ],
-
         'postmark' => [
             'transport' => 'postmark',
         ],
-
         'resend' => [
             'transport' => 'resend',
         ],
-
         'sendmail' => [
             'transport' => 'sendmail',
             'path' => env('MAIL_SENDMAIL_PATH', '/usr/sbin/sendmail -bs -i'),
         ],
-
         'log' => [
             'transport' => 'log',
             'channel' => env('MAIL_LOG_CHANNEL'),
         ],
-
         'array' => [
             'transport' => 'array',
         ],
-
         'failover' => [
             'transport' => 'failover',
             'mailers' => [
@@ -50,7 +42,6 @@ return [
             ],
             'retry_after' => 60,
         ],
-
         'roundrobin' => [
             'transport' => 'roundrobin',
             'mailers' => [
@@ -59,18 +50,15 @@ return [
             ],
             'retry_after' => 60,
         ],
-
     ],
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
-
     'addresses' => [
         'admin' => env('ADMIN_EMAIL', 'admin@hel.ink'),
         'support' => env('SUPPORT_EMAIL', 'support@hel.ink'),
         'security' => env('SECURITY_EMAIL', 'security@hel.ink'),
         'feedback' => env('FEEDBACK_EMAIL', 'feedback@hel.ink'),
     ],
-
 ];

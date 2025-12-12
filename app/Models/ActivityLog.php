@@ -24,10 +24,9 @@ class ActivityLog extends Model
 
     public static function log(string $action, string $model, ?int $modelId, string $description): void
     {
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return;
         }
-
         self::create([
             'user_id' => auth()->id(),
             'action' => $action,

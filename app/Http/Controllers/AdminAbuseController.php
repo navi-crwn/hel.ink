@@ -12,6 +12,7 @@ class AdminAbuseController extends Controller
     public function index(): View
     {
         $reports = AbuseReport::latest()->paginate(20);
+
         return view('admin-abuse', compact('reports'));
     }
 

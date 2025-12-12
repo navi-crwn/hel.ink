@@ -1,8 +1,6 @@
 @extends('layouts.app')
-
 @section('title', 'Edit Bio - ' . $bioPage->title)
 @section('container-width', 'max-w-full')
-
 @push('styles')
 <style>
     :root {
@@ -16,7 +14,6 @@
         --editor-input-border: #cbd5e1;
         --editor-hover-bg: #f1f5f9;
     }
-    
     .dark {
         --editor-bg: #0f172a;
         --editor-panel-bg: #0f172a;
@@ -28,7 +25,6 @@
         --editor-input-border: #475569;
         --editor-hover-bg: #334155;
     }
-    
     .editor-container {
         display: grid;
         grid-template-columns: 1fr 380px;
@@ -36,13 +32,11 @@
         height: calc(100vh - 64px);
         overflow: hidden;
     }
-    
     .editor-panel {
         height: 100%;
         overflow-y: auto;
         background: var(--editor-panel-bg);
     }
-    
     .preview-panel {
         height: 100%;
         background: transparent;
@@ -50,7 +44,6 @@
         flex-direction: column;
         border-left: 1px solid var(--editor-border);
     }
-    
     .preview-header {
         padding: 12px 16px;
         background: var(--editor-panel-bg);
@@ -60,7 +53,6 @@
         align-items: center;
         justify-content: space-between;
     }
-    
     .preview-toggle {
         display: flex;
         gap: 4px;
@@ -68,7 +60,6 @@
         padding: 4px;
         border-radius: 8px;
     }
-    
     .preview-toggle button {
         padding: 6px 12px;
         border-radius: 6px;
@@ -80,12 +71,10 @@
         cursor: pointer;
         transition: all 0.2s;
     }
-    
     .preview-toggle button.active {
         background: #3b82f6;
         color: white;
     }
-    
     .preview-frame-container {
         flex: 1;
         display: flex;
@@ -95,7 +84,6 @@
         overflow: auto;
         background: transparent;
     }
-    
     .mobile-frame {
         width: 375px;
         height: 667px;
@@ -105,7 +93,6 @@
         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         position: relative;
     }
-    
     .mobile-frame::before {
         content: '';
         position: absolute;
@@ -117,7 +104,6 @@
         background: #1a1a1a;
         border-radius: 12px;
     }
-    
     .mobile-frame-inner {
         width: 100%;
         height: 100%;
@@ -125,17 +111,14 @@
         overflow: hidden;
         background: #f8fafc;
     }
-    
     .mobile-frame-inner iframe {
         width: 100%;
         height: 100%;
         border: none;
     }
-    
     .desktop-frame {
         display: none;
     }
-
     ::-webkit-scrollbar {
         width: 6px;
         height: 6px;
@@ -151,12 +134,10 @@
     ::-webkit-scrollbar-thumb:hover {
         background: var(--editor-text-muted);
     }
-    
     * {
         scrollbar-width: thin;
         scrollbar-color: var(--editor-border) var(--editor-panel-bg);
     }
-    
     .editor-tabs {
         display: flex;
         gap: 4px;
@@ -168,7 +149,6 @@
         top: 0;
         z-index: 40;
     }
-    
     .editor-tab {
         padding: 8px 16px;
         border-radius: 8px;
@@ -184,26 +164,21 @@
         gap: 6px;
         white-space: nowrap;
     }
-    
     .editor-tab:hover {
         color: var(--editor-text);
         background: var(--editor-hover-bg);
     }
-    
     .editor-tab.active {
         color: #3b82f6;
         background: rgba(59, 130, 246, 0.1);
     }
-    
     .editor-tab svg {
         width: 16px;
         height: 16px;
     }
-    
     .tab-content {
         padding: 16px;
     }
-    
     .editor-card {
         background: var(--editor-card-bg);
         border: 1px solid var(--editor-border);
@@ -211,7 +186,6 @@
         margin-bottom: 16px;
         overflow: hidden;
     }
-    
     .editor-card-header {
         padding: 12px 16px;
         border-bottom: 1px solid var(--editor-border);
@@ -219,17 +193,14 @@
         align-items: center;
         justify-content: space-between;
     }
-    
     .editor-card-title {
         font-size: 14px;
         font-weight: 600;
         color: var(--editor-text);
     }
-    
     .editor-card > :not(.editor-card-header) {
         padding: 16px;
     }
-    
     .form-group { margin-bottom: 12px; }
     .form-label {
         display: block;
@@ -238,7 +209,6 @@
         color: var(--editor-text-muted);
         margin-bottom: 6px;
     }
-    
     .form-input {
         width: 100%;
         padding: 10px 12px;
@@ -249,16 +219,13 @@
         background: var(--editor-input-bg);
         transition: all 0.2s;
     }
-    
     .form-input:focus {
         outline: none;
         border-color: #3b82f6;
         box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
     }
-    
     .form-input::placeholder { color: var(--editor-text-muted); }
     .form-textarea { resize: vertical; min-height: 60px; }
-    
     .btn {
         display: inline-flex;
         align-items: center;
@@ -271,24 +238,18 @@
         transition: all 0.2s;
         border: none;
     }
-    
     .btn-primary {
         background: #3b82f6;
         color: white;
     }
-    
     .btn-primary:hover { background: #2563eb; }
     .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
-    
     .btn-secondary {
         background: var(--editor-hover-bg);
         color: var(--editor-text);
     }
-    
     .btn-secondary:hover { background: var(--editor-border); }
-    
     .block-list { }
-    
     .block-item {
         display: flex;
         align-items: center;
@@ -300,17 +261,13 @@
         margin-bottom: 8px;
         transition: all 0.2s;
     }
-    
     .block-item:hover { border-color: var(--editor-text-muted); }
-    
     .block-drag-handle {
         cursor: grab;
         color: var(--editor-text-muted);
         padding: 4px;
     }
-    
     .block-drag-handle:hover { color: var(--editor-text); }
-    
     .block-icon {
         width: 40px;
         height: 40px;
@@ -320,12 +277,10 @@
         justify-content: center;
         flex-shrink: 0;
     }
-    
     .block-content {
         flex: 1;
         min-width: 0;
     }
-    
     .block-title {
         font-size: 14px;
         font-weight: 500;
@@ -334,7 +289,6 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
-    
     .block-subtitle {
         font-size: 12px;
         color: var(--editor-text-muted);
@@ -342,13 +296,11 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
-    
     .block-actions {
         display: flex;
         align-items: center;
         gap: 8px;
     }
-    
     .block-action-btn {
         padding: 6px;
         border-radius: 6px;
@@ -358,10 +310,8 @@
         cursor: pointer;
         transition: all 0.2s;
     }
-    
     .block-action-btn:hover { color: var(--editor-text); background: var(--editor-hover-bg); }
     .block-action-btn.delete:hover { color: #f87171; background: rgba(248, 113, 113, 0.1); }
-    
     /* Add Block Button */
     .add-block-btn {
         width: 100%;
@@ -379,13 +329,11 @@
         justify-content: center;
         gap: 8px;
     }
-    
     .add-block-btn:hover {
         border-color: #3b82f6;
         color: #3b82f6;
         background: rgba(59, 130, 246, 0.05);
     }
-    
     /* Toggle Switch */
     .toggle-switch {
         position: relative;
@@ -393,13 +341,11 @@
         height: 24px;
         display: inline-block;
     }
-    
     .toggle-switch input {
         opacity: 0;
         width: 0;
         height: 0;
     }
-    
     .toggle-slider {
         position: absolute;
         cursor: pointer;
@@ -408,7 +354,6 @@
         border-radius: 24px;
         transition: 0.3s;
     }
-    
     .toggle-slider::before {
         content: '';
         position: absolute;
@@ -420,10 +365,8 @@
         border-radius: 50%;
         transition: 0.3s;
     }
-    
     .toggle-switch input:checked + .toggle-slider { background: #3b82f6; }
     .toggle-switch input:checked + .toggle-slider::before { transform: translateX(20px); }
-    
     /* Color Picker */
     .color-picker-input {
         width: 36px;
@@ -434,10 +377,8 @@
         cursor: pointer;
         background: transparent;
     }
-    
     .color-picker-input::-webkit-color-swatch-wrapper { padding: 0; }
     .color-picker-input::-webkit-color-swatch { border: none; border-radius: 4px; }
-    
     /* Modal */
     .modal-overlay {
         position: fixed;
@@ -449,7 +390,6 @@
         background: rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(4px);
     }
-    
     .modal-content {
         background: var(--editor-card-bg);
         border: 1px solid var(--editor-border);
@@ -461,7 +401,6 @@
         overflow: hidden;
         margin: 16px;
     }
-    
     .modal-header {
         padding: 16px 20px;
         border-bottom: 1px solid var(--editor-border);
@@ -469,13 +408,11 @@
         align-items: center;
         justify-content: space-between;
     }
-    
     .modal-title {
         font-size: 16px;
         font-weight: 600;
         color: var(--editor-text);
     }
-    
     .modal-close {
         padding: 6px;
         color: var(--editor-text-muted);
@@ -484,15 +421,12 @@
         border-radius: 6px;
         cursor: pointer;
     }
-    
     .modal-close:hover { color: var(--editor-text); background: var(--editor-hover-bg); }
-    
     .modal-body {
         padding: 20px;
         overflow-y: auto;
         max-height: calc(90vh - 130px);
     }
-    
     .modal-footer {
         padding: 16px 20px;
         border-top: 1px solid var(--editor-border);
@@ -500,12 +434,10 @@
         justify-content: flex-end;
         gap: 12px;
     }
-
     /* Social Dropdown */
     .social-dropdown {
         position: relative;
     }
-    
     .social-dropdown-btn {
         width: 100%;
         padding: 12px 16px;
@@ -519,9 +451,7 @@
         cursor: pointer;
         transition: all 0.2s;
     }
-    
     .social-dropdown-btn:hover { border-color: var(--editor-text-muted); }
-    
     .social-dropdown-menu {
         position: absolute;
         top: calc(100% + 4px);
@@ -535,7 +465,6 @@
         max-height: 300px;
         overflow-y: auto;
     }
-    
     .social-dropdown-search {
         padding: 12px;
         border-bottom: 1px solid var(--editor-border);
@@ -543,7 +472,6 @@
         top: 0;
         background: var(--editor-card-bg);
     }
-    
     .social-dropdown-item {
         display: flex;
         align-items: center;
@@ -552,9 +480,7 @@
         cursor: pointer;
         transition: background 0.2s;
     }
-    
     .social-dropdown-item:hover { background: var(--editor-hover-bg); }
-    
     .social-dropdown-icon {
         width: 32px;
         height: 32px;
@@ -563,18 +489,15 @@
         align-items: center;
         justify-content: center;
     }
-    
     .social-dropdown-icon img {
         width: 18px;
         height: 18px;
         filter: brightness(0) invert(1);
     }
-    
     .social-dropdown-name {
         font-size: 14px;
         color: var(--editor-text);
     }
-    
     /* Theme-aware icon buttons */
     .icon-btn {
         width: 2rem;
@@ -588,12 +511,10 @@
         background: var(--editor-input-bg);
         color: var(--editor-text-muted);
     }
-    
     .icon-btn:hover {
         background: var(--editor-hover-bg);
         color: var(--editor-text);
     }
-    
     .icon-btn.active {
         background: rgba(59, 130, 246, 0.2);
         border-color: #3b82f6;
@@ -601,12 +522,10 @@
         ring: 2px;
         ring-color: #3b82f6;
     }
-    
     .editor-text { color: var(--editor-text); }
     .editor-text-muted { color: var(--editor-text-muted); }
     .editor-icon { color: var(--editor-text-muted); }
     .editor-icon:hover { color: var(--editor-text); }
-    
     .option-btn {
         background: var(--editor-input-bg);
         border: 1px solid var(--editor-border);
@@ -619,7 +538,6 @@
         background: rgba(59, 130, 246, 0.15);
         border-color: #3b82f6;
     }
-
     @media (max-width: 1024px) {
         .editor-container {
             grid-template-columns: 1fr;
@@ -630,13 +548,11 @@
     }
 </style>
 @endpush
-
 @section('content')
 <div x-data="window.bioEditorV2()">
     <!-- Fake fields to prevent browser password autofill -->
     <input type="text" name="fake_username" style="display:none !important" tabindex="-1" autocomplete="username">
     <input type="password" name="fake_password" style="display:none !important" tabindex="-1" autocomplete="new-password">
-    
     <div class="editor-container" autocomplete="off">
         <div class="editor-panel">
             <div class="border-b px-6 py-4 sticky top-0 z-40" style="background: var(--editor-card-bg); border-color: var(--editor-border);">
@@ -679,7 +595,6 @@
                 </div>
             </div>
         </div>
-        
         <div class="editor-tabs">
             <button @click="activeTab = 'profile'" :class="{ 'active': activeTab === 'profile' }" class="editor-tab">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -713,7 +628,6 @@
                 Settings
             </button>
         </div>
-        
         <div class="tab-content">
             <div x-show="activeTab === 'profile'" x-cloak>
                 @include('bio.editor.profile-tab')
@@ -732,7 +646,6 @@
             </div>
         </div>
     </div>
-    
     <div class="preview-panel">
         <div class="preview-header">
             <span class="text-sm font-medium editor-text">Live Preview</span>
@@ -744,7 +657,6 @@
                 </svg>
             </a>
         </div>
-        
         <div class="preview-frame-container">
             <div class="mobile-frame">
                 <div class="mobile-frame-inner">
@@ -758,9 +670,7 @@
         </div>
     </div>
     </div><!-- End of editor-container -->
-    
     <!-- All Modals - Outside of editor-container to avoid overflow:hidden clipping -->
-    
     <!-- Link Icon Picker Modal -->
     <div x-show="showIconPicker" x-cloak class="modal-overlay" @click.self="showIconPicker = false" style="z-index: 10001;">
         <div class="modal-content" style="max-width: 560px;" @click.stop>
@@ -784,12 +694,10 @@
                     </div>
                     <p class="text-xs editor-text-muted mt-1">PNG, JPG, or SVG. Max 1MB.</p>
                 </div>
-                
                 <!-- Search -->
                 <div class="p-4" style="border-bottom: 1px solid var(--editor-border);">
                     <input type="text" x-model="iconSearch" placeholder="Search icons..." class="form-input">
                 </div>
-                
                 <!-- Icon Grid - 4 columns -->
                 <div class="p-4 max-h-80 overflow-y-auto">
                     <div class="grid grid-cols-4 gap-3">
@@ -808,7 +716,6 @@
             </div>
         </div>
     </div>
-
     <template x-if="editingBlock">
     <div class="modal-overlay" @click.self="closeBlockEditor()">
         <div class="modal-content" @click.stop>
@@ -840,12 +747,10 @@
                                 <div class="text-xs editor-text-muted" x-text="editingBlock.type"></div>
                             </div>
                         </div>
-                        
                         <div class="form-group">
                             <label class="form-label">Title</label>
                             <input type="text" x-model="editingBlock.title" class="form-input" placeholder="Button title" autocomplete="off" data-lpignore="true" data-form-type="other">
                         </div>
-                        
                         <template x-if="editingBlock && editingBlock.type === 'link'">
                             <div class="space-y-4">
                                 <!-- Link Mode Selection (Only for Custom Links) -->
@@ -863,7 +768,6 @@
                                         </div>
                                     </div>
                                 </template>
-
                                 <div class="form-group">
                                     <!-- Create New Mode -->
                                     <template x-if="editingBlock.brand || linkInputMode === 'create'">
@@ -886,12 +790,10 @@
                                             </p>
                                         </div>
                                     </template>
-
                                     <!-- Select Existing Mode -->
                                     <template x-if="!editingBlock.brand && linkInputMode === 'existing'">
                                         <div class="relative" @click.outside="libraryLinks = []; librarySearch = ''">
                                             <label class="form-label">Select a link</label>
-                                            
                                             <!-- Selected Link Display -->
                                             <template x-if="editingBlock.url && !librarySearch">
                                                 <div class="mb-3 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-lg flex items-center justify-between group">
@@ -907,7 +809,6 @@
                                                     </button>
                                                 </div>
                                             </template>
-
                                             <div class="relative" x-show="!editingBlock.url || librarySearch">
                                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                                     <svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -921,7 +822,6 @@
                                                     class="form-input pl-10" 
                                                     placeholder="Type to search existing URL...">
                                             </div>
-                                            
                                             <!-- Inline Results Dropdown -->
                                             <div x-show="librarySearch.length > 0 || (libraryLinks.length > 0 && !editingBlock.url)" 
                                                  class="absolute z-[60] w-full mt-1 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 max-h-60 overflow-y-auto custom-scrollbar">
@@ -945,7 +845,6 @@
                                         </div>
                                     </template>
                                 </div>
-                                
                                 <!-- Icon Picker - Only for Custom Links (no brand) -->
                                 <template x-if="!editingBlock.brand">
                                     <div class="form-group">
@@ -975,7 +874,6 @@
                                         </button>
                                     </div>
                                 </template>
-                                
                                 <div class="form-group" x-data="{ showButtonStyle: true }">
                                     <button type="button" @click="showButtonStyle = !showButtonStyle" 
                                             class="w-full flex items-center justify-between p-3 option-btn rounded-lg transition-colors">
@@ -998,7 +896,6 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                         </svg>
                                     </button>
-                                    
                                     <div x-show="showButtonStyle" x-collapse class="mt-3 space-y-3 p-3 editor-card-bg rounded-lg" style="border: 1px solid var(--editor-border);">
                                         <div class="form-group">
                                             <label class="form-label text-xs">Preview</label>
@@ -1018,7 +915,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
                                         <!-- Auto Style Checkbox -->
                                         <div class="flex items-center justify-between py-2 px-3 rounded-lg" style="background: var(--editor-bg);">
                                             <div class="flex items-center gap-3">
@@ -1032,7 +928,6 @@
                                             </div>
                                             <span class="text-xs editor-text-muted">Uncheck to manually edit</span>
                                         </div>
-                                        
                                         <!-- Manual Style Options - only shown when Auto is OFF -->
                                         <template x-if="!isBlockAutoStyle(editingBlock)">
                                             <div class="space-y-3">
@@ -1070,7 +965,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
                                                 <div class="grid grid-cols-2 gap-3">
                                                     <div>
                                                         <label class="form-label text-xs">Border Color</label>
@@ -1091,7 +985,6 @@
                                                         <span class="text-xs editor-text-muted ml-2">White icon</span>
                                                     </div>
                                                 </div>
-                                                
                                                 <div class="flex justify-end pt-2 border-t [border-color:var(--editor-border)]">
                                                     <button type="button" @click="resetBlockToTheme(editingBlock)" 
                                                             class="text-xs text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
@@ -1107,7 +1000,6 @@
                                 </div>
                             </div>
                         </template>
-                        
                         <template x-if="editingBlock.type === 'text'">
                             <div class="form-group">
                                 <label class="form-label flex items-center justify-between">
@@ -1123,7 +1015,6 @@
                                 <textarea x-model="editingBlock.content" class="form-input form-textarea" rows="3" placeholder="Enter content..."></textarea>
                             </div>
                         </template>
-                        
                         <template x-if="editingBlock.type === 'image'">
                             <div class="space-y-4">
                                 <div class="form-group" x-show="editingBlock.image_url">
@@ -1138,14 +1029,12 @@
                                         </button>
                                     </div>
                                 </div>
-                                
                                 <div class="form-group">
                                     <label class="form-label">Image Source</label>
                                     <div class="space-y-3">
                                         <div class="flex gap-2">
                                             <input type="url" x-model="editingBlock.image_url" class="form-input flex-1" placeholder="https://example.com/image.jpg">
                                         </div>
-                                        
                                         <div class="text-center editor-text-muted text-sm">or</div>
                                         <label class="block p-4 border-2 border-dashed [border-color:var(--editor-border)] hover:border-indigo-500 rounded-lg cursor-pointer transition-colors text-center">
                                             <input type="file" class="hidden" accept="image/*" @change="uploadBlockImage($event, editingBlock)">
@@ -1156,7 +1045,6 @@
                                         </label>
                                     </div>
                                 </div>
-                                
                                 <div class="form-group">
                                     <label class="form-label">Link URL (optional)</label>
                                     <input type="url" x-model="editingBlock.url" class="form-input" placeholder="https://example.com">
@@ -1164,7 +1052,6 @@
                                 </div>
                             </div>
                         </template>
-                        
                         <template x-if="editingBlock.type === 'youtube'">
                             <div class="space-y-4">
                                 <div class="form-group">
@@ -1178,7 +1065,6 @@
                                 </div>
                             </div>
                         </template>
-                        
                         <template x-if="editingBlock.type === 'spotify'">
                             <div class="space-y-4">
                                 <div class="form-group">
@@ -1192,7 +1078,6 @@
                                 </div>
                             </div>
                         </template>
-                        
                         <template x-if="editingBlock.type === 'soundcloud'">
                             <div class="space-y-4">
                                 <div class="form-group">
@@ -1206,7 +1091,6 @@
                                 </div>
                             </div>
                         </template>
-                        
                         <template x-if="editingBlock.type === 'code'">
                             <div class="space-y-4">
                                 <div class="form-group">
@@ -1231,7 +1115,6 @@
                                 </div>
                             </div>
                         </template>
-                        
                         <template x-if="editingBlock.type === 'map'">
                             <div class="space-y-4">
                                 <div class="form-group">
@@ -1249,7 +1132,6 @@
                                 </div>
                             </div>
                         </template>
-                        
                         <template x-if="editingBlock.type === 'countdown'">
                             <div class="space-y-4">
                                 <div class="form-group">
@@ -1262,7 +1144,6 @@
                                 </div>
                             </div>
                         </template>
-                        
                         <template x-if="editingBlock.type === 'header'">
                             <div class="space-y-4">
                                 <div class="form-group">
@@ -1271,7 +1152,6 @@
                                 </div>
                             </div>
                         </template>
-                        
                         <template x-if="editingBlock.type === 'vcard'">
                             <div class="space-y-4">
                                 <div class="form-group">
@@ -1292,7 +1172,6 @@
                                 </div>
                             </div>
                         </template>
-                        
                         <template x-if="editingBlock.type === 'html'">
                             <div class="space-y-4">
                                 <div class="form-group">
@@ -1306,7 +1185,6 @@
                                 </div>
                             </div>
                         </template>
-                        
                         <!-- Animation Settings - Only for link type blocks -->
                         <template x-if="editingBlock.type === 'link'">
                             <div class="p-3 rounded-lg space-y-4" style="background: var(--editor-card-bg)">
@@ -1316,7 +1194,6 @@
                                     </svg>
                                     <span class="text-sm font-medium editor-text">Animations</span>
                                 </div>
-                                
                                 <div class="grid grid-cols-2 gap-3">
                                     <div>
                                         <label class="form-label text-xs mb-1">Entrance Animation</label>
@@ -1348,7 +1225,6 @@
                                 </div>
                             </div>
                         </template>
-                        
                         <div class="flex items-center justify-between p-3 rounded-lg" style="background: var(--editor-card-bg)">
                             <div>
                                 <div class="text-sm font-medium editor-text">Active</div>
@@ -1372,7 +1248,6 @@
         </div>
     </div>
     </template>
-
     <div x-show="showDiscardModal" x-cloak class="modal-overlay" style="z-index: 9999;">
         <div class="modal-content" style="max-width: 400px;" @click.stop>
             <div class="p-6 text-center">
@@ -1394,7 +1269,6 @@
             </div>
         </div>
     </div>
-    
     <div x-show="showAddBlockModal" x-cloak class="modal-overlay" @click.self="showAddBlockModal = false">
         <div class="modal-content" style="max-width: 600px;" @click.stop>
             <div class="modal-header">
@@ -1410,7 +1284,6 @@
             </div>
         </div>
     </div>
-
     <div x-show="showLinkLibraryModal" x-cloak class="modal-overlay" @click.self="showLinkLibraryModal = false" style="z-index: 10000;">
         <div class="modal-content" style="max-width: 500px;" @click.stop>
             <div class="modal-header">
@@ -1455,7 +1328,6 @@
             </div>
         </div>
     </div>
-    
     <div x-show="showSocialPicker" x-cloak class="modal-overlay" @click.self="showSocialPicker = false">
         <div class="modal-content" style="max-width: 480px;" @click.stop>
             <div class="modal-header">
@@ -1471,7 +1343,6 @@
                     <input type="text" x-model="socialSearch" placeholder="Search platforms..." 
                            class="form-input" autocomplete="off" data-lpignore="true" data-1p-ignore="true">
                 </div>
-                
                 <div class="max-h-80 overflow-y-auto">
                     <template x-for="(platform, id) in filteredPlatforms" :key="id">
                         <button @click="selectSocialPlatform(id)" 
@@ -1495,7 +1366,6 @@
             </div>
         </div>
     </div>
-    
     <!-- Social Link Editor Modal -->
     <div x-show="showSocialEditor" x-cloak class="modal-overlay" @click.self="cancelSocialEdit()">
         <template x-if="editingSocial">
@@ -1542,7 +1412,6 @@
             </div>
         </template>
     </div>
-    
     <div x-show="showTextEditor" x-cloak class="modal-overlay" @click.self="showTextEditor = false">
         <div class="modal-content" style="max-width: 600px;" @click.stop>
             <div class="modal-header">
@@ -1604,7 +1473,6 @@
                         </svg>
                     </button>
                 </div>
-                
                 <div x-ref="richTextEditor" 
                      contenteditable="true" 
                      class="min-h-[250px] p-4 rounded-b-lg focus:outline-none editor-text"
@@ -1618,7 +1486,6 @@
             </div>
         </div>
     </div>
-    
     <div x-show="showImageUploader" x-cloak class="modal-overlay" @click.self="showImageUploader = false">
         <div class="modal-content" style="max-width: 500px;" @click.stop>
             <div class="modal-header">
@@ -1642,7 +1509,6 @@
                         From URL
                     </button>
                 </div>
-                
                 <div x-show="imageUploadTab === 'upload'">
                     <div class="border-2 border-dashed [border-color:var(--editor-border)] rounded-xl p-8 text-center">
                         <input type="file" accept="image/*" class="hidden" x-ref="imageBlockInput" @change="uploadImageBlock($event)">
@@ -1653,7 +1519,6 @@
                         <button @click="$refs.imageBlockInput.click()" class="btn btn-secondary">Choose File</button>
                     </div>
                 </div>
-                
                 <!-- URL Tab -->
                 <div x-show="imageUploadTab === 'url'">
                     <div class="form-group">
@@ -1672,17 +1537,12 @@
             </div>
         </div>
     </div>
-    
-
 </div>
 @endsection
-
 @push('scripts-head')
 <script>
 // Define bioEditorV2 before Alpine initializes
-console.log('bioEditorV2 function being defined...');
 window.bioEditorV2 = function() {
-    console.log('bioEditorV2 function called!');
     return {
         // State
         activeTab: 'links',
@@ -1716,7 +1576,6 @@ window.bioEditorV2 = function() {
         previewUrl: '{{ route("bio.preview", $bioPage) }}',
         previewReady: false,
         deletedBlockIds: [],
-        
         // Link Library State
         showLinkLibraryModal: false,
         librarySearch: '',
@@ -1724,13 +1583,11 @@ window.bioEditorV2 = function() {
         libraryLoading: false,
         linkInputMode: 'create', // 'create' or 'existing'
         dirtyBlockIds: new Set(), // Track which blocks have been modified
-        
         // Data
         platforms: @json(config('brands.platforms', [])),
         bioPage: @json($bioPage),
         blocks: @json($bioPage->links->sortBy('order')->values()),
         brands: @json(config('brands.platforms', [])),
-        
         // Themes - using hex colors only for input compatibility
         themes: {
             // Basic Themes
@@ -1740,7 +1597,6 @@ window.bioEditorV2 = function() {
             'ocean': { name: 'Ocean', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', text: '#ffffff', bio: '#e2e8f0', link_bg: '#ffffff', link_text: '#667eea' },
             'sunset': { name: 'Sunset', background: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)', text: '#ffffff', bio: '#fef3c7', link_bg: '#ffffff', link_text: '#f97316' },
             'forest': { name: 'Forest', background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)', text: '#1e293b', bio: '#374151', link_bg: '#1e293b', link_text: '#ffffff' },
-            
             // LinkStack Themes
             'galaxy': { name: 'Galaxy', background: 'linear-gradient(135deg, #0c0a3e 0%, #2d1b69 50%, #7b2cbf 100%)', text: '#ffffff', bio: '#e0aaff', link_bg: 'rgba(255,255,255,0.15)', link_text: '#ffffff' },
             'neon': { name: 'Neon', background: '#0a0a0a', text: '#39ff14', bio: '#00ff88', link_bg: 'rgba(57, 255, 20, 0.15)', link_text: '#39ff14', link_border: '#39ff14' },
@@ -1754,11 +1610,9 @@ window.bioEditorV2 = function() {
             'lavender': { name: 'Lavender Dreams', background: 'linear-gradient(135deg, #e6e6fa 0%, #d8bfd8 50%, #dda0dd 100%)', text: '#4b0082', bio: '#663399', link_bg: '#ffffff', link_text: '#4b0082' },
             'matrix': { name: 'Matrix', background: '#000000', text: '#00ff00', bio: '#00cc00', link_bg: 'rgba(0,255,0,0.1)', link_text: '#00ff00' }
         },
-        
         // Sortable instances
         blocksSortable: null,
         socialsSortable: null,
-        
         // Computed
         get filteredPlatforms() {
             const search = this.socialSearch.toLowerCase();
@@ -1769,7 +1623,6 @@ window.bioEditorV2 = function() {
                 )
             );
         },
-        
         get filteredBrands() {
             const search = this.iconSearch.toLowerCase();
             if (!search) return this.brands;
@@ -1779,35 +1632,26 @@ window.bioEditorV2 = function() {
                 )
             );
         },
-
         get isBlockValid() {
             if (!this.editingBlock) return false;
             if (this.editingBlock._urlError) return false;
-            
             if (this.editingBlock.type === 'link') {
                 return !!(this.editingBlock.url && String(this.editingBlock.url).trim());
             }
             return true;
         },
-        
         init() {
-            console.log('Bio Editor V2 initialized');
-            
             // Expose bioPage to window for child components (like qrGenerator)
             window.bioEditorData = { bioPage: this.bioPage };
-            
             this.$nextTick(() => {
                 this.initSortable();
             });
-            
             // Initialize social_links if not exists
             if (!this.bioPage.social_links) {
                 this.bioPage.social_links = [];
             }
-            
             // Store original data hash for change detection
             this.originalDataHash = this.getDataHash();
-            
             // Listen for preview ready
             window.addEventListener('message', (event) => {
                 if (event.data.type === 'preview-ready') {
@@ -1815,7 +1659,6 @@ window.bioEditorV2 = function() {
                     this.sendPreviewUpdate();
                 }
             });
-            
             // Watch for changes and update preview (debounced for performance)
             this.$watch('bioPage', () => {
                 this.debouncedPreviewUpdate();
@@ -1825,7 +1668,6 @@ window.bioEditorV2 = function() {
                 this.debouncedPreviewUpdate();
                 this.debouncedCheckForChanges();
             }, { deep: true });
-            
             // Warn before leaving with unsaved changes (fallback for browser refresh/close)
             window.addEventListener('beforeunload', (e) => {
                 if (this.hasUnsavedChanges) {
@@ -1834,7 +1676,6 @@ window.bioEditorV2 = function() {
                     return '';
                 }
             });
-            
             // Intercept F5 and Ctrl+R to show custom modal instead of browser dialog
             const self = this;
             document.addEventListener('keydown', (e) => {
@@ -1862,7 +1703,6 @@ window.bioEditorV2 = function() {
                     }
                 }
             });
-            
             // Intercept all link clicks to show custom modal
             document.addEventListener('click', (e) => {
                 const link = e.target.closest('a[href]');
@@ -1875,7 +1715,6 @@ window.bioEditorV2 = function() {
                     }
                 }
             });
-            
             // Handle browser back/forward button with custom modal
             window.addEventListener('popstate', (e) => {
                 if (this.hasUnsavedChanges) {
@@ -1885,10 +1724,8 @@ window.bioEditorV2 = function() {
                     this.showDiscardModal = true;
                 }
             });
-            
             // Push initial state to enable popstate handling
             history.pushState(null, '', window.location.href);
-            
             // Reinitialize sortable when tab changes
             this.$watch('activeTab', () => {
                 if (this.activeTab === 'links' || this.activeTab === 'socials') {
@@ -1896,27 +1733,22 @@ window.bioEditorV2 = function() {
                 }
             });
         },
-        
         getDataHash() {
             return JSON.stringify({ bioPage: this.bioPage, blocks: this.blocks });
         },
-        
         checkForChanges() {
             this.hasUnsavedChanges = this.getDataHash() !== this.originalDataHash;
         },
-        
         // Debounced version for watchers - reduces CPU usage
         debouncedCheckForChanges() {
             if (this._checkTimeout) clearTimeout(this._checkTimeout);
             this._checkTimeout = setTimeout(() => this.checkForChanges(), 100);
         },
-        
         // Debounced preview update to prevent UI lag
         debouncedPreviewUpdate() {
             if (this._previewTimeout) clearTimeout(this._previewTimeout);
             this._previewTimeout = setTimeout(() => this.sendPreviewUpdate(), 50);
         },
-        
         handleNavigation(url) {
             if (this.hasUnsavedChanges) {
                 this.pendingNavigation = url;
@@ -1925,7 +1757,6 @@ window.bioEditorV2 = function() {
                 window.location.href = url;
             }
         },
-        
         confirmDiscard() {
             this.hasUnsavedChanges = false;
             this.showDiscardModal = false;
@@ -1933,12 +1764,10 @@ window.bioEditorV2 = function() {
                 window.location.href = this.pendingNavigation;
             }
         },
-        
         cancelDiscard() {
             this.showDiscardModal = false;
             this.pendingNavigation = null;
         },
-        
         initSortable() {
             this.$nextTick(() => {
                 const blocksContainer = document.getElementById('blocks-list');
@@ -1957,7 +1786,6 @@ window.bioEditorV2 = function() {
                         onEnd: (evt) => {
                             const oldIndex = evt.oldIndex;
                             const newIndex = evt.newIndex;
-                            
                             // Restore DOM to original order immediately
                             // This prevents Alpine from losing bindings
                             if (self._sortableChildren) {
@@ -1965,18 +1793,14 @@ window.bioEditorV2 = function() {
                                     blocksContainer.appendChild(child);
                                 });
                             }
-                            
                             if (oldIndex === newIndex) return;
-                            
                             // Now update the data - Alpine will re-render correctly
                             const currentBlocks = JSON.parse(JSON.stringify(Alpine.raw(self.blocks)));
                             const movedBlock = currentBlocks.splice(oldIndex, 1)[0];
                             currentBlocks.splice(newIndex, 0, movedBlock);
                             currentBlocks.forEach((block, idx) => block.order = idx);
-                            
                             // Update Alpine state
                             self.blocks = currentBlocks;
-                            
                             // Re-init sortable after Alpine re-renders
                             self.$nextTick(() => {
                                 self.saveBlocksOrder();
@@ -2005,22 +1829,18 @@ window.bioEditorV2 = function() {
                         onEnd: (evt) => {
                             const oldIndex = evt.oldIndex;
                             const newIndex = evt.newIndex;
-                            
                             // Restore DOM to original order
                             if (self._socialChildren) {
                                 self._socialChildren.forEach(child => {
                                     socialsContainer.appendChild(child);
                                 });
                             }
-                            
                             if (oldIndex === newIndex) return;
-                            
                             // Update data
                             const socialLinks = JSON.parse(JSON.stringify(Alpine.raw(self.bioPage.social_links)));
                             const movedSocial = socialLinks.splice(oldIndex, 1)[0];
                             socialLinks.splice(newIndex, 0, movedSocial);
                             self.bioPage.social_links = socialLinks;
-                            
                             self.$nextTick(() => {
                                 self.sendPreviewUpdate();
                                 // Reinit sortable
@@ -2035,7 +1855,6 @@ window.bioEditorV2 = function() {
                 }
             });
         },
-        
         // Re-initialize sortable when tab changes
         reinitSortable() {
             if (this.blocksSortable) {
@@ -2057,14 +1876,12 @@ window.bioEditorV2 = function() {
                     // Clone data to avoid proxy issues with postMessage
                     const bioPageData = JSON.parse(JSON.stringify(Alpine.raw(this.bioPage)));
                     const blocksData = JSON.parse(JSON.stringify(Alpine.raw(this.blocks)));
-                    
                     // Helper to format avatar URL
                     const formatAvatarUrl = (url) => {
                         if (!url) return null;
                         if (url.startsWith('/storage/') || url.startsWith('http')) return url;
                         return '/storage/' + url;
                     };
-                    
                     // Map to preview expected format
                     const previewData = {
                         profile: {
@@ -2125,7 +1942,6 @@ window.bioEditorV2 = function() {
                             hideBranding: bioPageData.hide_branding || false
                         }
                     };
-                    
                     frame.contentWindow.postMessage({
                         type: 'preview-update',
                         data: previewData
@@ -2135,16 +1951,12 @@ window.bioEditorV2 = function() {
                 }
             }
         },
-        
         refreshPreview() {
             const frame = this.$refs.previewFrame;
             if (frame) frame.src = frame.src;
         },
-        
         onPreviewLoad() {
-            console.log('Preview loaded');
         },
-        
         // Block Management
         addBlock(type) {
             const newBlock = {
@@ -2171,16 +1983,12 @@ window.bioEditorV2 = function() {
                 faq_items: [],
                 html_content: ''
             };
-            
             this.blocks.push(newBlock);
-            
             if (['link', 'header', 'text', 'video', 'music', 'vcard', 'html', 'countdown', 'map', 'faq', 'youtube', 'spotify', 'soundcloud', 'code', 'image'].includes(type)) {
                 this.editingBlock = JSON.parse(JSON.stringify(newBlock));
             }
-            
             this.showAddBlockModal = false;
         },
-        
         getDefaultBlockTitle(type) {
             const titles = {
                 'header': 'Header',
@@ -2231,7 +2039,6 @@ window.bioEditorV2 = function() {
             this.showLinkLibraryModal = true;
             this.fetchLibraryLinks();
         },
-        
         fetchLibraryLinks() {
             this.libraryLoading = true;
             fetch('/api/links?query=' + encodeURIComponent(this.librarySearch), {
@@ -2250,7 +2057,6 @@ window.bioEditorV2 = function() {
                 this.libraryLoading = false;
             });
         },
-        
         selectLibraryLink(link) {
             if (this.editingBlock) {
                 this.editingBlock.url = link.short_url;
@@ -2262,7 +2068,6 @@ window.bioEditorV2 = function() {
             }
             this.showLinkLibraryModal = false;
         },
-
         closeBlockEditor() {
             if (this.editingBlock) {
                 const index = this.blocks.findIndex(b => b.id === this.editingBlock.id);
@@ -2277,7 +2082,6 @@ window.bioEditorV2 = function() {
         },
         async saveEditingBlock() {
             if (!this.editingBlock) return;
-            
             if (this.editingBlock.type === 'link') {
                 if (!this.editingBlock.title || !String(this.editingBlock.title).trim()) {
                     this.showNotification('Title is required', 'error');
@@ -2293,7 +2097,6 @@ window.bioEditorV2 = function() {
                         urlToCheck = 'https://' + urlToCheck;
                         this.editingBlock.url = urlToCheck;
                     }
-                    
                     // Auto-shorten for Custom Links (no brand)
                     if (!this.editingBlock.brand) {
                         const currentHost = window.location.host;
@@ -2313,7 +2116,6 @@ window.bioEditorV2 = function() {
                                         title: this.editingBlock.title
                                     })
                                 });
-                                
                                 if (response.ok) {
                                     const data = await response.json();
                                     if (data.short_url) {
@@ -2465,26 +2267,21 @@ window.bioEditorV2 = function() {
         uploadAvatar(event) {
             const file = event.target.files[0];
             if (!file) return;
-            
             // Validate file size (max 2MB)
             if (file.size > 2 * 1024 * 1024) {
                 this.showNotification('Avatar must be less than 2MB', 'error');
                 event.target.value = '';
                 return;
             }
-            
             // Validate file type
             if (!file.type.startsWith('image/')) {
                 this.showNotification('Please select an image file', 'error');
                 event.target.value = '';
                 return;
             }
-            
             const formData = new FormData();
             formData.append('avatar', file);
-            
             this.showNotification('Uploading avatar...', 'info');
-            
             fetch('{{ route("bio.upload-avatar", $bioPage) }}', {
                 method: 'POST',
                 headers: {
@@ -2560,7 +2357,6 @@ window.bioEditorV2 = function() {
                 this.bioPage.button_bg_color = theme.link_bg;
                 this.bioPage.link_text_color = theme.link_text || theme.text;
                 this.bioPage.button_text_color = theme.link_text || theme.text;
-                
                 // Reset all block custom colors when applying theme
                 this.bioPage.links.forEach(block => {
                     if (block.type === 'link') {
@@ -2569,7 +2365,6 @@ window.bioEditorV2 = function() {
                         block.btn_border_color = null;
                     }
                 });
-                
                 // Mark all blocks as dirty for save
                 this.bioPage.links.forEach(block => {
                     this.markBlockDirty(block.id);
@@ -2587,21 +2382,17 @@ window.bioEditorV2 = function() {
                 this.showNotification('Theme not found', 'error');
                 return;
             }
-            
             // Switch to Default theme first
             this.bioPage.theme = 'default';
-            
             if (what === 'button' || what === 'all') {
                 // Copy button colors
                 this.bioPage.link_bg_color = theme.link_bg;
                 this.bioPage.button_bg_color = theme.link_bg;
                 this.bioPage.link_text_color = theme.link_text || theme.text;
                 this.bioPage.button_text_color = theme.link_text || theme.text;
-                
                 // Also copy text colors for consistency
                 this.bioPage.title_color = theme.text;
                 this.bioPage.bio_color = theme.bio;
-                
                 // Reset block custom colors to use the copied theme colors
                 this.bioPage.links.forEach(block => {
                     if (block.type === 'link') {
@@ -2614,7 +2405,6 @@ window.bioEditorV2 = function() {
                     this.markBlockDirty(block.id);
                 });
             }
-            
             if (what === 'background' || what === 'all') {
                 // Copy background
                 const isGradient = theme.background.includes('gradient');
@@ -2627,18 +2417,15 @@ window.bioEditorV2 = function() {
                     this.bioPage.background_color = theme.background;
                 }
             }
-            
             const whatLabel = what === 'button' ? 'Button style' : what === 'background' ? 'Background' : 'Style';
             this.showNotification(`${whatLabel} copied from ${theme.name}!`, 'success');
         },
         async processDeletions() {
             if (this.deletedBlockIds.length === 0) return;
-            
             // Process deletions in parallel for faster saves
             const deletePromises = this.deletedBlockIds.map(id => 
                 this.deleteBlockFromServer(id).catch(e => console.error('Failed to delete block:', id, e))
             );
-            
             await Promise.all(deletePromises);
             this.deletedBlockIds = [];
         },
@@ -2652,10 +2439,8 @@ window.bioEditorV2 = function() {
                 if (bioData.socials && !Array.isArray(bioData.socials)) {
                     delete bioData.socials;
                 }
-                
                 // Process deletions first
                 await this.processDeletions();
-
                 const response = await fetch('{{ route("bio.update", $bioPage) }}', {
                     method: 'PUT',
                     headers: {
@@ -2684,7 +2469,6 @@ window.bioEditorV2 = function() {
         async saveBlocks() {
             // Collect all save promises for parallel execution
             const savePromises = [];
-            
             for (const block of this.blocks) {
                 if (block.id >= 1000000000) {
                     // New block - create
@@ -2694,12 +2478,10 @@ window.bioEditorV2 = function() {
                     savePromises.push(this.updateBlock(block));
                 }
             }
-            
             // Execute all saves in parallel
             if (savePromises.length > 0) {
                 await Promise.all(savePromises);
             }
-            
             // Clear dirty tracking after save
             this.dirtyBlockIds = new Set();
         },
@@ -2718,9 +2500,7 @@ window.bioEditorV2 = function() {
                 },
                 body: JSON.stringify(block)
             });
-            
             const data = await response.json();
-            
             if (response.ok) {
                 block.id = data.block?.id || data.id;
             } else {
@@ -2737,7 +2517,6 @@ window.bioEditorV2 = function() {
                 },
                 body: JSON.stringify(block)
             });
-            
             if (!response.ok) {
                 const data = await response.json();
                 throw new Error(data.message || 'Failed to update block');
@@ -2820,13 +2599,11 @@ window.bioEditorV2 = function() {
         getPlatformColor(brandId) {
             return this.brands[brandId]?.color || '#6366f1';
         },
-        
         // Get current active theme object
         getCurrentTheme() {
             const themeName = this.bioPage.theme || 'default';
             return this.themes[themeName] || this.themes['default'];
         },
-        
         // Get effective button background color (respects theme)
         getEffectiveButtonBg() {
             const theme = this.getCurrentTheme();
@@ -2835,7 +2612,6 @@ window.bioEditorV2 = function() {
             }
             return theme?.link_bg || '#6366f1';
         },
-        
         // Get effective button text color (respects theme)
         getEffectiveButtonText() {
             const theme = this.getCurrentTheme();
@@ -2844,13 +2620,11 @@ window.bioEditorV2 = function() {
             }
             return theme?.link_text || '#ffffff';
         },
-        
         // Check if block is using auto style (no custom colors set)
         isBlockAutoStyle(block) {
             if (!block) return true;
             return !block.btn_bg_color && !block.btn_text_color && !block.btn_border_color && !block.btn_icon_invert;
         },
-        
         // Toggle auto style for a block
         toggleBlockAutoStyle(block, isAuto) {
             if (isAuto) {
@@ -2868,7 +2642,6 @@ window.bioEditorV2 = function() {
             }
             this.markBlockDirty(block.id);
         },
-        
         // Reset block to theme default
         resetBlockToTheme(block) {
             block.btn_bg_color = null;
@@ -2877,14 +2650,12 @@ window.bioEditorV2 = function() {
             block.btn_icon_invert = false;
             this.markBlockDirty(block.id);
         },
-        
         // Get auto icon filter based on theme button color
         getAutoIconFilter() {
             const bgColor = this.getEffectiveButtonBg();
             const isLight = this.isLightColor(bgColor);
             return isLight ? 'brightness(0)' : 'brightness(0) invert(1)';
         },
-        
         getSocialPlaceholder(platform) {
             const placeholders = {
                 'whatsapp': '+1 234 567 8900',
@@ -2958,7 +2729,6 @@ window.bioEditorV2 = function() {
         },
         addQuickBlock(type) {
             this.showAddBlockModal = false;
-            
             if (type === 'text') {
                 this.textEditorBlock = {
                     id: Date.now(),
@@ -3144,7 +2914,6 @@ window.bioEditorV2 = function() {
             this.iconSearch = '';
         },
         openIconPickerSafe(block) {
-            console.log('Opening icon picker safe', block);
             if (!block) {
                 console.error('No block provided to icon picker');
                 return;
@@ -3216,13 +2985,11 @@ window.bioEditorV2 = function() {
         },
         async fetchUrlTitle(block) {
             if (!block.url || (block.title && block.title.trim() !== '')) return;
-            
             let url = block.url.trim();
             // Basic URL validation/normalization
             if (!url.match(/^https?:\/\//i)) {
                 url = 'https://' + url;
             }
-            
             try {
                 const response = await fetch('/api/utils/fetch-title', {
                     method: 'POST',
@@ -3233,7 +3000,6 @@ window.bioEditorV2 = function() {
                     },
                     body: JSON.stringify({ url: url })
                 });
-                
                 if (response.ok) {
                     const data = await response.json();
                     // Check again if title is still empty before setting it
@@ -3250,12 +3016,10 @@ window.bioEditorV2 = function() {
             this.urlInputTimeout = setTimeout(() => {
                 let url = (block.url || '').trim();
                 if (!url) return;
-                
                 // EARLY CHECK: Detect email pattern first - before any other processing
                 // Matches: user@domain.com, test.user+tag@example.co.uk, etc.
                 const emailPattern = /^[\w.+\-]+@[\w.\-]+\.[a-z]{2,}$/i;
                 const isEmail = emailPattern.test(url.replace(/^mailto:/i, ''));
-                
                 // If it looks like an email (with or without mailto:), handle it specially
                 if (isEmail || url.toLowerCase().startsWith('mailto:')) {
                     const cleanEmail = url.replace(/^mailto:/i, '').trim();
@@ -3264,22 +3028,18 @@ window.bioEditorV2 = function() {
                     }
                     return; // Don't process further - this is an email
                 }
-                
                 // Handle tel: prefix for phone numbers
                 if (url.toLowerCase().startsWith('tel:')) {
                     return; // Already has tel: prefix, don't modify
                 }
-                
                 // Handle sms: prefix for SMS
                 if (url.toLowerCase().startsWith('sms:')) {
                     return; // Already has sms: prefix, don't modify
                 }
-                
                 // Handle http:// (without s) - keep as is
                 if (url.toLowerCase().startsWith('http://')) {
                     return; // Keep http:// as is, don't force https
                 }
-                
                 const brandId = block.brand;
                 const brand = this.brands[brandId];
                 const usernamePatterns = {
@@ -3411,7 +3171,6 @@ window.bioEditorV2 = function() {
                 'tumblr': ['tumblr.com'],
                 'bluesky': ['bsky.app'],
                 'mastodon': [], // Allows any Mastodon instance
-                
                 // Messaging
                 'whatsapp': ['wa.me', 'api.whatsapp.com'],
                 'telegram': ['t.me', 'telegram.me'],
@@ -3420,7 +3179,6 @@ window.bioEditorV2 = function() {
                 'signal': ['signal.me'],
                 'line': ['line.me'],
                 'slack': ['slack.com'],
-                
                 // Music & Audio
                 'spotify': ['open.spotify.com', 'spotify.com'],
                 'apple-music': ['music.apple.com'],
@@ -3431,14 +3189,12 @@ window.bioEditorV2 = function() {
                 'deezer': ['deezer.com'],
                 'tidal': ['tidal.com', 'listen.tidal.com'],
                 'audiomack': ['audiomack.com'],
-                
                 // Video & Streaming
                 'twitch': ['twitch.tv'],
                 'vimeo': ['vimeo.com'],
                 'dailymotion': ['dailymotion.com'],
                 'kick': ['kick.com'],
                 'rumble': ['rumble.com'],
-                
                 // Development
                 'github': ['github.com'],
                 'gitlab': ['gitlab.com'],
@@ -3449,14 +3205,12 @@ window.bioEditorV2 = function() {
                 'stackoverflow': ['stackoverflow.com'],
                 'dev': ['dev.to'],
                 'hashnode': ['hashnode.dev', 'hashnode.com'],
-                
                 // Design & Creative
                 'dribbble': ['dribbble.com'],
                 'behance': ['behance.net'],
                 'figma': ['figma.com'],
                 'artstation': ['artstation.com'],
                 'deviantart': ['deviantart.com'],
-                
                 // Business & Productivity
                 'notion': ['notion.so', 'notion.site'],
                 'trello': ['trello.com'],
@@ -3464,7 +3218,6 @@ window.bioEditorV2 = function() {
                 'substack': ['substack.com'],
                 'producthunt': ['producthunt.com'],
                 'xing': ['xing.com'],
-                
                 // Gaming
                 'steam': ['steamcommunity.com', 'store.steampowered.com'],
                 'playstation': ['playstation.com', 'psnprofiles.com'],
@@ -3477,7 +3230,6 @@ window.bioEditorV2 = function() {
                 'vrchat': ['vrchat.com'],
                 'roblox': ['roblox.com'],
                 'battlenet': ['battle.net', 'blizzard.com'],
-                
                 // Payments & Finance
                 'paypal': ['paypal.com', 'paypal.me'],
                 'venmo': ['venmo.com'],
@@ -3485,22 +3237,18 @@ window.bioEditorV2 = function() {
                 'ko-fi': ['ko-fi.com'],
                 'patreon': ['patreon.com'],
                 'buymeacoffee': ['buymeacoffee.com'],
-                
                 // Shopping & E-commerce
                 'amazon': ['amazon.com', 'amazon.co.uk', 'amazon.de', 'amazon.fr', 'amazon.ca', 'amazon.es', 'amazon.it'],
                 'ebay': ['ebay.com', 'ebay.co.uk', 'ebay.de'],
                 'etsy': ['etsy.com'],
                 'shopify': ['myshopify.com'],
-                
                 // App Stores
                 'appstore': ['apps.apple.com'],
                 'playstore': ['play.google.com'],
-                
                 // Web3 & NFT
                 'opensea': ['opensea.io'],
                 'rarible': ['rarible.com'],
                 'foundation': ['foundation.app'],
-                
                 // Extended platforms
                 'clubhouse': ['clubhouse.com'],
                 'guilded': ['guilded.gg'],
@@ -4033,10 +3781,8 @@ window.bioEditorV2 = function() {
                 'youtube-music': 'youtubemusic',
                 'zoom': 'zoom',
             };
-            
             const iconName = mapping[platform];
             if (!iconName) return null;
-            
             let url = `https://cdn.simpleicons.org/${iconName}`;
             if (color) {
                 url += `/${color.replace('#', '')}`;
@@ -4053,29 +3799,24 @@ window.bioEditorV2 = function() {
             // Try Simple Icons first
             const simpleUrl = this.getSimpleIconUrl(platform, color);
             if (simpleUrl) return simpleUrl;
-            
             // Fall back to local icons
             return `/images/brands/${platform}.svg?v=20251212`;
         },
-        
         /**
          * Auto-color module: Calculate optimal text color based on background
          * Uses WCAG luminance calculation for accessibility
          */
         getContrastColor(bgColor) {
             if (!bgColor) return '#ffffff';
-            
             // Handle hex colors
             let hex = bgColor;
             if (hex.startsWith('#')) {
                 hex = hex.slice(1);
             }
-            
             // Handle shorthand hex
             if (hex.length === 3) {
                 hex = hex.split('').map(c => c + c).join('');
             }
-            
             // Handle rgba/rgb
             if (bgColor.startsWith('rgb')) {
                 const rgb = bgColor.match(/\d+/g);
@@ -4087,7 +3828,6 @@ window.bioEditorV2 = function() {
                     return luminance > 0.5 ? '#000000' : '#ffffff';
                 }
             }
-            
             // Handle gradient - extract first color
             if (bgColor.includes('gradient')) {
                 const colorMatch = bgColor.match(/#[a-fA-F0-9]{3,6}/);
@@ -4096,18 +3836,14 @@ window.bioEditorV2 = function() {
                 }
                 return '#ffffff';
             }
-            
             // Parse hex
             const r = parseInt(hex.substr(0, 2), 16);
             const g = parseInt(hex.substr(2, 2), 16);
             const b = parseInt(hex.substr(4, 2), 16);
-            
             // Calculate relative luminance
             const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-            
             return luminance > 0.5 ? '#000000' : '#ffffff';
         },
-        
         /**
          * Get recommended colors for a background
          * Returns object with text, subtle, and accent colors
@@ -4115,7 +3851,6 @@ window.bioEditorV2 = function() {
         getRecommendedColors(bgColor) {
             const textColor = this.getContrastColor(bgColor);
             const isLight = textColor === '#000000';
-            
             return {
                 text: textColor,
                 subtle: isLight ? '#4b5563' : '#9ca3af',
@@ -4124,14 +3859,12 @@ window.bioEditorV2 = function() {
                 border: isLight ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.1)'
             };
         },
-        
         /**
          * Check if a color is light
          */
         isLightColor(color) {
             return this.getContrastColor(color) === '#000000';
         },
-        
         /**
          * Auto-apply recommended text color when button background changes
          * Call this when user changes button_bg_color
@@ -4142,7 +3875,6 @@ window.bioEditorV2 = function() {
                 this.markBlockDirty(block.id);
             }
         },
-        
         showNotification(message, type = 'info') {
             const notification = document.createElement('div');
             notification.className = `fixed top-4 right-4 z-[200] px-6 py-3 rounded-lg shadow-lg text-white ${type === 'success' ? 'bg-green-600' : type === 'error' ? 'bg-red-600' : 'bg-blue-600'}`;
@@ -4164,7 +3896,6 @@ window.bioEditorV2 = function() {
 }
 </script>
 @endpush
-
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 @endpush

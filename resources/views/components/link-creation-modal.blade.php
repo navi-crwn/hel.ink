@@ -1,5 +1,4 @@
 @props(['folders', 'tags', 'isAdmin' => false])
-
 <div
     x-data="linkCreationModal()"
     x-init="init()"
@@ -14,9 +13,7 @@
     class="fixed inset-0 z-40 flex items-center justify-center p-4"
     @keydown.escape.window="if (!showOgEditor && !showFolderModal && !showTagModal && !showQrEditor) { panel = false; }"
 >
-    
     <div @click="if (!showOgEditor && !showFolderModal && !showTagModal && !showQrEditor) { closePanel(); }" class="absolute inset-0 bg-slate-950/60 backdrop-blur-sm"></div>
-    
     <div
         x-show="!showOgEditor && !showFolderModal && !showTagModal && !showQrEditor"
         x-transition:enter="transition ease-out duration-200"
@@ -30,9 +27,7 @@
         aria-modal="true"
         @click.stop
     >
-        
         <div x-show="createdLink" class="flex flex-col h-full">
-            
             <div class="flex items-center justify-between border-b border-slate-200 px-6 py-4 dark:border-slate-800">
                 <div>
                     <h3 class="text-lg font-semibold text-emerald-600 dark:text-emerald-400">🎉 Link Created Successfully!</h3>
@@ -44,10 +39,8 @@
                     </svg>
                 </button>
             </div>
-            
             <div class="flex-1 overflow-y-auto p-6">
                 <div class="max-w-2xl mx-auto space-y-4">
-                    
                     <div class="rounded-xl border-2 border-emerald-300 bg-emerald-50 p-5 dark:border-emerald-800 dark:bg-emerald-900/20">
                         <label class="block text-sm font-medium text-emerald-800 dark:text-emerald-300 mb-2">Your Short URL</label>
                         <div class="flex items-center gap-3">
@@ -65,7 +58,6 @@
                             </button>
                         </div>
                     </div>
-                    
                     <div class="rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-900" x-show="createdLink?.qr_code_url">
                         <h4 class="text-sm font-semibold text-slate-900 dark:text-white mb-3">QR Code</h4>
                         <div class="flex items-start gap-4">
@@ -110,7 +102,6 @@
                             </div>
                         </div>
                     </div>
-                    
                     <div class="flex gap-3">
                         <button 
                             @click="resetForm()"
@@ -128,9 +119,7 @@
                 </div>
             </div>
         </div>
-        
         <div x-show="!createdLink" class="flex flex-col h-full">
-            
             <div class="flex items-center justify-between border-b border-slate-200 px-6 py-4 dark:border-slate-800">
                 <div>
                     <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Create New Link</h3>
@@ -142,15 +131,12 @@
                     </svg>
                 </button>
             </div>
-            
             <div class="flex-1 overflow-hidden">
                 <div class="grid lg:grid-cols-2 h-full overflow-y-auto">
-                    
                     <div class="border-r border-slate-200 dark:border-slate-800">
                         <div class="p-6">
                             <form @submit.prevent="submitForm()" class="space-y-5">
                             @csrf
-                            
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                                     Destination URL
@@ -166,7 +152,6 @@
                                 >
                                 <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">Enter the long URL you want to shorten</p>
                             </div>
-                            
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                                     Short Link
@@ -190,7 +175,6 @@
                                 </div>
                                 <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">Leave empty for auto-generated slug</p>
                             </div>
-                            
                             <div>
                                 <div class="flex items-center justify-between mb-2">
                                     <div class="flex items-center gap-2">
@@ -223,7 +207,6 @@
                                         x-transition
                                         class="absolute z-50 w-full mt-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg shadow-xl overflow-hidden"
                                     >
-                                        
                                         <div class="p-2 border-b border-slate-200 dark:border-slate-700">
                                             <input 
                                                 type="text" 
@@ -233,7 +216,6 @@
                                                 @click.stop
                                             >
                                         </div>
-                                        
                                         <div class="overflow-y-auto" style="max-height: 160px;">
                                             <template x-if="tags.length === 0">
                                                 <p class="text-xs text-slate-500 dark:text-slate-400 text-center py-4">No tags yet</p>
@@ -260,7 +242,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                                     Comments
@@ -272,7 +253,6 @@
                                     class="w-full rounded-lg border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white focus:border-blue-500 focus:ring-blue-500"
                                 ></textarea>
                             </div>
-                            
                             <div>
                                 <button 
                                     type="button"
@@ -285,9 +265,7 @@
                                     Advanced Options
                                 </button>
                             </div>
-                            
                             <div x-show="showAdvanced" x-collapse class="space-y-4 pt-2">
-                                
                                 <div>
                                     <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                                         Expiration Date
@@ -298,7 +276,6 @@
                                         class="w-full rounded-lg border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white focus:border-blue-500 focus:ring-blue-500"
                                     >
                                 </div>
-                                
                                 <div>
                                     <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                                         Password Protection
@@ -310,7 +287,6 @@
                                         class="w-full rounded-lg border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white focus:border-blue-500 focus:ring-blue-500"
                                     >
                                 </div>
-                                
                                 <div>
                                     <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                                         Redirect Type
@@ -325,7 +301,6 @@
                                     </select>
                                 </div>
                             </div>
-                            
                             <div class="pt-4">
                                 <button 
                                     type="submit"
@@ -345,10 +320,8 @@
                         </form>
                         </div>
                     </div>
-                    
                     <div class="h-full overflow-y-auto bg-white dark:bg-slate-800">
                         <div class="p-6 space-y-6">
-                            
                             <div>
                                 <div class="flex items-center justify-between mb-2">
                                     <div class="flex items-center gap-2">
@@ -381,7 +354,6 @@
                                         x-transition
                                         class="absolute z-50 w-full mt-1 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg shadow-xl overflow-hidden"
                                     >
-                                        
                                         <div class="p-2 border-b border-slate-200 dark:border-slate-700">
                                             <input 
                                                 type="text" 
@@ -391,9 +363,7 @@
                                                 @click.stop
                                             >
                                         </div>
-                                        
                                         <div class="overflow-y-auto" style="max-height: 160px;">
-                                            
                                             <template x-for="folder in folders.filter(f => !search || f.name.toLowerCase().includes(search.toLowerCase()))" :key="folder.id">
                                                 <button
                                                     type="button"
@@ -411,7 +381,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
                             <div>
                                 <div class="flex items-center justify-between mb-3">
                                     <label class="block text-sm font-medium text-slate-700 dark:text-slate-300">
@@ -451,7 +420,6 @@
                                     <div x-show="formData.slug" class="space-y-2">
                                         <div class="relative inline-block">
                                             <img :src="qrPreviewUrl" alt="QR Preview" class="w-32 h-32 mx-auto rounded-lg border border-slate-200 dark:border-slate-700">
-                                            
                                             <div x-show="qrSettings.showLogo && qrSettings.logo" class="absolute inset-0 flex items-center justify-center pointer-events-none">
                                                 <div class="w-11 h-11 rounded-lg bg-white dark:bg-slate-900 p-1 shadow-lg border border-slate-200 dark:border-slate-700">
                                                     <img :src="qrSettings.logo" alt="Logo" class="w-full h-full object-contain rounded">
@@ -468,7 +436,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
                             <div>
                                 <div class="flex items-center justify-between mb-3">
                                     <label class="block text-sm font-medium text-slate-700 dark:text-slate-300">
@@ -485,7 +452,6 @@
                                         Custom Preview
                                     </button>
                                 </div>
-                                
                                 <div class="flex gap-1 mb-3 p-1 bg-slate-700 dark:bg-slate-700 rounded-lg">
                                     <button 
                                         type="button"
@@ -520,7 +486,6 @@
                                         📘 Facebook
                                     </button>
                                 </div>
-                                
                                 <div class="rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden bg-white dark:bg-slate-800">
                                     <div x-show="isLoading && !ogData.title" class="p-8 text-center">
                                         <svg class="animate-spin h-8 w-8 mx-auto text-blue-600" fill="none" viewBox="0 0 24 24">
@@ -529,13 +494,10 @@
                                         </svg>
                                         <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">Fetching preview...</p>
                                     </div>
-                                    
                                     <div x-show="!isLoading || ogData.title">
-                                        
                                         <div class="px-3 py-2 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700">
                                             <p class="text-xs text-slate-600 dark:text-slate-400" x-text="getPreviewSize(previewPlatform).label"></p>
                                         </div>
-                                        
                                         <div x-show="ogData.image" class="bg-slate-100 dark:bg-slate-900 flex items-center justify-center" :style="`width: 400px; height: ${400 * getPreviewSize(previewPlatform).height / getPreviewSize(previewPlatform).width}px; margin: 0 auto; overflow: hidden;`">
                                             <img :src="ogData.image" :alt="ogData.title" class="max-w-full max-h-full object-contain">
                                         </div>
@@ -556,7 +518,6 @@
             </div>
         </div>
     </div>
-    
     <div
         x-show="showOgEditor"
         x-transition
@@ -569,7 +530,6 @@
             @click.stop
             class="relative z-[210] w-full max-w-4xl rounded-xl bg-white dark:bg-slate-800 shadow-2xl max-h-[85vh] overflow-hidden"
         >
-            
             <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 px-6 py-4 bg-white dark:bg-slate-800">
                 <h4 class="text-lg font-semibold text-slate-900 dark:text-white">Custom Link Preview</h4>
                 <button @click="showOgEditor = false" class="rounded-lg p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-700 dark:hover:text-white">
@@ -578,11 +538,8 @@
                     </svg>
                 </button>
             </div>
-            
             <div class="grid grid-cols-2 gap-6 p-6 max-h-[calc(85vh-80px)] overflow-y-auto">
-                
                 <div class="space-y-4">
-                    
                     <div>
                         <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                             Image URL
@@ -594,7 +551,6 @@
                             class="w-full rounded-lg border-slate-300 dark:border-slate-600 dark:bg-slate-900 dark:text-white focus:border-blue-500 focus:ring-blue-500 text-sm"
                         >
                     </div>
-                    
                     <div>
                         <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                             Title <span class="text-slate-400 font-normal text-xs">(<span x-text="ogData.title.length"></span>/120)</span>
@@ -607,7 +563,6 @@
                             class="w-full rounded-lg border-slate-300 dark:border-slate-600 dark:bg-slate-900 dark:text-white focus:border-blue-500 focus:ring-blue-500 text-sm"
                         >
                     </div>
-                    
                     <div>
                         <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                             Description <span class="text-slate-400 font-normal text-xs">(<span x-text="ogData.description.length"></span>/240)</span>
@@ -620,7 +575,6 @@
                             class="w-full rounded-lg border-slate-300 dark:border-slate-600 dark:bg-slate-900 dark:text-white focus:border-blue-500 focus:ring-blue-500 text-sm"
                         ></textarea>
                     </div>
-                    
                     <div class="flex gap-3 pt-4">
                         <button 
                             type="button"
@@ -638,14 +592,12 @@
                         </button>
                     </div>
                 </div>
-                
                 <div class="space-y-3">
                     <div class="flex items-center justify-between">
                         <p class="text-sm font-medium text-slate-700 dark:text-slate-300">Live Preview</p>
                         <p class="text-xs text-slate-500 dark:text-slate-400" x-text="getPreviewSize(previewPlatform).label"></p>
                     </div>
                     <div class="rounded-xl border-2 border-slate-200 dark:border-slate-700 overflow-hidden bg-white dark:bg-slate-900">
-                        
                         <div class="bg-slate-100 dark:bg-slate-900 flex items-center justify-center" :style="`width: 100%; height: ${450 * getPreviewSize(previewPlatform).height / getPreviewSize(previewPlatform).width}px; max-width: 450px; margin: 0 auto;`">
                             <img 
                                 x-show="ogData.image" 
@@ -657,7 +609,6 @@
                                 No image
                             </div>
                         </div>
-                        
                         <div class="p-4 bg-white dark:bg-slate-800">
                             <p class="text-sm font-semibold text-slate-900 dark:text-white line-clamp-2 mb-2" x-text="ogData.title || 'Link Title'"></p>
                             <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-3" x-text="ogData.description || 'Link description will appear here'"></p>
@@ -668,7 +619,6 @@
             </div>
         </div>
     </div>
-    
     <div
         x-show="showFolderModal"
         x-transition
@@ -709,7 +659,6 @@
             </form>
         </div>
     </div>
-    
     <div
         x-show="showTagModal"
         x-transition
@@ -750,7 +699,6 @@
             </form>
         </div>
     </div>
-    
     <div
         x-show="showQrEditor"
         x-transition
@@ -763,7 +711,6 @@
             @click.stop
             class="relative z-[210] w-full max-w-md rounded-2xl bg-white dark:bg-slate-800 shadow-2xl overflow-hidden max-h-[85vh]"
         >
-            
             <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 px-6 py-4">
                 <div>
                     <h4 class="text-lg font-semibold text-slate-900 dark:text-white">QR Code Design</h4>
@@ -775,9 +722,7 @@
                     </svg>
                 </button>
             </div>
-            
             <div class="p-5 space-y-4 overflow-y-auto max-h-[70vh]">
-                
                 <div class="text-center">
                     <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">Preview</label>
                     <div class="relative inline-block">
@@ -792,7 +737,6 @@
                                 <div x-show="!formData.slug" class="text-slate-400 dark:text-slate-500 text-sm">
                                     Enter slug first
                                 </div>
-                                
                                 <div x-show="qrSettings.showLogo && qrSettings.logo" class="absolute inset-0 flex items-center justify-center pointer-events-none">
                                     <div class="w-10 h-10 rounded-lg bg-white dark:bg-slate-900 p-1 shadow-lg border border-slate-200 dark:border-slate-700">
                                         <img :src="qrSettings.logo" alt="Logo" class="w-full h-full object-contain rounded">
@@ -802,7 +746,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <div>
                     <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">
                         QR Code Color
@@ -841,7 +784,6 @@
                         >
                     </div>
                 </div>
-                
                 <div>
                     <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                         Background Color
@@ -860,7 +802,6 @@
                         >
                     </div>
                 </div>
-                
                 <div>
                     <div class="flex items-center justify-between mb-2">
                         <label class="block text-sm font-medium text-slate-700 dark:text-slate-300">
@@ -898,7 +839,6 @@
                         </p>
                     </div>
                 </div>
-                
                 <div class="flex gap-3 pt-4 border-t border-slate-200 dark:border-slate-700">
                     <button 
                         type="button"
@@ -919,7 +859,6 @@
         </div>
     </div>
 </div>
-
 <script>
 function linkCreationModal() {
     return {
@@ -943,7 +882,6 @@ function linkCreationModal() {
         tagSuccess: false,
         folders: @json($folders),
         tags: @json($tags),
-        
         qrSettings: {
             fgColor: '#000000',
             bgColor: '#ffffff',
@@ -951,7 +889,6 @@ function linkCreationModal() {
             showLogo: false,
             generateQr: false
         },
-        
         formData: {
             target_url: '',
             slug: '',
@@ -963,41 +900,33 @@ function linkCreationModal() {
             password: '',
             redirect_type: '302'
         },
-        
         ogData: {
             title: '',
             description: '',
             image: ''
         },
-        
         init() {
             // Set default folder (Default folder)
             const defaultFolder = this.folders.find(f => f.is_default);
             if (defaultFolder) {
                 this.formData.folder_id = defaultFolder.id;
             }
-            
             // Expose function immediately
             window.openLinkPanel = () => {
                 this.panel = true;
                 this.resetForm();
             };
-            console.log('Link creation modal initialized');
         },
-        
         closePanel() {
             this.panel = false;
             setTimeout(() => {
                 this.resetForm();
             }, 300);
         },
-        
         resetForm() {
             this.createdLink = null;
-            
             // Set default folder again on reset
             const defaultFolder = this.folders.find(f => f.is_default);
-            
             this.formData = {
                 target_url: '',
                 slug: '',
@@ -1017,15 +946,12 @@ function linkCreationModal() {
             this.qrPreviewUrl = null;
             this.showAdvanced = false;
         },
-        
         async submitForm() {
             if (!this.formData.target_url) {
                 alert('Please enter a destination URL');
                 return;
             }
-            
             this.isLoading = true;
-            
             const payload = {
                 target_url: this.formData.target_url,
                 slug: this.formData.slug || '',
@@ -1044,9 +970,6 @@ function linkCreationModal() {
                 qr_logo_url: this.qrSettings.generateQr && this.qrSettings.showLogo && this.qrSettings.logo ? this.qrSettings.logo : null,
                 generate_qr: this.qrSettings.generateQr
             };
-            
-            console.log('Submitting form with payload:', payload);
-            
             try {
                 const response = await fetch('{{ route('links.store') }}', {
                     method: 'POST',
@@ -1058,9 +981,6 @@ function linkCreationModal() {
                     },
                     body: JSON.stringify(payload)
                 });
-                
-                console.log('Response status:', response.status);
-                
                 if (!response.ok) {
                     const errorData = await response.json().catch(async () => {
                         const errorText = await response.text();
@@ -1074,13 +994,9 @@ function linkCreationModal() {
                     this.isLoading = false;
                     return;
                 }
-                
                 const result = await response.json();
-                console.log('Response data:', result);
-                
                 if (result.success) {
                     this.createdLink = result.link;
-                    console.log('Link created successfully:', this.createdLink);
                 } else {
                     const errorMsg = result.error || result.message || 'Failed to create link';
                     console.error('Creation failed:', errorMsg);
@@ -1093,7 +1009,6 @@ function linkCreationModal() {
                 this.isLoading = false;
             }
         },
-        
         debouncedFetchOg() {
             clearTimeout(this.ogFetchTimeout);
             this.ogFetchTimeout = setTimeout(() => {
@@ -1104,14 +1019,12 @@ function linkCreationModal() {
                 this.fetchOgData();
             }, 1000);
         },
-        
         debouncedGenerateSlug() {
             clearTimeout(this.slugGenerateTimeout);
             this.slugGenerateTimeout = setTimeout(() => {
                 this.generateRandomSlug();
             }, 1000);
         },
-        
         detectPlatform(url) {
             if (!url) return 'default';
             const lowerUrl = url.toLowerCase();
@@ -1122,7 +1035,6 @@ function linkCreationModal() {
             if (lowerUrl.includes('tiktok.com')) return 'tiktok';
             return 'default';
         },
-        
         getPreviewSize(platform) {
             const sizes = {
                 'instagram': { width: 1080, height: 1080, label: 'Instagram Square (1080×1080)' },
@@ -1134,10 +1046,8 @@ function linkCreationModal() {
             };
             return sizes[platform] || sizes.default;
         },
-        
         async fetchOgData() {
             if (!this.formData.target_url || this.formData.target_url.length < 10) return;
-            
             this.isLoading = true;
             try {
                 const response = await fetch('{{ route('links.fetch-og') }}', {
@@ -1149,21 +1059,17 @@ function linkCreationModal() {
                     },
                     body: JSON.stringify({ url: this.formData.target_url })
                 });
-                
                 const result = await response.json();
-                
                 if (result.success && result.data) {
                     this.ogData.title = result.data.title || '';
                     this.ogData.description = result.data.description || '';
                     this.ogData.image = result.data.image || '';
                 }
             } catch (error) {
-                console.log('Could not fetch OG data:', error);
             } finally {
                 this.isLoading = false;
             }
         },
-        
         generateRandomSlug() {
             const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
             let slug = '';
@@ -1173,7 +1079,6 @@ function linkCreationModal() {
             this.formData.slug = slug;
             this.generateQrPreview();
         },
-        
         generateQrPreview() {
             if (this.formData.slug) {
                 const baseUrl = '{{ url('') }}';
@@ -1185,14 +1090,11 @@ function linkCreationModal() {
                 this.qrPreviewUrl = null;
             }
         },
-        
         resetOgData() {
             this.fetchOgData();
         },
-        
         async createFolder() {
             if (!this.newFolderName) return;
-            
             try {
                 const response = await fetch('{{ route('folders.store') }}', {
                     method: 'POST',
@@ -1204,7 +1106,6 @@ function linkCreationModal() {
                     },
                     body: JSON.stringify({ name: this.newFolderName })
                 });
-                
                 if (!response.ok) {
                     const errorData = await response.json().catch(() => ({}));
                     const errorMsg = errorData.message || errorData.error || `Server error: ${response.status}`;
@@ -1212,10 +1113,7 @@ function linkCreationModal() {
                     alert(errorMsg);
                     return;
                 }
-                
                 const result = await response.json();
-                console.log('Folder created:', result);
-                
                 if (result.success && result.folder) {
                     // Ensure folders array exists
                     if (!Array.isArray(this.folders)) {
@@ -1239,10 +1137,8 @@ function linkCreationModal() {
                 alert('Network error: ' + error.message);
             }
         },
-        
         async createTag() {
             if (!this.newTagName) return;
-            
             try {
                 const response = await fetch('{{ route('tags.store') }}', {
                     method: 'POST',
@@ -1254,7 +1150,6 @@ function linkCreationModal() {
                     },
                     body: JSON.stringify({ name: this.newTagName })
                 });
-                
                 if (!response.ok) {
                     const errorData = await response.json().catch(() => ({}));
                     const errorMsg = errorData.message || errorData.error || `Server error: ${response.status}`;
@@ -1262,10 +1157,7 @@ function linkCreationModal() {
                     alert(errorMsg);
                     return;
                 }
-                
                 const result = await response.json();
-                console.log('Tag created:', result);
-                
                 if (result.success && result.tag) {
                     // Ensure tags array exists
                     if (!Array.isArray(this.tags)) {
@@ -1289,7 +1181,6 @@ function linkCreationModal() {
                 alert('Network error: ' + error.message);
             }
         },
-        
         copyToClipboard(text, button) {
             navigator.clipboard.writeText(text);
             const original = button.innerHTML;
@@ -1298,18 +1189,14 @@ function linkCreationModal() {
                 button.innerHTML = original;
             }, 2000);
         },
-        
         generateQrUrl() {
             if (!this.formData.slug) return '';
-            
             const baseUrl = '{{ url('') }}';
             const shortUrl = `${baseUrl}/${this.formData.slug}`;
             const fgColor = this.qrSettings.fgColor.replace('#', '');
             const bgColor = this.qrSettings.bgColor.replace('#', '');
-            
             return `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(shortUrl)}&color=${fgColor}&bgcolor=${bgColor}`;
         },
-        
         resetQrSettings() {
             this.qrSettings = {
                 fgColor: '#000000',

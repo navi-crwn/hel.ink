@@ -15,20 +15,18 @@ class ApiTokenController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
         ]);
-
         // Generate token
         $result = ApiToken::generate(
             userId: $request->user()->id,
             name: $request->input('name'),
             rateLimit: 100
         );
-
         if ($request->wantsJson()) {
             return response()->json([
                 'success' => true,
                 'token' => $result['plain_token'],
                 'name' => $result['model']->name,
-                'message' => 'API token created successfully. Save this token - you won\'t be able to see it again!'
+                'message' => 'API token created successfully. Save this token - you won\'t be able to see it again!',
             ]);
         }
 
@@ -44,13 +42,11 @@ class ApiTokenController extends Controller
         if ($apiToken->user_id !== auth()->id()) {
             abort(403, 'Unauthorized');
         }
-
         $apiToken->delete();
-
         if (request()->wantsJson()) {
             return response()->json([
                 'success' => true,
-                'message' => 'API token revoked successfully'
+                'message' => 'API token revoked successfully',
             ]);
         }
 
@@ -71,29 +67,26 @@ class ApiTokenController extends Controller
     public function sharexConfig()
     {
         $config = [
-            "Version" => "15.0.0",
-            "Name" => "hel.ink URL Shortener",
-            "DestinationType" => "URLShortener",
-            "RequestMethod" => "POST",
-            "RequestURL" => url('/api/shorten'),
-            "Headers" => [
-                "Authorization" => "Bearer YOUR_API_TOKEN_HERE",
-                "Content-Type" => "application/json"
+            'Version' => '15.0.0',
+            'Name' => 'hel.ink URL Shortener',
+            'DestinationType' => 'URLShortener',
+            'RequestMethod' => 'POST',
+            'RequestURL' => url('/api/shorten'),
+            'Headers' => [
+                'Authorization' => 'Bearer YOUR_API_TOKEN_HERE',
+                'Content-Type' => 'application/json',
             ],
-            "Body" => "JSON",
-            "Data" => json_encode([
-                "url" => "{input}"
+            'Body' => 'JSON',
+            'Data' => json_encode([
+                'url' => '{input}',
             ]),
-            "URL" => "{json:data.url}"
+            'URL' => '{json:data.url}',
         ];
-
         $filename = 'helink-sharex-config.sxcu';
         $content = json_encode($config, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 
         return response($content)
             ->header('Content-Type', 'application/json')
-            ->header('Content-Disposition', 'attachment; filename="' . $filename . '"');
+            ->header('Content-Disposition', 'attachment; filename="'.$filename.'"');
     }
 }
-
-

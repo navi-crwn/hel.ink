@@ -1,5 +1,4 @@
 @props(['show' => false])
-
 <div
     x-show="{{ $show }}"
     x-transition
@@ -12,7 +11,6 @@
         @click.stop
         class="relative z-10 w-full max-w-lg rounded-2xl bg-white dark:bg-slate-800 shadow-2xl overflow-hidden"
     >
-        
         <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 px-6 py-4 bg-white dark:bg-slate-800">
             <div>
                 <h4 class="text-lg font-semibold text-slate-900 dark:text-white">QR Code Design</h4>
@@ -24,21 +22,17 @@
                 </svg>
             </button>
         </div>
-        
         <div class="p-6 space-y-5 bg-white dark:bg-slate-800">
-            
             <div class="text-center">
                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">Preview</label>
                 <div class="relative inline-block">
                     <div class="w-56 h-56 mx-auto rounded-xl border-2 border-slate-200 dark:border-slate-700 p-4 bg-white dark:bg-slate-900" :style="'background-color: ' + qrSettings.bgColor">
                         <div class="relative w-full h-full flex items-center justify-center">
-                            
                             <img 
                                 :src="generateQrUrl()" 
                                 alt="QR Preview" 
                                 class="w-full h-full object-contain"
                             >
-                            
                             <div x-show="qrSettings.logo" class="absolute inset-0 flex items-center justify-center">
                                 <div class="w-12 h-12 rounded-lg bg-white dark:bg-slate-900 p-1 shadow-lg border border-slate-200 dark:border-slate-700">
                                     <img :src="qrSettings.logo" alt="Logo" class="w-full h-full object-contain rounded">
@@ -48,7 +42,6 @@
                     </div>
                 </div>
             </div>
-            
             <div>
                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">
                     QR Code Color
@@ -87,7 +80,6 @@
                     >
                 </div>
             </div>
-            
             <div>
                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                     Background Color
@@ -106,7 +98,6 @@
                     >
                 </div>
             </div>
-            
             <div>
                 <div class="flex items-center justify-between mb-2">
                     <label class="block text-sm font-medium text-slate-700 dark:text-slate-300">
@@ -131,7 +122,6 @@
                     <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">Logo will be displayed in the center of QR code</p>
                 </div>
             </div>
-            
             <div class="flex gap-3 pt-4 border-t border-slate-200 dark:border-slate-700">
                 <button 
                     type="button"

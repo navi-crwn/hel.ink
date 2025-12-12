@@ -3,7 +3,6 @@
     'show' => false,
     'maxWidth' => '2xl'
 ])
-
 @php
 $maxWidth = [
     'sm' => 'sm:max-w-sm',
@@ -13,7 +12,6 @@ $maxWidth = [
     '2xl' => 'sm:max-w-2xl',
 ][$maxWidth];
 @endphp
-
 <div
     x-data="{
         show: @js($show),
@@ -62,7 +60,6 @@ $maxWidth = [
     >
         <div class="absolute inset-0 bg-gray-500 dark:bg-gray-900 opacity-75"></div>
     </div>
-
     <div
         x-show="show"
         class="mb-6 bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full {{ $maxWidth }} sm:mx-auto"

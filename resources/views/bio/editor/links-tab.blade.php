@@ -8,7 +8,6 @@
                 <h3 class="editor-card-title">Your Blocks</h3>
                 <span class="text-xs editor-text-muted" x-text="blocks.length + ' blocks'"></span>
             </div>
-            
             <div class="p-4">
                 <!-- Blocks List (Sortable) -->
                 <div id="blocks-list" class="space-y-2 mb-4" x-show="blocks.length > 0">
@@ -20,7 +19,6 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/>
                                 </svg>
                             </div>
-                            
                             <!-- Block Icon -->
                             <div class="block-icon" :style="{ backgroundColor: item.brand ? getPlatformColor(item.brand) : getBlockTypeColor(item.type) }">
                                 <template x-if="item.custom_icon">
@@ -33,13 +31,11 @@
                                     <div x-html="getBlockTypeIcon(item.type)"></div>
                                 </template>
                             </div>
-                            
                             <!-- Block Content -->
                             <div class="block-content">
                                 <div class="text-sm font-medium editor-text truncate" x-text="getBlockDisplayTitle(item)"></div>
                                 <div class="text-xs editor-text-muted truncate" x-text="item.url || item.type"></div>
                             </div>
-                            
                             <!-- Block Actions -->
                             <div class="block-actions">
                                 <!-- Visibility Toggle -->
@@ -47,14 +43,12 @@
                                     <input type="checkbox" x-model="item.is_active">
                                     <span class="toggle-slider"></span>
                                 </label>
-                                
                                 <!-- Edit Button -->
                                 <button @click="openBlockEditor(item)" class="block-action-btn">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                     </svg>
                                 </button>
-                                
                                 <!-- Delete Button -->
                                 <button @click="removeBlock(idx)" class="block-action-btn delete">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -65,7 +59,6 @@
                         </div>
                     </template>
                 </div>
-                
                 <!-- Empty State -->
                 <div x-show="blocks.length === 0" class="text-center py-8">
                     <svg class="w-12 h-12 mx-auto editor-text-muted mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,7 +67,6 @@
                     <p class="editor-text-muted">No blocks yet</p>
                     <p class="text-sm editor-text-muted">Add your first block →</p>
                 </div>
-                
                 <!-- Add Block Button -->
                 <button @click="showAddBlockModal = true" class="w-full py-3 border-2 border-dashed [border-color:var(--editor-border)] rounded-xl editor-text-muted hover:editor-text hover:border-blue-500 transition-colors flex items-center justify-center gap-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -84,13 +76,11 @@
                 </button>
             </div>
         </div>
-        
         <!-- Quick Add (1/3 width) -->
         <div class="lg:col-span-1 editor-card h-fit sticky top-4">
             <div class="editor-card-header">
                 <h3 class="editor-card-title">Quick Add</h3>
             </div>
-            
             <div class="p-3">
                 <div class="grid grid-cols-2 gap-2">
                     <button @click="addQuickBlock('link')" class="quick-add-btn-mini group">
@@ -99,21 +89,18 @@
                         </div>
                         <span>Link</span>
                     </button>
-                    
                     <button @click="addQuickBlock('text')" class="quick-add-btn-mini group">
                         <div class="quick-add-icon-mini bg-green-500">
                             <img src="/images/quick-add/text.svg" alt="Text" class="w-5 h-5" style="filter: brightness(0) invert(1);">
                         </div>
                         <span>Text</span>
                     </button>
-                    
                     <button @click="addQuickBlock('image')" class="quick-add-btn-mini group">
                         <div class="quick-add-icon-mini" style="background-color: #f43f5e;">
                             <img src="/images/quick-add/image.svg" alt="Image" class="w-5 h-5" style="filter: brightness(0) invert(1);">
                         </div>
                         <span>Image</span>
                     </button>
-                    
                     <button @click="addDividerInstant()" class="quick-add-btn-mini group">
                         <div class="quick-add-icon-mini" style="background-color: #64748b;">
                             <img src="/images/quick-add/divider.svg" alt="Divider" class="w-5 h-5" style="filter: brightness(0) invert(1);">
@@ -121,7 +108,6 @@
                         <span>Divider</span>
                     </button>
                 </div>
-                
                 <!-- Popular Brands Section -->
                 <div class="mt-4 pt-3" style="border-top: 1px solid var(--editor-border);">
                     <p class="text-xs mb-2" style="color: var(--editor-text-muted);">Popular</p>
@@ -146,7 +132,6 @@
         </div>
     </div>
 </div>
-
 <style>
     .quick-add-btn-mini {
         display: flex;

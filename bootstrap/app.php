@@ -14,14 +14,12 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         // Global middleware to remove www prefix
         $middleware->prepend(\App\Http\Middleware\RemoveWwwPrefix::class);
-        
         $middleware->appendToGroup('web', [
             \App\Http\Middleware\AutoLogout::class,
             \App\Http\Middleware\CheckSuspended::class,
             \App\Http\Middleware\EnsureGoogleUserHasPassword::class,
             \App\Http\Middleware\ContentSecurityPolicyMiddleware::class,
         ]);
-
         $middleware->alias([
             'admin' => \App\Http\AdminMiddleware::class,
             'ip.ban' => \App\Http\Middleware\CheckIpBan::class,

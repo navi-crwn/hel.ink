@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists('simple_icon_url')) {
+if (! function_exists('simple_icon_url')) {
     /** Get Simple Icons CDN URL for a platform/brand */
     function simple_icon_url(string $platform, ?string $color = null): ?string
     {
@@ -149,61 +149,55 @@ if (!function_exists('simple_icon_url')) {
             'generic-shopping-bag' => null,
             'generic-shopping-tag' => null,
         ];
-        
         $iconName = $mapping[$platform] ?? null;
-        
-        if (!$iconName) {
+        if (! $iconName) {
             return null;
         }
-        
         $url = "https://cdn.simpleicons.org/{$iconName}";
-        
         if ($color) {
             // Remove # if present
             $color = ltrim($color, '#');
             $url .= "/{$color}";
         }
-        
+
         return $url;
     }
 }
-
-if (!function_exists('country_flag')) {
+if (! function_exists('country_flag')) {
     function country_flag(?string $countryCode): string
     {
-        if (!$countryCode || strlen($countryCode) !== 2) {
+        if (! $countryCode || strlen($countryCode) !== 2) {
             return '<span class="inline-block w-5 h-4" title="Unknown">🌍</span>';
         }
-
         $code = strtolower($countryCode);
         $countryName = country_name(strtoupper($countryCode));
         $localPath = public_path("images/flags/{$code}.svg");
         if (file_exists($localPath)) {
             $url = asset("images/flags/{$code}.svg");
-            return '<img src="' . $url . '" 
+
+            return '<img src="'.$url.'" 
                          width="20" 
                          height="15"
-                         alt="' . $countryName . '" 
-                         title="' . $countryName . '"
+                         alt="'.$countryName.'" 
+                         title="'.$countryName.'"
                          class="inline-block rounded"
                          style="border-radius: 2px;">';
         }
-        return '<img src="https://flagcdn.com/w20/' . $code . '.png" 
-                     srcset="https://flagcdn.com/w40/' . $code . '.png 2x" 
+
+        return '<img src="https://flagcdn.com/w20/'.$code.'.png" 
+                     srcset="https://flagcdn.com/w40/'.$code.'.png 2x" 
                      width="20" 
-                     alt="' . $countryName . '" 
-                     title="' . $countryName . '"
+                     alt="'.$countryName.'" 
+                     title="'.$countryName.'"
                      class="inline-block rounded">';
     }
 }
-
-if (!function_exists('country_name')) {
+if (! function_exists('country_name')) {
     function country_name(?string $countryCode): string
     {
-        if (!$countryCode) {
+        if (! $countryCode) {
             return 'Unknown';
         }
-
         $countries = [
             'US' => 'United States',
             'ID' => 'Indonesia',

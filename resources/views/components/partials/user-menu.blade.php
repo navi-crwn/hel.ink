@@ -7,7 +7,6 @@
             <span>Dashboard</span>
         </a>
     </li>
-
     <li>
         <a href="{{ route('analytics') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('analytics') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800' }}">
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -16,7 +15,6 @@
             <span>Analytics</span>
         </a>
     </li>
-
     <li x-data="{ open: {{ request()->routeIs('links*') || request()->routeIs('folders*') || request()->routeIs('tags*') ? 'true' : 'false' }} }">
         <button @click="open = !open" class="flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('links*') || request()->routeIs('folders*') || request()->routeIs('tags*') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800' }}">
             <div class="flex items-center gap-3">
@@ -47,7 +45,6 @@
             </li>
         </ul>
     </li>
-
     <li>
         <a href="{{ route('bio.index') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('bio*') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800' }}">
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -56,7 +53,6 @@
             <span>Link in Bio</span>
         </a>
     </li>
-
     <li>
         <a href="{{ route('settings') }}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('settings') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800' }}">
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

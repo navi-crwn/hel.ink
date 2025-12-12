@@ -24,7 +24,6 @@ class BrandAssetController extends Controller
     protected function serve(string $filename): BinaryFileResponse
     {
         $path = resource_path("img/{$filename}");
-
         abort_unless(is_file($path), 404);
 
         return response()->file($path, [

@@ -1,15 +1,10 @@
 @props(['link'])
-
 <div x-data="advancedQrGenerator()" class="space-y-6">
-    
     <div class="bg-white dark:bg-slate-900 rounded-2xl p-8 border border-slate-200 dark:border-slate-700">
         <div class="flex flex-col items-center">
             <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">QR Code Preview</h3>
-            
             <div class="relative" :style="`background: ${settings.frameColor}; padding: 40px; border-radius: 24px;`">
-                
                 <div id="qr-canvas-container" class="bg-white p-4 rounded-xl"></div>
-                
                 <div class="mt-4 text-center">
                     <input 
                         type="text" 
@@ -24,7 +19,6 @@
                     </p>
                 </div>
             </div>
-            
             <div class="flex gap-3 mt-6">
                 <button @click="downloadQR('png')" class="px-6 py-3 bg-slate-900 text-white rounded-lg hover:bg-slate-700 transition-colors font-semibold">
                     Download PNG
@@ -38,12 +32,9 @@
             </div>
         </div>
     </div>
-    
     <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
         <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">Customize QR Code</h3>
-        
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
             <div>
                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Module Style</label>
                 <select x-model="settings.dotsType" @change="updateQR()" class="w-full rounded-lg border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white">
@@ -55,7 +46,6 @@
                     <option value="classy-rounded">Classy Rounded</option>
                 </select>
             </div>
-            
             <div>
                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Corner Square (Outer)</label>
                 <select x-model="settings.cornerSquareType" @change="updateQR()" class="w-full rounded-lg border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white">
@@ -64,7 +54,6 @@
                     <option value="extra-rounded">Extra Rounded</option>
                 </select>
             </div>
-            
             <div>
                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Corner Dot (Inner)</label>
                 <select x-model="settings.cornerDotType" @change="updateQR()" class="w-full rounded-lg border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white">
@@ -72,7 +61,6 @@
                     <option value="dot">Dot</option>
                 </select>
             </div>
-            
             <div>
                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">QR Color</label>
                 <div class="flex gap-2">
@@ -80,7 +68,6 @@
                     <input type="text" x-model="settings.dotsColor" @change="updateQR()" class="flex-1 rounded-lg border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white">
                 </div>
             </div>
-            
             <div>
                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Background Color</label>
                 <div class="flex gap-2">
@@ -88,7 +75,6 @@
                     <input type="text" x-model="settings.backgroundColor" @change="updateQR()" class="flex-1 rounded-lg border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white">
                 </div>
             </div>
-            
             <div>
                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Corner Color</label>
                 <div class="flex gap-2">
@@ -96,7 +82,6 @@
                     <input type="text" x-model="settings.cornerSquareColor" @change="updateQR()" class="flex-1 rounded-lg border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white">
                 </div>
             </div>
-            
             <div>
                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Frame Color</label>
                 <div class="flex gap-2">
@@ -104,7 +89,6 @@
                     <input type="text" x-model="settings.frameColor" class="flex-1 rounded-lg border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white">
                 </div>
             </div>
-            
             <div>
                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Frame Text Color</label>
                 <div class="flex gap-2">
@@ -112,7 +96,6 @@
                     <input type="text" x-model="settings.frameTextColor" class="flex-1 rounded-lg border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white">
                 </div>
             </div>
-            
             <div class="md:col-span-2">
                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Logo (Center)</label>
                 <input 
@@ -128,9 +111,7 @@
         </div>
     </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0-rc.1/lib/qr-code-styling.min.js"></script>
-
 <script>
 function advancedQrGenerator() {
     return {
@@ -155,11 +136,9 @@ function advancedQrGenerator() {
             logoHeight: 100,
             logoMargin: 10, // Clear zone around logo
         },
-
         init() {
             this.initQR();
         },
-
         initQR() {
             const options = {
                 width: this.settings.width,
@@ -194,20 +173,16 @@ function advancedQrGenerator() {
                     type: this.settings.cornerDotType,
                 }
             };
-
             if (this.settings.logoImage) {
                 options.image = this.settings.logoImage;
             }
-
             this.qrCode = new QRCodeStyling(options);
             const container = document.getElementById('qr-canvas-container');
             container.innerHTML = '';
             this.qrCode.append(container);
         },
-
         updateQR() {
             if (!this.qrCode) return;
-
             this.qrCode.update({
                 data: this.settings.data,
                 dotsOptions: {
@@ -232,11 +207,9 @@ function advancedQrGenerator() {
                 }
             });
         },
-
         handleLogoUpload(event) {
             const file = event.target.files[0];
             if (!file) return;
-
             const reader = new FileReader();
             reader.onload = (e) => {
                 this.settings.logoImage = e.target.result;
@@ -244,33 +217,27 @@ function advancedQrGenerator() {
             };
             reader.readAsDataURL(file);
         },
-
         async downloadQR(format) {
             if (!this.qrCode) return;
-            
             const extension = format === 'svg' ? 'svg' : 'png';
             await this.qrCode.download({
                 name: '{{ $link->slug }}-qr',
                 extension: extension
             });
         },
-
         async saveToServer() {
             if (!this.qrCode) {
                 alert('QR Code not generated');
                 return;
             }
-
             try {
                 // Get canvas as blob
                 const blob = await this.qrCode.getRawData('png');
-                
                 // Convert to base64
                 const reader = new FileReader();
                 reader.readAsDataURL(blob);
                 reader.onloadend = async () => {
                     const base64data = reader.result;
-
                     // Send to server
                     const response = await fetch('{{ route("links.qr.save", $link) }}', {
                         method: 'POST',
@@ -284,9 +251,7 @@ function advancedQrGenerator() {
                             settings: this.settings
                         })
                     });
-
                     const result = await response.json();
-
                     if (result.success) {
                         alert('✓ QR Code saved successfully!');
                         // Trigger reload to show updated QR in main modal

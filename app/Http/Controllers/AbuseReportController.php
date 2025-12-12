@@ -10,10 +10,8 @@ use Illuminate\View\View;
 
 class AbuseReportController extends Controller
 {
-    public function __construct(private readonly TurnstileService $turnstile)
-    {
-    }
-    
+    public function __construct(private readonly TurnstileService $turnstile) {}
+
     public function create(Request $request): View
     {
         return view('report-abuse', [
@@ -30,24 +28,19 @@ class AbuseReportController extends Controller
                     ->withInput();
             }
         }
-        
         $data = $request->validate([
             'slug' => ['nullable', 'string', 'max:120'],
             'url' => ['nullable', 'url', 'max:500'],
             'email' => ['required', 'email', 'max:255'],
             'reason' => ['required', 'string', 'min:10', 'max:1000'],
         ]);
-
         $ip = $request->ip();
-
         $alreadyToday = AbuseReport::where('ip_address', $ip)
             ->where('created_at', '>=', now()->subMinutes(30))
             ->count();
-
         if ($alreadyToday >= 3) {
             return back()->withErrors(['reason' => 'Too many reports from your IP, please try later.'])->withInput();
         }
-
         AbuseReport::create([
             ...$data,
             'ip_address' => $ip,

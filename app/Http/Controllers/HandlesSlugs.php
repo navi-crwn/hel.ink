@@ -18,22 +18,18 @@ trait HandlesSlugs
     protected function ensureSlugAvailable(?string $slug, ?Link $ignore = null): ?string
     {
         $slug = $this->normalizeSlug($slug);
-
-        if (!$slug) {
+        if (! $slug) {
             return null;
         }
-
         if ($this->isReservedSlug($slug)) {
             throw ValidationException::withMessages([
                 'slug' => 'Slug ini disediakan untuk sistem.',
             ]);
         }
-
         $exists = Link::query()
             ->where('slug', $slug)
             ->when($ignore, fn ($query) => $query->where('id', '!=', $ignore->id))
             ->exists();
-
         if ($exists) {
             throw ValidationException::withMessages([
                 'slug' => 'Slug sudah dipakai.',
@@ -43,10 +39,9 @@ trait HandlesSlugs
         return $slug;
     }
 
-    protected function generateUniqueSlug(int $length = null): string
+    protected function generateUniqueSlug(?int $length = null): string
     {
         $length = $length ?? config('shortener.random_slug_length', 6);
-
         do {
             $slug = Str::random($length);
         } while ($this->isReservedSlug($slug) || Link::where('slug', $slug)->exists());
@@ -62,6 +57,7 @@ trait HandlesSlugs
     protected function isReservedSlug(string $slug): bool
     {
         $reserved = config('shortener.reserved_slugs', []);
+
         return in_array($this->normalizeSlug($slug), array_map('strtolower', $reserved), true);
     }
 }

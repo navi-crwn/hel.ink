@@ -5,6 +5,7 @@ namespace App\Services\GeoIP\Providers;
 class IpInfoProvider extends BaseGeoIpProvider
 {
     protected string $baseUrl = 'https://ipinfo.io/';
+
     protected ?string $apiKey;
 
     public function __construct()

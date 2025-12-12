@@ -14,7 +14,6 @@ class AutoLogout
         if (Auth::check()) {
             $timeout = config('session.inactivity_logout', 60);
             $lastActivity = session('last_activity_time');
-
             if ($lastActivity && now()->diffInMinutes(\Illuminate\Support\Carbon::parse($lastActivity)) >= $timeout) {
                 Auth::logout();
                 $request->session()->invalidate();
@@ -22,7 +21,6 @@ class AutoLogout
 
                 return redirect()->route('login')->with('status', 'For security, you have been logged out after a period of inactivity.');
             }
-
             session(['last_activity_time' => now()]);
         }
 

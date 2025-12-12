@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\BioPage;
 use App\Models\BioLink;
+use App\Models\BioPage;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -22,10 +22,8 @@ class DummyBioSeeder extends Seeder
                 'password' => bcrypt('password123'),
             ]
         );
-
         // Delete existing test bio page if exists
         BioPage::where('slug', 'testallplatforms')->delete();
-
         // Create comprehensive test bio page
         $bioPage = BioPage::create([
             'user_id' => $user->id,
@@ -51,25 +49,22 @@ class DummyBioSeeder extends Seeder
             'font_family' => 'Inter',
             'is_published' => true,
         ]);
-
         // Create all platform blocks
         $this->createAllPlatformBlocks($bioPage);
-
-        $this->command->info("✅ Created dummy bio page at: /bio/testallplatforms");
-        $this->command->info("   User: test@helink.id / password123");
+        $this->command->info('✅ Created dummy bio page at: /bio/testallplatforms');
+        $this->command->info('   User: test@helink.id / password123');
     }
 
     /**
      * Get ALL social links for comprehensive testing
      * Format: {platform, value, enabled}
-     * 
+     *
      * NOTE: Social icons UI only displays up to 5 icons, but we include ALL
      * platforms here for complete testing of icons and links.
      */
     private function getAllSocialLinks(): array
     {
         return [
-            // === SOCIAL MEDIA ===
             ['platform' => 'facebook', 'value' => 'testpage', 'enabled' => true],
             ['platform' => 'instagram', 'value' => '@testaccount', 'enabled' => true],
             ['platform' => 'x', 'value' => '@testuser', 'enabled' => true],
@@ -89,8 +84,6 @@ class DummyBioSeeder extends Seeder
             ['platform' => 'nostr', 'value' => 'npub1testnostr', 'enabled' => true],
             ['platform' => 'spacehey', 'value' => 'testspacehey', 'enabled' => true],
             ['platform' => 'vero', 'value' => 'testvero', 'enabled' => true],
-            
-            // === MESSAGING ===
             ['platform' => 'whatsapp', 'value' => '+1234567890', 'enabled' => true],
             ['platform' => 'telegram', 'value' => '@testtelegram', 'enabled' => true],
             ['platform' => 'messenger', 'value' => 'testmessenger', 'enabled' => true],
@@ -104,8 +97,6 @@ class DummyBioSeeder extends Seeder
             ['platform' => 'matrix', 'value' => '@test:matrix.org', 'enabled' => true],
             ['platform' => 'guilded', 'value' => 'testguilded', 'enabled' => true],
             ['platform' => 'threema', 'value' => 'TESTTHMA', 'enabled' => true],
-            
-            // === MUSIC & AUDIO ===
             ['platform' => 'spotify', 'value' => 'testspotify', 'enabled' => true],
             ['platform' => 'apple-music', 'value' => 'testapplemusic', 'enabled' => true],
             ['platform' => 'apple-podcasts', 'value' => 'testpodcast', 'enabled' => true],
@@ -120,16 +111,12 @@ class DummyBioSeeder extends Seeder
             ['platform' => 'audiomack', 'value' => 'testaudiomack', 'enabled' => true],
             ['platform' => 'last-fm', 'value' => 'testlastfm', 'enabled' => true],
             ['platform' => 'google-podcasts', 'value' => 'testgooglepodcast', 'enabled' => true],
-            
-            // === VIDEO & STREAMING ===
             ['platform' => 'twitch', 'value' => 'testtwitch', 'enabled' => true],
             ['platform' => 'kick', 'value' => 'testkick', 'enabled' => true],
             ['platform' => 'vimeo', 'value' => 'testvimeo', 'enabled' => true],
             ['platform' => 'dailymotion', 'value' => 'testdailymotion', 'enabled' => true],
             ['platform' => 'rumble', 'value' => 'testrumble', 'enabled' => true],
             ['platform' => 'bilibili', 'value' => 'testbilibili', 'enabled' => true],
-            
-            // === DEVELOPER ===
             ['platform' => 'github', 'value' => 'testgithub', 'enabled' => true],
             ['platform' => 'gitlab', 'value' => 'testgitlab', 'enabled' => true],
             ['platform' => 'dev-to', 'value' => 'testdevto', 'enabled' => true],
@@ -139,8 +126,6 @@ class DummyBioSeeder extends Seeder
             ['platform' => 'hackerrank', 'value' => 'testhackerrank', 'enabled' => true],
             ['platform' => 'codepen', 'value' => 'testcodepen', 'enabled' => true],
             ['platform' => 'codeberg', 'value' => 'testcodeberg', 'enabled' => true],
-            
-            // === DESIGN & CREATIVE ===
             ['platform' => 'dribbble', 'value' => 'testdribbble', 'enabled' => true],
             ['platform' => 'behance', 'value' => 'testbehance', 'enabled' => true],
             ['platform' => 'figma', 'value' => '@testfigma', 'enabled' => true],
@@ -149,8 +134,6 @@ class DummyBioSeeder extends Seeder
             ['platform' => 'vsco', 'value' => 'testvsco', 'enabled' => true],
             ['platform' => 'flickr', 'value' => 'testflickr', 'enabled' => true],
             ['platform' => 'deviantart', 'value' => 'testdeviantart', 'enabled' => true],
-            
-            // === GAMING ===
             ['platform' => 'steam', 'value' => 'teststeam', 'enabled' => true],
             ['platform' => 'xbox', 'value' => 'testxbox', 'enabled' => true],
             ['platform' => 'playstation', 'value' => 'testpsn', 'enabled' => true],
@@ -161,16 +144,12 @@ class DummyBioSeeder extends Seeder
             ['platform' => 'epic-games', 'value' => 'testepicgames', 'enabled' => true],
             ['platform' => 'roblox', 'value' => 'testroblox', 'enabled' => true],
             ['platform' => 'roll20', 'value' => 'testroll20', 'enabled' => true],
-            
-            // === ENTERTAINMENT ===
             ['platform' => 'myanimelist', 'value' => 'testmal', 'enabled' => true],
             ['platform' => 'anilist', 'value' => 'testanilist', 'enabled' => true],
             ['platform' => 'trakt', 'value' => 'testtrakt', 'enabled' => true],
             ['platform' => 'letterboxd', 'value' => 'testletterboxd', 'enabled' => true],
             ['platform' => 'goodreads', 'value' => 'testgoodreads', 'enabled' => true],
             ['platform' => 'discogs', 'value' => 'testdiscogs', 'enabled' => true],
-            
-            // === PAYMENT & SUPPORT ===
             ['platform' => 'paypal', 'value' => 'testpaypal', 'enabled' => true],
             ['platform' => 'venmo', 'value' => '@testvenmo', 'enabled' => true],
             ['platform' => 'cash-app', 'value' => '$testcashapp', 'enabled' => true],
@@ -182,8 +161,6 @@ class DummyBioSeeder extends Seeder
             ['platform' => 'gumroad', 'value' => 'testgumroad', 'enabled' => true],
             ['platform' => 'redbubble', 'value' => 'testredbubble', 'enabled' => true],
             ['platform' => 'revolut', 'value' => 'testrevolut', 'enabled' => true],
-            
-            // === SHOPPING & BUSINESS ===
             ['platform' => 'amazon', 'value' => 'testamazon', 'enabled' => true],
             ['platform' => 'etsy', 'value' => 'testetsy', 'enabled' => true],
             ['platform' => 'shop', 'value' => 'testshop', 'enabled' => true],
@@ -191,8 +168,6 @@ class DummyBioSeeder extends Seeder
             ['platform' => 'upwork', 'value' => 'testupwork', 'enabled' => true],
             ['platform' => 'appstore', 'value' => 'testappstore', 'enabled' => true],
             ['platform' => 'google-play', 'value' => 'com.test.app', 'enabled' => true],
-            
-            // === PRODUCTIVITY ===
             ['platform' => 'medium', 'value' => '@testmedium', 'enabled' => true],
             ['platform' => 'substack', 'value' => 'testsubstack', 'enabled' => true],
             ['platform' => 'notion', 'value' => 'testnotion', 'enabled' => true],
@@ -205,17 +180,11 @@ class DummyBioSeeder extends Seeder
             ['platform' => 'meetup', 'value' => 'testmeetup', 'enabled' => true],
             ['platform' => 'mailchimp', 'value' => 'testmailchimp', 'enabled' => true],
             ['platform' => 'wordpress', 'value' => 'testwordpress', 'enabled' => true],
-            
-            // === WEB3 & NFT ===
             ['platform' => 'opensea', 'value' => 'testopensea', 'enabled' => true],
-            
-            // === PROFESSIONAL & ACADEMIC ===
             ['platform' => 'xing', 'value' => 'testxing', 'enabled' => true],
             ['platform' => 'researchgate', 'value' => 'testresearchgate', 'enabled' => true],
             ['platform' => 'orcid', 'value' => '0000-0000-0000-0001', 'enabled' => true],
             ['platform' => 'google-scholar', 'value' => 'testscholar', 'enabled' => true],
-            
-            // === OTHER ===
             ['platform' => 'clubhouse', 'value' => '@testclubhouse', 'enabled' => true],
             ['platform' => 'cameo', 'value' => 'testcameo', 'enabled' => true],
             ['platform' => 'ngl', 'value' => 'testngl', 'enabled' => true],
@@ -223,8 +192,6 @@ class DummyBioSeeder extends Seeder
             ['platform' => 'kit', 'value' => 'testkit', 'enabled' => true],
             ['platform' => 'onlyfans', 'value' => 'testonlyfans', 'enabled' => true],
             ['platform' => 'strava', 'value' => 'teststrava', 'enabled' => true],
-            
-            // === CONTACT / GENERIC ===
             ['platform' => 'email', 'value' => 'test@example.com', 'enabled' => true],
             ['platform' => 'phone', 'value' => '+1234567890', 'enabled' => true],
             ['platform' => 'sms', 'value' => '+1234567890', 'enabled' => true],
@@ -240,7 +207,6 @@ class DummyBioSeeder extends Seeder
     private function createAllPlatformBlocks(BioPage $bioPage): void
     {
         $order = 0;
-
         // Header Text Block
         BioLink::create([
             'bio_page_id' => $bioPage->id,
@@ -250,7 +216,6 @@ class DummyBioSeeder extends Seeder
             'is_active' => true,
             'order' => $order++,
         ]);
-
         // ALL platforms as link blocks
         $allPlatforms = [
             // Social Media
@@ -274,7 +239,6 @@ class DummyBioSeeder extends Seeder
             ['brand' => 'nostr', 'title' => 'Nostr', 'url' => 'https://nostr.com/test'],
             ['brand' => 'spacehey', 'title' => 'SpaceHey', 'url' => 'https://spacehey.com/profile?id=test'],
             ['brand' => 'vero', 'title' => 'Vero', 'url' => 'https://vero.co/test'],
-            
             // Messaging
             ['brand' => 'whatsapp', 'title' => 'WhatsApp', 'url' => 'https://wa.me/1234567890'],
             ['brand' => 'telegram', 'title' => 'Telegram', 'url' => 'https://t.me/test'],
@@ -287,7 +251,6 @@ class DummyBioSeeder extends Seeder
             ['brand' => 'keybase', 'title' => 'Keybase', 'url' => 'https://keybase.io/test'],
             ['brand' => 'simplex', 'title' => 'SimpleX', 'url' => 'https://simplex.chat/contact#test'],
             ['brand' => 'matrix', 'title' => 'Matrix', 'url' => 'https://matrix.to/#/@test:matrix.org'],
-            
             // Music & Audio
             ['brand' => 'spotify', 'title' => 'Spotify', 'url' => 'https://open.spotify.com/artist/test'],
             ['brand' => 'apple-music', 'title' => 'Apple Music', 'url' => 'https://music.apple.com/artist/test'],
@@ -301,12 +264,10 @@ class DummyBioSeeder extends Seeder
             ['brand' => 'mixcloud', 'title' => 'Mixcloud', 'url' => 'https://mixcloud.com/test'],
             ['brand' => 'audiomack', 'title' => 'Audiomack', 'url' => 'https://audiomack.com/test'],
             ['brand' => 'last-fm', 'title' => 'Last.fm', 'url' => 'https://last.fm/user/test'],
-            
             // Video & Streaming
             ['brand' => 'twitch', 'title' => 'Twitch', 'url' => 'https://twitch.tv/test'],
             ['brand' => 'kick', 'title' => 'Kick', 'url' => 'https://kick.com/test'],
             ['brand' => 'vimeo', 'title' => 'Vimeo', 'url' => 'https://vimeo.com/test'],
-            
             // Developer
             ['brand' => 'github', 'title' => 'GitHub', 'url' => 'https://github.com/test'],
             ['brand' => 'gitlab', 'title' => 'GitLab', 'url' => 'https://gitlab.com/test'],
@@ -317,7 +278,6 @@ class DummyBioSeeder extends Seeder
             ['brand' => 'hackerrank', 'title' => 'HackerRank', 'url' => 'https://hackerrank.com/test'],
             ['brand' => 'codepen', 'title' => 'CodePen', 'url' => 'https://codepen.io/test'],
             ['brand' => 'codeberg', 'title' => 'Codeberg', 'url' => 'https://codeberg.org/test'],
-            
             // Design & Creative
             ['brand' => 'dribbble', 'title' => 'Dribbble', 'url' => 'https://dribbble.com/test'],
             ['brand' => 'behance', 'title' => 'Behance', 'url' => 'https://behance.net/test'],
@@ -326,7 +286,6 @@ class DummyBioSeeder extends Seeder
             ['brand' => 'unsplash', 'title' => 'Unsplash', 'url' => 'https://unsplash.com/@test'],
             ['brand' => 'vsco', 'title' => 'VSCO', 'url' => 'https://vsco.co/test'],
             ['brand' => 'flickr', 'title' => 'Flickr', 'url' => 'https://flickr.com/photos/test'],
-            
             // Gaming
             ['brand' => 'steam', 'title' => 'Steam', 'url' => 'https://steamcommunity.com/id/test'],
             ['brand' => 'xbox', 'title' => 'Xbox', 'url' => 'https://xbox.com/profile/test'],
@@ -335,14 +294,12 @@ class DummyBioSeeder extends Seeder
             ['brand' => 'osu', 'title' => 'osu!', 'url' => 'https://osu.ppy.sh/users/test'],
             ['brand' => 'itch-io', 'title' => 'itch.io', 'url' => 'https://test.itch.io'],
             ['brand' => 'gog', 'title' => 'GOG', 'url' => 'https://gog.com/u/test'],
-            
             // Entertainment
             ['brand' => 'myanimelist', 'title' => 'MyAnimeList', 'url' => 'https://myanimelist.net/profile/test'],
             ['brand' => 'anilist', 'title' => 'AniList', 'url' => 'https://anilist.co/user/test'],
             ['brand' => 'trakt', 'title' => 'Trakt', 'url' => 'https://trakt.tv/users/test'],
             ['brand' => 'letterboxd', 'title' => 'Letterboxd', 'url' => 'https://letterboxd.com/test'],
             ['brand' => 'goodreads', 'title' => 'Goodreads', 'url' => 'https://goodreads.com/user/show/test'],
-            
             // Payment & Support
             ['brand' => 'paypal', 'title' => 'PayPal', 'url' => 'https://paypal.me/test'],
             ['brand' => 'venmo', 'title' => 'Venmo', 'url' => 'https://venmo.com/test'],
@@ -355,14 +312,12 @@ class DummyBioSeeder extends Seeder
             ['brand' => 'gumroad', 'title' => 'Gumroad', 'url' => 'https://test.gumroad.com'],
             ['brand' => 'redbubble', 'title' => 'Redbubble', 'url' => 'https://redbubble.com/people/test'],
             ['brand' => 'revolut', 'title' => 'Revolut', 'url' => 'https://revolut.me/test'],
-            
             // Shopping & Business
             ['brand' => 'amazon', 'title' => 'Amazon', 'url' => 'https://amazon.com/shop/test'],
             ['brand' => 'etsy', 'title' => 'Etsy', 'url' => 'https://etsy.com/shop/test'],
             ['brand' => 'shop', 'title' => 'Shop', 'url' => 'https://shop.app/test'],
             ['brand' => 'fiverr', 'title' => 'Fiverr', 'url' => 'https://fiverr.com/test'],
             ['brand' => 'upwork', 'title' => 'Upwork', 'url' => 'https://upwork.com/freelancers/test'],
-            
             // Productivity
             ['brand' => 'medium', 'title' => 'Medium', 'url' => 'https://medium.com/@test'],
             ['brand' => 'substack', 'title' => 'Substack', 'url' => 'https://test.substack.com'],
@@ -372,25 +327,20 @@ class DummyBioSeeder extends Seeder
             ['brand' => 'calendly', 'title' => 'Calendly', 'url' => 'https://calendly.com/test'],
             ['brand' => 'cal', 'title' => 'Cal.com', 'url' => 'https://cal.com/test'],
             ['brand' => 'zoom', 'title' => 'Zoom', 'url' => 'https://zoom.us/j/test'],
-            
             // App Stores
             ['brand' => 'appstore', 'title' => 'App Store', 'url' => 'https://apps.apple.com/app/test'],
             ['brand' => 'google-play', 'title' => 'Google Play', 'url' => 'https://play.google.com/store/apps/details?id=com.test'],
-            
             // Web3 & NFT
             ['brand' => 'opensea', 'title' => 'OpenSea', 'url' => 'https://opensea.io/test'],
-            
             // Professional & Academic
             ['brand' => 'xing', 'title' => 'XING', 'url' => 'https://xing.com/profile/test'],
             ['brand' => 'researchgate', 'title' => 'ResearchGate', 'url' => 'https://researchgate.net/profile/test'],
             ['brand' => 'orcid', 'title' => 'ORCID', 'url' => 'https://orcid.org/0000-0000-0000-0000'],
-            
             // Other
             ['brand' => 'clubhouse', 'title' => 'Clubhouse', 'url' => 'https://clubhouse.com/@test'],
             ['brand' => 'guilded', 'title' => 'Guilded', 'url' => 'https://guilded.gg/test'],
             ['brand' => 'cameo', 'title' => 'Cameo', 'url' => 'https://cameo.com/test'],
             ['brand' => 'ngl', 'title' => 'NGL', 'url' => 'https://ngl.link/test'],
-            
             // Contact
             ['brand' => 'email', 'title' => 'Email Me', 'url' => 'mailto:test@example.com'],
             ['brand' => 'phone', 'title' => 'Call Me', 'url' => 'tel:+1234567890'],
@@ -399,7 +349,6 @@ class DummyBioSeeder extends Seeder
             ['brand' => 'blog', 'title' => 'Blog', 'url' => 'https://blog.example.com'],
             ['brand' => 'link', 'title' => 'Custom Link', 'url' => 'https://example.com/link'],
         ];
-
         foreach ($allPlatforms as $platform) {
             BioLink::create([
                 'bio_page_id' => $bioPage->id,
@@ -411,7 +360,6 @@ class DummyBioSeeder extends Seeder
                 'order' => $order++,
             ]);
         }
-
         // Divider
         BioLink::create([
             'bio_page_id' => $bioPage->id,
@@ -419,7 +367,6 @@ class DummyBioSeeder extends Seeder
             'is_active' => true,
             'order' => $order++,
         ]);
-
         // Embed: Spotify Track
         BioLink::create([
             'bio_page_id' => $bioPage->id,
@@ -430,7 +377,6 @@ class DummyBioSeeder extends Seeder
             'is_active' => true,
             'order' => $order++,
         ]);
-
         // Embed: YouTube Video
         BioLink::create([
             'bio_page_id' => $bioPage->id,
@@ -441,7 +387,6 @@ class DummyBioSeeder extends Seeder
             'is_active' => true,
             'order' => $order++,
         ]);
-
         // Countdown Block
         BioLink::create([
             'bio_page_id' => $bioPage->id,

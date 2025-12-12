@@ -1,4 +1,4 @@
-<x-marketing-layout title="HEL.ink — hop to tidy shortlinks">
+<x-marketing-layout title="HEL.ink - Modern URL Shortener">
     <section class="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-2 lg:items-center lg:px-8">
         <div class="space-y-6">
             <p class="text-xs uppercase tracking-[0.4em] text-white/60">Our next destination is just a hop away</p>
@@ -115,7 +115,6 @@
             @endif
         </div>
     </section>
-
     <section id="features" class="mx-auto max-w-6xl px-6 py-10 lg:px-8">
         <div class="rounded-3xl border border-white/10 bg-white/5 p-8">
             <p class="text-sm uppercase tracking-[0.4em] text-white/60">More than a link shortener</p>
@@ -138,7 +137,6 @@
             </div>
         </div>
     </section>
-
     <section id="stories" class="mx-auto max-w-6xl px-6 py-16 lg:px-8">
         <div class="rounded-3xl border border-white/10 bg-white/5 p-8">
             <p class="text-sm uppercase tracking-[0.4em] text-white/60">Open Source & Community Driven</p>
@@ -164,11 +162,10 @@
             </div>
         </div>
     </section>
-
     <section class="mx-auto max-w-6xl px-6 pb-20 lg:px-8">
         <div class="rounded-3xl border border-white/10 bg-gradient-to-r from-blue-600/40 to-violet-600/40 p-8 text-center">
             <h2 class="text-3xl font-semibold text-white">Ready to upgrade your link game?</h2>
-            <p class="mt-4 text-white/80">Join Hel.ink and get powerful analytics, organization tools, QR codes, and security features—all free.</p>
+            <p class="mt-4 text-white/80">Join HEL.ink for powerful analytics, folders, QR codes, and security features. All free, no premium tiers.</p>
             <div class="mt-6 flex flex-wrap items-center justify-center gap-4">
                 <a href="{{ route('register') }}" class="rounded-full bg-white px-6 py-3 font-semibold text-slate-900 hover:bg-white/90">Create Free Account</a>
                 <a href="https://github.com/navi-crwn/hel.ink" target="_blank" class="rounded-full border border-white/40 px-6 py-3 text-white/80 hover:text-white">View on GitHub</a>

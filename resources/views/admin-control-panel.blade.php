@@ -1,13 +1,11 @@
 <x-app-layout>
     <x-slot name="pageTitle">HEL.ink - Admin Control Panel</x-slot>
-
     <div class="py-6">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <h1 class="text-3xl font-bold text-slate-900 dark:text-white">Admin Control Panel</h1>
             <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Platform moderation & system health</p>
         </div>
     </div>
-
     <div
         x-data="{ 
             panel: @json($errors->any()),
@@ -27,7 +25,6 @@
             ogFetchTimeout: null,
             async fetchOgData() {
                 if (!this.targetUrl || this.targetUrl.length < 5) return;
-
                 clearTimeout(this.ogFetchTimeout);
                 this.ogFetchTimeout = setTimeout(async () => {
                     this.isLoading = true;
@@ -42,14 +39,12 @@
                             body: JSON.stringify({ url: this.targetUrl })
                         });
                         const result = await response.json();
-
                         if (result.success && result.data) {
                             this.ogTitle = result.data.title || '';
                             this.ogDescription = result.data.description || '';
                             this.ogImage = result.data.image || '';
                         }
                     } catch (e) {
-                        console.log('Could not fetch OG data:', e);
                     }
                     this.isLoading = false;
                 }, 600);
@@ -63,7 +58,6 @@
         "
         x-on:keydown.window.escape="panel = false"
     >
-
     <div class="py-4">
         <div class="mx-auto max-w-7xl space-y-4 px-4 md:px-6">
             @if (session('status'))
@@ -71,7 +65,6 @@
                     {{ session('status') }}
                 </div>
             @endif
-
             <div class="grid gap-4 md:grid-cols-4">
                 <div class="rounded-2xl bg-white px-6 py-4 shadow-sm dark:bg-slate-900">
                     <p class="text-sm text-slate-500 dark:text-slate-400">Total Users</p>
@@ -90,7 +83,6 @@
                     <p class="text-3xl font-semibold text-slate-900 dark:text-white">{{ $adminStats['today_platform_clicks'] }}</p>
                 </div>
             </div>
-
             <div class="grid gap-6 lg:grid-cols-2">
                 <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                     <h3 class="text-lg font-semibold text-slate-900 dark:text-white">System Health</h3>
@@ -147,7 +139,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Recent Platform Links</h3>
@@ -170,7 +161,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="grid gap-6 lg:grid-cols-2">
                 <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                     <div class="flex items-center justify-between mb-4">
@@ -198,7 +188,6 @@
                         @endforelse
                     </div>
                 </div>
-
                 <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Abuse Reports</h3>
@@ -220,7 +209,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">Top Countries</h3>
                 <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
@@ -235,7 +223,6 @@
                 </div>
             </div>
         </div>
-
         <div
             x-cloak
             x-show="panel"
@@ -276,7 +263,6 @@
                     <form method="POST" action="{{ route('links.store') }}" class="space-y-4">
                         @csrf
                         <input type="hidden" name="status" value="active">
-                        
                         <div>
                             <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                                 Destination URL <span class="text-rose-500">*</span>
@@ -290,7 +276,6 @@
                                 placeholder="https://example.com/your-long-url"
                             >
                         </div>
-
                         <div class="grid gap-4 sm:grid-cols-2">
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Custom Slug</label>
@@ -323,7 +308,6 @@
                                 </select>
                             </div>
                         </div>
-
                         <div>
                             <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Tags</label>
                             <div class="flex flex-wrap gap-2">
@@ -343,7 +327,6 @@
                                 @endforelse
                             </div>
                         </div>
-
                         <div class="border-t border-slate-200 dark:border-slate-800 pt-4">
                             <button 
                                 type="button"
@@ -362,7 +345,6 @@
                                 <span>Advanced Options</span>
                             </button>
                         </div>
-
                         <div x-show="showAdvanced" x-collapse>
                             <div class="space-y-4 pt-2">
                                 <div class="grid gap-4 sm:grid-cols-2">
@@ -389,7 +371,6 @@
                                         >
                                     </div>
                                 </div>
-
                                 <div>
                                     <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Password Protection</label>
                                     <input 
@@ -399,7 +380,6 @@
                                         placeholder="Leave empty for public access"
                                     >
                                 </div>
-
                                 <div class="space-y-3">
                                     <label class="block text-sm font-medium text-slate-700 dark:text-slate-300">
                                         OpenGraph Preview (for social media)
@@ -428,7 +408,6 @@
                                         placeholder="https://example.com/image.jpg"
                                     >
                                 </div>
-
                                 <div>
                                     <button 
                                         type="button"
@@ -442,7 +421,6 @@
                                         <span x-text="showOgPreview ? 'Hide Preview' : 'Show Preview'"></span>
                                     </button>
                                 </div>
-
                                 <div x-show="showOgPreview" x-collapse>
                                     <div class="rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 p-4">
                                         <p class="text-xs font-medium text-slate-500 dark:text-slate-400 mb-2">Preview</p>
@@ -458,7 +436,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div>
                                     <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Internal Notes</label>
                                     <textarea 
@@ -470,7 +447,6 @@
                                 </div>
                             </div>
                         </div>
-
                         @if ($errors->any())
                             <div class="rounded-2xl border border-rose-300 dark:border-rose-900/30 bg-rose-50 dark:bg-rose-900/20 px-4 py-3">
                                 <ul class="space-y-1 text-sm text-rose-600 dark:text-rose-400">
@@ -480,7 +456,6 @@
                                 </ul>
                             </div>
                         @endif
-
                         <div class="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
                             <p class="text-xs text-slate-500">Slug must be unique</p>
                             <div class="flex gap-3">
@@ -504,7 +479,6 @@
             </div>
         </div>
     </div>
-    
     {{-- Link Creation Modal Component --}}
     <x-link-creation-modal :folders="$folders" :tags="$tags" :isAdmin="true" />
 </x-app-layout>

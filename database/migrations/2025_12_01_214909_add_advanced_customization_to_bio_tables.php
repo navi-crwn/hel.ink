@@ -23,14 +23,12 @@ return new class extends Migration
             $table->string('social_icon_color', 20)->nullable()->after('block_shadow');
             $table->string('social_placement', 20)->default('bottom')->after('social_icon_color'); // top, bottom
         });
-
         // Add block type and content columns to bio_links (rename conceptually to blocks)
         Schema::table('bio_links', function (Blueprint $table) {
             $table->string('type', 20)->default('link')->after('bio_page_id'); // link, image, text
             $table->text('content')->nullable()->after('url'); // For text blocks or rich content
             $table->text('description')->nullable()->after('content'); // Additional description
             $table->integer('link_id')->unsigned()->nullable()->after('description'); // FK to links table for short links
-            
             // Make url nullable since image/text blocks may not have URLs
             $table->string('url', 500)->nullable()->change();
         });
@@ -51,10 +49,9 @@ return new class extends Migration
                 'block_shape',
                 'block_shadow',
                 'social_icon_color',
-                'social_placement'
+                'social_placement',
             ]);
         });
-
         Schema::table('bio_links', function (Blueprint $table) {
             $table->dropColumn(['type', 'content', 'description', 'link_id']);
             $table->string('url', 500)->nullable(false)->change();

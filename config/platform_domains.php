@@ -2,11 +2,10 @@
 
 /**
  * Platform Domain Variations
- * 
+ *
  * Comprehensive list of valid domain variations for popular social media
  * and platform links. Used for link validation and platform detection.
  */
-
 return [
     // Video Platforms
     'youtube' => [
@@ -18,7 +17,6 @@ return [
     'vimeo' => ['vimeo.com', 'www.vimeo.com', 'player.vimeo.com', 'vimeopro.com'],
     'twitch' => ['twitch.tv', 'www.twitch.tv', 'm.twitch.tv', 'player.twitch.tv', 'clips.twitch.tv', 'go.twitch.tv'],
     'kick' => ['kick.com', 'www.kick.com'],
-
     // Major Social Media
     'tiktok' => ['tiktok.com', 'www.tiktok.com', 'vm.tiktok.com', 'm.tiktok.com', 'vt.tiktok.com'],
     'instagram' => ['instagram.com', 'www.instagram.com', 'instagr.am', 'ig.me', 'l.instagram.com'],
@@ -43,7 +41,6 @@ return [
         'np.reddit.com', 'i.redd.it', 'v.redd.it', 'preview.redd.it', 'm.reddit.com', 'amp.reddit.com',
     ],
     'tumblr' => ['tumblr.com', 'www.tumblr.com', 'tmblr.co', 't.umblr.com'],
-
     // Messaging
     'discord' => ['discord.gg', 'discord.com', 'discordapp.com', 'ptb.discord.com', 'canary.discord.com', 'cdn.discordapp.com', 'media.discordapp.net'],
     'telegram' => ['t.me', 'telegram.me', 'telegram.org', 'web.telegram.org'],
@@ -57,7 +54,6 @@ return [
     'guilded' => ['guilded.gg', 'www.guilded.gg'],
     'matrix' => ['matrix.to', 'matrix.org'],
     'simplex' => ['simplex.chat', 'www.simplex.chat'],
-
     // Music Platforms
     'spotify' => ['spotify.com', 'www.spotify.com', 'open.spotify.com', 'play.spotify.com', 'link.spotify.com', 'spotify.link', 'spoti.fi'],
     'apple-music' => ['music.apple.com', 'itunes.apple.com', 'geo.music.apple.com', 'embed.music.apple.com'],
@@ -75,7 +71,6 @@ return [
     'mixcloud' => ['mixcloud.com', 'www.mixcloud.com', 'm.mixcloud.com'],
     'qobuz' => ['qobuz.com', 'www.qobuz.com', 'open.qobuz.com'],
     'last-fm' => ['last.fm', 'www.last.fm'],
-
     // Developer Platforms
     'github' => ['github.com', 'www.github.com', 'gist.github.com', 'raw.githubusercontent.com', 'github.io', 'pages.github.com', 'githubusercontent.com', 'objects.githubusercontent.com'],
     'gitlab' => ['gitlab.com', 'www.gitlab.com'],
@@ -86,7 +81,6 @@ return [
     'hashnode' => ['hashnode.com', 'www.hashnode.com'],
     'leetcode' => ['leetcode.com', 'www.leetcode.com', 'leetcode.cn'],
     'hackerrank' => ['hackerrank.com', 'www.hackerrank.com'],
-
     // Design Platforms
     'dribbble' => ['dribbble.com', 'www.dribbble.com', 'drbl.in'],
     'behance' => ['behance.net', 'www.behance.net', 'be.net'],
@@ -95,12 +89,10 @@ return [
     'unsplash' => ['unsplash.com', 'www.unsplash.com'],
     'flickr' => ['flickr.com', 'www.flickr.com', 'flic.kr'],
     'vsco' => ['vsco.co', 'www.vsco.co', 'vsco.com'],
-
     // Blogging/Writing
     'medium' => ['medium.com', 'www.medium.com', 'link.medium.com'],
     'substack' => ['substack.com', 'www.substack.com'],
     'notion' => ['notion.so', 'www.notion.so', 'notion.com'],
-
     // Creator/Support
     'patreon' => ['patreon.com', 'www.patreon.com'],
     'ko-fi' => ['ko-fi.com', 'www.ko-fi.com'],
@@ -109,13 +101,11 @@ return [
     'kickstarter' => ['kickstarter.com', 'www.kickstarter.com'],
     'gumroad' => ['gumroad.com', 'www.gumroad.com'],
     'cameo' => ['cameo.com', 'www.cameo.com'],
-
     // Payment
     'paypal' => ['paypal.com', 'www.paypal.com', 'paypal.me'],
     'cash-app' => ['cash.app', 'www.cash.app', 'cash.me'],
     'venmo' => ['venmo.com', 'www.venmo.com', 'account.venmo.com'],
     'revolut' => ['revolut.me', 'revolut.com', 'www.revolut.com'],
-
     // E-commerce
     'amazon' => [
         'amazon.com', 'amazon.co.uk', 'amazon.de', 'amazon.fr', 'amazon.es', 'amazon.it',
@@ -126,7 +116,6 @@ return [
     'etsy' => ['etsy.com', 'www.etsy.com', 'etsy.me'],
     'shop' => ['shop.app', 'www.shop.app'],
     'redbubble' => ['redbubble.com', 'www.redbubble.com'],
-
     // Gaming
     'steam' => ['steampowered.com', 'store.steampowered.com', 'steamcommunity.com', 's.team', 'help.steampowered.com', 'steamcdn-a.akamaihd.net'],
     'xbox' => ['xbox.com', 'www.xbox.com', 'account.xbox.com', 'social.xbox.com'],
@@ -136,14 +125,12 @@ return [
     'roll20' => ['roll20.net', 'app.roll20.net'],
     'vrchat' => ['vrchat.com', 'www.vrchat.com'],
     'osu' => ['osu.ppy.sh'],
-
     // Entertainment
     'letterboxd' => ['letterboxd.com', 'www.letterboxd.com'],
     'goodreads' => ['goodreads.com', 'www.goodreads.com'],
     'myanimelist' => ['myanimelist.net', 'www.myanimelist.net'],
     'anilist' => ['anilist.co'],
     'trakt' => ['trakt.tv', 'www.trakt.tv'],
-
     // Alt Social
     'mastodon' => ['mastodon.social', 'mastodon.online', 'mas.to', 'mstdn.social', 'fosstodon.org', 'hachyderm.io', 'infosec.exchange'],
     'bluesky' => ['bsky.app', 'bsky.social', 'staging.bsky.app'],
@@ -153,22 +140,18 @@ return [
     'bereal' => ['bere.al', 'bereal.com'],
     'spacehey' => ['spacehey.com', 'www.spacehey.com'],
     'vero' => ['vero.co', 'www.vero.co'],
-
     // Professional
     'fiverr' => ['fiverr.com', 'www.fiverr.com'],
     'upwork' => ['upwork.com', 'www.upwork.com'],
     'xing' => ['xing.com', 'www.xing.com'],
     'researchgate' => ['researchgate.net', 'www.researchgate.net'],
     'orcid' => ['orcid.org', 'www.orcid.org'],
-
     // Scheduling
     'calendly' => ['calendly.com', 'www.calendly.com'],
     'cal' => ['cal.com', 'app.cal.com'],
     'zoom' => ['zoom.us', 'zoom.com', 'zoomus.cn', 'us02web.zoom.us', 'us04web.zoom.us', 'us05web.zoom.us'],
-
     // Crypto/NFT
     'opensea' => ['opensea.io'],
-
     // Apps
     'appstore' => ['apps.apple.com', 'itunes.apple.com'],
     'google-play' => ['play.google.com', 'play.app.goo.gl'],
@@ -176,7 +159,6 @@ return [
     'trello' => ['trello.com', 'www.trello.com'],
     'keybase' => ['keybase.io', 'www.keybase.io', 'keybase.pub'],
     'ngl' => ['ngl.link', 'www.ngl.link'],
-
     // Generic
     'email' => ['mailto:'],
     'phone' => ['tel:'],

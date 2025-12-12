@@ -19,7 +19,6 @@
                         </svg>
                     </div>
                 </div>
-
                 <div class="text-center mb-8">
                     <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-3">
                         Link Not Found
@@ -31,7 +30,6 @@
                         It may have been deleted, expired, or you may have mistyped the URL.
                     </p>
                 </div>
-
                 <div class="mb-8 rounded-lg bg-gray-50 dark:bg-gray-700/50 p-6">
                     <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-3">
                         What you can do:
@@ -57,7 +55,6 @@
                         </li>
                     </ul>
                 </div>
-
                 <div class="flex flex-col sm:flex-row gap-3 justify-center">
                     <a href="{{ url('/') }}" class="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition">
                         <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,7 +71,6 @@
                     </a>
                     @endauth
                 </div>
-
                 <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-center">
                     <p class="text-sm text-gray-600 dark:text-gray-400">
                         Need help? Contact us at 

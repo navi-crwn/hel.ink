@@ -15,6 +15,7 @@ class ConfirmablePasswordController extends Controller
     {
         return view('auth.confirm-password');
     }
+
     public function store(Request $request): RedirectResponse
     {
         if (! Auth::guard('web')->validate([
@@ -25,7 +26,6 @@ class ConfirmablePasswordController extends Controller
                 'password' => __('auth.password'),
             ]);
         }
-
         $request->session()->put('auth.password_confirmed_at', time());
 
         return redirect()->intended(route('dashboard', absolute: false));

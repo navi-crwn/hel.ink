@@ -115,12 +115,10 @@
         <div class="header">
             <h1>{{ config('app.name') }} - Admin Notification</h1>
         </div>
-        
         <div class="content">
             <span class="notification-type type-{{ $notificationType }}">
                 {{ str_replace('_', ' ', $notificationType) }}
             </span>
-
             @if($notificationType === 'abuse_report')
                 <div class="data-section alert-high">
                     <h3 style="margin-top: 0; color: #c00;">🚨 Abuse Report Details</h3>
@@ -131,7 +129,6 @@
                         </div>
                     @endforeach
                 </div>
-
             @elseif($notificationType === 'new_user')
                 <div class="data-section alert-low">
                     <h3 style="margin-top: 0; color: #0066cc;">👤 New User Information</h3>
@@ -142,7 +139,6 @@
                         </div>
                     @endforeach
                 </div>
-
             @elseif($notificationType === 'security_alert' || $notificationType === 'suspicious_activity')
                 <div class="data-section alert-high">
                     <h3 style="margin-top: 0; color: #856404;">⚠️ Security Alert</h3>
@@ -153,71 +149,60 @@
                         </div>
                     @endforeach
                 </div>
-
             @elseif($notificationType === 'system_error' || $notificationType === 'critical_exception')
                 <div class="data-section alert-high">
                     <h3 style="margin-top: 0; color: #c62828;">🔥 Error Details</h3>
-                    
                     @if(isset($data['message']))
                         <div class="data-item">
                             <span class="data-label">Message:</span>
                             <span class="data-value">{{ $data['message'] }}</span>
                         </div>
                     @endif
-
                     @if(isset($data['file']))
                         <div class="data-item">
                             <span class="data-label">File:</span>
                             <span class="data-value">{{ $data['file'] }}</span>
                         </div>
                     @endif
-
                     @if(isset($data['line']))
                         <div class="data-item">
                             <span class="data-label">Line:</span>
                             <span class="data-value">{{ $data['line'] }}</span>
                         </div>
                     @endif
-
                     @if(isset($data['url']))
                         <div class="data-item">
                             <span class="data-label">URL:</span>
                             <span class="data-value">{{ $data['url'] }}</span>
                         </div>
                     @endif
-
                     @if(isset($data['method']))
                         <div class="data-item">
                             <span class="data-label">Method:</span>
                             <span class="data-value">{{ $data['method'] }}</span>
                         </div>
                     @endif
-
                     @if(isset($data['ip']))
                         <div class="data-item">
                             <span class="data-label">IP Address:</span>
                             <span class="data-value">{{ $data['ip'] }}</span>
                         </div>
                     @endif
-
                     @if(isset($data['user_agent']))
                         <div class="data-item">
                             <span class="data-label">User Agent:</span>
                             <span class="data-value">{{ $data['user_agent'] }}</span>
                         </div>
                     @endif
-
                     @if(isset($data['trace']))
                         <h4 style="margin-top: 20px; margin-bottom: 10px;">Stack Trace:</h4>
                         <div class="code-block">{{ $data['trace'] }}</div>
                     @endif
-
                     @if(isset($data['context']) && !empty($data['context']))
                         <h4 style="margin-top: 20px; margin-bottom: 10px;">Context:</h4>
                         <div class="code-block">{{ json_encode($data['context'], JSON_PRETTY_PRINT) }}</div>
                     @endif
                 </div>
-
             @elseif($notificationType === 'feedback' || $notificationType === 'feature_request')
                 <div class="data-section alert-low">
                     <h3 style="margin-top: 0; color: #2e7d32;">💭 Feedback Details</h3>
@@ -228,7 +213,6 @@
                         </div>
                     @endforeach
                 </div>
-
             @elseif($notificationType === 'support_request' || $notificationType === 'contact_form')
                 <div class="data-section alert-medium">
                     <h3 style="margin-top: 0; color: #1565c0;">🎫 Support Request</h3>
@@ -239,7 +223,6 @@
                         </div>
                     @endforeach
                 </div>
-
             @else
                 <div class="data-section">
                     <h3 style="margin-top: 0;">Notification Details</h3>
@@ -251,12 +234,10 @@
                     @endforeach
                 </div>
             @endif
-
             <div class="timestamp">
                 📅 Received: {{ now()->format('d M Y, H:i:s') }} (Server Time)
             </div>
         </div>
-
         <div class="footer">
             <p style="margin: 5px 0;">This is an automated notification from {{ config('app.name') }}</p>
             <p style="margin: 5px 0;">{{ config('app.url') }}</p>

@@ -12,7 +12,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
         :root {
             --bg-color: #f8fafc;
             --text-color: #1e293b;
@@ -22,7 +21,6 @@
             --button-radius: 12px;
             --button-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
-        
         /* Custom Scrollbar - Hidden */
         ::-webkit-scrollbar {
             width: 0;
@@ -39,7 +37,6 @@
             scrollbar-width: none;
             -ms-overflow-style: none;
         }
-        
         body {
             font-family: 'Inter', system-ui, sans-serif;
             background: var(--bg-color);
@@ -47,19 +44,16 @@
             min-height: 100vh;
             padding: 12px;
         }
-        
         .bio-container {
             max-width: 100%;
             margin: 0 auto;
             padding: 8px;
         }
-        
         /* Profile Section */
         .profile-section {
             text-align: center;
             margin-bottom: 16px;
         }
-        
         .avatar-wrapper {
             width: 72px;
             height: 72px;
@@ -69,25 +63,20 @@
             border: 3px solid rgba(255, 255, 255, 0.5);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
-        
         .avatar-wrapper.shape-circle {
             border-radius: 50%;
         }
-        
         .avatar-wrapper.shape-rounded {
             border-radius: 16px;
         }
-        
         .avatar-wrapper.shape-square {
             border-radius: 0;
         }
-        
         .avatar-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        
         .profile-badge {
             position: absolute;
             bottom: -2px;
@@ -101,12 +90,10 @@
             justify-content: center;
             box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
-        
         .profile-badge svg {
             width: 20px;
             height: 20px;
         }
-        
         .avatar-placeholder {
             width: 100%;
             height: 100%;
@@ -118,7 +105,6 @@
             font-size: 32px;
             font-weight: 700;
         }
-        
         .display-name {
             font-size: 16px;
             font-weight: 700;
@@ -129,24 +115,20 @@
             gap: 5px;
             white-space: nowrap;
         }
-        
         .title-badge {
             display: inline-flex;
             flex-shrink: 0;
         }
-        
         .title-badge svg {
             width: 14px;
             height: 14px;
         }
-        
         .bio-text {
             font-size: 12px;
             line-height: 1.4;
             color: var(--bio-color, inherit);
             opacity: 0.9;
         }
-        
         /* Social Icons */
         .social-icons {
             display: flex;
@@ -155,7 +137,6 @@
             flex-wrap: wrap;
             margin-bottom: 16px;
         }
-        
         .social-icon {
             width: 32px;
             height: 32px;
@@ -165,30 +146,25 @@
             justify-content: center;
             transition: transform 0.2s, box-shadow 0.2s;
         }
-        
         .social-icon:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
-        
         .social-icon img {
             width: 16px;
             height: 16px;
             filter: brightness(0) invert(1);
         }
-        
         /* Link Blocks */
         .blocks-container {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
-        
         /* Ensure all block types are properly spaced */
         .blocks-container > * {
             margin: 0;
         }
-        
         .link-block {
             display: flex;
             align-items: center;
@@ -205,16 +181,13 @@
             position: relative;
             overflow: hidden;
         }
-        
         .link-block:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
         }
-        
         .link-block.has-thumbnail {
             justify-content: flex-start;
         }
-        
         .block-thumbnail {
             width: 32px;
             height: 32px;
@@ -223,24 +196,20 @@
             margin-right: 10px;
             flex-shrink: 0;
         }
-        
         .block-icon {
             width: 20px;
             height: 20px;
             margin-right: 10px;
             flex-shrink: 0;
         }
-        
         .block-title {
             flex: 1;
             text-align: center;
         }
-        
         .has-thumbnail .block-title,
         .has-icon .block-title {
             text-align: left;
         }
-        
         /* Text Block */
         .text-block {
             background: transparent;
@@ -248,12 +217,10 @@
             padding: 16px;
             text-align: center;
         }
-        
         .text-block:hover {
             transform: none;
             box-shadow: none;
         }
-        
         /* Text Block Styled (with frame) */
         .text-block-styled {
             width: 100%;
@@ -263,7 +230,6 @@
             background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(4px);
         }
-        
         .text-block-header {
             padding: 6px 10px;
             border-bottom: 1px solid rgba(148, 163, 184, 0.3);
@@ -272,30 +238,25 @@
             align-items: center;
             justify-content: space-between;
         }
-        
         .text-block-expand {
             font-size: 14px;
             font-weight: bold;
             color: #64748b;
             cursor: pointer;
         }
-        
         .text-block-dots {
             display: flex;
             align-items: center;
             gap: 4px;
         }
-        
         .text-block-dots .dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
         }
-        
         .text-block-dots .dot.red { background: #f87171; }
         .text-block-dots .dot.yellow { background: #fbbf24; }
         .text-block-dots .dot.green { background: #4ade80; }
-        
         .text-block-content {
             padding: 10px 14px;
             font-size: 12px;
@@ -304,13 +265,11 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
         }
-        
         .text-block-content.truncated {
             max-height: 80px;
             overflow: hidden;
             position: relative;
         }
-        
         .text-block-content.truncated::after {
             content: '';
             position: absolute;
@@ -320,11 +279,9 @@
             height: 30px;
             background: linear-gradient(transparent, var(--text-block-bg, rgba(255,255,255,0.9)));
         }
-        
         .text-block-styled {
             cursor: pointer;
         }
-        
         /* Divider Block */
         .divider-block {
             height: 1px;
@@ -332,7 +289,6 @@
             opacity: 0.2;
             margin: 8px 0;
         }
-        
         /* Video Block */
         .video-block {
             background: rgba(0, 0, 0, 0.05);
@@ -340,20 +296,17 @@
             padding: 8px;
             margin-bottom: 8px;
         }
-        
         .video-embed {
             aspect-ratio: 16/9;
             border-radius: 8px;
             overflow: hidden;
             max-height: 180px;
         }
-        
         .video-embed iframe {
             width: 100%;
             height: 100%;
             border: 0;
         }
-        
         /* Music Block */
         .music-block {
             background: rgba(0, 0, 0, 0.05);
@@ -361,18 +314,15 @@
             padding: 8px;
             margin-bottom: 8px;
         }
-        
         .music-embed {
             overflow: hidden;
         }
-        
         .music-embed iframe {
             width: 100%;
             height: 152px;
             border-radius: 8px;
             border: 0;
         }
-        
         /* VCard Block */
         .vcard-block {
             background: rgba(0, 0, 0, 0.05);
@@ -381,7 +331,6 @@
             text-align: center;
             margin-bottom: 8px;
         }
-        
         .vcard-avatar {
             width: 80px;
             height: 80px;
@@ -392,29 +341,24 @@
             align-items: center;
             justify-content: center;
         }
-        
         .vcard-icon {
             width: 40px;
             height: 40px;
             color: white;
         }
-        
         .vcard-name {
             font-size: 18px;
             font-weight: 700;
             margin-bottom: 4px;
         }
-        
         .vcard-company {
             font-size: 14px;
             opacity: 0.7;
             margin-bottom: 12px;
         }
-        
         .vcard-details {
             margin-bottom: 16px;
         }
-        
         .vcard-item {
             display: flex;
             align-items: center;
@@ -424,12 +368,10 @@
             opacity: 0.8;
             margin-bottom: 4px;
         }
-        
         .vcard-item-icon {
             width: 14px;
             height: 14px;
         }
-        
         .vcard-save-btn {
             display: inline-flex;
             align-items: center;
@@ -444,17 +386,14 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        
         .vcard-save-btn:hover {
             opacity: 0.9;
             transform: scale(1.02);
         }
-        
         .vcard-save-btn svg {
             width: 16px;
             height: 16px;
         }
-        
         /* HTML Block */
         .html-block {
             background: rgba(0, 0, 0, 0.05);
@@ -462,12 +401,10 @@
             padding: 16px;
             margin-bottom: 8px;
         }
-        
         .html-content {
             font-size: 14px;
             line-height: 1.6;
         }
-        
         /* Countdown Block */
         .countdown-block {
             /* Background is set via inline style from getCountdownBg() */
@@ -480,14 +417,12 @@
             width: 100%;
             box-sizing: border-box;
         }
-        
         .countdown-label {
             font-size: 14px;
             font-weight: 500;
             margin-bottom: 12px;
             opacity: 0.9;
         }
-        
         .countdown-timer {
             display: flex;
             justify-content: center;
@@ -495,33 +430,28 @@
             gap: 4px;
             flex-wrap: wrap;
         }
-        
         .countdown-unit {
             display: flex;
             flex-direction: column;
             align-items: center;
             min-width: 36px;
         }
-        
         .countdown-value {
             font-size: 20px;
             font-weight: 700;
             line-height: 1;
         }
-        
         .countdown-name {
             font-size: 9px;
             text-transform: uppercase;
             opacity: 0.8;
             margin-top: 2px;
         }
-        
         .countdown-separator {
             font-size: 18px;
             font-weight: 700;
             opacity: 0.6;
         }
-        
         /* Map Block */
         .map-block {
             background: rgba(0, 0, 0, 0.05);
@@ -529,19 +459,16 @@
             padding: 12px;
             margin-bottom: 8px;
         }
-        
         .map-embed {
             border-radius: 8px;
             overflow: hidden;
             margin-bottom: 8px;
         }
-        
         .map-address {
             font-size: 13px;
             opacity: 0.8;
             text-align: center;
         }
-        
         /* FAQ Block */
         .faq-block {
             background: rgba(0, 0, 0, 0.05);
@@ -549,19 +476,16 @@
             padding: 16px;
             margin-bottom: 8px;
         }
-        
         .faq-items {
             display: flex;
             flex-direction: column;
             gap: 8px;
         }
-        
         .faq-item {
             background: rgba(255, 255, 255, 0.5);
             border-radius: 8px;
             overflow: hidden;
         }
-        
         .faq-question {
             width: 100%;
             display: flex;
@@ -576,25 +500,21 @@
             cursor: pointer;
             color: inherit;
         }
-        
         .faq-question.active {
             background: rgba(99, 102, 241, 0.1);
         }
-        
         .faq-arrow {
             width: 16px;
             height: 16px;
             transition: transform 0.2s;
             flex-shrink: 0;
         }
-        
         .faq-answer {
             padding: 0 16px 12px;
             font-size: 13px;
             line-height: 1.5;
             opacity: 0.8;
         }
-        
         /* Block Title Header */
         .block-title-header {
             font-size: 14px;
@@ -602,20 +522,17 @@
             margin-bottom: 12px;
             opacity: 0.9;
         }
-        
         /* Image Block */
         .image-block {
             width: 100%;
             border-radius: 12px;
             overflow: hidden;
         }
-        
         .image-block-img {
             width: 100%;
             height: auto;
             display: block;
         }
-        
         /* Header Block */
         .header-block {
             background: transparent;
@@ -624,12 +541,10 @@
             font-size: 18px;
             font-weight: 600;
         }
-        
         .header-block:hover {
             transform: none;
             box-shadow: none;
         }
-        
         /* Brand Button Styles */
         @foreach(config('brands', []) as $brandId => $brand)
         .block-{{ $brandId }} {
@@ -637,24 +552,19 @@
             color: {{ $brand['textColor'] ?? '#ffffff' }};
         }
         @endforeach
-        
         /* Button Shapes */
         .shape-rounded {
             --button-radius: 12px;
         }
-        
         .shape-pill {
             --button-radius: 9999px;
         }
-        
         .shape-square {
             --button-radius: 0;
         }
-        
         .shape-soft {
             --button-radius: 6px;
         }
-        
         /* Button Shadows - Applied to all block types */
         .shadow-none .link-block,
         .shadow-none .text-block-styled,
@@ -662,35 +572,30 @@
         .shadow-none .countdown-block {
             box-shadow: none !important;
         }
-        
         .shadow-sm .link-block,
         .shadow-sm .text-block-styled,
         .shadow-sm .image-block,
         .shadow-sm .countdown-block {
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
         }
-        
         .shadow-md .link-block,
         .shadow-md .text-block-styled,
         .shadow-md .image-block,
         .shadow-md .countdown-block {
             box-shadow: 0 4px 8px -1px rgba(0, 0, 0, 0.12) !important;
         }
-        
         .shadow-lg .link-block,
         .shadow-lg .text-block-styled,
         .shadow-lg .image-block,
         .shadow-lg .countdown-block {
             box-shadow: 0 10px 20px -3px rgba(0, 0, 0, 0.15) !important;
         }
-        
         .shadow-xl .link-block,
         .shadow-xl .text-block-styled,
         .shadow-xl .image-block,
         .shadow-xl .countdown-block {
             box-shadow: 0 25px 35px -5px rgba(0, 0, 0, 0.2) !important;
         }
-        
         /* Footer */
         .footer {
             text-align: center;
@@ -699,12 +604,10 @@
             opacity: 0.5;
             font-size: 12px;
         }
-        
         .footer a {
             color: inherit;
             text-decoration: none;
         }
-        
         /* Font Families */
         .font-inter { font-family: 'Inter', system-ui, sans-serif; }
         .font-poppins { font-family: 'Poppins', system-ui, sans-serif; }
@@ -726,28 +629,22 @@
         .font-manrope { font-family: 'Manrope', system-ui, sans-serif; }
         .font-plus-jakarta-sans { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
         .font-lexend { font-family: 'Lexend', system-ui, sans-serif; }
-        
         /* Background Types */
         .bg-gradient-purple {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-        
         .bg-gradient-blue {
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
         }
-        
         .bg-gradient-pink {
             background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
         }
-        
         .bg-gradient-green {
             background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
         }
-        
         .bg-gradient-dark {
             background: linear-gradient(135deg, #232526 0%, #414345 100%);
         }
-        
         /* Share Button */
         .share-button {
             position: fixed;
@@ -767,18 +664,15 @@
             transition: all 0.2s;
             z-index: 50;
         }
-        
         .share-button:hover {
             background: white;
             transform: scale(1.05);
         }
-        
         .share-button svg {
             width: 20px;
             height: 20px;
             color: #475569;
         }
-        
         /* Share Tooltip */
         .share-tooltip {
             position: fixed;
@@ -786,7 +680,6 @@
             right: 16px;
             z-index: 60;
         }
-        
         .share-tooltip-content {
             background: white;
             border-radius: 12px;
@@ -795,25 +688,20 @@
             text-align: center;
             min-width: 180px;
         }
-        
         /* ============================================
            ANIMATION STYLES
            ============================================ */
-        
         /* Hover Effects - Theme-aware using CSS custom properties */
         .hover-scale .link-block:hover {
             transform: scale(1.03) !important;
         }
-        
         .hover-glow .link-block:hover {
             box-shadow: 0 0 20px 5px var(--hover-glow-color, rgba(99, 102, 241, 0.4)) !important;
         }
-        
         .hover-lift .link-block:hover {
             transform: translateY(-4px) !important;
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2) !important;
         }
-        
         .hover-glossy .link-block {
             position: relative;
             overflow: hidden;
@@ -831,53 +719,44 @@
         .hover-glossy .link-block:hover::before {
             left: 100%;
         }
-        
         .hover-color-shift .link-block {
             transition: filter 0.3s ease, transform 0.2s ease !important;
         }
         .hover-color-shift .link-block:hover {
             filter: hue-rotate(var(--hover-hue-shift, 30deg)) saturate(1.2) !important;
         }
-        
         :root {
             --hover-glow-color: rgba(99, 102, 241, 0.4);
             --hover-hue-shift: 30deg;
         }
-        
         /* Entrance Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
         @keyframes slideDown {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
         @keyframes popIn {
             0% { opacity: 0; transform: scale(0.8); }
             70% { transform: scale(1.05); }
             100% { opacity: 1; transform: scale(1); }
         }
-        
         @keyframes bounceIn {
             0% { opacity: 0; transform: translateY(-30px); }
             50% { transform: translateY(10px); }
             70% { transform: translateY(-5px); }
             100% { opacity: 1; transform: translateY(0); }
         }
-        
         @keyframes flipIn {
             from { opacity: 0; transform: perspective(400px) rotateX(-90deg); }
             to { opacity: 1; transform: perspective(400px) rotateX(0deg); }
         }
-        
         .entrance-fade { animation: fadeIn 0.5s ease-out forwards; }
         .entrance-slide-up { animation: slideUp 0.5s ease-out forwards; }
         .entrance-slide-down { animation: slideDown 0.5s ease-out forwards; }
@@ -885,30 +764,25 @@
         .entrance-bounce { animation: bounceIn 0.6s ease-out forwards; }
         .entrance-flip { animation: flipIn 0.5s ease-out forwards; }
         .entrance-stagger { animation: slideUp 0.5s ease-out forwards; }
-        
         /* Attention Animations */
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.02); }
         }
-        
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             20%, 60% { transform: translateX(-3px); }
             40%, 80% { transform: translateX(3px); }
         }
-        
         @keyframes attentionGlow {
             0%, 100% { box-shadow: 0 0 5px rgba(99, 102, 241, 0.3); }
             50% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.6); }
         }
-        
         @keyframes wiggle {
             0%, 100% { transform: rotate(0deg); }
             25% { transform: rotate(-2deg); }
             75% { transform: rotate(2deg); }
         }
-        
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
             14% { transform: scale(1.03); }
@@ -916,17 +790,14 @@
             42% { transform: scale(1.03); }
             70% { transform: scale(1); }
         }
-        
         @keyframes rainbow {
             0% { filter: hue-rotate(0deg); }
             100% { filter: hue-rotate(360deg); }
         }
-        
         @keyframes attentionBounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-3px); }
         }
-        
         .attention-pulse { animation: pulse 2s ease-in-out infinite; }
         .attention-shake { animation: shake 0.5s ease-in-out infinite; animation-delay: 2s; }
         .attention-glow { animation: attentionGlow 2s ease-in-out infinite; }
@@ -934,7 +805,6 @@
         .attention-heartbeat { animation: heartbeat 1.5s ease-in-out infinite; }
         .attention-rainbow { animation: rainbow 3s linear infinite; }
         .attention-bounce { animation: attentionBounce 1s ease-in-out infinite; }
-        
         /* Background Animations */
         .bg-animation-container {
             position: fixed;
@@ -946,22 +816,18 @@
             z-index: 0;
             overflow: hidden;
         }
-        
         .bg-particle {
             position: absolute;
             pointer-events: none;
         }
-        
         @keyframes fall {
             0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
             100% { transform: translateY(110vh) rotate(360deg); opacity: 0.3; }
         }
-        
         @keyframes twinkle {
             0%, 100% { opacity: 0.3; transform: scale(1); }
             50% { opacity: 1; transform: scale(1.2); }
         }
-        
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(180deg); }
@@ -988,21 +854,18 @@
          x-ref="bgAnimContainer"
          x-init="$watch('design.backgroundAnimation', (val) => initBackgroundAnimation(val)); $watch('design.theme', () => initBackgroundAnimation(design.backgroundAnimation))">
     </div>
-
     <!-- Loading State -->
     <div x-show="!isLoaded" class="fixed inset-0 bg-white flex items-center justify-center z-50">
         <div class="text-center">
             <div class="w-8 h-8 border-2 border-slate-200 border-t-blue-500 rounded-full animate-spin mx-auto"></div>
         </div>
     </div>
-    
     <!-- Share Button -->
     <button x-show="isLoaded" class="share-button" @click="showShareTooltip = true" title="Share">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
         </svg>
     </button>
-    
     <!-- Share Tooltip -->
     <div x-show="showShareTooltip" @click.away="showShareTooltip = false" class="share-tooltip">
         <div class="share-tooltip-content">
@@ -1013,7 +876,6 @@
             <p class="text-xs editor-text-muted mt-1">Share will work on the live page</p>
         </div>
     </div>
-    
     <div x-show="isLoaded" class="bio-container">
         <!-- Profile Section -->
         <div class="profile-section">
@@ -1024,7 +886,6 @@
                 <template x-if="!profile.avatar">
                     <div class="avatar-placeholder" x-text="getInitials(profile.displayName)"></div>
                 </template>
-                
             </div>
             <div class="display-name-row" style="text-align: center;">
                 <h1 class="display-name" style="margin-bottom: 0; justify-content: center;">
@@ -1059,7 +920,6 @@
             </div>
             <p class="bio-text" x-text="decodeHtmlEntities(profile.bio) || 'Your bio goes here'"></p>
         </div>
-        
         <!-- Social Icons (Top) -->
         <template x-if="socials.position === 'top' && socials.items && socials.items.length > 0">
             <div class="social-icons">
@@ -1072,7 +932,6 @@
                 </template>
             </div>
         </template>
-        
         <!-- Link Blocks -->
         <div class="blocks-container" :class="'shape-' + (design.buttonShape || 'rounded') + ' shadow-' + (design.buttonShadow || 'md')" x-ref="blocksContainer">
             <template x-for="(block, blockIndex) in blocks.filter(b => b.is_active)" :key="block.id">
@@ -1110,7 +969,6 @@
                             <span class="block-title" x-text="block.title || 'Untitled Link'"></span>
                         </a>
                     </template>
-                    
                     <!-- Text Block -->
                     <template x-if="block.type === 'text'">
                         <div class="text-block-styled" x-data="{ expanded: false }" @click="expanded = !expanded" :style="{
@@ -1133,24 +991,20 @@
                             <div class="text-block-content" :class="{ 'truncated': !expanded }" x-html="(block.content || 'Text content').replace(/\n/g, '<br>')"></div>
                         </div>
                     </template>
-                    
                     <!-- Header Block -->
                     <template x-if="block.type === 'header'">
                         <div class="header-block" x-text="block.title || 'Header'"></div>
                     </template>
-                    
                     <!-- Image Block -->
                     <template x-if="block.type === 'image'">
                         <div class="image-block">
                             <img :src="block.content || block.thumbnail_url" :alt="block.title || 'Image'" class="image-block-img">
                         </div>
                     </template>
-                    
                     <!-- Divider Block -->
                     <template x-if="block.type === 'divider'">
                         <div class="divider-block"></div>
                     </template>
-                    
                     <!-- Video Block -->
                     <template x-if="block.type === 'video'">
                         <div class="video-block" :key="'video-' + block.id + '-' + (block._embedKey || block.embed_url || '')">
@@ -1158,7 +1012,6 @@
                             <div class="video-embed" x-html="getVideoEmbed(block.embed_url)"></div>
                         </div>
                     </template>
-                    
                     <!-- Music Block -->
                     <template x-if="block.type === 'music'">
                         <div class="music-block" :key="'music-' + block.id + '-' + (block._embedKey || block.embed_url || '')">
@@ -1166,7 +1019,6 @@
                             <div class="music-embed" x-html="getMusicEmbed(block.embed_url)"></div>
                         </div>
                     </template>
-                    
                     <!-- YouTube Block -->
                     <template x-if="block.type === 'youtube'">
                         <div class="video-block" :key="'yt-' + block.id + '-' + (block._embedKey || block.embed_url || '')">
@@ -1174,7 +1026,6 @@
                             <div class="video-embed" x-html="getVideoEmbed(block.embed_url)"></div>
                         </div>
                     </template>
-                    
                     <!-- Spotify Block -->
                     <template x-if="block.type === 'spotify'">
                         <div class="music-block" :key="'spotify-' + block.id + '-' + (block._embedKey || block.embed_url || '')">
@@ -1182,7 +1033,6 @@
                             <div class="music-embed" x-html="getMusicEmbed(block.embed_url)"></div>
                         </div>
                     </template>
-                    
                     <!-- SoundCloud Block -->
                     <template x-if="block.type === 'soundcloud'">
                         <div class="music-block" :key="'sc-' + block.id + '-' + (block._embedKey || block.embed_url || '')">
@@ -1190,7 +1040,6 @@
                             <div class="music-embed" x-html="getMusicEmbed(block.embed_url)"></div>
                         </div>
                     </template>
-                    
                     <!-- VCard Block -->
                     <template x-if="block.type === 'vcard'">
                         <div class="vcard-block">
@@ -1219,7 +1068,6 @@
                             </button>
                         </div>
                     </template>
-                    
                     <!-- HTML Block -->
                     <template x-if="block.type === 'html'">
                         <div class="html-block">
@@ -1227,7 +1075,6 @@
                             <div class="html-content" x-html="sanitizeHtml(block.html_content)"></div>
                         </div>
                     </template>
-                    
                     <!-- Countdown Block -->
                     <template x-if="block.type === 'countdown'">
                         <div class="countdown-block" :style="{
@@ -1258,7 +1105,6 @@
                             </div>
                         </div>
                     </template>
-                    
                     <!-- Map Block -->
                     <template x-if="block.type === 'map'">
                         <div class="map-block" :key="'map-' + block.id + '-' + (block._embedKey || block.map_address || '')">
@@ -1276,7 +1122,6 @@
                             <div class="map-address" x-text="block.map_address"></div>
                         </div>
                     </template>
-                    
                     <!-- FAQ Block -->
                     <template x-if="block.type === 'faq'">
                         <div class="faq-block">
@@ -1297,7 +1142,6 @@
                 </div>
             </template>
         </div>
-        
         <!-- Social Icons (Bottom) -->
         <template x-if="socials.position === 'bottom' && socials.items && socials.items.length > 0">
             <div class="social-icons" style="margin-top: 24px;">
@@ -1310,7 +1154,6 @@
                 </template>
             </div>
         </template>
-        
         <!-- Footer -->
         <template x-if="!settings.hideBranding">
             <div class="footer">
@@ -1318,12 +1161,10 @@
             </div>
         </template>
     </div>
-    
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script>
         // Brand colors from config
         const brandColors = @json(collect(config('brands.platforms', []))->mapWithKeys(fn($b, $k) => [$k => $b['color'] ?? '#000000']));
-        
         function previewApp() {
             return {
                 isLoaded: false,
@@ -1380,7 +1221,6 @@
                 settings: {
                     hideBranding: false
                 },
-                
                 init() {
                     // Listen for messages from parent window
                     window.addEventListener('message', (event) => {
@@ -1391,11 +1231,9 @@
                             this.updateHoverColors();
                         }
                     });
-                    
                     // Signal ready
                     window.parent.postMessage({ type: 'preview-ready' }, '*');
                 },
-                
                 // Update CSS custom properties for theme-aware hover effects
                 updateHoverColors() {
                     const themeGlowColors = {
@@ -1438,7 +1276,6 @@
                     document.documentElement.style.setProperty('--hover-glow-color', themeGlowColors[theme] || 'rgba(99, 102, 241, 0.4)');
                     document.documentElement.style.setProperty('--hover-hue-shift', themeHueShifts[theme] || '30deg');
                 },
-                
                 updatePreview(data) {
                     if (data.profile) this.profile = { ...this.profile, ...data.profile };
                     if (data.blocks) this.updateBlocksSmart(data.blocks);
@@ -1446,20 +1283,16 @@
                     if (data.design) this.design = { ...this.design, ...data.design };
                     if (data.settings) this.settings = { ...this.settings, ...data.settings };
                 },
-                
                 // Smart block update to prevent embed flickering
                 updateBlocksSmart(newBlocks) {
                     // Create a map of existing blocks by ID
                     const existingMap = new Map(this.blocks.map(b => [b.id, b]));
                     const newMap = new Map(newBlocks.map(b => [b.id, b]));
-                    
                     // Embed block types that shouldn't re-render unless embed_url changes
                     const embedTypes = ['youtube', 'spotify', 'soundcloud', 'video', 'music', 'map'];
-                    
                     // Check if block order changed
                     const orderChanged = newBlocks.length !== this.blocks.length ||
                         newBlocks.some((b, i) => this.blocks[i]?.id !== b.id);
-                    
                     if (orderChanged) {
                         // Order changed - need to rebuild array but preserve embed states
                         const updatedBlocks = newBlocks.map(newBlock => {
@@ -1480,12 +1313,10 @@
                         newBlocks.forEach((newBlock, index) => {
                             const existingBlock = this.blocks[index];
                             if (!existingBlock) return;
-                            
                             // For embed types, check if embed content changed
                             if (embedTypes.includes(newBlock.type)) {
                                 const embedChanged = existingBlock.embed_url !== newBlock.embed_url ||
                                     existingBlock.map_address !== newBlock.map_address;
-                                
                                 if (!embedChanged) {
                                     // Only update non-embed properties
                                     Object.keys(newBlock).forEach(key => {
@@ -1496,13 +1327,11 @@
                                     return;
                                 }
                             }
-                            
                             // Update all properties
                             Object.assign(this.blocks[index], newBlock);
                         });
                     }
                 },
-                
                 get bodyClasses() {
                     let classes = [];
                     if (this.design.backgroundType === 'gradient' && this.design.backgroundPreset) {
@@ -1510,7 +1339,6 @@
                     }
                     return classes.join(' ');
                 },
-                
                 get buttonRadius() {
                     const shapes = {
                         'rounded': '12px',
@@ -1520,7 +1348,6 @@
                     };
                     return shapes[this.design.buttonShape] || '12px';
                 },
-                
                 // Get effective theme data
                 get activeTheme() {
                     const themeName = this.design.theme;
@@ -1529,7 +1356,6 @@
                     }
                     return null;
                 },
-                
                 // Get effective button background color (respects theme)
                 getEffectiveButtonBg() {
                     if (this.activeTheme) {
@@ -1538,7 +1364,6 @@
                     // Use custom color or neutral default (not purple)
                     return this.design.buttonBgColor || '#f1f5f9';
                 },
-                
                 // Get effective button text color (respects theme)
                 getEffectiveButtonText() {
                     if (this.activeTheme) {
@@ -1546,7 +1371,6 @@
                     }
                     return this.design.buttonTextColor || '#1e293b';
                 },
-                
                 // Get effective button border (for themes like neon)
                 getEffectiveBorder() {
                     if (this.activeTheme && this.activeTheme.link_border) {
@@ -1554,7 +1378,6 @@
                     }
                     return 'none';
                 },
-                
                 // Get effective background
                 getEffectiveBackground() {
                     // Custom background image takes priority
@@ -1571,7 +1394,6 @@
                     }
                     return this.design.backgroundColor || '#f8fafc';
                 },
-                
                 // Get effective title color
                 getEffectiveTitleColor() {
                     if (this.activeTheme) {
@@ -1579,7 +1401,6 @@
                     }
                     return this.design.titleColor || this.design.textColor || '#1e293b';
                 },
-                
                 // Get effective bio color
                 getEffectiveBioColor() {
                     if (this.activeTheme) {
@@ -1587,55 +1408,44 @@
                     }
                     return this.design.bioColor || '#64748b';
                 },
-                
                 // Get content block colors (text, countdown) based on theme darkness
                 isDarkTheme() {
                     const darkThemes = ['dark', 'minimal-dark', 'galaxy', 'neon', 'cyberpunk', 'aurora', 'midnight', 'matrix'];
                     return darkThemes.includes(this.design.theme);
                 },
-                
                 getContentBlockBg() {
                     return this.isDarkTheme() ? 'rgba(255, 255, 255, 0.08)' : 'rgba(255, 255, 255, 0.7)';
                 },
-                
                 getContentBlockBorder() {
                     return this.isDarkTheme() ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.1)';
                 },
-                
                 getContentBlockHeaderBg() {
                     return this.isDarkTheme() ? 'rgba(255, 255, 255, 0.05)' : 'rgba(241, 245, 249, 0.5)';
                 },
-                
                 getCountdownBg() {
                     const linkBg = this.getEffectiveButtonBg();
                     return `linear-gradient(135deg, ${linkBg}, ${linkBg}cc)`;
                 },
-                
                 getInitials(name) {
                     if (!name) return '?';
                     return name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
                 },
-                
                 getBrandColor(platform) {
                     return brandColors[platform] || '#6b7280';
                 },
-
                 isLightColor(color) {
                     if (!color) return true;
-                    
                     // Handle hex
                     if (color.startsWith('#')) {
                         const hex = color.replace('#', '');
                         // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
                         const fullHex = hex.length === 3 ? hex.split('').map(c => c + c).join('') : hex;
-                        
                         const r = parseInt(fullHex.substr(0, 2), 16);
                         const g = parseInt(fullHex.substr(2, 2), 16);
                         const b = parseInt(fullHex.substr(4, 2), 16);
                         const brightness = ((r * 299) + (g * 587) + (b * 114)) / 1000;
                         return brightness > 155;
                     }
-                    
                     // Handle rgb/rgba
                     if (color.startsWith('rgb')) {
                         const rgb = color.match(/\d+/g);
@@ -1644,14 +1454,11 @@
                             return brightness > 155;
                         }
                     }
-                    
                     return false;
                 },
-                
                 // Video embed helper - more versatile
                 getVideoEmbed(url) {
                     if (!url) return '<div class="text-center opacity-50">No video URL</div>';
-                    
                     // Already an embed URL - extract and use
                     if (url.includes('/embed/') || url.includes('youtube.com/embed')) {
                         const embedMatch = url.match(/youtube\.com\/embed\/([a-zA-Z0-9_-]+)/);
@@ -1659,38 +1466,31 @@
                             return `<iframe src="https://www.youtube.com/embed/${embedMatch[1]}?rel=0" style="width:100%;aspect-ratio:16/9;border-radius:12px;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
                         }
                     }
-                    
                     // YouTube - various URL formats
                     const ytMatch = url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|live\/)|youtu\.be\/)([a-zA-Z0-9_-]+)/);
                     if (ytMatch) {
                         return `<iframe src="https://www.youtube.com/embed/${ytMatch[1]}?rel=0" style="width:100%;aspect-ratio:16/9;border-radius:12px;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
                     }
-                    
                     // YouTube shorts/live/playlist
                     const ytPlaylistMatch = url.match(/youtube\.com\/playlist\?list=([a-zA-Z0-9_-]+)/);
                     if (ytPlaylistMatch) {
                         return `<iframe src="https://www.youtube.com/embed/videoseries?list=${ytPlaylistMatch[1]}" style="width:100%;aspect-ratio:16/9;border-radius:12px;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
                     }
-                    
                     // Vimeo
                     const vimeoMatch = url.match(/vimeo\.com\/(\d+)/);
                     if (vimeoMatch) {
                         return `<iframe src="https://player.vimeo.com/video/${vimeoMatch[1]}?dnt=1" style="width:100%;aspect-ratio:16/9;border-radius:12px;" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
                     }
-                    
                     // TikTok embed
                     const tiktokMatch = url.match(/tiktok\.com\/@[\w.]+\/video\/(\d+)/);
                     if (tiktokMatch) {
                         return `<iframe src="https://www.tiktok.com/embed/${tiktokMatch[1]}" style="width:100%;min-height:400px;border-radius:12px;" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
                     }
-                    
                     return '<div class="text-center opacity-50 p-4">Paste YouTube, Vimeo, or TikTok URL</div>';
                 },
-                
                 // Music embed helper - more versatile
                 getMusicEmbed(url) {
                     if (!url) return '<div class="text-center opacity-50">No music URL</div>';
-                    
                     // Spotify - handle various formats including embed URLs
                     if (url.includes('spotify.com')) {
                         // Already an embed URL
@@ -1707,7 +1507,6 @@
                             return `<iframe src="https://open.spotify.com/embed/${spotifyMatch[1]}/${spotifyMatch[2]}?utm_source=generator&theme=0" style="width:100%;border-radius:12px;" height="${height}" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
                         }
                     }
-                    
                     // SoundCloud - handle various formats
                     if (url.includes('soundcloud.com')) {
                         // Get track/playlist from URL
@@ -1715,7 +1514,6 @@
                         const height = isPlaylist ? '300' : '166';
                         return `<iframe style="width:100%;border-radius:12px;" height="${height}" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}&color=%230ea5e9&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=${isPlaylist}"></iframe>`;
                     }
-                    
                     // Apple Music
                     if (url.includes('music.apple.com')) {
                         const appleMatch = url.match(/music\.apple\.com\/([a-z]{2})\/(album|playlist|song)\/[^\/]+\/(\d+)/i);
@@ -1724,7 +1522,6 @@
                             return `<iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" frameborder="0" height="175" style="width:100%;max-width:660px;overflow:hidden;border-radius:10px;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/${appleMatch[1]}/${type}/${appleMatch[3]}"></iframe>`;
                         }
                     }
-                    
                     // YouTube Music - redirect to regular YouTube embed
                     if (url.includes('music.youtube.com')) {
                         const ytMusicMatch = url.match(/watch\?v=([a-zA-Z0-9_-]+)/);
@@ -1732,27 +1529,21 @@
                             return `<iframe src="https://www.youtube.com/embed/${ytMusicMatch[1]}?rel=0" style="width:100%;aspect-ratio:16/9;border-radius:12px;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
                         }
                     }
-                    
                     return '<div class="text-center opacity-50 p-4">Paste Spotify, SoundCloud, or Apple Music URL</div>';
                 },
-                
                 // Countdown calculator
                 calculateCountdown(targetDate) {
                     if (!targetDate) return { days: '00', hours: '00', minutes: '00', seconds: '00' };
-                    
                     const target = new Date(targetDate);
                     const now = new Date();
                     const diff = target - now;
-                    
                     if (diff <= 0) {
                         return { days: '00', hours: '00', minutes: '00', seconds: '00' };
                     }
-                    
                     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
                     const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-                    
                     return {
                         days: String(days).padStart(2, '0'),
                         hours: String(hours).padStart(2, '0'),
@@ -1760,7 +1551,6 @@
                         seconds: String(seconds).padStart(2, '0')
                     };
                 },
-                
                 // Sanitize HTML (basic)
                 sanitizeHtml(html) {
                     if (!html) return '';
@@ -1770,7 +1560,6 @@
                         .replace(/on\w+\s*=\s*["'][^"']*["']/gi, '')
                         .replace(/on\w+\s*=\s*[^\s>]+/gi, '');
                 },
-                
                 // Decode HTML entities
                 decodeHtmlEntities(text) {
                     if (!text) return '';
@@ -1778,7 +1567,6 @@
                     textarea.innerHTML = text;
                     return textarea.value;
                 },
-                
                 // Download VCard
                 downloadVCard(block) {
                     const vcard = `BEGIN:VCARD
@@ -1788,7 +1576,6 @@ ORG:${block.vcard_company || ''}
 TEL:${block.vcard_phone || ''}
 EMAIL:${block.vcard_email || ''}
 END:VCARD`;
-                    
                     const blob = new Blob([vcard], { type: 'text/vcard' });
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
@@ -1797,17 +1584,14 @@ END:VCARD`;
                     a.click();
                     URL.revokeObjectURL(url);
                 },
-                
                 // Initialize background animation - React-Snowfall inspired
                 initBackgroundAnimation(type) {
                     const container = this.$refs.bgAnimContainer;
                     if (!container) return;
-                    
                     // Debounce rapid animation changes
                     if (this._animDebounce) {
                         clearTimeout(this._animDebounce);
                     }
-                    
                     // Cancel any existing animation frames immediately
                     if (container._animationId) {
                         cancelAnimationFrame(container._animationId);
@@ -1822,16 +1606,13 @@ END:VCARD`;
                         clearInterval(container._dropletInterval);
                         container._dropletInterval = null;
                     }
-                    
                     // Clear existing content
                     container.innerHTML = '';
-                    
                     // Debounce the animation start
                     this._animDebounce = setTimeout(() => {
                         this._startAnimation(container, type);
                     }, 100);
                 },
-                
                 _startAnimation(container, type) {
                     // Check for matrix theme - add matrix background only if matrix animation selected
                     const theme = this.design.theme;
@@ -1839,13 +1620,10 @@ END:VCARD`;
                         this.initMatrixEffect(container);
                         return; // Matrix is the only animation for this selection
                     }
-                    
                     if (!type || type === 'none') return;
-                    
                     // Detect light themes for visibility adjustments
                     const lightThemes = ['default', 'light', 'classic', 'minimal-light', 'pastel', 'cherry', 'ice', 'lavender', 'retro'];
                     const isLightTheme = lightThemes.includes(theme) || !theme;
-                    
                     const config = {
                         'snow': { 
                             chars: ['❄', '❅', '❆', '✦', '•'],
@@ -1915,34 +1693,28 @@ END:VCARD`;
                             opacity: { min: 0.5, max: 0.9 }
                         }
                     };
-                    
                     const c = config[type];
                     if (!c) return;
-                    
                     // Create canvas
                     const canvas = document.createElement('canvas');
                     canvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;';
                     container.appendChild(canvas);
                     const ctx = canvas.getContext('2d');
-                    
                     const resize = () => {
                         canvas.width = container.offsetWidth || 375;
                         canvas.height = container.offsetHeight || 667;
                     };
                     resize();
-                    
                     // Particle class
                     class Particle {
                         constructor(initial = false) {
                             this.reset(initial);
                         }
-                        
                         reset(initial = false) {
                             this.x = Math.random() * canvas.width;
                             this.y = initial ? Math.random() * canvas.height : -50;
                             this.speed = c.speed ? c.speed.min + Math.random() * (c.speed.max - c.speed.min) : 0;
                             this.wind = c.wind ? c.wind.min + Math.random() * (c.wind.max - c.wind.min) : 0;
-                            
                             // For rain, use length/width; for others use radius
                             if (c.isRain) {
                                 this.length = c.length.min + Math.random() * (c.length.max - c.length.min);
@@ -1951,14 +1723,12 @@ END:VCARD`;
                                 this.radius = c.radius.min + Math.random() * (c.radius.max - c.radius.min);
                                 this.length = c.length ? c.length.min + Math.random() * (c.length.max - c.length.min) : this.radius;
                             }
-                            
                             this.opacity = c.opacity.min + Math.random() * (c.opacity.max - c.opacity.min);
                             this.char = c.chars ? c.chars[Math.floor(Math.random() * c.chars.length)] : null;
                             this.rotation = Math.random() * 360;
                             this.rotationSpeed = c.rotate ? (Math.random() - 0.5) * 3 : 0;
                             this.wobble = Math.random() * Math.PI * 2;
                             this.wobbleSpeed = 0.02 + Math.random() * 0.02;
-                            
                             if (c.multicolor) {
                                 // Use darker, more saturated colors on light themes for visibility
                                 if (c.isLightTheme) {
@@ -1971,41 +1741,34 @@ END:VCARD`;
                             } else {
                                 this.color = '#ffffff';
                             }
-                            
                             if (c.twinkle) {
                                 this.twinklePhase = Math.random() * Math.PI * 2;
                                 this.twinkleSpeed = 0.02 + Math.random() * 0.02;
                             }
                         }
-                        
                         update() {
                             if (c.twinkle) {
                                 this.twinklePhase += this.twinkleSpeed;
                                 this.opacity = c.opacity.min + (Math.sin(this.twinklePhase) + 1) / 2 * (c.opacity.max - c.opacity.min);
                                 return;
                             }
-                            
                             this.wobble += this.wobbleSpeed;
                             this.y += this.speed;
                             this.x += this.wind + Math.sin(this.wobble) * 0.3;
                             this.rotation += this.rotationSpeed;
-                            
                             if (this.y > canvas.height + 20 || this.x < -30 || this.x > canvas.width + 30) {
                                 this.reset();
                             }
                         }
-                        
                         draw() {
                             ctx.save();
                             ctx.globalAlpha = this.opacity;
-                            
                             if (c.isRain) {
                                 // Realistic rain streak - thin, semi-transparent line
                                 const gradient = ctx.createLinearGradient(
                                     this.x, this.y,
                                     this.x + this.wind * 2, this.y + this.length
                                 );
-                                
                                 // Use darker colors on light themes for visibility
                                 if (c.isLightTheme) {
                                     gradient.addColorStop(0, 'rgba(100, 130, 180, 0)');
@@ -2018,7 +1781,6 @@ END:VCARD`;
                                     gradient.addColorStop(0.9, 'rgba(255, 255, 255, 0.8)');
                                     gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
                                 }
-                                
                                 ctx.strokeStyle = gradient;
                                 ctx.lineWidth = this.width;
                                 ctx.lineCap = 'round';
@@ -2029,28 +1791,23 @@ END:VCARD`;
                             } else {
                                 ctx.translate(this.x, this.y);
                                 ctx.rotate(this.rotation * Math.PI / 180);
-                                
                                 if (c.glow) {
                                     ctx.shadowColor = this.color;
                                     ctx.shadowBlur = 8;
                                 }
-                                
                                 ctx.fillStyle = this.color;
                                 ctx.font = `${this.radius}px sans-serif`;
                                 ctx.textAlign = 'center';
                                 ctx.textBaseline = 'middle';
                                 ctx.fillText(this.char, 0, 0);
                             }
-                            
                             ctx.restore();
                         }
                     }
-                    
                     const particles = [];
                     for (let i = 0; i < c.count; i++) {
                         particles.push(new Particle(true));
                     }
-                    
                     // Window droplets for rain effect (dynamic drops on "glass")
                     let windowDroplets = [];
                     let dropletInterval = null;
@@ -2060,12 +1817,10 @@ END:VCARD`;
                         const baseDroplets = Math.floor(screenArea / 15000);
                         const maxDroplets = Math.min(45, Math.max(15, baseDroplets));
                         const initialDroplets = Math.floor(maxDroplets * 0.6);
-                        
                         class WindowDroplet {
                             constructor(startFromTop = false) {
                                 this.reset(startFromTop);
                             }
-                            
                             reset(startFromTop = false) {
                                 this.x = Math.random() * canvas.width;
                                 this.y = startFromTop ? -5 : Math.random() * canvas.height;
@@ -2080,12 +1835,10 @@ END:VCARD`;
                                 this.wobbleSpeed = 0.025 + Math.random() * 0.03;
                                 this.wobbleAmount = 0.08 + Math.random() * 0.15;
                             }
-                            
                             update() {
                                 this.age++;
                                 this.wobblePhase += this.wobbleSpeed;
                                 this.opacity = this.baseOpacity + Math.sin(this.wobblePhase) * 0.04;
-                                
                                 if (this.age > this.life && !this.sliding) {
                                     this.sliding = true;
                                     this.slideSpeed = 0.12 + Math.random() * 0.3;
@@ -2101,7 +1854,6 @@ END:VCARD`;
                                     this.reset(true);
                                 }
                             }
-                            
                             draw() {
                                 ctx.save();
                                 ctx.globalAlpha = this.opacity;
@@ -2139,7 +1891,6 @@ END:VCARD`;
                             }
                         }, 350 + Math.random() * 300);
                     }
-                    
                     let animationId;
                     const animate = () => {
                         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -2148,31 +1899,25 @@ END:VCARD`;
                         animationId = requestAnimationFrame(animate);
                     };
                     animate();
-                    
                     // Store animation ID and interval for cleanup
                     container._animationId = animationId;
                     container._dropletInterval = dropletInterval;
                 },
-                
                 // Matrix effect for neon/matrix themes
                 initMatrixEffect(container) {
                     const canvas = document.createElement('canvas');
                     canvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.35;';
                     container.appendChild(canvas);
                     const ctx = canvas.getContext('2d');
-                    
                     canvas.width = container.offsetWidth || 375;
                     canvas.height = container.offsetHeight || 667;
-                    
                     const chars = 'アイウエオカキクケコサシスセソタチツテト0123456789ABCDEF<>{}[]';
                     const fontSize = 14;
                     const columns = Math.floor(canvas.width / fontSize);
                     const drops = [];
-                    
                     for (let i = 0; i < columns; i++) {
                         drops[i] = Math.random() * -50;
                     }
-                    
                     let frameCount = 0;
                     const drawMatrix = () => {
                         frameCount++;
@@ -2180,32 +1925,26 @@ END:VCARD`;
                         if (frameCount % 2 === 0) {
                             ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
                             ctx.fillRect(0, 0, canvas.width, canvas.height);
-                            
                             ctx.font = `bold ${fontSize}px monospace`;
-                            
                             for (let i = 0; i < drops.length; i++) {
                                 const char = chars[Math.floor(Math.random() * chars.length)];
                                 const x = i * fontSize;
                                 const y = drops[i] * fontSize;
-                                
                                 // Brighter green with better visibility
                                 const brightness = Math.random() * 0.4 + 0.6;
                                 ctx.fillStyle = `rgba(0, ${Math.floor(255 * brightness)}, ${Math.floor(50 * brightness)}, ${brightness})`;
                                 ctx.fillText(char, x, y);
-                                
                                 // Add glow effect for head of stream
                                 if (Math.random() > 0.95) {
                                     ctx.fillStyle = '#ffffff';
                                     ctx.fillText(char, x, y);
                                 }
-                                
                                 if (y > canvas.height && Math.random() > 0.975) {
                                     drops[i] = 0;
                                 }
                                 drops[i] += 0.5 + Math.random() * 0.4;
                             }
                         }
-                        
                         container._matrixId = requestAnimationFrame(drawMatrix);
                     };
                     drawMatrix();
@@ -2213,13 +1952,11 @@ END:VCARD`;
             };
         }
     </script>
-    
     <!-- Alpine Collapse Plugin for FAQ -->
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.directive('collapse', (el, { expression }, { effect, evaluateLater }) => {
                 let show = evaluateLater(expression || 'true');
-                
                 effect(() => {
                     show(value => {
                         if (value) {

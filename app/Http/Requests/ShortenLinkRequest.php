@@ -27,13 +27,13 @@ class ShortenLinkRequest extends FormRequest
             'cf-turnstile-response' => ['nullable', 'string'],
         ];
     }
-    
+
     protected function prepareForValidation()
     {
         $url = $this->input('target_url');
-        if ($url && !preg_match('/^https?:\/\//i', $url)) {
+        if ($url && ! preg_match('/^https?:\/\//i', $url)) {
             $this->merge([
-                'target_url' => 'https://' . $url,
+                'target_url' => 'https://'.$url,
             ]);
         }
     }
@@ -45,21 +45,19 @@ class ShortenLinkRequest extends FormRequest
             'target_url.url' => 'Invalid URL format. Please check the URL format.',
         ];
     }
-    
+
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {
             $url = $this->input('target_url');
-            
-            if ($url && !filter_var($url, FILTER_VALIDATE_URL)) {
+            if ($url && ! filter_var($url, FILTER_VALIDATE_URL)) {
                 $validator->errors()->add('target_url', 'Invalid URL format. Please check the URL format.');
             }
-            
             if ($url) {
                 $blocked = DomainBlacklist::isBlocked($url);
                 if ($blocked) {
-                    $category = $blocked['category'] ? ' (' . ucfirst($blocked['category']) . ')' : '';
-                    $validator->errors()->add('target_url', 'This domain is not allowed due to our security policy' . $category . '.');
+                    $category = $blocked['category'] ? ' ('.ucfirst($blocked['category']).')' : '';
+                    $validator->errors()->add('target_url', 'This domain is not allowed due to our security policy'.$category.'.');
                 }
             }
         });

@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Services\ProxyDetection\Detectors;
+
 class ProxyCheckDetector extends BaseProxyDetector
 {
     protected string $baseUrl = 'https://proxycheck.io/v2/';
+
     protected ?string $apiKey;
 
     public function __construct()
@@ -29,17 +31,13 @@ class ProxyCheckDetector extends BaseProxyDetector
     public function detect(string $ip): ?array
     {
         $params = ['vpn' => 1, 'asn' => 1];
-        
         if ($this->apiKey) {
             $params['key'] = $this->apiKey;
         }
-
         $data = $this->makeRequest("{$this->baseUrl}{$ip}", $params);
-
-        if (!$data || !isset($data[$ip])) {
+        if (! $data || ! isset($data[$ip])) {
             return null;
         }
-
         $result = $data[$ip];
 
         return [
@@ -49,7 +47,7 @@ class ProxyCheckDetector extends BaseProxyDetector
             'details' => [
                 'provider' => $result['provider'] ?? null,
                 'asn' => $result['asn'] ?? null,
-            ]
+            ],
         ];
     }
 }

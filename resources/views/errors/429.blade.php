@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title', 'Too Many Requests')
-
 @section('content')
     <div class="mx-auto max-w-lg py-20 text-center">
         <h1 class="text-4xl font-bold text-rose-600 mb-4">429: Too Many Requests</h1>

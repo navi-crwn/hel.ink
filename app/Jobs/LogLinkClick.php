@@ -22,22 +22,18 @@ class LogLinkClick implements ShouldQueue
         protected string $ip,
         protected ?string $referer,
         protected ?string $userAgent
-    ) {
-    }
+    ) {}
 
     public function handle(GeoIpService $geoIp): void
     {
         $link = Link::find($this->linkId);
-
         if (! $link) {
             return;
         }
-
         try {
             $geoData = $geoIp->details($this->ip);
             $proxyService = app(\App\Services\ProxyDetectionService::class);
             $proxyData = $proxyService->detect($this->ip);
-
             LinkClick::create([
                 'link_id' => $link->id,
                 'referer' => $this->referer,
@@ -53,11 +49,9 @@ class LogLinkClick implements ShouldQueue
                 'user_agent' => substr($this->userAgent ?? 'unknown', 0, 255),
                 'clicked_at' => now(),
             ]);
-
             $link->increment('clicks');
             $link->last_clicked_at = now();
             $link->saveQuietly();
-
             Cache::put('queue:heartbeat', now()->toDateTimeString(), now()->addMinutes(5));
         } catch (\Throwable $e) {
             Log::warning('LogLinkClick failed', ['link_id' => $link->id, 'error' => $e->getMessage()]);

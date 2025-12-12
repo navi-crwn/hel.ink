@@ -1,2 +1,33 @@
+# HEL.ink Robots.txt
+# Last updated: December 2025
+
 User-agent: *
-Disallow:
+Allow: /
+Allow: /about
+Allow: /products
+Allow: /faq
+Allow: /help
+Allow: /privacy
+Allow: /terms
+Allow: /contact
+Allow: /b/
+
+# Protect private areas
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /api/
+Disallow: /login
+Disallow: /register
+Disallow: /password
+Disallow: /profile
+Disallow: /settings
+Disallow: /verify-email
+Disallow: /two-factor
+
+# Block utility endpoints
+Disallow: /health/
+Disallow: /sanctum/
+Disallow: /_debugbar/
+
+# Sitemap
+Sitemap: https://hel.ink/sitemap.xml

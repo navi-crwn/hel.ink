@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Services\NotificationService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Services\NotificationService;
 
 class AbuseReport extends Model
 {
@@ -38,7 +38,7 @@ class AbuseReport extends Model
             } catch (\Exception $e) {
                 \Log::error('Failed to send abuse report notification', [
                     'error' => $e->getMessage(),
-                    'report_id' => $abuseReport->id
+                    'report_id' => $abuseReport->id,
                 ]);
             }
         });

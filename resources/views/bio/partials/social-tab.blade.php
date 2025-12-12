@@ -1,7 +1,6 @@
 <div class="space-y-6" x-data="socialLinksManager()" x-init="if (!activeSocials) { const notification = document.createElement('div'); notification.className = 'fixed top-4 right-4 z-50 rounded-lg bg-red-600 p-4 text-white shadow-2xl'; notification.innerHTML = '<p class=\'font-medium\'>✕ socialLinksManager() failed to initialize!</p>'; document.body.appendChild(notification); }">
     <!-- Sortable.js for drag and drop -->
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
-    
     <style>
         .social-list-scroll::-webkit-scrollbar {
             width: 6px;
@@ -23,19 +22,16 @@
             background: #64748b;
         }
     </style>
-    
     <!-- Header -->
     <div class="rounded-lg bg-white p-6 shadow-sm dark:bg-slate-800 border-t-4 border-purple-600 dark:border-purple-400">
         <h3 class="mb-2 text-2xl font-semibold text-slate-900 dark:text-white">Social icons</h3>
         <p class="text-sm text-slate-600 dark:text-slate-400">Show visitors where to find you</p>
         <p class="text-sm text-slate-600 dark:text-slate-400">Add your social profiles, email and more as linked icons on your bio page.</p>
     </div>
-
     <!-- Social Icons Position -->
     <div class="rounded-lg bg-white p-6 shadow-sm dark:bg-slate-800">
         <h4 class="mb-3 text-lg font-semibold text-slate-900 dark:text-white">Social Icons Position</h4>
         <p class="mb-4 text-sm text-slate-600 dark:text-slate-400">Choose where to display social icons on your bio page</p>
-        
         <div class="grid grid-cols-2 gap-4">
             <!-- Below Bio Option -->
             <button type="button" @click.prevent="updatePosition('below_bio')" 
@@ -47,7 +43,6 @@
                 <span class="text-sm font-medium" :class="socialPosition === 'below_bio' ? 'text-purple-600 dark:text-purple-400' : 'text-slate-700 dark:text-slate-300'">Below Bio</span>
                 <span class="text-xs text-slate-500 dark:text-slate-400">Under description</span>
             </button>
-            
             <!-- Bottom of Page Option -->
             <button type="button" @click.prevent="updatePosition('bottom_page')" 
                     class="flex flex-col items-center gap-2 rounded-lg border-2 p-4 transition-all"
@@ -60,7 +55,6 @@
             </button>
         </div>
     </div>
-
     <!-- Active Social Links (max 5) -->
     <div class="rounded-lg bg-white p-6 shadow-sm dark:bg-slate-800">
         <div id="social-links-list" x-ref="socialList" class="space-y-3" x-init="$nextTick(() => initSocialSortable())">
@@ -72,10 +66,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/>
                         </svg>
                     </div>
-                    
                     <!-- Icon -->
                     <div class="flex h-10 w-10 items-center justify-center rounded-full bg-white dark:bg-slate-800" x-html="getSocialIcon(link.platform)"></div>
-                    
                     <!-- Platform Name & Input -->
                     <div class="flex-1">
                         <p class="mb-1 text-sm font-medium text-slate-900 dark:text-white" x-text="link.label"></p>
@@ -93,14 +85,12 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                         </svg>
                     </button>
-                    
                     <!-- Edit/Toggle -->
                     <button @click="link.enabled = !link.enabled" class="text-slate-400 hover:text-slate-600">
                         <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
                         </svg>
                     </button>
-                    
                     <!-- Toggle Switch -->
                     <label class="relative inline-flex cursor-pointer items-center">
                         <input type="checkbox" x-model="link.enabled" class="peer sr-only">
@@ -108,7 +98,6 @@
                     </label>
                 </div>
             </template>
-            
             <!-- Empty State -->
             <div x-show="activeSocials.length === 0" class="py-12 text-center">
                 <svg class="mx-auto h-12 w-12 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -117,7 +106,6 @@
                 <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">No social icons added yet</p>
             </div>
         </div>
-        
         <!-- Add Social Button -->
         <button @click="showModal = true" 
                 :disabled="activeSocials.length >= 5"
@@ -125,10 +113,8 @@
             <span x-show="activeSocials.length < 5">+ Add social icon</span>
             <span x-show="activeSocials.length >= 5" x-cloak>Maximum 5 social icons reached</span>
         </button>
-        
         <p class="mt-2 text-center text-xs text-slate-500 dark:text-slate-400" x-text="activeSocials.length + '/5 social icons'"></p>
     </div>
-
     <!-- Save Button -->
     <div class="flex justify-end">
         <button @click="saveSocialLinks" 
@@ -138,7 +124,6 @@
             <span x-show="saving" x-cloak>Saving...</span>
         </button>
     </div>
-
     <!-- Add Social Modal -->
     <div x-show="showModal" 
          x-cloak
@@ -154,7 +139,6 @@
                     </svg>
                 </button>
             </div>
-            
             <!-- Search -->
             <div class="p-4 border-b border-slate-200 dark:border-slate-700">
                 <div class="relative">
@@ -167,7 +151,6 @@
                     </svg>
                 </div>
             </div>
-            
             <!-- Social Platforms List (Exactly 5 visible items, rest scroll) -->
             <div class="social-list-scroll overflow-y-auto" style="max-height: 280px;">
                 <template x-for="platform in filteredPlatforms" :key="platform.id">
@@ -184,7 +167,6 @@
         </div>
     </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 <script>
 function socialLinksManager() {
@@ -195,18 +177,15 @@ function socialLinksManager() {
         saving: false,
         socialPosition: '{{ $bioPage->social_icons_position ?? "below_bio" }}',
         socialSortable: null,
-
         init() {
             // Initialize Sortable after DOM is ready
             this.$nextTick(() => {
                 this.initSocialSortable();
             });
         },
-        
         initSocialSortable() {
             const container = document.getElementById('social-links-list');
             if (!container || this.socialSortable) return;
-            
             const self = this;
             this.socialSortable = Sortable.create(container, {
                 animation: 120,
@@ -218,7 +197,6 @@ function socialLinksManager() {
                 dragClass: 'sortable-drag',
                 onEnd: function(evt) {
                     if (evt.oldIndex === evt.newIndex) return;
-                    
                     const movedItem = self.activeSocials.splice(evt.oldIndex, 1)[0];
                     self.activeSocials.splice(evt.newIndex, 0, movedItem);
                     window.dispatchEvent(new CustomEvent('social-links-updated', { 
@@ -227,19 +205,13 @@ function socialLinksManager() {
                 }
             });
         },
-        
         updatePosition(position) {
-            console.log('Updating position to:', position);
             this.socialPosition = position;
-            
             // Dispatch event to parent bioEditor
             window.dispatchEvent(new CustomEvent('social-position-updated', { 
                 detail: { position: position } 
             }));
-            
-            console.log('Event dispatched: social-position-updated');
         },
-
         availablePlatforms: [
             // Social Media - Popular
             { id: 'instagram', label: 'Instagram', icon: '<img src="/images/brands/instagram.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Instagram">', placeholder: '@username' },
@@ -253,7 +225,6 @@ function socialLinksManager() {
             { id: 'snapchat', label: 'Snapchat', icon: '<img src="/images/brands/snapchat.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Snapchat">', placeholder: 'username' },
             { id: 'reddit', label: 'Reddit', icon: '<img src="/images/brands/reddit.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Reddit">', placeholder: 'username atau r/subreddit' },
             { id: 'tumblr', label: 'Tumblr', icon: '<img src="/images/brands/tumblr.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Tumblr">', placeholder: 'blogname atau URL' },
-            
             // Decentralized/New Platforms
             { id: 'bluesky', label: 'Bluesky', icon: '<img src="/images/brands/bluesky.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Bluesky">', placeholder: 'handle.bsky.social' },
             { id: 'mastodon', label: 'Mastodon', icon: '<img src="/images/brands/mastodon.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Mastodon">', placeholder: '@user@instance.social' },
@@ -261,7 +232,6 @@ function socialLinksManager() {
             { id: 'lemmy', label: 'Lemmy', icon: '<img src="/images/brands/lemmy.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Lemmy">', placeholder: '@user@instance' },
             { id: 'pixelfed', label: 'Pixelfed', icon: '<img src="/images/brands/pixelfed.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Pixelfed">', placeholder: '@user@instance atau URL' },
             { id: 'nostr', label: 'Nostr', icon: '<img src="/images/brands/nostr.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Nostr">', placeholder: 'npub1...' },
-            
             // Messaging
             { id: 'whatsapp', label: 'WhatsApp', icon: '<img src="/images/brands/whatsapp.svg" class="h-6 w-6" style="filter:brightness(0);" alt="WhatsApp">', placeholder: '+62812345678' },
             { id: 'telegram', label: 'Telegram', icon: '<img src="/images/brands/telegram.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Telegram">', placeholder: '@username' },
@@ -270,7 +240,6 @@ function socialLinksManager() {
             { id: 'signal', label: 'Signal', icon: '<img src="/images/brands/signal.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Signal">', placeholder: '+62812345678' },
             { id: 'line', label: 'LINE', icon: '<img src="/images/brands/line.svg" class="h-6 w-6" style="filter:brightness(0);" alt="LINE">', placeholder: 'username' },
             { id: 'matrix', label: 'Matrix', icon: '<img src="/images/brands/matrix.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Matrix">', placeholder: '@user:matrix.org' },
-            
             // Music & Audio
             { id: 'spotify', label: 'Spotify', icon: '<img src="/images/brands/spotify.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Spotify">', placeholder: 'username atau URL' },
             { id: 'apple-music', label: 'Apple Music', icon: '<img src="/images/brands/apple-music.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Apple Music">', placeholder: 'profile atau URL' },
@@ -278,20 +247,17 @@ function socialLinksManager() {
             { id: 'bandcamp', label: 'Bandcamp', icon: '<img src="/images/brands/bandcamp.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Bandcamp">', placeholder: 'artist' },
             { id: 'deezer', label: 'Deezer', icon: '<img src="/images/brands/deezer.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Deezer">', placeholder: 'profile_id' },
             { id: 'youtube-music', label: 'YouTube Music', icon: '<img src="/images/brands/youtube-music.svg" class="h-6 w-6" style="filter:brightness(0);" alt="YouTube Music">', placeholder: 'channel_id' },
-            
             // Video & Streaming
             { id: 'twitch', label: 'Twitch', icon: '<img src="/images/brands/twitch.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Twitch">', placeholder: 'username' },
             { id: 'kick', label: 'Kick', icon: '<img src="/images/brands/kick.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Kick">', placeholder: 'username' },
             { id: 'vimeo', label: 'Vimeo', icon: '<img src="/images/brands/vimeo.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Vimeo">', placeholder: 'username' },
             { id: 'bilibili', label: 'Bilibili', icon: '<img src="/images/brands/bilibili.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Bilibili">', placeholder: 'user_id' },
-            
             // Developer
             { id: 'github', label: 'GitHub', icon: '<img src="/images/brands/github.svg" class="h-6 w-6" style="filter:brightness(0);" alt="GitHub">', placeholder: 'username' },
             { id: 'gitlab', label: 'GitLab', icon: '<img src="/images/brands/gitlab.svg" class="h-6 w-6" style="filter:brightness(0);" alt="GitLab">', placeholder: 'username' },
             { id: 'codepen', label: 'CodePen', icon: '<img src="/images/brands/codepen.svg" class="h-6 w-6" style="filter:brightness(0);" alt="CodePen">', placeholder: 'username' },
             { id: 'dev-to', label: 'Dev.to', icon: '<img src="/images/brands/dev-to.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Dev.to">', placeholder: 'username' },
             { id: 'stack-overflow', label: 'Stack Overflow', icon: '<img src="/images/brands/stack-overflow.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Stack Overflow">', placeholder: 'user_id' },
-            
             // Design & Art
             { id: 'dribbble', label: 'Dribbble', icon: '<img src="/images/brands/dribbble.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Dribbble">', placeholder: 'username' },
             { id: 'behance', label: 'Behance', icon: '<img src="/images/brands/behance.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Behance">', placeholder: 'username' },
@@ -299,20 +265,17 @@ function socialLinksManager() {
             { id: 'artstation', label: 'ArtStation', icon: '<img src="/images/brands/artstation.svg" class="h-6 w-6" style="filter:brightness(0);" alt="ArtStation">', placeholder: 'username' },
             { id: 'unsplash', label: 'Unsplash', icon: '<img src="/images/brands/unsplash.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Unsplash">', placeholder: '@username' },
             { id: 'deviantart', label: 'DeviantArt', icon: '<img src="/images/brands/deviantart.svg" class="h-6 w-6" style="filter:brightness(0);" alt="DeviantArt">', placeholder: 'username' },
-            
             // Gaming
             { id: 'steam', label: 'Steam', icon: '<img src="/images/brands/steam.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Steam">', placeholder: 'id/username' },
             { id: 'xbox', label: 'Xbox', icon: '<img src="/images/brands/xbox.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Xbox">', placeholder: 'gamertag' },
             { id: 'playstation', label: 'PlayStation', icon: '<img src="/images/brands/playstation.svg" class="h-6 w-6" style="filter:brightness(0);" alt="PlayStation">', placeholder: 'psn_id' },
             { id: 'itch-io', label: 'Itch.io', icon: '<img src="/images/brands/itch-io.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Itch.io">', placeholder: 'username' },
             { id: 'roblox', label: 'Roblox', icon: '<img src="/images/brands/roblox.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Roblox">', placeholder: 'user_id' },
-            
             // Entertainment
             { id: 'myanimelist', label: 'MyAnimeList', icon: '<img src="/images/brands/myanimelist.svg" class="h-6 w-6" style="filter:brightness(0);" alt="MyAnimeList">', placeholder: 'username' },
             { id: 'anilist', label: 'AniList', icon: '<img src="/images/brands/anilist.svg" class="h-6 w-6" style="filter:brightness(0);" alt="AniList">', placeholder: 'username' },
             { id: 'letterboxd', label: 'Letterboxd', icon: '<img src="/images/brands/letterboxd.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Letterboxd">', placeholder: 'username' },
             { id: 'goodreads', label: 'Goodreads', icon: '<img src="/images/brands/goodreads.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Goodreads">', placeholder: 'user_id' },
-            
             // Payment/Donation
             { id: 'paypal', label: 'PayPal', icon: '<img src="/images/brands/paypal.svg" class="h-6 w-6" style="filter:brightness(0);" alt="PayPal">', placeholder: 'paypal.me/username' },
             { id: 'venmo', label: 'Venmo', icon: '<img src="/images/brands/venmo.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Venmo">', placeholder: '@username' },
@@ -321,13 +284,11 @@ function socialLinksManager() {
             { id: 'ko-fi', label: 'Ko-fi', icon: '<img src="/images/brands/ko-fi.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Ko-fi">', placeholder: 'username' },
             { id: 'buy-me-a-coffee', label: 'Buy Me a Coffee', icon: '<img src="/images/brands/buy-me-a-coffee.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Buy Me a Coffee">', placeholder: 'username' },
             { id: 'gumroad', label: 'Gumroad', icon: '<img src="/images/brands/gumroad.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Gumroad">', placeholder: 'username' },
-            
             // E-commerce
             { id: 'etsy', label: 'Etsy', icon: '<img src="/images/brands/etsy.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Etsy">', placeholder: 'shop/username' },
             { id: 'amazon', label: 'Amazon', icon: '<img src="/images/brands/amazon.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Amazon">', placeholder: 'shop/username' },
             { id: 'fiverr', label: 'Fiverr', icon: '<img src="/images/brands/fiverr.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Fiverr">', placeholder: 'username' },
             { id: 'upwork', label: 'Upwork', icon: '<img src="/images/brands/upwork.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Upwork">', placeholder: 'profile_url' },
-            
             // Productivity & Blog
             { id: 'medium', label: 'Medium', icon: '<img src="/images/brands/medium.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Medium">', placeholder: '@username' },
             { id: 'substack', label: 'Substack', icon: '<img src="/images/brands/substack.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Substack">', placeholder: 'username' },
@@ -335,12 +296,10 @@ function socialLinksManager() {
             { id: 'wordpress', label: 'WordPress', icon: '<img src="/images/brands/wordpress.svg" class="h-6 w-6" style="filter:brightness(0);" alt="WordPress">', placeholder: 'site.wordpress.com' },
             { id: 'calendly', label: 'Calendly', icon: '<img src="/images/brands/calendly.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Calendly">', placeholder: 'username' },
             { id: 'zoom', label: 'Zoom', icon: '<img src="/images/brands/zoom.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Zoom">', placeholder: 'meeting_id' },
-            
             // Academic
             { id: 'orcid', label: 'ORCID', icon: '<img src="/images/brands/orcid.svg" class="h-6 w-6" style="filter:brightness(0);" alt="ORCID">', placeholder: '0000-0000-0000-0000' },
             { id: 'researchgate', label: 'ResearchGate', icon: '<img src="/images/brands/researchgate.svg" class="h-6 w-6" style="filter:brightness(0);" alt="ResearchGate">', placeholder: 'profile_name' },
             { id: 'google-scholar', label: 'Google Scholar', icon: '<img src="/images/brands/google-scholar.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Google Scholar">', placeholder: 'user_id' },
-            
             // Contact
             { id: 'email', label: 'Email', icon: '<img src="/images/brands/email.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Email">', placeholder: 'your@email.com' },
             { id: 'phone', label: 'Phone', icon: '<img src="/images/brands/phone.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Phone">', placeholder: '+62812345678' },
@@ -348,7 +307,6 @@ function socialLinksManager() {
             { id: 'website', label: 'Website', icon: '<img src="/images/brands/website.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Website">', placeholder: 'https://yoursite.com' },
             { id: 'blog', label: 'Blog', icon: '<img src="/images/brands/blog.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Blog">', placeholder: 'https://blog.com' },
             { id: 'link', label: 'Link', icon: '<img src="/images/brands/link.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Link">', placeholder: 'https://...' },
-            
             // Other
             { id: 'onlyfans', label: 'OnlyFans', icon: '<img src="/images/brands/onlyfans.svg" class="h-6 w-6" style="filter:brightness(0);" alt="OnlyFans">', placeholder: 'username' },
             { id: 'strava', label: 'Strava', icon: '<img src="/images/brands/strava.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Strava">', placeholder: 'athlete_id' },
@@ -360,16 +318,13 @@ function socialLinksManager() {
             { id: 'ngl', label: 'NGL', icon: '<img src="/images/brands/ngl.svg" class="h-6 w-6" style="filter:brightness(0);" alt="NGL">', placeholder: 'username' },
             { id: 'cameo', label: 'Cameo', icon: '<img src="/images/brands/cameo.svg" class="h-6 w-6" style="filter:brightness(0);" alt="Cameo">', placeholder: 'username' },
         ],
-
         get filteredPlatforms() {
             if (!this.searchQuery) return this.availablePlatforms;
-            
             const query = this.searchQuery.toLowerCase();
             return this.availablePlatforms.filter(p => 
                 p.label.toLowerCase().includes(query)
             );
         },
-
         init() {
             // Initialize Sortable for drag and drop
             this.$nextTick(() => {
@@ -387,22 +342,18 @@ function socialLinksManager() {
                 }
             });
         },
-
         getSocialIcon(platform) {
             const found = this.availablePlatforms.find(p => p.id === platform);
             return found ? found.icon : '';
         },
-
         getSocialPlaceholder(platform) {
             const found = this.availablePlatforms.find(p => p.id === platform);
             return found ? found.placeholder : '';
         },
-
         removeSocial(index) {
             this.activeSocials.splice(index, 1);
             window.dispatchEvent(new CustomEvent('social-links-updated', { detail: { social_links: this.activeSocials } }));
         },
-
         addSocial(platform) {
             if (this.activeSocials.length >= 5) {
                 // Show notification instead of alert
@@ -413,7 +364,6 @@ function socialLinksManager() {
                 setTimeout(() => notification.remove(), 3000);
                 return;
             }
-
             this.activeSocials.push({
                 platform: platform.id,
                 label: platform.label,
@@ -425,7 +375,6 @@ function socialLinksManager() {
             this.showModal = false;
             this.searchQuery = '';
         },
-
         validateSocialLink(link) {
             // Platform-specific validation
             const patterns = {
@@ -438,22 +387,18 @@ function socialLinksManager() {
                 whatsapp: /^(\d{10,15}|https:\/\/wa\.me\/\d{10,15})$/,
                 email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
             };
-
             if (!link.value) {
                 link.error = null;
                 return;
             }
-
             if (patterns[link.platform]) {
                 if (!patterns[link.platform].test(link.value)) {
                     link.error = 'Format salah. Periksa placeholder.';
                     return;
                 }
             }
-
             link.error = null;
         },
-
         async saveSocialLinks() {
             // Check for errors
             const hasErrors = this.activeSocials.some(link => link.error);
@@ -466,19 +411,15 @@ function socialLinksManager() {
                 setTimeout(() => notification.remove(), 3000);
                 return;
             }
-
             this.saving = true;
             try {
                 // Update parent bioEditor social_links first
                 const editor = bioEditor();
                 editor.bioPage.social_links = this.activeSocials;
-                
                 // Use parent's saveBioPage method
                 await editor.saveBioPage();
-                
                 // Clear unsaved changes flag after successful save
                 editor.unsavedChanges = false;
-                
                 // Show success notification
                 const notification = document.createElement('div');
                 notification.className = 'fixed top-4 right-4 z-50 rounded-lg bg-green-600 p-4 text-white shadow-2xl';

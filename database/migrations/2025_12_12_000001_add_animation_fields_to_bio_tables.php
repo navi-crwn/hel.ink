@@ -18,7 +18,6 @@ return new class extends Migration
             // Background animation effect
             $table->string('background_animation', 30)->nullable()->default('none');
         });
-        
         // Add per-block animation settings to bio_links
         Schema::table('bio_links', function (Blueprint $table) {
             // Entrance animation when page loads
@@ -36,7 +35,6 @@ return new class extends Migration
         Schema::table('bio_pages', function (Blueprint $table) {
             $table->dropColumn(['hover_effect', 'background_animation']);
         });
-        
         Schema::table('bio_links', function (Blueprint $table) {
             $table->dropColumn(['entrance_animation', 'attention_animation']);
         });

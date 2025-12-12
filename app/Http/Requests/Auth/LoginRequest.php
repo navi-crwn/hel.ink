@@ -16,6 +16,7 @@ class LoginRequest extends FormRequest
     {
         return true;
     }
+
     public function rules(): array
     {
         return [
@@ -23,39 +24,33 @@ class LoginRequest extends FormRequest
             'password' => ['required', 'string'],
         ];
     }
+
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
-
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
-
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
             ]);
         }
-
         RateLimiter::clear($this->throttleKey());
-
         $user = Auth::user();
         if ($user instanceof User && $user->isSuspended()) {
             Auth::logout();
-
             throw ValidationException::withMessages([
                 'email' => 'Akun Anda sedang disuspend. Hubungi admin.',
             ]);
         }
     }
+
     public function ensureIsNotRateLimited(): void
     {
         if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
             return;
         }
-
         event(new Lockout($this));
-
         $seconds = RateLimiter::availableIn($this->throttleKey());
-
         throw ValidationException::withMessages([
             'email' => trans('auth.throttle', [
                 'seconds' => $seconds,
@@ -63,6 +58,7 @@ class LoginRequest extends FormRequest
             ]),
         ]);
     }
+
     public function throttleKey(): string
     {
         return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());

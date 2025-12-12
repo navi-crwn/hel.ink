@@ -11,7 +11,6 @@
                     {{ session('status') }}
                 </div>
             @endif
-
             <div class="rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <div class="border-b border-slate-200 px-6 py-4 dark:border-slate-800">
                     <div class="flex items-center justify-between">
@@ -27,7 +26,6 @@
                         </button>
                     </div>
                 </div>
-                
                 <div class="overflow-x-auto">
                     <table class="w-full">
                         <thead class="bg-slate-50 dark:bg-slate-800">
@@ -94,7 +92,6 @@
                         </tbody>
                     </table>
                 </div>
-
                 @if($watchlist->hasPages())
                     <div class="border-t border-slate-200 px-6 py-4 dark:border-slate-800">
                         {{ $watchlist->links() }}
@@ -103,7 +100,6 @@
             </div>
         </div>
     </div>
-
     {{-- Add IP Modal --}}
     <div x-data="{ open: false }" 
          @open-add-ip-modal.window="open = true"
@@ -111,9 +107,7 @@
          x-cloak
          class="fixed inset-0 z-50 flex items-center justify-center p-4"
          style="display: none;">
-        
         <div class="fixed inset-0 bg-black/50" @click="open = false"></div>
-        
         <div class="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-xl dark:bg-slate-900">
             <div class="mb-4 flex items-center justify-between">
                 <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Add IP to Watchlist</h3>
@@ -123,10 +117,8 @@
                     </svg>
                 </button>
             </div>
-
             <form method="POST" action="{{ route('admin.ip-watchlist.store') }}" class="space-y-4">
                 @csrf
-                
                 <div>
                     <label for="ip_address" class="block text-sm font-medium text-slate-700 dark:text-slate-300">IP Address(es)</label>
                     <textarea name="ip_address" 
@@ -137,7 +129,6 @@
                               class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-4 py-2 text-slate-900 focus:border-blue-500 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white font-mono text-sm"></textarea>
                     <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">💡 Add multiple IPs by entering one per line</p>
                 </div>
-
                 <div>
                     <label for="reason" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Reason</label>
                     <input type="text" 
@@ -146,7 +137,6 @@
                            placeholder="Why is this IP suspicious?"
                            class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-4 py-2 text-slate-900 focus:border-blue-500 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white">
                 </div>
-
                 <div>
                     <label for="notes" class="block text-sm font-medium text-slate-700 dark:text-slate-300">Notes (optional)</label>
                     <textarea name="notes" 
@@ -155,7 +145,6 @@
                               placeholder="Additional details..."
                               class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-4 py-2 text-slate-900 focus:border-blue-500 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white"></textarea>
                 </div>
-
                 <div class="flex gap-3 pt-2">
                     <button type="button" 
                             @click="open = false"

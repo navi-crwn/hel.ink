@@ -19,11 +19,11 @@ class GeoIpMonitorController extends Controller
     {
         $ip = $request->input('ip', '8.8.8.8');
         $result = $geoIpService->details($ip);
-        
+
         return response()->json([
-            'success' => !empty($result['country']),
+            'success' => ! empty($result['country']),
             'data' => $result,
-            'providers' => $geoIpService->getProviders()
+            'providers' => $geoIpService->getProviders(),
         ]);
     }
 }

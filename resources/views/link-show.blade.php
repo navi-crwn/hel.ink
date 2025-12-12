@@ -8,7 +8,6 @@
             </x-slot>
         </x-page-header>
     </x-slot>
-
     <div class="py-6">
         <div class="mx-auto max-w-7xl space-y-4 sm:px-6 lg:px-8">
             <div class="grid gap-4 md:grid-cols-3">
@@ -27,7 +26,6 @@
                     @endif
                 </div>
             </div>
-
             <div class="grid gap-4 lg:grid-cols-2">
                 <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                     <h3 class="text-sm font-semibold text-slate-900 dark:text-white mb-3">Daily Clicks (Last {{ $rangeInDays }} days)</h3>
@@ -35,7 +33,6 @@
                         <canvas id="clickChart"></canvas>
                     </div>
                 </div>
-
                 <div class="grid grid-rows-2 gap-4">
                     <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                         <h3 class="text-xs font-semibold text-slate-600 dark:text-slate-400 mb-2">Top Locations</h3>
@@ -50,7 +47,6 @@
                             @endforelse
                         </div>
                     </div>
-
                     <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                         <h3 class="text-xs font-semibold text-slate-600 dark:text-slate-400 mb-2">Technology</h3>
                         <div class="grid grid-cols-2 gap-2 text-xs">
@@ -65,14 +61,12 @@
                     </div>
                 </div>
             </div>
-
             <div class="rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900" x-data="clickLog()">
                 <div class="border-b border-slate-200 p-4 dark:border-slate-700">
                     <div class="flex items-center justify-between mb-3">
                         <h3 class="text-sm font-semibold text-slate-900 dark:text-white">Click Log</h3>
                         <span class="text-xs text-slate-500">{{ $recentClicks->count() }} clicks (last {{ $rangeInDays }} days)</span>
                     </div>
-                    
                     <div class="flex flex-wrap gap-2">
                         <input x-model="searchQuery" @input="filterClicks" type="text" placeholder="Search IP, location, ISP..." class="text-xs rounded-lg border-slate-200 dark:border-slate-700 dark:bg-slate-800 px-3 py-1.5 w-64">
                         <select x-model="deviceFilter" @change="filterClicks" class="text-xs rounded-lg border-slate-200 dark:border-slate-700 dark:bg-slate-800 px-3 py-1.5">
@@ -88,7 +82,6 @@
                         <button @click="resetFilters" class="text-xs rounded-lg border border-slate-300 dark:border-slate-600 px-3 py-1.5 hover:bg-slate-50 dark:hover:bg-slate-800">Reset</button>
                     </div>
                 </div>
-
                 <div class="overflow-x-auto">
                     <table class="min-w-full text-xs">
                         <thead class="text-left text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/50 sticky top-0">
@@ -115,7 +108,6 @@
                         </tbody>
                     </table>
                 </div>
-
                 <div class="border-t border-slate-200 dark:border-slate-700 p-3 flex items-center justify-between">
                     <div class="text-xs text-slate-500">
                         Showing <span x-text="(currentPage - 1) * perPage + 1"></span> to <span x-text="Math.min(currentPage * perPage, filteredClicks.length)"></span> of <span x-text="filteredClicks.length"></span>
@@ -126,7 +118,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <div class="flex items-center justify-between mb-3">
                     <h3 class="text-sm font-semibold text-slate-900 dark:text-white">Notes</h3>
@@ -152,7 +143,6 @@
             </div>
         </div>
     </div>
-
     @push('scripts')
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
@@ -179,7 +169,6 @@
                     }
                 }
             });
-
             // Click Log Alpine Component
             function clickLog() {
                 return {
@@ -206,11 +195,9 @@
                     proxyFilter: '',
                     currentPage: 1,
                     perPage: 15,
-
                     init() {
                         this.filteredClicks = this.allClicks;
                     },
-
                     filterClicks() {
                         this.filteredClicks = this.allClicks.filter(click => {
                             let match = true;
@@ -229,14 +216,12 @@
                         });
                         this.currentPage = 1;
                     },
-
                     resetFilters() {
                         this.searchQuery = '';
                         this.deviceFilter = '';
                         this.proxyFilter = '';
                         this.filterClicks();
                     },
-
                     get paginatedClicks() {
                         const start = (this.currentPage - 1) * this.perPage;
                         return this.filteredClicks.slice(start, start + this.perPage);

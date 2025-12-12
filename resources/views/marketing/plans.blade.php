@@ -3,7 +3,6 @@
         <p class="text-xs uppercase tracking-[0.4em] text-white/60">Usage tiers</p>
         <h1 class="mt-4 text-4xl font-semibold text-white">Free forever, with sensible limits</h1>
         <p class="mt-4 text-white/70">Every plan is free. We simply separate limits for guests and signed-in users to keep HEL.ink stable.</p>
-
         <div class="mt-10 grid gap-6 md:grid-cols-2">
             <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
                 <p class="text-sm uppercase tracking-[0.3em] text-white/50">Guest</p>

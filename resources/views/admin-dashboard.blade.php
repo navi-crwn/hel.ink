@@ -4,7 +4,6 @@
 @endphp
 <x-app-layout>
     <x-slot name="pageTitle">HEL.ink - Admin</x-slot>
-
     <div class="py-4">
         <div class="mx-auto max-w-7xl space-y-4 px-4 md:px-6">
             <div class="grid gap-4 md:grid-cols-4">
@@ -78,7 +77,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="grid gap-6 lg:grid-cols-2">
                 <div class="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
                     <div class="flex items-center justify-between">
@@ -121,7 +119,6 @@
                     </ul>
                 </div>
             </div>
-
             <div class="grid gap-6 lg:grid-cols-2">
                 <div class="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
                     <div class="flex items-center justify-between">

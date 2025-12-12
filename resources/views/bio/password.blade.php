@@ -293,7 +293,6 @@
             const input = document.getElementById('password');
             const toggleText = document.getElementById('toggle-text');
             const eyeIcon = document.getElementById('eye-icon');
-            
             if (input.type === 'password') {
                 input.type = 'text';
                 toggleText.textContent = 'Hide';

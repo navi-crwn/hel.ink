@@ -11,7 +11,6 @@
                     {{ session('status') }}
                 </div>
             @endif
-
             @if ($errors->any())
                 <div class="rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-red-900">
                     <ul class="list-disc pl-5 space-y-1 text-sm">
@@ -21,13 +20,11 @@
                     </ul>
                 </div>
             @endif
-
             <form method="GET" class="flex flex-wrap items-center gap-3 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm dark:border-gray-800 dark:bg-gray-900">
                 <input type="text" name="q" value="{{ $search }}" placeholder="Search name or email..." class="flex-1 rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white" />
                 <button class="rounded-xl bg-blue-600 px-4 py-2 text-white hover:bg-blue-500">Search</button>
                 <a href="{{ route('admin.users.index') }}" class="text-sm text-gray-500 hover:underline">Reset</a>
             </form>
-
             @if ($viewerIsSuperAdmin)
                 <div class="rounded-2xl border border-emerald-200 bg-white p-6 shadow-sm dark:border-emerald-900/40 dark:bg-gray-900">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Create User</h3>
@@ -65,7 +62,6 @@
                     </form>
                 </div>
             @endif
-
             <div class="rounded-2xl border border-gray-100 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-900">
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-800 text-sm">
@@ -107,7 +103,6 @@
                                             <a href="{{ route('admin.users.inspect', $user) }}" class="rounded-lg bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600">
                                                 👁️ Inspect
                                             </a>
-
                                         @if ($viewerIsSuperAdmin && ! $isSuperAdminRow)
                                             <form method="POST" action="{{ route('admin.users.status', $user) }}" class="inline-flex items-center gap-2">
                                                 @csrf
@@ -118,7 +113,6 @@
                                                 </select>
                                                 <button class="rounded-lg bg-indigo-600 px-3 py-1 text-xs font-semibold text-white hover:bg-indigo-500">Update status</button>
                                             </form>
-
                                             <form method="POST" action="{{ route('admin.users.destroy', $user) }}" onsubmit="return confirm('Delete this account and all links?')" class="inline-flex items-center gap-2">
                                                 @csrf
                                                 @method('DELETE')

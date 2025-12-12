@@ -1,4 +1,4 @@
-<x-marketing-layout title="Feature requests - Hop Easy Link">
+<x-marketing-layout title="Feature requests - HEL.ink">
     <section class="mx-auto max-w-4xl px-6 py-16 lg:px-8">
         <p class="text-xs uppercase tracking-[0.4em] text-white/60">Feature board</p>
         <h1 class="mt-4 text-4xl font-semibold text-white">Request or vote on improvements</h1>

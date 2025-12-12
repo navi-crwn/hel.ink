@@ -13,7 +13,9 @@ class AdminNotification extends Mailable
     use Queueable, SerializesModels;
 
     public string $notificationType;
+
     public string $emailSubject;
+
     public array $data;
 
     /**

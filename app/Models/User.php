@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -12,7 +14,9 @@ class User extends Authenticatable
     public const ROLE_USER = 'user';
 
     public const STATUS_ACTIVE = 'active';
+
     public const STATUS_SUSPENDED = 'suspended';
+
     protected $fillable = [
         'name',
         'email',
@@ -33,11 +37,13 @@ class User extends Authenticatable
         'two_factor_recovery_codes',
         'two_factor_confirmed_at',
     ];
+
     protected $hidden = [
         'password',
         'remember_token',
         'catchphrase',
     ];
+
     protected function casts(): array
     {
         return [
@@ -83,7 +89,6 @@ class User extends Authenticatable
     public function isSuperAdmin(): bool
     {
         $superadminEmail = config('auth.superadmin_email');
-
         if (! $superadminEmail) {
             return false;
         }

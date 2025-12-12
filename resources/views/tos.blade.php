@@ -17,7 +17,7 @@
                         <a href="{{ url('/') }}" class="flex items-center space-x-3">
                             <img x-show="theme === 'dark'" src="{{ route('brand.logo') }}" alt="Logo" class="h-10">
                             <img x-show="theme === 'light'" src="{{ route('brand.logo.dark') }}" alt="Logo" class="h-10">
-                            <span class="text-xl font-bold text-gray-900 dark:text-white">HOP EASY LINK</span>
+                            <span class="text-xl font-bold text-gray-900 dark:text-white">HEL.INK</span>
                         </a>
                     </div>
                     <div class="flex items-center space-x-4">
@@ -36,19 +36,16 @@
                 </div>
             </div>
         </nav>
-
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
                 <h1 class="text-4xl font-bold mb-2">Terms of Service</h1>
                 <p class="text-gray-600 dark:text-gray-400 mb-8">Last Updated: November 22, 2025</p>
-
                 <div class="space-y-8 text-gray-700 dark:text-gray-300">
                     <section>
                         <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">1. Acceptance of Terms</h2>
                         <p class="mb-3">By accessing or using {{ config('app.name') }} ("Service"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of the terms, you may not access the Service.</p>
                         <p>The Service is intended for users who are at least 13 years old. By using the Service, you represent and warrant that you are at least 13 years of age.</p>
                     </section>
-
                     <section>
                         <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">2. Description of Service</h2>
                         <p class="mb-3">{{ config('app.name') }} is a URL shortening and link management service that allows users to:</p>
@@ -61,24 +58,19 @@
                             <li>Customize short URLs with custom slugs (subject to availability)</li>
                         </ul>
                     </section>
-
                     <section>
                         <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">3. User Accounts and Registration</h2>
                         <h3 class="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">3.1 Account Creation</h3>
                         <p class="mb-3">To access certain features, you must create an account by providing accurate, current, and complete information. You are responsible for maintaining the confidentiality of your account credentials.</p>
-                        
                         <h3 class="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">3.2 Account Security</h3>
                         <p class="mb-3">You are responsible for all activities that occur under your account. You must immediately notify us of any unauthorized use of your account or any other breach of security.</p>
-                        
                         <h3 class="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">3.3 Account Termination</h3>
                         <p>We reserve the right to suspend or terminate your account at any time for violations of these Terms or for any other reason we deem appropriate.</p>
                     </section>
-
                     <section>
                         <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">4. Acceptable Use Policy</h2>
                         <h3 class="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">4.1 Permitted Use</h3>
                         <p class="mb-3">You may use the Service for lawful purposes only and in accordance with these Terms.</p>
-                        
                         <h3 class="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">4.2 Prohibited Activities</h3>
                         <p class="mb-3">You agree NOT to use the Service to create, share, or distribute shortened URLs that:</p>
                         <ul class="list-disc list-inside space-y-2 ml-4 mb-3">
@@ -96,23 +88,18 @@
                             <li><strong>Service Abuse:</strong> Attempt to gain unauthorized access to our systems or interfere with the Service</li>
                             <li><strong>URL Manipulation:</strong> Use misleading short URLs that disguise the actual destination</li>
                         </ul>
-                        
                         <h3 class="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">4.3 Rate Limits and Quotas</h3>
                         <p class="mb-3">We impose reasonable rate limits and usage quotas to ensure fair use of the Service. Exceeding these limits may result in temporary or permanent suspension of your account.</p>
                     </section>
-
                     <section>
                         <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">5. Content and Intellectual Property</h2>
                         <h3 class="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">5.1 Your Content</h3>
                         <p class="mb-3">You retain ownership of all content you submit through the Service. By creating shortened URLs, you grant us a worldwide, non-exclusive, royalty-free license to use, reproduce, and display your shortened URLs for the purpose of providing the Service.</p>
-                        
                         <h3 class="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">5.2 Our Content</h3>
                         <p class="mb-3">The Service, including its original content, features, and functionality, is owned by {{ config('app.name') }} and is protected by international copyright, trademark, patent, trade secret, and other intellectual property laws.</p>
-                        
                         <h3 class="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">5.3 DMCA Compliance</h3>
                         <p>We respect the intellectual property rights of others. If you believe that material available on the Service infringes your copyright, you may submit a DMCA takedown notice to our designated copyright agent.</p>
                     </section>
-
                     <section>
                         <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">6. Privacy and Data Protection</h2>
                         <p class="mb-3">Your privacy is important to us. Our Privacy Policy explains how we collect, use, and protect your personal information. By using the Service, you consent to our collection and use of information as described in our Privacy Policy.</p>
@@ -124,27 +111,21 @@
                             <li>Cookies and similar tracking technologies</li>
                         </ul>
                     </section>
-
                     <section>
                         <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">7. Link Monitoring and Enforcement</h2>
                         <h3 class="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">7.1 Automated Monitoring</h3>
                         <p class="mb-3">We employ automated systems to detect and prevent abuse of the Service. Shortened URLs may be scanned for malicious content, malware, and compliance with these Terms.</p>
-                        
                         <h3 class="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">7.2 Abuse Reporting</h3>
                         <p class="mb-3">Users can report abusive or violating content. We will investigate all reports and take appropriate action, which may include disabling the shortened URL or suspending the user's account.</p>
-                        
                         <h3 class="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">7.3 Link Disabling</h3>
                         <p>We reserve the right to disable any shortened URL that violates these Terms without prior notice. Disabled links will redirect to an error page.</p>
                     </section>
-
                     <section>
                         <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">8. Disclaimers and Limitations of Liability</h2>
                         <h3 class="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">8.1 Service Availability</h3>
                         <p class="mb-3">THE SERVICE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS. WE DO NOT WARRANT THAT THE SERVICE WILL BE UNINTERRUPTED, SECURE, OR ERROR-FREE.</p>
-                        
                         <h3 class="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">8.2 Third-Party Websites</h3>
                         <p class="mb-3">The Service allows you to create links to third-party websites. We are not responsible for the content, accuracy, or availability of such websites. Links to third-party sites do not imply endorsement.</p>
-                        
                         <h3 class="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">8.3 Limitation of Liability</h3>
                         <p class="mb-3">TO THE MAXIMUM EXTENT PERMITTED BY LAW, {{ config('app.name') }} SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO:</p>
                         <ul class="list-disc list-inside space-y-2 ml-4">
@@ -155,7 +136,6 @@
                             <li>Unauthorized access to your account or data</li>
                         </ul>
                     </section>
-
                     <section>
                         <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">9. Indemnification</h2>
                         <p>You agree to indemnify, defend, and hold harmless {{ config('app.name') }}, its officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, and expenses arising out of or in any way connected with:</p>
@@ -166,12 +146,10 @@
                             <li>Any content you submit or distribute through the Service</li>
                         </ul>
                     </section>
-
                     <section>
                         <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">10. Data Retention and Deletion</h2>
                         <h3 class="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">10.1 Link Expiration</h3>
                         <p class="mb-3">Registered users may set expiration dates for their shortened URLs. Expired links will automatically become inactive and redirect to an error page.</p>
-                        
                         <h3 class="text-xl font-medium mb-2 text-gray-800 dark:text-gray-200">10.2 Account Deletion</h3>
                         <p class="mb-3">You may delete your account at any time from your profile settings. Upon deletion:</p>
                         <ul class="list-disc list-inside space-y-2 ml-4">
@@ -181,19 +159,16 @@
                             <li>Some aggregated, anonymized data may be retained for statistical purposes</li>
                         </ul>
                     </section>
-
                     <section>
                         <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">11. Changes to Terms</h2>
                         <p class="mb-3">We reserve the right to modify these Terms at any time. If we make material changes, we will notify you by email or through a prominent notice on the Service.</p>
                         <p>Your continued use of the Service after any changes to these Terms constitutes acceptance of those changes.</p>
                     </section>
-
                     <section>
                         <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">12. Governing Law and Dispute Resolution</h2>
                         <p class="mb-3">These Terms shall be governed by and construed in accordance with the laws of [Your Country/State], without regard to its conflict of law provisions.</p>
                         <p>Any disputes arising out of or relating to these Terms or the Service shall be resolved through binding arbitration in accordance with the rules of [Arbitration Body], except that either party may seek injunctive or other equitable relief in any court of competent jurisdiction.</p>
                     </section>
-
                     <section>
                         <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">13. Contact Information</h2>
                         <p class="mb-3">If you have any questions about these Terms, please contact us:</p>
@@ -202,17 +177,14 @@
                             <li><strong>Website:</strong> {{ config('app.url') }}</li>
                         </ul>
                     </section>
-
                     <section>
                         <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">14. Severability</h2>
                         <p>If any provision of these Terms is found to be unenforceable or invalid, that provision will be limited or eliminated to the minimum extent necessary so that the Terms will otherwise remain in full force and effect.</p>
                     </section>
-
                     <section>
                         <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">15. Entire Agreement</h2>
                         <p>These Terms constitute the entire agreement between you and {{ config('app.name') }} regarding the use of the Service and supersede all prior agreements and understandings.</p>
                     </section>
-
                     <div class="mt-12 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
                         <h3 class="text-xl font-semibold mb-3 text-yellow-900 dark:text-yellow-200">⚠️ Important Warnings</h3>
                         <ul class="list-disc list-inside space-y-2 text-yellow-800 dark:text-yellow-300">
@@ -224,7 +196,6 @@
                         </ul>
                     </div>
                 </div>
-
                 <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
                     <div class="flex justify-between items-center">
                         <a href="{{ route('register') }}" class="text-blue-600 dark:text-blue-400 hover:underline">
@@ -237,7 +208,6 @@
                 </div>
             </div>
         </div>
-
         <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                 <p class="text-center text-gray-600 dark:text-gray-400 text-sm">

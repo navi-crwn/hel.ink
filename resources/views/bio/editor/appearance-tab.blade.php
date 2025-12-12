@@ -1,5 +1,4 @@
 <!-- Appearance Tab Content - Enhanced Layout -->
-
 <div class="grid grid-cols-2 gap-4">
     <!-- Left Column: Theme Selection -->
     <div class="editor-card">
@@ -7,7 +6,6 @@
             <h3 class="editor-card-title text-base font-semibold">Theme</h3>
             <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Applying a theme will reset all button custom colors</p>
         </div>
-        
         <div class="grid grid-cols-4 gap-2">
             <template x-for="(theme, id) in themes" :key="id">
                 <div class="relative group">
@@ -27,7 +25,6 @@
                         </div>
                         <p class="text-xs font-medium text-slate-600 dark:text-slate-300 text-center mt-1 truncate" x-text="theme.name"></p>
                     </button>
-                    
                     <!-- Copy Style Dropdown (only for non-default themes) -->
                     <template x-if="id !== 'default'">
                         <div x-data="{ showCopyMenu: false }" class="absolute top-1 right-1 z-10">
@@ -70,13 +67,11 @@
             </template>
         </div>
     </div>
-
     <!-- Right Column: Design & Background - Stacked Layout -->
     <div class="editor-card">
         <div class="editor-card-header pb-3">
             <h3 class="editor-card-title text-base font-semibold">Design & Background</h3>
         </div>
-        
         <div class="space-y-5">
             <!-- Font Section -->
             <div class="pb-4 border-b border-slate-200 dark:[border-color:var(--editor-border)]">
@@ -84,7 +79,6 @@
                     <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"/></svg>
                     <h4 class="text-sm font-semibold">Font</h4>
                 </div>
-                
                 <div class="space-y-3">
                     <div class="relative" x-data="{ showFontPicker: false }">
                         <label class="form-label text-xs mb-1">Font Family</label>
@@ -118,14 +112,12 @@
                     </div>
                 </div>
             </div>
-            
             <!-- Buttons Section -->
             <div class="pb-4 border-b border-slate-200 dark:[border-color:var(--editor-border)]">
                 <div class="flex items-center gap-2 mb-3">
                     <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
                     <h4 class="text-sm font-semibold">Buttons</h4>
                 </div>
-                
                 <div class="space-y-3">
                     <!-- Shape -->
                     <div>
@@ -145,7 +137,6 @@
                             </button>
                         </div>
                     </div>
-
                     <!-- Shadow -->
                     <div>
                         <label class="form-label text-xs mb-2">Button Shadow</label>
@@ -172,7 +163,6 @@
                             </button>
                         </div>
                     </div>
-                    
                     <!-- Hover Effect -->
                     <div>
                         <label class="form-label text-xs mb-2">Hover Effect</label>
@@ -237,14 +227,12 @@
                     </div>
                 </div>
             </div>
-            
             <!-- Background Section - Only show for Default theme -->
             <div x-show="bioPage.theme === 'default'" x-transition>
                 <div class="flex items-center gap-2 mb-3">
                     <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                     <h4 class="text-sm font-semibold">Background</h4>
                 </div>
-                
                 <div class="space-y-3">
                     <!-- Background Type Tabs -->
                     <div class="flex gap-1 bg-slate-100 dark:bg-slate-700 rounded-lg p-1">
@@ -258,13 +246,11 @@
                                 :class="bioPage.background_type === 'image' ? 'bg-white dark:bg-slate-600 shadow-sm' : ''"
                                 class="flex-1 py-1.5 px-3 rounded-md text-xs font-medium transition-all">Image</button>
                     </div>
-                    
                     <!-- Solid Color -->
                     <div x-show="bioPage.background_type === 'solid'" class="flex items-center gap-2">
                         <input type="color" x-model="bioPage.background_value" class="color-picker-input w-10 h-10">
                         <input type="text" x-model="bioPage.background_value" class="form-input flex-1 text-sm py-2" placeholder="#ffffff" autocomplete="off" data-lpignore="true" data-1p-ignore="true">
                     </div>
-                    
                     <!-- Gradient -->
                     <div x-show="bioPage.background_type === 'gradient'" class="grid grid-cols-4 gap-2">
                         <button @click="bioPage.background_value = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'" class="h-10 rounded-lg" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"></button>
@@ -276,7 +262,6 @@
                         <button @click="bioPage.background_value = 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)'" class="h-10 rounded-lg" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)"></button>
                         <button @click="bioPage.background_value = 'linear-gradient(135deg, #000000 0%, #434343 100%)'" class="h-10 rounded-lg" style="background: linear-gradient(135deg, #000000 0%, #434343 100%)"></button>
                     </div>
-                    
                     <!-- Image -->
                     <div x-show="bioPage.background_type === 'image'">
                         <input type="file" accept="image/*" class="hidden" x-ref="bgImageInput" @change="uploadBackgroundImage($event)">
@@ -299,7 +284,6 @@
                     </div>
                 </div>
             </div>
-            
             <!-- Background Animation Section - Available for all themes -->
             <div x-transition>
                 <div class="flex items-center gap-2 mb-3">
@@ -308,7 +292,6 @@
                     </svg>
                     <h4 class="text-sm font-semibold">Background Animation</h4>
                 </div>
-                
                 <div class="grid grid-cols-4 gap-2">
                     <button @click="bioPage.background_animation = 'none'" 
                             :class="(bioPage.background_animation === 'none' || !bioPage.background_animation) ? 'ring-2 ring-blue-500 border-blue-500' : 'border-slate-200 dark:[border-color:var(--editor-border)]'" 
@@ -369,7 +352,6 @@
                     </button>
                 </div>
             </div>
-            
             <!-- Theme Background Info (for non-default themes) -->
             <div x-show="bioPage.theme !== 'default'" x-transition class="pt-2">
                 <div class="flex items-start gap-2 text-xs text-slate-500 dark:text-slate-400 p-2 rounded-lg bg-slate-100 dark:bg-slate-800">

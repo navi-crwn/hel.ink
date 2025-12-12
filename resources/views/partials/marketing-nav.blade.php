@@ -9,8 +9,8 @@
 @endphp
 <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 lg:px-8">
     <a href="{{ route('home') }}" class="flex items-center gap-3 text-white">
-        <img src="{{ route('brand.logo') }}" alt="Hop Easy Link logo" class="h-10 w-10" />
-        <span class="text-2xl font-semibold tracking-tight">Hop Easy Link</span>
+        <img src="{{ route('brand.logo') }}" alt="HEL.ink logo" class="h-10 w-10" />
+        <span class="text-2xl font-semibold tracking-tight">HEL.ink</span>
     </a>
     <div class="hidden items-center gap-6 text-sm font-medium text-white/70 md:flex">
         @foreach ($marketingLinks as $item)

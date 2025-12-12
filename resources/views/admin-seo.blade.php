@@ -20,14 +20,13 @@
                     </ul>
                 </div>
             @endif
-
             <form method="POST" action="{{ route('admin.seo.update') }}" class="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900 space-y-4"
                 x-data="{
                     siteTitle: @js(old('site_title', $seo->site_title ?? config('app.name'))),
                     metaDescription: @js(old('meta_description', $seo->meta_description ?? 'A fast shortlink studio for campaigns, QR codes, and analytics.')),
                     favicon: @js(old('favicon', $seo->favicon ?? '')),
                     logo: @js(old('logo', $seo->logo ?? '')),
-                    ogTitle: @js(old('og_title', $seo->og_title ?? 'Share smarter with Hop Easy Link')),
+                    ogTitle: @js(old('og_title', $seo->og_title ?? 'Share smarter with HEL.ink')),
                     ogDescription: @js(old('og_description', $seo->og_description ?? 'Track clicks, protect links, manage QR codes, and keep abuse away.'))
                 }">
                 @csrf
@@ -41,8 +40,8 @@
                                 </div>
                                 <span>{{ url('/') }}</span>
                             </div>
-                            <p class="mt-1 text-lg font-semibold text-blue-700 dark:text-blue-300" x-text="siteTitle || 'Hop Easy Link · Shortlink workspace'"></p>
-                            <p class="text-sm text-gray-600 dark:text-gray-300" x-text="metaDescription || 'Type a helpful description so search engines know what Hop Easy Link offers.'"></p>
+                            <p class="mt-1 text-lg font-semibold text-blue-700 dark:text-blue-300" x-text="siteTitle || 'HEL.ink · Shortlink workspace'"></p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300" x-text="metaDescription || 'Type a helpful description so search engines know what HEL.ink offers.'"></p>
                         </div>
                         <div class="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-900 flex gap-4">
                             <div class="h-16 w-16 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center overflow-hidden">
@@ -65,7 +64,7 @@
                     </div>
                     <div>
                         <label class="text-sm text-gray-600 dark:text-gray-300">Keywords</label>
-                        <input type="text" name="meta_keywords" value="{{ old('meta_keywords', $seo->meta_keywords ?? '') }}" class="mt-1 w-full rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white" placeholder="shortlink, hop easy link, hel.ink">
+                        <input type="text" name="meta_keywords" value="{{ old('meta_keywords', $seo->meta_keywords ?? '') }}" class="mt-1 w-full rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white" placeholder="shortlink, url shortener, hel.ink">
                         <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Optional, but useful for internal searching.</p>
                     </div>
                 </div>

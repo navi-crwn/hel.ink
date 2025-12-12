@@ -26,7 +26,6 @@ return new class extends Migration
             $table->boolean('is_published')->default(true);
             $table->unsignedBigInteger('view_count')->default(0);
             $table->timestamps();
-            
             $table->index('user_id');
             $table->index('slug');
             $table->index('is_published');

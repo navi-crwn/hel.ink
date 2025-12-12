@@ -21,8 +21,7 @@ class AuthenticatedSessionController extends Controller
         private readonly TurnstileService $turnstile,
         private readonly GeoIpService $geoIp,
         private readonly UserAgentService $userAgent
-    ) {
-    }
+    ) {}
 
     public function create(): View
     {
@@ -43,16 +42,14 @@ class AuthenticatedSessionController extends Controller
             IpWatchlist::addOrUpdate(
                 $request->ip(),
                 $user->id,
-                'Login attempt by suspended user: ' . $user->email
+                'Login attempt by suspended user: '.$user->email
             );
-            
+
             return redirect()->route('suspended')
                 ->with('email', $request->email);
         }
-
         $request->authenticate();
         $request->session()->regenerate();
-
         $user = $request->user();
         if ($user) {
             $geoDetails = $this->geoIp->details($request->ip());
@@ -89,14 +86,12 @@ class AuthenticatedSessionController extends Controller
                 ->skip(5)
                 ->take(1000)
                 ->pluck('id');
-            
             if ($oldHistories->isNotEmpty()) {
                 LoginHistory::whereIn('id', $oldHistories)->delete();
             }
-            if (!$user->two_factor_secret || !$user->two_factor_confirmed_at) {
+            if (! $user->two_factor_secret || ! $user->two_factor_confirmed_at) {
                 $request->session()->put('2fa_verified', true);
             }
-
             if ($user->role === 'admin') {
                 return redirect()->route('admin.dashboard');
             } elseif ($user->role === 'superadmin') {
@@ -110,7 +105,6 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         $request->session()->forget('2fa_verified');

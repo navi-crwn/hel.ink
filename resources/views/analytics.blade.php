@@ -17,12 +17,10 @@
             </x-slot>
         </x-page-header>
     </x-slot>
-
     <div class="py-10">
         <div class="mx-auto max-w-6xl space-y-6 sm:px-6 lg:px-8">
             <form method="GET" x-ref="form" class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <div class="grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-5">
-                    
                     <div class="col-span-2 md:col-span-2 lg:col-span-2" x-data="{ 
                         open: false, 
                         search: '', 
@@ -101,7 +99,6 @@
                     </div>
                 </div>
             </form>
-
             <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <div class="grid gap-3 md:grid-cols-3">
                     <div class="rounded-xl border border-blue-200 bg-blue-50 p-3 dark:border-blue-900/40 dark:bg-blue-900/20">
@@ -121,7 +118,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <div class="mb-4 flex items-center justify-between">
                     <div>
@@ -134,7 +130,6 @@
                     <canvas id="analyticsChart"></canvas>
                 </div>
             </div>
-
             <div class="grid gap-6 lg:grid-cols-2">
                 <div class="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900" x-data="{ tab: 'links' }">
                     <div class="flex items-center justify-between">
@@ -216,7 +211,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
                 <div class="flex flex-col gap-4 lg:flex-row lg:items-start">
                     <div class="flex-1 min-w-[360px]">
@@ -239,7 +233,6 @@
                             <span class="font-medium">High Traffic</span>
                         </div>
                     </div>
-
                     <div class="rounded-2xl border border-gray-100 bg-gray-50 p-3 text-sm dark:border-slate-800 dark:bg-slate-900/80 flex-1 min-w-[360px]">
                         <div class="flex items-center justify-between">
                             <div>
@@ -294,7 +287,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="grid gap-6 lg:grid-cols-2" x-data="{ networkPage: 0 }">
                 <div class="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900" x-data="{ tab: 'countries', countriesPage: 0, citiesPage: 0, regionsPage: 0 }">
                     <div class="flex items-center justify-between">
@@ -308,11 +300,9 @@
                             <button type="button" @click="tab = 'regions'" :class="tab === 'regions' ? 'text-blue-600 dark:text-blue-300' : ''">Regions</button>
                         </div>
                     </div>
-                    
                     <div class="mt-4" x-show="tab === 'countries'">
                         <canvas id="countriesChart" height="200"></canvas>
                     </div>
-                    
                     @php
                         $countriesArray = collect($countries)->take(50)->toArray();
                         $countriesPerPage = 8;
@@ -330,7 +320,6 @@
                             </ul>
                         @endforeach
                     </div>
-                    
                     @php
                         $citiesArray = collect($cities)->take(50)->toArray();
                         $citiesPerPage = 8;
@@ -359,7 +348,6 @@
                         </button>
                     </div>
                     @endif
-                    
                     @php
                         $regionsArray = collect($regions)->take(50)->toArray();
                         $regionsPerPage = 8;
@@ -389,7 +377,6 @@
                     </div>
                     @endif
                 </div>
-
                 <div class="space-y-10">
                     <div class="rounded-3xl border-2 border-gray-300 bg-white p-6 shadow-lg dark:border-gray-600 dark:bg-gray-900 relative z-10">
                         <div class="flex items-center justify-between">
@@ -434,7 +421,6 @@
                         </div>
                         @endif
                     </div>
-
                     <div class="rounded-3xl border-2 border-gray-300 bg-white p-6 shadow-lg dark:border-gray-600 dark:bg-gray-900" x-data="{ tab: 'devices' }">
                         <div class="flex items-center justify-between mb-4">
                             <div>
@@ -447,11 +433,9 @@
                                 <button type="button" @click="tab = 'os'" :class="tab === 'os' ? 'text-blue-600 dark:text-blue-300' : ''">OS</button>
                             </div>
                         </div>
-                        
                         <div x-show="tab === 'devices'">
                             <canvas id="devicesChart" height="140"></canvas>
                         </div>
-                    
                     <div class="mt-4 space-y-2" x-show="tab === 'devices'">
                         @forelse ($devices as $device => $total)
                             @php
@@ -515,7 +499,6 @@
                 </div>
             </div>
         </div>
-        
         <div class="rounded-3xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900">
             <div class="flex items-center justify-between mb-3">
                 <div>
@@ -555,7 +538,6 @@
             </div>
         </div>
     </div>
-
     @push('scripts')
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
@@ -640,11 +622,9 @@
                     }
                 }
             });
-
             // Leaflet Choropleth Map (replacing jVectorMap)
             const mapData = {!! json_encode($mapData) !!};
             const maxClicks = Math.max(...Object.values(mapData), 1);
-            console.log('🗺️ Map Data:', mapData, 'Max clicks:', maxClicks);
             const iso3To2 = {"ATG":"AG","BTN":"BT","ITA":"IT","TUV":"TV","AIA":"AI","AUS":"AU","BLZ":"BZ","VUT":"VU","BLR":"BY","MUS":"MU","LAO":"LA","SEN":"SN","TUR":"TR","BOL":"BO","LKA":"LK","NFK":"NF","CHN":"CN","BES":"BQ","GGY":"GG","SDN":"SD","MYT":"YT","BLM":"BL","VAT":"VA","TCA":"TC","CUW":"CW","BWA":"BW","BEN":"BJ","LTU":"LT","MSR":"MS","VGB":"VG","BDI":"BI","UMI":"UM","IRL":"IE","SLB":"SB","BMU":"BM","FIN":"FI","PER":"PE","BGD":"BD","DNK":"DK","VCT":"VC","DOM":"DO","MDA":"MD","BGR":"BG","CRI":"CR","NAM":"NA","SJM":"SJ","LUX":"LU","RUS":"RU","ARE":"AE","SXM":"SX","BHS":"BS","JPN":"JP","NGA":"NG","GHA":"GH","SLE":"SL","SPM":"PM","ALB":"AL","TKL":"TK","SHN":"SH","TON":"TO","TKM":"TM","DJI":"DJ","CAF":"CF","LBN":"LB","LVA":"LV","CCK":"CC","GMB":"GM","HND":"HN","NIU":"NU","MRT":"MR","UNK":"XK","WLF":"WF","SGS":"GS","PYF":"PF","TGO":"TG","BEL":"BE","ZMB":"ZM","CYM":"KY","PCN":"PN","COK":"CK","MDG":"MG","MNE":"ME","KOR":"KR","ETH":"ET","MNG":"MN","SVK":"SK","CUB":"CU","ATA":"AQ","GTM":"GT","GUF":"GF","NOR":"NO","GRD":"GD","REU":"RE","CHL":"CL","COL":"CO","SAU":"SA","ISR":"IL","DEU":"DE","NZL":"NZ","GRL":"GL","KGZ":"KG","SLV":"SV","FRO":"FO","PLW":"PW","MLT":"MT","SYR":"SY","TLS":"TL","HRV":"HR","PNG":"PG","NLD":"NL","LBR":"LR","SOM":"SO","VEN":"VE","HTI":"HT","DZA":"DZ","MNP":"MP","MAF":"MF","HMD":"HM","ABW":"AW","EGY":"EG","MWI":"MW","GNQ":"GQ","VIR":"VI","ECU":"EC","UZB":"UZ","GAB":"GA","SSD":"SS","IRN":"IR","KAZ":"KZ","NIC":"NI","ISL":"IS","SVN":"SI","GLP":"GP","CMR":"CM","ARG":"AR","AZE":"AZ","UGA":"UG","NER":"NE","CXR":"CX","MMR":"MM","POL":"PL","JOR":"JO","HKG":"HK","COD":"CD","ERI":"ER","KIR":"KI","MHL":"MH","BFA":"BF","ZWE":"ZW","KEN":"KE","COM":"KM","GIB":"GI","BRN":"BN","SWE":"SE","LSO":"LS","IMN":"IM","FSM":"FM","TZA":"TZ","CPV":"CV","AFG":"AF","AND":"AD","GRC":"GR","VNM":"VN","ATF":"TF","IRQ":"IQ","LBY":"LY","PRT":"PT","PAK":"PK","MDV":"MV","MAR":"MA","BIH":"BA","WSM":"WS","PSE":"PS","OMN":"OM","BHR":"BH","USA":"US","PRI":"PR","IOT":"IO","JEY":"JE","MKD":"MK","TUN":"TN","TTO":"TT","EST":"EE","SGP":"SG","PAN":"PA","CHE":"CH","URY":"UY","TJK":"TJ","TWN":"TW","ZAF":"ZA","LIE":"LI","BRA":"BR","ARM":"AM","GEO":"GE","ALA":"AX","QAT":"QA","DMA":"DM","UKR":"UA","GIN":"GN","MAC":"MO","ESH":"EH","CZE":"CZ","AUT":"AT","KNA":"KN","LCA":"LC","YEM":"YE","RWA":"RW","MCO":"MC","STP":"ST","COG":"CG","PRY":"PY","BVT":"BV","MOZ":"MZ","FRA":"FR","SWZ":"SZ","BRB":"BB","ESP":"ES","THA":"TH","GNB":"GW","AGO":"AO","IND":"IN","MTQ":"MQ","NCL":"NC","SYC":"SC","FLK":"FK","GBR":"GB","FJI":"FJ","SMR":"SM","MLI":"ML","CAN":"CA","JAM":"JM","NRU":"NR","IDN":"ID","GUM":"GU","CIV":"CI","KWT":"KW","PHL":"PH","GUY":"GY","HUN":"HU","MEX":"MX","PRK":"KP","ROU":"RO","SUR":"SR","ASM":"AS","NPL":"NP","TCD":"TD","SRB":"RS","KHM":"KH","MYS":"MY","CYP":"CY"};
             const normalizeCountryCode = (code) => {
                 if (!code) return '';
@@ -653,7 +633,6 @@
                 return iso3To2[upper] || upper;
             };
             const countryLayers = {};
-
             window.focusCountry = (countryCode) => {
                 const normalized = normalizeCountryCode(countryCode);
                 if (countryLayers[normalized] && countryLayers[normalized].getBounds) {
@@ -664,12 +643,10 @@
                     setSelectedCountry(name, clicks);
                 }
             };
-
             const setSelectedCountry = (name, clicks) => {
                 document.getElementById('map-country-name').textContent = name;
                 document.getElementById('map-country-clicks').textContent = clicks ? `${clicks.toLocaleString()} clicks` : 'No clicks yet';
             };
-            
             let map;
             try {
                 map = L.map('world-map', {
@@ -681,16 +658,13 @@
                     scrollWheelZoom: false,
                     worldCopyJump: true
                 });
-
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 19,
                     noWrap: false
                 }).addTo(map);
-
                 fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
                     .then(response => response.json())
                     .then(geoData => {
-                        
                         function getColor(countryCode) {
                             const code = normalizeCountryCode(countryCode);
                             const clicks = mapData[code] || 0;
@@ -701,7 +675,6 @@
                             if (intensity > 0.2) return '#60a5fa';
                             return '#bfdbfe';
                         }
-
                         function style(feature) {
                             return {
                                 fillColor: getColor(feature.id ? feature.id.toUpperCase() : ''),
@@ -711,7 +684,6 @@
                                 fillOpacity: 0.8
                             };
                         }
-
                         function highlightFeature(e) {
                             const layer = e.target;
                             layer.setStyle({ weight: 2, color: '#475569', fillOpacity: 0.95 });
@@ -719,24 +691,20 @@
                                 layer.bringToFront();
                             }
                         }
-
                         function resetHighlight(e) {
                             geojson.resetStyle(e.target);
                         }
-
                         function onEachFeature(feature, layer) {
                             const countryCode = normalizeCountryCode(feature.id || feature.properties?.iso_a2);
                             const clicks = mapData[countryCode] || 0;
                             const countryName = feature.properties.name;
                             countryLayers[countryCode] = layer;
-                            
                             layer.bindPopup(`
                                 <div class="text-center p-1" style="width: 110px;">
                                     <p class="font-bold text-sm">${countryName}</p>
                                     <p class="text-xs text-slate-600">${clicks.toLocaleString()} clicks</p>
                                 </div>
                             `);
-                            
                             layer.on({
                                 mouseover: highlightFeature,
                                 mouseout: resetHighlight,
@@ -745,7 +713,6 @@
                                 }
                             });
                         }
-
                         const geojson = L.geoJSON(geoData, {
                             style: style,
                             onEachFeature: onEachFeature
@@ -759,7 +726,6 @@
             } catch (error) {
                 console.error('❌ Map init error:', error);
             }
-            
             // Countries Bar Chart
             const countriesData = {!! json_encode($countries) !!};
             if (Object.keys(countriesData).length > 0) {
@@ -797,7 +763,6 @@
                     }
                 });
             }
-            
             // Devices Doughnut Chart
             const devicesData = {!! json_encode($devices) !!};
             if (Object.keys(devicesData).length > 0) {

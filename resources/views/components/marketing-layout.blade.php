@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         @php
             $metaTitle = $seoSettings->site_title ?? ($title ?? config('app.name'));
-            $metaDescription = $seoSettings->meta_description ?? 'Hop Easy Link keeps hel.ink lightweight for guests and teams.';
+            $metaDescription = $seoSettings->meta_description ?? 'HEL.ink keeps hel.ink lightweight for guests and teams.';
             $metaKeywords = $seoSettings->meta_keywords ?? 'shortlink, helink, qr, analytics';
             $ogTitle = $seoSettings->og_title ?? $metaTitle;
             $ogDescription = $seoSettings->og_description ?? $metaDescription;

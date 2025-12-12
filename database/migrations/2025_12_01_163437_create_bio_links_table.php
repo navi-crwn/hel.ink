@@ -22,7 +22,6 @@ return new class extends Migration
             $table->unsignedInteger('order')->default(0);
             $table->unsignedBigInteger('click_count')->default(0);
             $table->timestamps();
-            
             $table->index('bio_page_id');
             $table->index(['bio_page_id', 'order']);
             $table->index('is_active');
