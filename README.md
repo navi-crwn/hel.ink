@@ -16,6 +16,21 @@
   <a href="CREDITS.md">Credits</a>
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Laravel-12-FF2D20?style=flat-square&logo=laravel&logoColor=white" alt="Laravel 12"/>
+  <img src="https://img.shields.io/badge/PHP-8.2+-777BB4?style=flat-square&logo=php&logoColor=white" alt="PHP 8.2+"/>
+  <img src="https://img.shields.io/badge/Tailwind-3.x-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS"/>
+  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="MIT License"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/github/stars/navi-crwn/hel.ink?style=flat-square&color=yellow" alt="Stars"/>
+  <img src="https://img.shields.io/github/forks/navi-crwn/hel.ink?style=flat-square" alt="Forks"/>
+  <img src="https://img.shields.io/github/issues/navi-crwn/hel.ink?style=flat-square" alt="Issues"/>
+  <img src="https://img.shields.io/github/last-commit/navi-crwn/hel.ink?style=flat-square" alt="Last Commit"/>
+  <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fnavi-crwn%2Fhel.ink&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=true" alt="Views"/>
+</p>
+
 ---
 
 ## What's HEL.ink?
