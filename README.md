@@ -263,35 +263,19 @@ Please follow PSR-12 and include tests for new features.
 
 ---
 
-## 📄 License
+## 📄 License & Credits
 
-MIT License. See [LICENSE](LICENSE) for details.
+**MIT License** — Free to use, modify, and distribute. See [LICENSE](LICENSE).
 
-Third-party licenses: MIT, BSD-2, BSD-3, Apache-2.0, SIL OFL 1.1, GPLv2. Full list in [CREDITS.md](CREDITS.md).
+Built with Laravel, Tailwind CSS, Alpine.js, and 45+ open-source libraries. Link in Bio inspired by [LinkStack](https://github.com/LinkStackOrg/LinkStack) and [LittleLink](https://github.com/sethcottle/littlelink). Brand icons from [Simple Icons](https://simpleicons.org).
+
+Full credits, dependencies, and acknowledgments: **[CREDITS.md](CREDITS.md)**
 
 ---
 
 ## 👤 Author
 
 **Ivan Novskies** — [@navi-crwn](https://github.com/navi-crwn)
-
----
-
-## 🙏 Thanks
-
-Taylor Otwell (Laravel), Caleb Porzio (Alpine.js), Adam Wathan (Tailwind CSS), Simple Icons contributors, LinkStack team, Seth Cottle (LittleLink), and all open-source maintainers who made this possible.
-
----
-
-## 💡 Inspiration
-
-The Link in Bio feature was inspired by these projects:
-
-- **[LinkStack](https://github.com/LinkStackOrg/LinkStack)** — Self-hosted link management (AGPL-3.0)
-- **[LittleLink](https://github.com/sethcottle/littlelink)** — Minimalist link page (MIT)
-- **[Linktree](https://linktr.ee)** — Commercial bio page service
-
-No code was copied. Design patterns and UX concepts were referenced to build something new.
 
 ---
 
