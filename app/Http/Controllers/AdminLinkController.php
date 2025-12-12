@@ -68,11 +68,13 @@ class AdminLinkController extends Controller
             ->with(['folder', 'tags'])
             ->latest();
         
-        $search = $request->string('q')->trim()->toString();
+        // Support both 'q' and 'query' parameters
+        $search = $request->string('q')->trim()->toString() ?: $request->string('query')->trim()->toString();
         if ($search !== '') {
             $query->where(function ($q) use ($search) {
                 $q->where('slug', 'like', "%{$search}%")
-                    ->orWhere('target_url', 'like', "%{$search}%");
+                    ->orWhere('target_url', 'like', "%{$search}%")
+                    ->orWhere('title', 'like', "%{$search}%");
             });
         }
         
@@ -84,6 +86,21 @@ class AdminLinkController extends Controller
         $tagId = $request->integer('tag_id');
         if ($tagId) {
             $query->whereHas('tags', fn ($q) => $q->where('tags.id', $tagId));
+        }
+        
+        // Return JSON if requested
+        if ($request->wantsJson() || $request->ajax()) {
+            $links = $query->limit(20)->get()->map(function ($link) {
+                return [
+                    'id' => $link->id,
+                    'title' => $link->title,
+                    'slug' => $link->slug,
+                    'url' => $link->target_url,
+                    'short_url' => url($link->slug),
+                    'clicks' => $link->clicks,
+                ];
+            });
+            return response()->json($links);
         }
         
         $links = $query->paginate(15)->withQueryString();

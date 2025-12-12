@@ -103,6 +103,44 @@ class LinkService
         }
     }
     
+    /**
+     * Create a shortlink for the given user
+     */
+    public function createShortlink($user, string $url, string $title = 'Bio Link', bool $isPublic = false): Link
+    {
+        // Generate a unique slug
+        $slug = $this->generateUniqueSlug();
+        
+        // Create the link using correct field names
+        $link = Link::create([
+            'user_id' => $user->id,
+            'target_url' => $url,
+            'slug' => $slug,
+            'status' => 'active',
+            'custom_title' => $title,
+        ]);
+        
+        return $link;
+    }
+    
+    /**
+     * Generate a unique slug for the shortlink
+     */
+    protected function generateUniqueSlug(int $length = 6): string
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $slug = '';
+        
+        do {
+            $slug = '';
+            for ($i = 0; $i < $length; $i++) {
+                $slug .= $characters[random_int(0, strlen($characters) - 1)];
+            }
+        } while (Link::where('slug', $slug)->exists());
+        
+        return $slug;
+    }
+
     protected function hexToRgb(string $hex): array
     {
         $hex = ltrim($hex, '#');

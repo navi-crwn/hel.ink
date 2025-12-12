@@ -1,13 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
         <x-page-header title="Tags" subtitle="Label your shortlinks for faster filtering">
-            <x-slot name="actions">
-                <form method="POST" action="{{ route('tags.store') }}" class="flex gap-2">
-                    @csrf
-                    <input type="text" name="name" placeholder="Tag name..." class="rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white" required>
-                    <button class="rounded-xl bg-blue-600 px-4 py-2 text-white hover:bg-blue-500">Create</button>
-                </form>
-            </x-slot>
         </x-page-header>
     </x-slot>
 
@@ -151,6 +144,70 @@
 
             <div class="pt-4">
                 {{ $tags->links() }}
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Tag Modal -->
+    <div x-data="{ open: false }" 
+         x-init="window.openTagModal = () => { open = true }"
+         @keydown.escape.window="open = false"
+         x-cloak>
+        <div x-show="open" class="fixed inset-0 z-50 overflow-y-auto">
+            <div class="flex min-h-screen items-center justify-center p-4">
+                <div x-show="open" 
+                     x-transition:enter="ease-out duration-300"
+                     x-transition:enter-start="opacity-0"
+                     x-transition:enter-end="opacity-100"
+                     x-transition:leave="ease-in duration-200"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0"
+                     class="fixed inset-0 bg-black/50 backdrop-blur-sm" 
+                     @click="open = false"></div>
+                
+                <div x-show="open"
+                     x-transition:enter="ease-out duration-300"
+                     x-transition:enter-start="opacity-0 scale-95"
+                     x-transition:enter-end="opacity-100 scale-100"
+                     x-transition:leave="ease-in duration-200"
+                     x-transition:leave-start="opacity-100 scale-100"
+                     x-transition:leave-end="opacity-0 scale-95"
+                     class="relative w-full max-w-md transform rounded-2xl bg-white p-6 shadow-2xl dark:bg-slate-800">
+                    
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Create New Tag</h3>
+                        <button @click="open = false" class="rounded-full p-2 text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <form method="POST" action="{{ route('tags.store') }}">
+                        @csrf
+                        <div class="space-y-4">
+                            <div>
+                                <label for="tag-name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Tag Name</label>
+                                <input type="text" 
+                                       id="tag-name" 
+                                       name="name" 
+                                       placeholder="e.g., Social Media" 
+                                       class="w-full rounded-xl border-slate-200 focus:border-blue-500 focus:ring-blue-500 dark:border-slate-600 dark:bg-slate-700 dark:text-white"
+                                       required
+                                       autofocus>
+                            </div>
+                            
+                            <div class="flex justify-end gap-3 pt-2">
+                                <button type="button" @click="open = false" class="rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-700">
+                                    Cancel
+                                </button>
+                                <button type="submit" class="rounded-xl bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-500 shadow-lg shadow-blue-500/25">
+                                    Create Tag
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

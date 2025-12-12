@@ -195,6 +195,10 @@ class LinkController extends Controller
                 'used' => $stats['active_links'],
                 'limit' => $limits['max_active_links'],
             ],
+            'bio' => [
+                'used' => $user->bioPages()->count(),
+                'limit' => 3,
+            ],
         ];
 
         $data = [
@@ -357,7 +361,12 @@ class LinkController extends Controller
         $this->links->forgetCache($link);
         ActivityLog::log('deleted', 'Link', $linkId, "Deleted link: {$slug}");
 
-        return redirect()->route('dashboard')->with('status', 'Link dihapus.');
+        // Handle AJAX requests
+        if (request()->ajax() || request()->wantsJson()) {
+            return response()->json(['success' => true, 'message' => 'Link dihapus.']);
+        }
+
+        return redirect()->back()->with('status', 'Link dihapus.');
     }
 
     public function show(Link $link)

@@ -7,7 +7,13 @@ Alpine.plugin(collapse);
 
 window.Alpine = Alpine;
 
-Alpine.start();
+// Use requestAnimationFrame to ensure inline scripts in blade templates have executed
+// This handles the race condition with module script execution
+requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+        Alpine.start();
+    });
+});
 
 const ensureTurnstileScript = () => {
     if (window.turnstileReady) {

@@ -6,7 +6,7 @@
         <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Manage all your short links</p>
     </div>
 
-    <div class="py-10">
+    <div class="py-10" x-data="linksManager()">
         <div class="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
             @if (session('status'))
                 <div class="rounded-2xl border border-emerald-300 bg-emerald-50 px-4 py-3 text-emerald-900 dark:border-emerald-900/30 dark:bg-emerald-900/20 dark:text-emerald-200">
@@ -76,9 +76,19 @@
                 </form>
 
                 <div class="mt-4 overflow-x-auto">
+                    <!-- Bulk Actions Bar -->
+                    <div x-show="selectedLinks.length > 0" x-cloak class="mb-4 flex items-center gap-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3 border border-blue-200 dark:border-blue-800">
+                        <span class="text-sm font-medium text-blue-700 dark:text-blue-300" x-text="selectedLinks.length + ' selected'"></span>
+                        <button @click="bulkDelete()" class="rounded-full bg-rose-600 px-4 py-1.5 text-xs font-semibold text-white hover:bg-rose-500">Delete Selected</button>
+                        <button @click="selectedLinks = []; selectAll = false" class="text-xs text-slate-600 dark:text-slate-400 hover:underline">Clear</button>
+                    </div>
+                    
                     <table class="min-w-full divide-y divide-slate-200 text-sm dark:divide-slate-800">
                         <thead class="text-left text-slate-500 dark:text-slate-300">
                             <tr>
+                                <th class="py-3 pr-2 w-10">
+                                    <input type="checkbox" x-model="selectAll" @change="toggleSelectAll()" class="rounded border-slate-300 dark:border-slate-600">
+                                </th>
                                 <th class="py-3">Shortlink</th>
                                 <th class="py-3">Destination</th>
                                 <th class="py-3">Clicks</th>
@@ -89,7 +99,10 @@
                         </thead>
                         <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
                             @forelse ($links as $link)
-                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/40">
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/40" x-show="!deletedLinks.includes({{ $link->id }})">
+                                    <td class="py-3 pr-2">
+                                        <input type="checkbox" value="{{ $link->id }}" x-model="selectedLinks" class="rounded border-slate-300 dark:border-slate-600">
+                                    </td>
                                     <td class="py-3">
                                         <div class="font-semibold text-blue-600 dark:text-blue-400">{{ $link->short_url }}</div>
                                         <div class="text-xs text-slate-500 dark:text-slate-400">
@@ -126,11 +139,7 @@
                                         <div class="flex items-center justify-end gap-2 text-xs">
                                             <a href="{{ route('links.show', $link) }}" class="rounded-full border border-slate-200 px-3 py-1 text-slate-500 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800">Analytics</a>
                                             <a href="{{ route('links.edit', $link) }}" class="rounded-full border border-slate-200 px-3 py-1 text-slate-500 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800">Edit</a>
-                                            <form method="POST" action="{{ route('links.destroy', $link) }}" onsubmit="return confirm('Delete this link permanently?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="rounded-full border border-rose-200 px-3 py-1 text-rose-600 hover:bg-rose-50 dark:border-rose-900/30 dark:text-rose-200 dark:hover:bg-rose-900/20">Delete</button>
-                                            </form>
+                                            <button @click="deleteLink({{ $link->id }})" class="rounded-full border border-rose-200 px-3 py-1 text-rose-600 hover:bg-rose-50 dark:border-rose-900/30 dark:text-rose-200 dark:hover:bg-rose-900/20">Delete</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -157,6 +166,71 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function linksManager() {
+            return {
+                selectedLinks: [],
+                selectAll: false,
+                deletedLinks: [],
+                linkIds: @json($links->pluck('id')->toArray()),
+                
+                toggleSelectAll() {
+                    if (this.selectAll) {
+                        this.selectedLinks = this.linkIds.filter(id => !this.deletedLinks.includes(id)).map(String);
+                    } else {
+                        this.selectedLinks = [];
+                    }
+                },
+                
+                async deleteLink(id) {
+                    if (!confirm('Delete this link permanently?')) return;
+                    
+                    try {
+                        const response = await fetch(`/links/${id}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            }
+                        });
+                        
+                        if (response.ok) {
+                            this.deletedLinks.push(id);
+                            this.selectedLinks = this.selectedLinks.filter(lid => lid != id);
+                        } else {
+                            alert('Failed to delete link');
+                        }
+                    } catch (e) {
+                        console.error('Delete error:', e);
+                        alert('Failed to delete link');
+                    }
+                },
+                
+                async bulkDelete() {
+                    if (!confirm(`Delete ${this.selectedLinks.length} links permanently?`)) return;
+                    
+                    for (const id of this.selectedLinks) {
+                        try {
+                            await fetch(`/links/${id}`, {
+                                method: 'DELETE',
+                                headers: {
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                    'Accept': 'application/json'
+                                }
+                            });
+                            this.deletedLinks.push(parseInt(id));
+                        } catch (e) {
+                            console.error('Delete error for', id, e);
+                        }
+                    }
+                    this.selectedLinks = [];
+                    this.selectAll = false;
+                }
+            };
+        }
+    </script>
 
     {{-- Link Creation Modal Component --}}
     <x-link-creation-modal :folders="$folders" :tags="$tags" :isAdmin="auth()->user()->isSuperAdmin()" />

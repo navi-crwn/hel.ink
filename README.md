@@ -1,15 +1,16 @@
-# 🔗 Hel.ink: Modern URL Shortener
+# 🔗 Hel.ink: Modern URL Shortener v2.0
 
 <p align="center">
   <img src="https://hel.ink/brand/logo-dark.png" alt="Hel.ink Logo" width="200"/>
 </p>
 
 <p align="center">
-  <strong>A powerful, feature-rich URL shortening service built with Laravel 11</strong>
+  <strong>A powerful, feature-rich URL shortening & Link in Bio platform built with Laravel 12</strong>
 </p>
 
 <p align="center">
   <a href="#-features">Features</a> •
+  <a href="#-whats-new-in-v20">What's New</a> •
   <a href="#-demo">Demo</a> •
   <a href="#-installation">Installation</a> •
   <a href="#-configuration">Configuration</a> •
@@ -21,9 +22,43 @@
 
 ---
 
+## 🆕 What's New in v2.0
+
+### ✨ Link in Bio Enhancements
+- **20+ Themes**: New professionally designed themes including Galaxy, Neon, Cyberpunk, Aurora, Cherry, Midnight, Matrix, Ice, Lavender, and more
+- **Background Animations**: Rain, Snow, Stars, Hearts, Leaves, Confetti, Particles, and Matrix falling effect
+- **Entrance Animations**: Fade, Slide Up/Down, Pop, Bounce, Flip with stagger support
+- **Attention Animations**: Pulse, Shake, Glow, Wiggle, Heartbeat, Rainbow, Bounce
+- **Hover Effects**: Scale, Glow, Lift, Glossy, Color-shift with theme-aware colors
+- **New Block Types**: FAQ accordion, Code blocks, vCard contact cards, Countdown timers, Google Maps embed
+- **Window Droplets**: Realistic rain droplets on glass effect
+
+### 🎨 UI/UX Improvements
+- **Dark Theme Default**: Optimized dark mode for bio pages
+- **Improved Social Icons**: 150+ brand icons with proper colors
+- **Share Modal**: Built-in QR code generator with social sharing
+- **Responsive Design**: Better mobile experience
+
+### 🔧 Technical Improvements
+- **Laravel 12**: Upgraded to latest Laravel framework
+- **Performance**: Canvas-based particle animations for better performance
+- **Code Cleanup**: Minimized comments for production optimization
+- **Better SEO**: Improved meta tags and indexing controls
+
+---
+
 ## ✨ Features
 
-### 🔐 Authentication & Security
+### � Link in Bio
+- **20+ Professional Themes**: Galaxy, Neon, Cyberpunk, Aurora, Midnight, Matrix, and more
+- **Background Animations**: Rain, Snow, Stars, Hearts, Leaves, Confetti, Particles, Matrix
+- **Entrance & Attention Animations**: Fade, Slide, Pop, Bounce, Pulse, Glow, Heartbeat
+- **Rich Block Types**: Links, Text, Images, Videos, Music, FAQ, vCard, Countdown, Maps, Code
+- **Social Media Integration**: 150+ brand icons with proper colors
+- **Custom CSS**: Full styling control for advanced users
+- **SEO Controls**: Meta tags, indexing, Google Analytics, Facebook Pixel, TikTok Pixel
+
+### �🔐 Authentication & Security
 - **Multiple Login Options**: Email/Password, Google OAuth
 - **Two-Factor Authentication (2FA)**: TOTP-based security with QR codes
 - **Email Verification**: Secure account activation

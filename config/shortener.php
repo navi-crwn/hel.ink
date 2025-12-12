@@ -12,7 +12,7 @@ return [
     */
     'reserved_slugs' => [
         // Single characters (reserved for future use)
-        'a', 'i', 'x', 'v',
+        'a', 'b', 'i', 'x', 'v',
         
         // Two characters - Common brands & abbreviations
         'fb', 'ig', 'tw', 'yt', 'go', 'my', 'id', 'us', 'uk', 'cn',
@@ -38,6 +38,19 @@ return [
         'assets', 'static', 'public', 'storage',
         'upload', 'download', 'export', 'import',
         'report', 'abuse', 'flag', 'spam',
+
+        // Security & Scam Prevention
+        'official', 'verified', 'security', 'secure', 'auth', 'authentication',
+        'update', 'upgrade', 'billing', 'payment', 'invoice', 'receipt',
+        'wallet', 'crypto', 'bitcoin', 'ethereum', 'bank', 'banking',
+        'paypal', 'stripe', 'cashapp', 'venmo', 'zelle',
+        
+        // Major Brands (Anti-Impersonation)
+        'google', 'gmail', 'youtube', 'facebook', 'instagram', 'whatsapp', 'messenger',
+        'twitter', 'x', 'tiktok', 'linkedin', 'pinterest', 'snapchat', 'telegram',
+        'microsoft', 'apple', 'icloud', 'amazon', 'netflix', 'spotify', 'twitch',
+        'discord', 'slack', 'zoom', 'adobe', 'dropbox', 'mega',
+        'helink', 'helink-official', 'helink-support', 'helink-admin',
     ],
     
     /*

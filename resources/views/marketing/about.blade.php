@@ -6,8 +6,8 @@
             Hel.ink is a modern, open-source URL shortener built for individuals and teams who want powerful link management without the complexity. 
             We focus on clean redirects, comprehensive analytics, and features that actually matter, all while respecting your privacy.
         </p>
-        <p class="mt-6 max-w-3xl text-base text-white/70">Whether you're managing social media campaigns, organizing team resources, or tracking marketing performance, Hel.ink provides the tools you need: folders and tags for organization, QR code generation, password protection, link expiration, comprehensive analytics with geographic tracking and device detection, REST API for ShareX and automation tools, and even proxy/VPN detection for security.</p>
-        <p class="mt-4 max-w-3xl text-base text-white/70">Built with Laravel 12 and modern web technologies, Hel.ink is designed for both developers and everyday users. Sign in with Google OAuth or email, organize your links with folders and tags, integrate with ShareX and CLI tools via REST API, track every click with detailed analytics powered by multiple geolocation providers, and download QR codes in multiple formats. Everything works seamlessly across devices with our dark mode interface.</p>
+        <p class="mt-6 max-w-3xl text-base text-white/70">Whether you're managing social media campaigns, organizing team resources, tracking marketing performance, or creating a link in bio page for Instagram and TikTok, Hel.ink provides the tools you need: Link in Bio pages with unlimited links and custom themes, folders and tags for organization, QR code generation, password protection, link expiration, comprehensive analytics with geographic tracking and device detection, REST API for ShareX and automation tools, and even proxy/VPN detection for security.</p>
+        <p class="mt-4 max-w-3xl text-base text-white/70">Built with Laravel 12 and modern web technologies, Hel.ink is designed for both developers and everyday users. Sign in with Google OAuth or email, create beautiful bio pages at hel.ink/b/yourname with custom themes and analytics, organize your links with folders and tags, integrate with ShareX and CLI tools via REST API, track every click with detailed analytics powered by multiple geolocation providers, and download QR codes in multiple formats. Everything works seamlessly across devices with our dark mode interface.</p>
         
         <div class="mt-12 max-w-3xl space-y-6">
             <h2 class="text-2xl font-semibold text-white">Our Mission</h2>
@@ -40,6 +40,11 @@
                 <p class="mt-2 text-white/70">Password protect sensitive links, set expiration dates, enable 2FA on your account, and review login history. Admins get IP banning, domain blacklist, and abuse reporting tools.</p>
             </div>
             <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
+                <p class="text-sm uppercase tracking-[0.3em] text-white/50">Link in Bio</p>
+                <h3 class="mt-2 text-xl font-semibold text-white">Your personal hub</h3>
+                <p class="mt-2 text-white/70">Create beautiful bio pages at hel.ink/b/yourname with unlimited links, 5 custom themes, social media icons, avatar uploads, and full analytics. No monthly fees, no link limits. Perfect for Instagram, TikTok, Twitter, and LinkedIn creators.</p>
+            </div>
+            <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
                 <p class="text-sm uppercase tracking-[0.3em] text-white/50">Automation</p>
                 <h3 class="mt-2 text-xl font-semibold text-white">API Ready</h3>
                 <p class="mt-2 text-white/70">REST API with Bearer authentication for ShareX, CLI tools, and custom applications. Rate limited at 100 requests per hour. Perfect for screenshot automation and bulk operations.</p>
@@ -52,6 +57,7 @@
             <div class="mt-6 flex flex-wrap gap-4">
                 <a href="{{ route('register') }}" class="inline-block rounded-full bg-white px-6 py-3 font-semibold text-slate-900 hover:bg-white/90">Create Free Account</a>
                 <a href="https://github.com/navi-crwn/hel.ink" target="_blank" class="inline-block rounded-full border border-white/20 bg-white/5 px-6 py-3 font-semibold text-white hover:bg-white/10">View on GitHub</a>
+                <a href="/b/hel" class="inline-block rounded-full border border-indigo-400/40 bg-indigo-500/10 px-6 py-3 font-semibold text-indigo-300 hover:bg-indigo-500/20">Official Bio Page →</a>
             </div>
         </div>
     </section>

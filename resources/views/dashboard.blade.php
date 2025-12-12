@@ -56,6 +56,7 @@
             @php
                 $dailyPercent = $quota['daily']['limit'] > 0 ? min(100, round(($quota['daily']['used'] / $quota['daily']['limit']) * 100)) : 0;
                 $activePercent = $quota['active']['limit'] > 0 ? min(100, round(($quota['active']['used'] / $quota['active']['limit']) * 100)) : 0;
+                $bioPercent = $quota['bio']['limit'] > 0 ? min(100, round(($quota['bio']['used'] / $quota['bio']['limit']) * 100)) : 0;
             @endphp
             
             <div class="grid gap-6 lg:grid-cols-2">
@@ -84,6 +85,15 @@
                             </div>
                             <div class="mt-2 h-3 rounded-full bg-slate-100 dark:bg-slate-800">
                                 <div class="h-3 rounded-full bg-emerald-500" style="width: {{ $activePercent }}%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between">
+                                <dt class="text-slate-500 dark:text-slate-300">Link in Bio Pages</dt>
+                                <dd class="font-semibold text-slate-900 dark:text-white">{{ $quota['bio']['used'] }} / {{ $quota['bio']['limit'] }}</dd>
+                            </div>
+                            <div class="mt-2 h-3 rounded-full bg-slate-100 dark:bg-slate-800">
+                                <div class="h-3 rounded-full bg-purple-500" style="width: {{ $bioPercent }}%"></div>
                             </div>
                         </div>
                     </dl>

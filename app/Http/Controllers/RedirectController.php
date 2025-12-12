@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\LogLinkClick;
 use App\Models\Link;
+use App\Models\BioPage;
 use App\Services\LinkService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -18,6 +19,12 @@ class RedirectController extends Controller
 
     public function __invoke(Request $request, string $slug)
     {
+        // Check if this is a bio page first
+        $bioPage = BioPage::where('slug', $slug)->where('is_published', true)->first();
+        if ($bioPage) {
+            return redirect()->to('/b/' . $slug);
+        }
+        
         $link = Cache::remember($this->links->cacheKey($slug), 300, function () use ($slug) {
             return Link::with(['user'])->where('slug', $slug)->first();
         });

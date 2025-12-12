@@ -114,6 +114,30 @@
         </a>
     </li>
 
+    <li x-data="{ open: {{ request()->routeIs('admin.bio*') ? 'true' : 'false' }} }">
+        <button @click="open = !open" class="flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('admin.bio*') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800' }}">
+            <div class="flex items-center gap-3">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                </svg>
+                <span>Link in Bio</span>
+            </div>
+            <svg class="h-4 w-4 transition-transform" :class="{ 'rotate-180': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+        </button>
+        <ul x-show="open" x-collapse class="ml-8 mt-2 space-y-1">
+            <li>
+                <a href="{{ route('admin.bio.index') }}" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors {{ request()->routeIs('admin.bio.index') || request()->routeIs('admin.bio.show') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800' }}">
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+                    </svg>
+                    All Bio Pages
+                </a>
+            </li>
+        </ul>
+    </li>
+
     <li x-data="{ open: {{ request()->routeIs('admin.seo*') || request()->routeIs('admin.site*') ? 'true' : 'false' }} }">
         <button @click="open = !open" class="flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors {{ request()->routeIs('admin.seo*') || request()->routeIs('admin.site*') ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800' }}">
             <div class="flex items-center gap-3">

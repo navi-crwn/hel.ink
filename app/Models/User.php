@@ -70,6 +70,11 @@ class User extends Authenticatable
         return $this->hasMany(ApiToken::class);
     }
 
+    public function bioPages(): HasMany
+    {
+        return $this->hasMany(BioPage::class);
+    }
+
     public function isAdmin(): bool
     {
         return $this->isSuperAdmin();

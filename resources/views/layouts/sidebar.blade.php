@@ -2,6 +2,7 @@
     $navItems = [
         ['label' => 'Links', 'route' => 'dashboard', 'icon' => '🔗'],
         ['label' => 'Analytics', 'route' => 'analytics', 'icon' => '📈'],
+        ['label' => 'Link in Bio', 'route' => 'bio.index', 'icon' => '📱'],
         ['label' => 'Folders', 'route' => 'folders.index', 'icon' => '📁'],
         ['label' => 'Tags', 'route' => 'tags.index', 'icon' => '🏷️'],
         ['label' => 'Settings', 'route' => 'settings', 'icon' => '⚙️'],

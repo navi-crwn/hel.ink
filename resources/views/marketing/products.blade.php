@@ -36,6 +36,13 @@
                 <p class="mt-3 text-white/70">Perfect for marketing campaigns, product launches, and professional presentations. Stand out in crowded social feeds with eye-catching, on-brand link previews.</p>
             </div>
             
+            <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
+                <h2 class="text-2xl font-semibold text-white">Link in Bio</h2>
+                <p class="mt-3 text-white/70">Create beautiful, branded bio pages for Instagram, TikTok, Twitter, and LinkedIn with unlimited links, multiple themes, and full analytics. Your personal link hub at hel.ink/b/yourname with no monthly fees or link limits.</p>
+                <p class="mt-3 text-white/70">Choose from 5 professional themes (Default, Minimal, Gradient, Dark, Vibrant), add social media icons, upload avatar images, and customize with your own CSS. Track views, clicks, and visitor locations with detailed analytics charts.</p>
+                <p class="mt-3 text-white/70">Unlike Linktree or Heylink, we never charge for unlimited links, theme customization, or analytics access. Your bio page includes QR code generation, drag and drop link reordering, and scheduled link publishing. Perfect for creators, businesses, and influencers.</p>
+            </div>
+            
             <div id="analytics-feature" class="rounded-3xl border border-white/10 bg-white/5 p-6">
                 <h2 class="text-2xl font-semibold text-white">Analytics</h2>
                 <p class="mt-3 text-white/70">Comprehensive per-link and global analytics with charts for clicks, referrers, devices, browsers, operating systems, and geographic distribution. Track campaign performance with detailed insights into user behavior, traffic sources, and engagement patterns.</p>

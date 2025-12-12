@@ -58,6 +58,12 @@
             </article>
             
             <article class="rounded-3xl border border-white/10 bg-white/5 p-6">
+                <h2 class="text-2xl font-semibold text-white">Link in Bio Pages</h2>
+                <p class="mt-3 text-sm text-white/70">Create beautiful bio pages at hel.ink/b/yourname with unlimited links, custom themes, and full analytics. Perfect for Instagram, TikTok, and other social profiles. Choose from multiple themes, add social icons, upload an avatar, and embed videos or music. Drag and drop to reorder links, and track every view and click.</p>
+                <p class="mt-3 text-sm text-white/60">Check out our official page at <a href="/b/hel" class="text-blue-400 hover:text-blue-300">hel.ink/b/hel</a> for an example!</p>
+            </article>
+            
+            <article class="rounded-3xl border border-white/10 bg-white/5 p-6">
                 <h2 class="text-2xl font-semibold text-white">Need more help?</h2>
                 <p class="mt-3 text-sm text-white/70">Email support@hel.ink or open the feature request form. We try to respond within 24 hours. For urgent issues, include your account email and a detailed description of the problem. Check our FAQ page for answers to common questions.</p>
             </article>

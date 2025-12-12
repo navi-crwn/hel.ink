@@ -39,6 +39,21 @@
                 <h2 class="text-xl font-semibold text-white">Can I use my own domain?</h2>
                 <p class="mt-2 text-white/70">Custom domain support is a planned feature for future releases. Currently, all short links use the hel.ink domain. If you self-host the application, you can use any domain you own.</p>
             </div>
+
+            <div>
+                <h2 class="text-xl font-semibold text-white">What is Link in Bio and how does it work?</h2>
+                <p class="mt-2 text-white/70">Link in Bio is a free feature that creates a personal landing page at hel.ink/b/yourname where you can share unlimited links. Perfect for Instagram, TikTok, Twitter, and LinkedIn bios. Choose from 5 custom themes, add social media icons, upload avatars, and track views and clicks with detailed analytics. No monthly fees or link limits, unlike Linktree or Heylink.</p>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-semibold text-white">Can I customize my bio page design?</h2>
+                <p class="mt-2 text-white/70">Yes! Choose from 5 professional themes (Default, Minimal, Gradient, Dark, Vibrant), upload a custom avatar image, add social media links with icons, and even inject your own custom CSS for advanced styling. Drag and drop to reorder links, toggle link visibility, and enable/disable your bio page at any time.</p>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-semibold text-white">How many links can I add to my bio page?</h2>
+                <p class="mt-2 text-white/70">Unlimited! Unlike paid services that charge for more than 5-10 links, HEL.ink lets you add as many links as you need, completely free. Edit, reorder, or delete links anytime without losing analytics data.</p>
+            </div>
         </div>
 
         <div class="mt-16 rounded-3xl border border-white/10 bg-white/5 p-8 text-center">
