@@ -172,4 +172,26 @@
             </div>
         </div>
     </section>
+    <section class="mx-auto max-w-6xl px-6 pb-20 lg:px-8">
+        <div class="rounded-3xl border border-cyan-400/30 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 p-8">
+            <div class="flex flex-col md:flex-row items-center gap-6">
+                <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-cyan-400 to-purple-500 flex items-center justify-center flex-shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <div class="flex-1 text-center md:text-left">
+                    <p class="text-xs uppercase tracking-[0.3em] text-cyan-300/70 mb-2">Part of HEL.ink Family</p>
+                    <h2 class="text-2xl font-semibold text-white">PixelHop - Image Hosting & Tools</h2>
+                    <p class="mt-3 text-white/70">
+                        Need image hosting? Try <strong class="text-cyan-300">PixelHop</strong> (p.hel.ink) - free premium image hosting with compress, resize, convert, OCR, and AI background removal.
+                    </p>
+                </div>
+                <a href="https://p.hel.ink" target="_blank" rel="noopener" class="rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 px-6 py-3 font-semibold text-white hover:opacity-90 transition-opacity flex items-center gap-2 flex-shrink-0">
+                    Visit PixelHop
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                </a>
+            </div>
+        </div>
+    </section>
 </x-marketing-layout>

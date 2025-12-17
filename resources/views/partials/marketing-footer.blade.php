@@ -27,6 +27,13 @@
                 ['label' => 'Analytics', 'route' => route('products').'#analytics-feature'],
             ],
         ],
+        [
+            'title' => 'HEL.ink Family',
+            'items' => [
+                ['label' => 'PixelHop - Image Hosting', 'route' => 'https://p.hel.ink', 'external' => true],
+                ['label' => 'Image Tools', 'route' => 'https://p.hel.ink/features.php', 'external' => true],
+            ],
+        ],
     ];
 @endphp
 <footer class="mt-20 border-t border-white/10 bg-slate-950/90 py-12 text-sm text-white/70">
@@ -44,7 +51,7 @@
                 <p class="text-xs uppercase tracking-[0.3em] text-white/50">{{ $block['title'] }}</p>
                 <ul class="mt-3 space-y-2">
                     @foreach ($block['items'] as $item)
-                        <li><a href="{{ $item['route'] }}" class="hover:text-white">{{ $item['label'] }}</a></li>
+                        <li><a href="{{ $item['route'] }}" @if(!empty($item['external'])) target="_blank" rel="noopener" @endif class="hover:text-white">{{ $item['label'] }}</a></li>
                     @endforeach
                 </ul>
             </div>
