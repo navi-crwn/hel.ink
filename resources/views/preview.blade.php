@@ -96,8 +96,13 @@
                                     Safety Warning
                                 </h3>
                                 <p class="text-xs text-yellow-700 dark:text-yellow-400">
-                                    {{ config('app.name') }} is not responsible for the content of external websites. 
+                                    {{ config('app.name') }} is not responsible for the content of external websites.
                                     Please ensure you trust the destination before proceeding.
+                                </p>
+                                <p class="text-xs mt-2">
+                                    <a href="{{ route('report.create', ['url' => $targetUrl]) }}" class="font-semibold text-red-600 dark:text-red-400 hover:underline">
+                                        Report this link
+                                    </a>
                                 </p>
                             </div>
                         </div>

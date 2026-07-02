@@ -16,7 +16,10 @@ class Link extends Model
         'slug',
         'target_url',
         'user_id',
+        'created_ip',
         'status',
+        'flagged_at',
+        'flag_reason',
         'clicks',
         'last_clicked_at',
         'folder_id',
@@ -36,11 +39,15 @@ class Link extends Model
         'clicks' => 'integer',
         'last_clicked_at' => 'datetime',
         'expires_at' => 'datetime',
+        'flagged_at' => 'datetime',
     ];
 
     public const STATUS_ACTIVE = 'active';
 
     public const STATUS_INACTIVE = 'inactive';
+
+    // Auto-moderation: created but withheld from redirecting, pending review.
+    public const STATUS_FLAGGED = 'flagged';
 
     public function user(): BelongsTo
     {
@@ -85,5 +92,15 @@ class Link extends Model
     public function requiresPassword(): bool
     {
         return filled($this->password_hash);
+    }
+
+    public function isFlagged(): bool
+    {
+        return $this->status === self::STATUS_FLAGGED || $this->flagged_at !== null;
+    }
+
+    public function scopeFlagged($query)
+    {
+        return $query->where('status', self::STATUS_FLAGGED);
     }
 }

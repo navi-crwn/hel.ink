@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HandlesSlugs;
+use App\Http\Controllers\ScreensLinks;
 use App\Models\Folder;
 use App\Models\Link;
+use App\Services\LinkScreeningService;
 use App\Services\LinkService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -13,7 +15,7 @@ use Illuminate\Validation\ValidationException;
 
 class ShortenController extends Controller
 {
-    use HandlesSlugs;
+    use HandlesSlugs, ScreensLinks;
 
     public function __construct(
         private LinkService $links
@@ -47,6 +49,15 @@ class ShortenController extends Controller
         // Add https:// if missing
         if (! preg_match('/^https?:\/\//i', $targetUrl)) {
             $targetUrl = 'https://'.$targetUrl;
+        }
+        // Abuse screening
+        $verdict = $this->screenLink($targetUrl, $request->input('alias'), $request->ip(), 'api:user:'.$user->id);
+        if ($verdict['action'] === LinkScreeningService::BLOCK) {
+            return response()->json([
+                'success' => false,
+                'error' => 'Blocked',
+                'message' => 'This URL was blocked by our safety filters.',
+            ], 422);
         }
         // Check user quota
         if (! app(\App\Services\QuotaService::class)->checkUserLimits($user->id)) {
@@ -88,12 +99,14 @@ class ShortenController extends Controller
                 'target_url' => $targetUrl,
                 'slug' => $slug,
                 'status' => Link::STATUS_ACTIVE,
+                'created_ip' => $request->ip(),
                 'folder_id' => $folderId,
                 'redirect_type' => '302',
                 'expires_at' => $request->input('expires_at'),
                 'password_hash' => $request->filled('password')
                     ? \Illuminate\Support\Facades\Hash::make($request->input('password'))
                     : null,
+                ...$this->screeningAttributes($verdict),
             ]);
             // Generate QR code
             $this->links->generateQr($link);

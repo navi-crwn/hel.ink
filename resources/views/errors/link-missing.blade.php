@@ -73,9 +73,15 @@
                 </div>
                 <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-center">
                     <p class="text-sm text-gray-600 dark:text-gray-400">
-                        Need help? Contact us at 
+                        Need help? Contact us at
                         <a href="mailto:{{ config('mail.addresses.support', 'support@hel.ink') }}" class="text-blue-600 dark:text-blue-400 hover:underline font-medium">
                             {{ config('mail.addresses.support', 'support@hel.ink') }}
+                        </a>
+                    </p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                        Seeing something abusive?
+                        <a href="{{ route('report.create', ['slug' => $slug ?? null]) }}" class="text-red-600 dark:text-red-400 hover:underline font-medium">
+                            Report this link
                         </a>
                     </p>
                 </div>
