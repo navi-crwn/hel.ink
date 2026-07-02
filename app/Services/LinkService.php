@@ -51,6 +51,9 @@ class LinkService
             if (! $qrImage) {
                 return $qrImageData; // Return original if failed
             }
+            if (! app(UrlGuard::class)->isSafe($logoUrl)) {
+                return $qrImageData; // Reject unsafe (SSRF) logo URLs
+            }
             $logoData = @file_get_contents($logoUrl);
             if (! $logoData) {
                 return $qrImageData; // Return original if logo fetch failed

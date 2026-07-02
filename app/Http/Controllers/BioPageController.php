@@ -43,12 +43,19 @@ class BioPageController extends Controller
     public function generateQR(Request $request)
     {
         $data = $request->input('data');
-        $size = $request->input('size', 300);
+        $size = (int) $request->input('size', 300);
+        $size = max(50, min($size, 1000)); // Clamp to prevent memory-exhaustion DoS
         $color = $request->input('color', '000000');
         $bgcolor = $request->input('bgcolor', 'ffffff');
         $logoData = $request->input('logo'); // Base64 logo image
         if (! $data) {
             return response('Missing data parameter', 400);
+        }
+        if (! preg_match('/^[0-9a-fA-F]{6}$/', (string) $color) || ! preg_match('/^[0-9a-fA-F]{6}$/', (string) $bgcolor)) {
+            return response('Invalid color parameter', 400);
+        }
+        if (strlen((string) $data) > 2048) {
+            return response('Data too long', 400);
         }
         try {
             // Generate QR code with high error correction for logo overlay
@@ -284,6 +291,15 @@ class BioPageController extends Controller
         // Ensure theme is not null (database doesn't allow null)
         if (array_key_exists('theme', $validated) && $validated['theme'] === null) {
             $validated['theme'] = 'default';
+        }
+        // Hash bio-page password on write; never store plaintext. An empty
+        // submission leaves the existing password untouched.
+        if (array_key_exists('password', $validated)) {
+            if (filled($validated['password'])) {
+                $validated['password'] = \Illuminate\Support\Facades\Hash::make($validated['password']);
+            } else {
+                unset($validated['password']);
+            }
         }
         $bioPage->update($validated);
         // Return JSON for AJAX requests
