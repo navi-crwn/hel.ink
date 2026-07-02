@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Storage;
 
 class LinkController extends Controller
 {
-    use HandlesSlugs;
+    use HandlesSlugs, ScreensLinks;
 
     public function __construct(
         private readonly QuotaService $quotas,
@@ -249,6 +249,14 @@ class LinkController extends Controller
             return back()->withErrors(['target_url' => 'Daily link quota reached. Try again tomorrow.']);
         }
         $data = $request->validated();
+        $verdict = $this->screenLink($data['target_url'], $data['slug'] ?? null, $request->ip(), 'dashboard:user:'.$request->user()->id);
+        if ($verdict['action'] === \App\Services\LinkScreeningService::BLOCK) {
+            if ($request->wantsJson()) {
+                return response()->json(['error' => 'This URL was blocked by our safety filters.'], 422);
+            }
+
+            return back()->withErrors(['target_url' => 'This URL was blocked by our safety filters.'])->withInput();
+        }
         if (empty($data['folder_id'])) {
             $defaultFolder = Folder::where('user_id', $request->user()->id)
                 ->where('is_default', true)
@@ -257,7 +265,9 @@ class LinkController extends Controller
                 $data['folder_id'] = $defaultFolder->id;
             }
         }
-        $link = $request->user()->links()->create($this->mapPayload($data));
+        $link = $request->user()->links()->create(
+            array_merge($this->mapPayload($data), ['created_ip' => $request->ip()], $this->screeningAttributes($verdict))
+        );
         $this->syncRelations($link, $request);
         if ($request->input('generate_qr', true)) {
             $this->links->generateQr($link);

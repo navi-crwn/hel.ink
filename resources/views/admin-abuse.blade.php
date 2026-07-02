@@ -34,15 +34,23 @@
                                     <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 dark:bg-slate-800 dark:text-slate-200">{{ ucfirst($report->status) }}</span>
                                 </td>
                                 <td class="px-4 py-3 text-right">
-                                    <form method="POST" action="{{ route('admin.abuse.update', $report) }}" class="inline-flex gap-2">
+                                    <form method="POST" action="{{ route('admin.abuse.update', $report) }}" class="inline-flex flex-col items-end gap-2">
                                         @csrf
                                         @method('PATCH')
-                                        <select name="status" class="rounded-full border-gray-200 bg-white px-3 py-1 text-xs dark:border-gray-700 dark:bg-gray-800 dark:text-white">
-                                            @foreach (['open','investigating','closed'] as $option)
-                                                <option value="{{ $option }}" @selected($report->status === $option)>{{ ucfirst($option) }}</option>
-                                            @endforeach
-                                        </select>
-                                        <button class="rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white hover:bg-blue-500">Update</button>
+                                        <div class="inline-flex gap-2">
+                                            <select name="status" class="rounded-full border-gray-200 bg-white px-3 py-1 text-xs dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+                                                @foreach (['open','investigating','closed'] as $option)
+                                                    <option value="{{ $option }}" @selected($report->status === $option)>{{ ucfirst($option) }}</option>
+                                                @endforeach
+                                            </select>
+                                            <button class="rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white hover:bg-blue-500">Update</button>
+                                        </div>
+                                        <label class="inline-flex items-center gap-1 text-xs text-red-600 dark:text-red-400">
+                                            <input type="checkbox" name="takedown" value="1" class="rounded border-gray-300"> Disable link
+                                        </label>
+                                        <label class="inline-flex items-center gap-1 text-xs text-red-600 dark:text-red-400">
+                                            <input type="checkbox" name="blacklist_domain" value="1" class="rounded border-gray-300"> Blacklist domain
+                                        </label>
                                     </form>
                                 </td>
                             </tr>

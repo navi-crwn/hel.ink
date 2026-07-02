@@ -105,7 +105,14 @@ class AdminLinkController extends Controller
         $validated = $request->validate([
             'status' => ['required', Rule::in([Link::STATUS_ACTIVE, Link::STATUS_INACTIVE])],
         ]);
-        $link->update(['status' => $validated['status']]);
+        $attributes = ['status' => $validated['status']];
+        // Approving (activating) a previously flagged link clears its flag.
+        if ($validated['status'] === Link::STATUS_ACTIVE && $link->isFlagged()) {
+            $attributes['flagged_at'] = null;
+            $attributes['flag_reason'] = null;
+        }
+        $link->update($attributes);
+        app(\App\Services\LinkService::class)->forgetCache($link);
 
         return back()->with('status', "Link {$link->slug} status updated.");
     }

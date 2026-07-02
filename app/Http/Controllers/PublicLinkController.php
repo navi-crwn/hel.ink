@@ -10,7 +10,7 @@ use App\Services\TurnstileService;
 
 class PublicLinkController extends Controller
 {
-    use HandlesSlugs;
+    use HandlesSlugs, ScreensLinks;
 
     public function __construct(
         private readonly TurnstileService $turnstile,
@@ -30,6 +30,12 @@ class PublicLinkController extends Controller
             return back()->withErrors(['turnstile' => 'Security verification failed. Please try again.'])->withInput();
         }
         $data = $request->validated();
+        $verdict = $this->screenLink($data['target_url'], $data['slug'] ?? null, $request->ip(), 'public');
+        if ($verdict['action'] === \App\Services\LinkScreeningService::BLOCK) {
+            return back()
+                ->withErrors(['target_url' => 'This link cannot be shortened because it was flagged by our safety filters.'])
+                ->withInput();
+        }
         $watchlistEntry = IpWatchlist::where('ip_address', $request->ip())->first();
         if ($watchlistEntry) {
             $watchlistEntry->increment('attempt_count');
@@ -42,6 +48,8 @@ class PublicLinkController extends Controller
             'target_url' => $data['target_url'],
             'slug' => $this->prepareSlug($data['slug'] ?? null),
             'status' => Link::STATUS_ACTIVE,
+            'created_ip' => $request->ip(),
+            ...$this->screeningAttributes($verdict),
         ]);
         $this->links->generateQr($link);
         $this->links->forgetCache($link);
