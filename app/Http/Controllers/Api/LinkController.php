@@ -132,8 +132,11 @@ class LinkController extends Controller
     {
         $request->validate(['url' => 'required|url']);
         $url = $request->input('url');
+        if (! app(\App\Services\UrlGuard::class)->isSafe($url)) {
+            return response()->json(['title' => null], 422);
+        }
         try {
-            $client = new \GuzzleHttp\Client(['timeout' => 5, 'verify' => false]);
+            $client = new \GuzzleHttp\Client(['timeout' => 5, 'verify' => true, 'allow_redirects' => false]);
             $response = $client->get($url, [
                 'headers' => [
                     'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',

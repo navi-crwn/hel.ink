@@ -30,7 +30,7 @@ class PublicBioController extends Controller
             $sessionKey = "bio_unlocked_{$bioPage->id}";
             if (! session($sessionKey)) {
                 if ($request->isMethod('post') && $request->has('password')) {
-                    if ($request->input('password') === $bioPage->password) {
+                    if ($this->passwordMatches($request->input('password'), $bioPage->password)) {
                         session([$sessionKey => true]);
 
                         // Use 303 redirect (See Other) to convert POST to GET - prevents browser resubmit warning
@@ -118,13 +118,28 @@ class PublicBioController extends Controller
         return 'unknown';
     }
 
+    /**
+     * Verify a submitted bio-page password against the stored value.
+     *
+     * Supports hashed passwords (Hash::check) and falls back to a
+     * constant-time comparison for legacy plaintext rows.
+     */
+    protected function passwordMatches(?string $input, ?string $stored): bool
+    {
+        if ($input === null || $stored === null || $stored === '') {
+            return false;
+        }
+        if (\Illuminate\Support\Str::startsWith($stored, ['$2y$', '$2a$', '$2b$', '$argon2i$', '$argon2id$'])) {
+            return \Illuminate\Support\Facades\Hash::check($input, $stored);
+        }
+
+        return hash_equals($stored, $input);
+    }
+
     protected function getCountryFromIp(string $ipAddress): ?string
     {
         try {
-            $ipService = app(\App\Services\IpLocationService::class);
-            $data = $ipService->locate($ipAddress);
-
-            return $data['country_code'] ?? null;
+            return app(\App\Services\GeoIpService::class)->country($ipAddress);
         } catch (\Exception $e) {
             return null;
         }

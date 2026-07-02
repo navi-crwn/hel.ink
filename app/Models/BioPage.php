@@ -68,6 +68,10 @@ class BioPage extends Model
         'background_animation',
     ];
 
+    protected $hidden = [
+        'password',
+    ];
+
     protected $casts = [
         'social_links' => 'array',
         'socials' => 'array',
